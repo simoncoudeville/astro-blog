@@ -152,16 +152,6 @@ Variables
     }
 }
 
-.dark {
-    --global-backgroundColor: var(--global-color-neutral-900);
-    --global-foregroundColor: var(--global-color-neutral-800);
-    --global-text-color: var(--global-color-neutral-025);
-    --global-highlight-color: var(--global-color-neutral-025);
-    --global-borderColor: var(--global-color-neutral-700);
-    --global-borderColor2: var(--global-color-neutral-600);
-    --global-meta-color: var(--global-color-neutral-400);
-}
-
 /*
 Page
 ====
@@ -401,9 +391,14 @@ Objects and components
     .row--page-header {
         --row-page-header-background-color-lightness: 10%;
         --row-page-header-border-color-lightness: 95%;
-        /* --row-page-header-border-color-opacity: .15; */
     }
 }
+
+/*
+.dark .row--page-header {
+    --row-page-header-background-color-lightness: 10%;
+    --row-page-header-border-color-lightness: 95%;
+} */
 
 .container {
     max-width: 36rem;
