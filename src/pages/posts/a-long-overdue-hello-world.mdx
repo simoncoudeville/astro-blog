@@ -1,0 +1,33 @@
+---
+layout: ../../layouts/PostLayout.astro
+title: "A long overdue hello world"
+pubDate: 2022-12-01
+description: "This is the first post of my new Astro blog."
+---
+
+Welcome to my new blog about learning Astro! Here, I will share my learning journey as I build a new website.
+
+## Theme icon component
+
+import ThemeIcon from "../../components/ThemeIcon.astro";
+
+<ThemeIcon />
+
+## Greeting component
+
+import Greeting from "../../components/Greeting.jsx";
+
+<Greeting client:load messages={["Hej", "Hallo", "Hola", "Habari"]} />
+
+## Syntax highlighting
+
+```css
+h1 {
+  margin: 1rem 0;
+  font-size: 2.5rem;
+}
+```
+
+## What's next
+
+I will finish the Astro tutorial, and then keep adding more posts. Watch this space for more to come.

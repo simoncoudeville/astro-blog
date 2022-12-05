@@ -2,31 +2,29 @@
 const allPosts = (await Astro.glob('../pages/posts/*.{md,mdx}')).sort(
 	(a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf()
 );
-
+// count the number of posts
+const numPosts = allPosts.length;
+// get the index of the current post
 const { currentTitle } = Astro.props;
 ---
-
-<ul>
+<h2>
+    All {numPosts} Posts
+</h2>
+<ol reversed class="list-reset postlist">
     {
         allPosts.map((post) => (
-            <li>
-                <a href={post.url} class={currentTitle === post.frontmatter.title ? "active" : ""} >
+            <li class="postlist__item">
+                <a href={post.url} class={currentTitle === post.frontmatter.title ? "postlist__link postlist__link--active" : "postlist__link"} >
                     {post.frontmatter.title}
-                </a>
-                <time datetime={post.frontmatter.pubDate}>
+                    <time class="postlist__date text-date color-meta" datetime={post.frontmatter.pubDate}>
                     {new Date(post.frontmatter.pubDate).toLocaleDateString('en-us', {
                         year: 'numeric',
                         month: 'short',
                         day: 'numeric',
                     })}
-                </time>
+                    </time>
+                </a>
             </li>
         ))
     }
-</ul>
-
-<style>
-    .active {
-        background-color: hotpink;
-    }
-</style>
+</ol>
