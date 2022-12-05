@@ -1,0 +1,27 @@
+---
+import '../styles/global.css';
+import Blogposts from '../components/Blogposts.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+const { frontmatter } = Astro.props;
+const pageTitle = frontmatter.title;
+const pageDescription = frontmatter.description;
+const pageDate = frontmatter.pubDate.slice(0,10);
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={pageDescription} />
+    <title>{pageTitle} - Simon Coudeville</title>
+  </head>
+  <body>
+    <Header headerDate={pageDate} />
+    <h1>{pageTitle}</h1>
+    <slot />
+    <Blogposts currentTitle={pageTitle} />
+    <Footer />
+  </body>
+</html>

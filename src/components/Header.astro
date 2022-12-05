@@ -1,10 +1,11 @@
 ---
-import Navigation from "./Navigation.astro";
-import Hamburger from "./Hamburger.astro";
+const { headerDate } = Astro.props;
 ---
 <header>
-    <nav>
-        <Hamburger />
-        <Navigation />
-    </nav>
+    <h2>
+        <a href="/">Simon Coudeville</a>
+    </h2>
+    <p>
+        {headerDate}
+    </p>
 </header>
