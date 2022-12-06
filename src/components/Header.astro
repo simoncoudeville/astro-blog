@@ -1,6 +1,7 @@
 ---
 const { headerDate, headerTitle } = Astro.props;
 ---
+
 <header class="row row--page-header js-page-header">
   <div class="container">
     <div class="page-header">
@@ -8,7 +9,9 @@ const { headerDate, headerTitle } = Astro.props;
         <a class="logo__link" href="/">Simon Coudeville</a>
       </h2>
       <span class="page-header__title color-meta">{headerTitle}</span>
-      <time class="page-header__date color-meta text-date" datetime={headerDate}>{headerDate}</time>
+      <time class="page-header__date color-meta text-date" datetime={headerDate}
+        >{headerDate}</time
+      >
     </div>
   </div>
 </header>

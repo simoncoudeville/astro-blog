@@ -134,10 +134,10 @@ Variables
 }
 
 /* @supports (color: color(display-p3 1 1 1)) {
-	:root {
-		--global-color-alpha: color(display-p3 0.2668 0 0.4895);
-		--global-color-beta: color(display-p3 1 0.4286 0.3199);
-	}
+    :root {
+        --global-color-alpha: color(display-p3 0.2668 0 0.4895);
+        --global-color-beta: color(display-p3 1 0.4286 0.3199);
+    }
 } */
 
 @media (prefers-color-scheme: dark) {
@@ -192,9 +192,9 @@ body {
 }
 
 /* @media (min-width: 41em) {
-	body {
-		padding-top: var(--global-whitespace);
-	}
+    body {
+        padding-top: var(--global-whitespace);
+    }
 } */
 
 ::selection {
@@ -589,7 +589,7 @@ body:has(.title-collides) .page-header__date {
 }
 
 /* .demo__code {
-	margin: calc(var(--global-whitespace) * -1);
+    margin: calc(var(--global-whitespace) * -1);
 } */
 
 .demo__code pre[class*=language-] {
