@@ -1,11 +1,31 @@
 ---
 layout: ../../layouts/PostLayout.astro
 title: "A long overdue hello world"
-pubDate: 2022-12-01
-description: "This is the first post of my new Astro blog."
+pubDate: 2022-12-07
+description: "This is my first blog post on my new personal blog ever."
 ---
 
-Welcome to my new blog about learning Astro! Here, I will share my learning journey as I build a new website.
+Welcome to my new blog about learning Astro! Here, I will share my learning journey as I build a new website. scripts per component that just work. It allows me to make a component and write the markup, styles and script in one document. If I include the component it just works. In Eleventy I was trying to figure out a system how to do that. scripts per component that just work. It allows me to make a component and write the markup, styles and script in one document. If I include the component it just works. In Eleventy I was trying to figure out a system how to do that. scripts per component that just work. It allows me to make a component and write the markup, styles and script in one document. If I include the component it just works. In Eleventy I was trying to figure out a system how to do that.
+
+## Pro's
+
+Syntax highlighting out of the box
+
+scripts per component that just work. It allows me to make a component and write the markup, styles and script in one document. If I include the component it just works. In Eleventy I was trying to figure out a system how to do that.
+
+## Cons
+
+It took me a long time to find out how to make global and reusable variables, parameters and functions. For example I needed a standard wy of formatting dates on a blog detail and
+
+No way to control url output at the time of writing. So the file name has to be the exact url.
+
+Harder to write date for example
+
+Look up stuff, when you type astro
+
+In my case at the time of writing the homepage is the latest post. Since I'm using MDX it was a bit hard to include the whole post `<Content />` without running into issues. For some reason
+
+In every SSG I tried there was at least one issue I ran into that I didn't like.
 
 ## Theme icon component
 
@@ -22,9 +42,63 @@ import Greeting from "../../components/Greeting.jsx";
 ## Syntax highlighting
 
 ```css
+:root {
+  --color: blue;
+  --space: calc(2rem * 2);
+}
+
 h1 {
   margin: 1rem 0;
   font-size: 2.5rem;
+  font-feature-settings: "zero", "tnum", "case";
+}
+
+/* comment */
+
+@media (prefers-color-scheme: dark) {
+  --color: hsl(330 100% 100%);
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+@media screen and (min-width: 46.5em) {
+  html {
+    font-size: calc(19 / 16 * 100%);
+  }
+}
+
+.class {
+  font-size: 1rem;
+}
+```
+
+```javascript
+// a variable of js-page-header's height in pixels
+let pageHeaderHeight =
+  document.querySelector(".js-page-header").offsetHeight.toString() + "px";
+
+function checkInView(element, className, treshold, rootMargin) {
+  let observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting === false) {
+          element.classList.add(className);
+        } else {
+          element.classList.remove(className);
+        }
+      });
+    },
+    {
+      threshold: [treshold],
+      rootMargin: [rootMargin],
+    }
+  );
+  observer.observe(element);
 }
 ```
 

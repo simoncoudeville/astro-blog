@@ -20,36 +20,6 @@ Fonts
 }
 
 @font-face {
-    font-family: 'Tiempos Text Web';
-    src: url('../fonts/TiemposTextWeb-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
-}
-
-
-@font-face {
-    font-family: 'Tiempos Text Web';
-    src: url('../fonts/TiemposTextWeb-Semibold.woff') format('woff');
-    font-weight: 700;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Tiempos Text Web';
-    src: url('../fonts/TiemposTextWeb-Regularitalic.woff') format('woff');
-    font-weight: 400;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Tiempos Text Web';
-    src: url('../fonts/TiemposTextWeb-Semibolditalic.woff') format('woff');
-    font-weight: 700;
-    font-style: italic;
-}
-
-
-@font-face {
     font-family: 'Tiempos Headline';
     src: url('../fonts/TiemposHeadlineWeb-Bold.woff') format('woff');
     font-weight: 700;
@@ -62,12 +32,16 @@ Variables
 */
 
 :root {
-    --global-color-alpha: indigo;
-    --global-color-alpha-hue: 275deg;
-    --global-color-alpha-saturation: 100%;
+    --global-color-sky-blue: hsl(197deg 75% 65%);
+    /* --global-color-sky-blue: #519eea; */
+    --global-color-rose: hsl(355deg 85% 70%);
+    --global-color-tangerine: hsl(29deg 75% 65%);
+    --global-color-jade-green: hsl(95deg 60% 65%);
+    --global-color-lilac: hsl(286deg 65% 70%);
 
-    --global-color-beta: tomato;
-
+    /* --global-color-alpha-hue: 197deg; */
+    /* --global-color-alpha-hue: 286deg; */
+    --global-color-alpha-hue: 355deg;
     --global-neutral-hue: var(--global-color-alpha-hue);
     --global-neutral-saturation: 2%;
 
@@ -80,7 +54,7 @@ Variables
     --global-color-neutral-500: hsl(var(--global-neutral-hue), var(--global-neutral-saturation), 44%);
     --global-color-neutral-600: hsl(var(--global-neutral-hue), var(--global-neutral-saturation), 30%);
     --global-color-neutral-700: hsl(var(--global-neutral-hue), var(--global-neutral-saturation), 20%);
-    --global-color-neutral-800: hsl(var(--global-neutral-hue), var(--global-neutral-saturation), 15%);
+    --global-color-neutral-800: hsl(var(--global-neutral-hue), var(--global-neutral-saturation), 13%);
     --global-color-neutral-900: hsl(var(--global-neutral-hue), var(--global-neutral-saturation), 10%);
 
     --global-backgroundColor: var(--global-color-neutral-025);
@@ -99,7 +73,6 @@ Variables
     --global-borderRadius: 0.25rem;
 
     --global-link-color: var(--global-text-color);
-    /* --global-link-color: var(--global-highlight-color); */
     --global-link-underline-color: var(--global-meta-color);
     --global-link-hover-color: var(--global-link-underline-color);
     --global-selection-backgroundColor: var(--global-text-color);
@@ -163,7 +136,6 @@ Page
     box-sizing: border-box;
     margin: 0;
 }
-
 
 html {
     line-height: var(--global-line-height);
@@ -287,6 +259,10 @@ select:disabled {
     opacity: .5;
 }
 
+code {
+    font-family: var(--global-font-family-code);
+}
+
 /*
 Images
 ======
@@ -328,7 +304,7 @@ h3,
 }
 
 ul li::marker {
-    color: var(--global-color-beta);
+    color: var(--global-color-tangerine);
 }
 
 /*
@@ -345,8 +321,8 @@ Flow Content
 }
 
 /*
-Objects and components
-======================
+Objects
+=======
 */
 
 .row {
@@ -394,12 +370,6 @@ Objects and components
     }
 }
 
-/*
-.dark .row--page-header {
-    --row-page-header-background-color-lightness: 10%;
-    --row-page-header-border-color-lightness: 95%;
-} */
-
 .container {
     max-width: 36rem;
     margin-left: auto;
@@ -410,6 +380,11 @@ Objects and components
     list-style: none;
     padding: 0;
 }
+
+/*
+Components
+==========
+*/
 
 .page-header-observer {
     position: absolute;
@@ -474,6 +449,7 @@ body:has(.title-collides) .page-header__date {
     place-items: center;
     text-align: center;
     min-height: calc(50vh - var(--global-whitespace) * 4);
+    border-radius: var(--global-borderRadius);
 }
 
 .page-footer {
@@ -542,9 +518,11 @@ body:has(.title-collides) .page-header__date {
     width: var(--this-size);
     height: var(--this-size);
     border-radius: 50%;
-    background-color: var(--global-color-beta);
+    background-color: var(--global-color-rose);
     margin-left: calc(var(--postlist-whitespace) * -1 - var(--this-size));
 }
+
+/* stuff from eleventy */
 
 .token.output--1 {
     background-color: rgb(108 196 238);
@@ -719,12 +697,10 @@ Utilities
     text-align: center;
 }
 
-.text-date,
-.text-formula {
+.text-date {
     font-feature-settings: "zero", "tnum", "case";
 }
 
-.text-formula,
 .text-code {
     font-family: var(--global-font-family-code);
     /* font-family: var(--global-font-family-beta); */
@@ -735,4 +711,134 @@ Utilities
     --fs: 16;
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
     line-height: calc(var(--global-baseline) * 5);
+}
+
+/**
+ * Based on atom-dark theme for `prism.js`
+ * Based on Atom's `atom-dark` theme: https://github.com/atom/atom-dark-syntax
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+    --fs: 15;
+    font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
+    line-height: calc(var(--global-baseline) * 5);
+    color: var(--global-color-neutral-025);
+    direction: ltr;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+    border-radius: var(--global-borderRadius);
+    position: relative;
+}
+
+pre[class*="language-"] code {
+    width: 100%;
+    overflow: auto;
+    display: block;
+    padding: var(--global-whitespace);
+    overflow: auto;
+}
+
+:not(pre)>code[class*="language-"],
+pre[class*="language-"] {
+    background: var(--global-color-neutral-800);
+}
+
+/* Inline code */
+:not(pre)>code[class*="language-"] {
+    padding: .1em;
+    border-radius: .3em;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+    color: var(--global-color-neutral-400);
+}
+
+/* .token.property, */
+.token.punctuation {
+    color: var(--global-color-neutral-200);
+}
+
+.token.property {
+    color: var(--global-color-neutral-200);
+}
+
+.namespace {
+    opacity: .7;
+}
+
+.token.operator,
+.token.rule,
+.token.keyword,
+.token.tag {
+    color: var(--global-color-lilac);
+}
+
+.token.constant,
+.token.attr-name,
+.token.string,
+/* .token.parameter, */
+.token.char,
+.token.builtin,
+.token.inserted {
+    color: var(--global-color-jade-green);
+}
+
+.token.entity {
+    cursor: help;
+}
+
+.token.literal-property,
+.token.selector {
+    color: var(--global-color-rose);
+}
+
+.token.boolean {
+    color: var(--global-color-tangerine);
+}
+
+.token.class-name,
+.token.function {
+    color: var(--global-color-sky-blue);
+}
+
+.token.italic {
+    font-style: italic;
+}
+
+pre[class*=language-]:after {
+    font-family: var(--global-font-family-code);
+    position: absolute;
+    top: 0;
+    right: 0;
+    /* background: var(--global-color-lilac); */
+    padding: var(--global-whitespace-4xs) var(--global-whitespace-3xs);
+    color: var(--global-color-neutral-400);
+    line-height: calc(var(--global-baseline) * 5);
+}
+
+pre[class*=language-][class*=language-javascript]:after {
+    content: "JS";
+}
+
+pre[class*=language-][class*=language-css]:after {
+    content: "CSS";
 }

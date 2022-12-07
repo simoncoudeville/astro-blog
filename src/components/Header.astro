@@ -1,4 +1,5 @@
 ---
+import { SITE_ATHOUR, formatDate } from "../config";
 const { headerDate, headerTitle } = Astro.props;
 ---
 
@@ -6,12 +7,15 @@ const { headerDate, headerTitle } = Astro.props;
   <div class="container">
     <div class="page-header">
       <h2 class="logo">
-        <a class="logo__link" href="/">Simon Coudeville</a>
+        <a class="logo__link" href="/">{SITE_ATHOUR}</a>
       </h2>
       <span class="page-header__title color-meta">{headerTitle}</span>
-      <time class="page-header__date color-meta text-date" datetime={headerDate}
-        >{headerDate}</time
+      <time
+        class="page-header__date color-meta text-date"
+        datetime={headerDate}
       >
+        {formatDate(headerDate)}
+      </time>
     </div>
   </div>
 </header>

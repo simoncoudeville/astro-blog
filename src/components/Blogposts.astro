@@ -1,12 +1,11 @@
 ---
+import formatDate from "../config";
 const allPosts = (await Astro.glob("../pages/posts/*.{md,mdx}")).sort(
   (a, b) =>
     new Date(b.frontmatter.pubDate).valueOf() -
     new Date(a.frontmatter.pubDate).valueOf()
 );
-// count the number of posts
 const numPosts = allPosts.length;
-// get the index of the current post
 const { currentTitle } = Astro.props;
 ---
 
@@ -30,11 +29,7 @@ const { currentTitle } = Astro.props;
             class="postlist__date text-date color-meta"
             datetime={post.frontmatter.pubDate}
           >
-            {new Date(post.frontmatter.pubDate).toLocaleDateString("en-us", {
-              year: "numeric",
-              month: "short",
-              day: "numeric",
-            })}
+            {formatDate(post.frontmatter.pubDate)}
           </time>
         </a>
       </li>
