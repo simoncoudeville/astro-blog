@@ -81,6 +81,7 @@ Variables
     --global-font-family-alpha: "Graphik Web", sans-serif;
     --global-font-family-beta: "Tiempos Text Web", serif;
     --global-font-family-title: "Tiempos Headline", serif;
+    /* --global-font-family-title: "At Gambit", serif; */
     --global-font-family-code: "SFMono-Regular", ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 
     --global-title-font-weight: 700;
@@ -283,9 +284,17 @@ h1,
     --fs: 32;
     font-family: var(--global-font-family-title);
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
-    line-height: calc(var(--root-baseline) * 8 / var(--fs));
+    line-height: calc(var(--root-baseline) * var(--baseline-multiplier, 8) / var(--fs));
     font-weight: var(--global-title-font-weight);
 }
+
+/* @media screen and (min-width: 46.5em) {
+    h1,
+    .h1 {
+        --fs: 40;
+        --baseline-multiplier: 9;
+    }
+} */
 
 h2,
 .h2 {
