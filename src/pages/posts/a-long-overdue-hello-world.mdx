@@ -15,7 +15,18 @@ scripts per component that just work. It allows me to make a component and write
 
 ## Cons
 
-It took me a long time to find out how to make global and reusable variables, parameters and functions. For example I needed a standard wy of formatting dates on a blog detail and
+It took me a long time to find out how to make global and reusable variables, parameters and functions. For example I needed a standard wy of formatting dates on a blog detail and list. I had to look in the code of templates to find out how it's done. Right now I have a simple typescript config file that looks like this:
+
+```typescript
+export const SITE_ATHOUR = "Simon Coudeville";
+
+// a function tho set the dates to .toLocaleDateString("en-gb").replace(/\//g, "-")
+export const formatDate = (date: string | number | Date) => {
+  return new Date(date).toLocaleDateString("en-gb").replace(/\//g, " - ");
+};
+
+export default formatDate;
+```
 
 No way to control url output at the time of writing. So the file name has to be the exact url.
 
@@ -105,3 +116,18 @@ function checkInView(element, className, treshold, rootMargin) {
 ## What's next
 
 I will finish the Astro tutorial, and then keep adding more posts. Watch this space for more to come.
+
+{(function () {
+const guess = Math.random()
+
+if (guess > 0.66) {
+return <p style={{color: 'tomato'}}>Look at us.</p>
+}
+
+if (guess > 0.33) {
+return <p style={{color: 'violet'}}>Who would have guessed?!</p>
+}
+
+return <p style={{color: 'goldenrod'}}>Not me.</p>
+
+})()}

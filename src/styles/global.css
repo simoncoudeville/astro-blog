@@ -35,9 +35,9 @@ Variables
     --global-color-sky-blue: hsl(197deg 75% 65%);
     /* --global-color-sky-blue: #519eea; */
     --global-color-rose: hsl(355deg 85% 70%);
-    --global-color-tangerine: hsl(29deg 75% 65%);
+    --global-color-tangerine: hsl(29deg 85% 65%);
     --global-color-jade-green: hsl(95deg 60% 65%);
-    --global-color-lilac: hsl(286deg 65% 70%);
+    --global-color-lilac: hsl(256deg 85% 75%);
 
     /* --global-color-alpha-hue: 197deg; */
     /* --global-color-alpha-hue: 286deg; */
@@ -450,6 +450,24 @@ body:has(.title-collides) .page-header__date {
     text-align: center;
     min-height: calc(50vh - var(--global-whitespace) * 4);
     border-radius: var(--global-borderRadius);
+    display: grid;
+    grid-template-areas: "header";
+}
+
+.article-title,
+.article-canvas {
+    grid-area: header;
+}
+
+.article-canvas {
+    overflow: visible;
+    stroke: var(--global-borderColor);
+    stroke-width: 1px;
+    order: -1;
+}
+
+.article-canvas path {
+    vector-effect: non-scaling-stroke;
 }
 
 .page-footer {
