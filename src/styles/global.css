@@ -81,6 +81,7 @@ Variables
     --global-font-family-alpha: "Graphik Web", sans-serif;
     --global-font-family-beta: "Tiempos Text Web", serif;
     --global-font-family-title: "Tiempos Headline", serif;
+    /* --global-font-family-title: "Graphik Web", serif; */
     /* --global-font-family-title: "At Gambit", serif; */
     --global-font-family-code: "SFMono-Regular", ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 
@@ -288,13 +289,14 @@ h1,
     font-weight: var(--global-title-font-weight);
 }
 
-/* @media screen and (min-width: 46.5em) {
+@media screen and (min-width: 46.5em) {
+
     h1,
     .h1 {
-        --fs: 40;
-        --baseline-multiplier: 9;
+        --fs: 72;
+        --baseline-multiplier: 16;
     }
-} */
+}
 
 h2,
 .h2 {
@@ -455,28 +457,19 @@ body:has(.title-collides) .page-header__date {
 
 .article-header {
     display: grid;
-    place-items: center;
-    text-align: center;
+    align-items: end;
+    /* place-items: center; */
+    /* text-align: center; */
     min-height: calc(50vh - var(--global-whitespace) * 4);
     border-radius: var(--global-borderRadius);
     display: grid;
     grid-template-areas: "header";
+    margin-bottom: calc(var(--global-whitespace) * 2);
 }
 
 .article-title,
 .article-canvas {
     grid-area: header;
-}
-
-.article-canvas {
-    overflow: visible;
-    stroke: var(--global-borderColor);
-    stroke-width: 1px;
-    order: -1;
-}
-
-.article-canvas path {
-    vector-effect: non-scaling-stroke;
 }
 
 .page-footer {

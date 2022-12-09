@@ -7,9 +7,23 @@ description: "This is my first blog post on my new personal blog ever."
 
 Welcome to my new blog about learning Astro! Here, I will share my learning journey as I build a new website. scripts per component that just work. It allows me to make a component and write the markup, styles and script in one document. If I include the component it just works. In Eleventy I was trying to figure out a system how to do that. scripts per component that just work. It allows me to make a component and write the markup, styles and script in one document. If I include the component it just works. In Eleventy I was trying to figure out a system how to do that. scripts per component that just work. It allows me to make a component and write the markup, styles and script in one document. If I include the component it just works. In Eleventy I was trying to figure out a system how to do that.
 
+import AlertButton from "../../components/Demos/AlertButton.astro";
+
+<AlertButton />
+
+import ThemeIcon from "../../components/Demos/ThemeIcon.astro";
+
+import Hello from "../../components/Demos/Hello.astro";
+
+<Hello />
+
+<ThemeIcon />
+
 ## Pro's
 
 Syntax highlighting out of the box
+
+<AlertButton />
 
 scripts per component that just work. It allows me to make a component and write the markup, styles and script in one document. If I include the component it just works. In Eleventy I was trying to figure out a system how to do that.
 
@@ -37,12 +51,6 @@ Look up stuff, when you type astro
 In my case at the time of writing the homepage is the latest post. Since I'm using MDX it was a bit hard to include the whole post `<Content />` without running into issues. For some reason
 
 In every SSG I tried there was at least one issue I ran into that I didn't like.
-
-## Theme icon component
-
-import ThemeIcon from "../../components/ThemeIcon.astro";
-
-<ThemeIcon />
 
 ## Greeting component
 
@@ -116,18 +124,3 @@ function checkInView(element, className, treshold, rootMargin) {
 ## What's next
 
 I will finish the Astro tutorial, and then keep adding more posts. Watch this space for more to come.
-
-{(function () {
-const guess = Math.random()
-
-if (guess > 0.66) {
-return <p style={{color: 'tomato'}}>Look at us.</p>
-}
-
-if (guess > 0.33) {
-return <p style={{color: 'violet'}}>Who would have guessed?!</p>
-}
-
-return <p style={{color: 'goldenrod'}}>Not me.</p>
-
-})()}

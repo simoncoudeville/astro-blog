@@ -1,0 +1,240 @@
+<div class="demo dark">
+  <div class="demo__header">
+    <h3 class="demo__title">Fluid size clamp formula</h3>
+  </div>
+  <div class="demo__body pb-clear">
+    <form id="clamp" class="clamp" action="">
+      <label class="clamp__label">
+        Min viewport width <span class="clamp__var text-code color-muted"
+          >(x1)</span
+        >
+        <span class="input-field" data-suffix="px">
+          <input
+            class="clamp__input"
+            id="clamp-min-width"
+            type="number"
+            value="320"
+            min="300"
+            max="960"
+            step="10"
+          />
+        </span>
+      </label>
+      <label class="clamp__label">
+        Max viewport width <span class="clamp__var text-code color-muted"
+          >(x2)</span
+        >
+        <input
+          class="clamp__input"
+          id="clamp-max-width"
+          type="number"
+          value="960"
+          min="960"
+          max="1920"
+          step="10"
+        />
+      </label>
+      <label class="clamp__label">
+        Min font-size <span class="clamp__var text-code color-muted">(y1)</span>
+        <input
+          class="clamp__input"
+          id="clamp-min-font-size"
+          type="number"
+          value="16"
+          min="4"
+          max="32"
+          step="1"
+        />
+      </label>
+      <label class="clamp__label">
+        Max font-size <span class="clamp__var text-code color-muted">(y2)</span>
+        <input
+          class="clamp__input"
+          id="clamp-max-font-size"
+          type="number"
+          value="32"
+          min="32"
+          max="200"
+          step="1"
+        />
+      </label>
+    </form>
+  </div>
+  <div class="demo__code">
+    <pre
+      class="language-css"><code class="language-css"><span class="token output output--1">v</span> <span class="token punctuation">=</span> <span class="token punctuation">(</span>100 * <span class="token punctuation">(</span>y2 - y1<span class="token punctuation">)</span><span class="token punctuation">)</span> / <span class="token punctuation">(</span>x2 - x1<span class="token punctuation">)</span> <!--<span id="clamp-calculate-vw" class="token output output--1">2.5</span>--><br /><span class="token output output--2">r</span> <span class="token punctuation">=</span> <span class="token punctuation">(</span>x1 * y2 - x2 * y1<span class="token punctuation">)</span> / <span class="token punctuation">(</span>x1 - x2<span class="token punctuation">)</span> / 16 <!--<span class="token punctuation">=</span> <span id="clamp-calculate-rem" class="token output output--2">0.5</span>--><br /><br /><!--<span class="token punctuation">CSS declaration:</span><br>--><span id="clamp-formula" /></code></pre>
+    <!-- <p id="clamp-formula-explanation" class="text-s color-meta">
+    Before the viewport is 320px wide the font-size should be 24px. If the viewport is wider than 960px the font-size should be 48px, between that the font-size should be 0.0375 times the viewport + 12px.
+    </p> -->
+  </div>
+</div>
+
+<div class="demo">
+  <form id="zoom" class="clamp" action="">
+    <label class="clamp__label">
+      Browser width
+      <input
+        class="clamp__input"
+        id="clamp-browser-width"
+        type="number"
+        value="1680"
+        min="320"
+        max="1920"
+        step="20"
+      />
+      <!-- <select class="clamp__input" id="clamp-browser-width">
+      <option value="1680">1680</option>
+      <option value="1920">1920</option>
+    </select> -->
+    </label>
+    <label class="clamp__label">
+      Zoom level
+      <input
+        class="clamp__input"
+        id="clamp-zoom-level"
+        type="number"
+        value="100"
+        min="100"
+        max="400"
+        step="5"
+      />
+    </label>
+    <div class="clamp__output">
+      <p class="text-s mb-4xs">Converted clamp formula</p>
+      <p
+        id="clamp-output"
+        class="clamp__formula text-formula text-center text-s"
+      >
+      </p>
+    </div>
+    <div class="clamp__output">
+      <p class="text-s mb-4xs">Computed font-size</p>
+      <p
+        id="zoom-output"
+        class="clamp__formula text-formula text-center text-s"
+      >
+      </p>
+    </div>
+  </form>
+</div>
+
+<script>
+  // make a const clampform with id clamp
+  let clampform = document.getElementById("clamp");
+  let zoomform = document.getElementById("zoom");
+  let clampMinWidth = document.getElementById("clamp-min-width");
+  let clampMaxWidth = document.getElementById("clamp-max-width");
+  let clampBrowserWidth = document.getElementById("clamp-browser-width");
+  let clampMinFontSize = document.getElementById("clamp-min-font-size");
+  let clampMaxFontSize = document.getElementById("clamp-max-font-size");
+  let clampFormula = document.getElementById("clamp-formula");
+  let clampOutput = document.getElementById("clamp-output");
+  let zoomOutput = document.getElementById("zoom-output");
+  let clampZoomLevel = document.getElementById("clamp-zoom-level");
+
+  function round(value: number, precision = 0, addZero = true) {
+    const exponent = Math.pow(10, precision);
+    if (addZero) {
+      return (Math.round(value * exponent) / exponent).toFixed(precision);
+    } else {
+      return Math.round(value * exponent) / exponent;
+    }
+  }
+
+  // a function that updates the clamp output
+  function updateClampOutput() {
+    let clampSlope =
+      (clampMaxFontSize.value - clampMinFontSize.value) /
+      (clampMaxWidth.value - clampMinWidth.value);
+    let interceptRem =
+      clampMinFontSize.value - clampSlope * clampMinWidth.value;
+    let viewPortWidth = (clampBrowserWidth.value / clampZoomLevel.value) * 100;
+    let originalFontSize = clampMaxFontSize.value;
+
+    let clampFontSize = clampSlope * viewPortWidth + interceptRem;
+    let realFontSize = clampFontSize;
+    let calculatedFontSize = clampFontSize;
+    let calculatedPercentage = (calculatedFontSize / originalFontSize) * 100;
+
+    // check if viewPortWidth is smaller than clampMaxWidth and if so set clampFontSize to clampMaxFontSize
+    if (viewPortWidth < clampMaxWidth.value) {
+      calculatedFontSize = (clampFontSize * clampZoomLevel.value) / 100;
+      calculatedPercentage = (calculatedFontSize / originalFontSize) * 100;
+      realFontSize = clampFontSize;
+    } else {
+      calculatedFontSize =
+        (clampMaxFontSize.value * clampZoomLevel.value) / 100;
+      calculatedPercentage = (calculatedFontSize / originalFontSize) * 100;
+      realFontSize = clampMaxFontSize.value;
+    }
+
+    // clampCalculateVw.innerHTML = round(clampSlope * 100, 4, false);
+    // clampCalculateRem.innerHTML = round(interceptRem / 16, 4, false);
+
+    // clampFormula.innerHTML = '<span class="token property">font-size</span><span class="token punctuation">:</span> <span class="token function">clamp</span><span class="token punctuation">(</span>' + clampMinFontSize.value / 16 + 'rem<span class="token punctuation">,</span> ' + round(clampSlope * 100, 4, false) + 'vw + ' + round(interceptRem / 16, 4, false) + 'rem<span class="token punctuation">,</span> ' + round(clampMaxFontSize.value / 16, 4, false) + 'rem<span class="token punctuation">)</span><span class="token punctuation">;</span>';
+    // write the previous line again but with string template literals
+    clampFormula.innerHTML = `<span class="token property">font-size</span><span class="token punctuation">:</span> <span class="token function">clamp</span><span class="token punctuation">(</span>${
+      clampMinFontSize.value / 16
+    }rem<span class="token punctuation">,</span> <span class="token output output--1">${round(
+      clampSlope * 100,
+      4,
+      false
+    )}</span>vw + <span class="token output output--2">${round(
+      interceptRem / 16,
+      4,
+      false
+    )}</span>rem<span class="token punctuation">,</span> ${round(
+      clampMaxFontSize.value / 16,
+      4,
+      false
+    )}rem<span class="token punctuation">)</span><span class="token punctuation">;</span>`;
+
+    clampOutput.innerHTML = `clamp(${clampMinFontSize.value}px, ${round(
+      clampSlope,
+      4
+    )} &times; ${round(viewPortWidth, 2)}px = ${round(
+      clampSlope * viewPortWidth,
+      2
+    )}px + ${round(interceptRem, 2)}px = ${round(clampFontSize, 2)}px, ${
+      clampMaxFontSize.value
+    }px)`;
+    // `clamp(${clampMinFontSize.value}px, ${round(clampFontSize, 4)}px, ${clampMaxFontSize.value}px)`;
+    // take the code above and add a span with a class around clampMaxFontSize.value
+
+    zoomOutput.innerHTML =
+      // Math.round(calculatedFontSize) + 'px which is '
+      // + Math.round(calculatedPercentage) + '% of '
+      // + clampMaxFontSize.value + 'px';
+      `${round(realFontSize, 2)}px &times; ${clampZoomLevel.value}% = ${round(
+        calculatedFontSize,
+        2
+      )}px which is ${Math.round(calculatedPercentage)}% of ${
+        clampMaxFontSize.value
+      }px`;
+
+    // set the min attribute of clampMaxWidth to the value of clampMinWidth + 10
+    clampMaxWidth.setAttribute("min", parseInt(clampMinWidth.value) + 10);
+    // set the max attribute of clampMinWidth to the value of clampMaxWidth - 10
+    clampMinWidth.setAttribute("max", parseInt(clampMaxWidth.value) - 10);
+    // set the min attribute of clampMaxFontSize to the value of clampMinFontSize
+    clampMaxFontSize.setAttribute("min", parseInt(clampMinFontSize.value) + 1);
+    // set the max attribute of clampMinFontSize to the value of clampMaxFontSize
+    clampMinFontSize.setAttribute("max", parseInt(clampMaxFontSize.value) - 1);
+  }
+
+  updateClampOutput();
+
+  // add an event listener to clampform that checks if something changes and runs updateClampOutput()
+  // clampform.addEventListener('change', updateClampOutput);
+
+  // add an event listener to clampform that checks if something changes and runs updateClampOutput()
+  clampform.addEventListener("input", updateClampOutput);
+  zoomform.addEventListener("input", updateClampOutput);
+
+  // add an event listener to window resize that logs the divecePixelRatio
+  window.addEventListener("resize", function () {
+    console.log(window.devicePixelRatio);
+    // console log the window size
+    console.log(window.innerWidth);
+  });
+</script>
