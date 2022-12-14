@@ -9,6 +9,7 @@ Fonts
         url('../fonts/Graphik-Regular-Web.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
+    font-display: auto;
 }
 
 @font-face {
@@ -17,6 +18,7 @@ Fonts
         url('../fonts/Graphik-Semibold-Web.woff2') format('woff2');
     font-weight: 700;
     font-style: normal;
+    font-display: auto;
 }
 
 @font-face {
@@ -24,6 +26,7 @@ Fonts
     src: url('../fonts/TiemposHeadlineWeb-Bold.woff') format('woff');
     font-weight: 700;
     font-style: normal;
+    font-display: auto;
 }
 
 /*
@@ -33,7 +36,6 @@ Variables
 
 :root {
     --global-color-sky-blue: hsl(197deg 75% 65%);
-    /* --global-color-sky-blue: #519eea; */
     --global-color-rose: hsl(355deg 85% 70%);
     --global-color-tangerine: hsl(29deg 85% 65%);
     --global-color-jade-green: hsl(95deg 60% 65%);
@@ -62,7 +64,7 @@ Variables
     --global-text-color: var(--global-color-neutral-800);
     --global-highlight-color: var(--global-color-neutral-800);
     --global-meta-color: var(--global-color-neutral-500);
-    --global-muted-color: var(--global-color-neutral-300);
+    --global-muted-color: var(--global-color-neutral-600);
     --global-borderColor: var(--global-color-neutral-050);
     --global-borderColor2: var(--global-color-neutral-100);
     --global-code-color: var(--global-color-neutral-025);
@@ -71,20 +73,25 @@ Variables
     --global-code-selection-background: var(--global-code-color);
 
     --global-borderRadius: 0.25rem;
+    --global-borderRadius-sm: calc(var(--global-borderRadius) / 2);
 
     --global-link-color: var(--global-text-color);
     --global-link-underline-color: var(--global-meta-color);
     --global-link-hover-color: var(--global-link-underline-color);
-    --global-selection-backgroundColor: var(--global-text-color);
-    --global-selection-color: var(--global-backgroundColor);
+    /* --global-selection-backgroundColor: var(--global-text-color);
+    --global-selection-color: var(--global-backgroundColor); */
+    --global-selection-backgroundColor: var(--global-color-lilac);
+    /* --global-selection-color: var(--global-backgroundColor); */
 
     --global-font-family-alpha: "Graphik Web", sans-serif;
+    /* --global-font-family-alpha: system-ui, -apple-system, BlinkMacSystemFont, sans-serif; */
     --global-font-family-beta: "Tiempos Text Web", serif;
     --global-font-family-title: "Tiempos Headline", serif;
     /* --global-font-family-title: "Graphik Web", serif; */
     /* --global-font-family-title: "At Gambit", serif; */
     --global-font-family-code: "SFMono-Regular", ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 
+    /* --global-title-font-weight: 400; */
     --global-title-font-weight: 700;
 
     --root-font-size: 19;
@@ -94,6 +101,7 @@ Variables
     --global-line-height: calc(var(--root-line-height) / var(--root-font-size));
     --global-baseline: calc(var(--root-baseline) / var(--root-font-size) * 1rem);
 
+    --global-whitespace-5xs: calc(var(--global-baseline) * .5);
     --global-whitespace-4xs: calc(var(--global-baseline) * 1);
     --global-whitespace-3xs: calc(var(--global-baseline) * 2);
     --global-whitespace-2xs: calc(var(--global-baseline) * 3);
@@ -124,7 +132,19 @@ Variables
         --global-borderColor: var(--global-color-neutral-700);
         --global-borderColor2: var(--global-color-neutral-600);
         --global-meta-color: var(--global-color-neutral-400);
+        --global-muted-color: var(--global-color-neutral-300);
     }
+}
+
+.dark {
+    --global-backgroundColor: var(--global-color-neutral-900);
+    --global-foregroundColor: var(--global-color-neutral-800);
+    --global-text-color: var(--global-color-neutral-025);
+    --global-highlight-color: var(--global-color-neutral-025);
+    --global-borderColor: var(--global-color-neutral-700);
+    --global-borderColor2: var(--global-color-neutral-600);
+    --global-meta-color: var(--global-color-neutral-400);
+    --global-muted-color: var(--global-color-neutral-300);
 }
 
 /*
@@ -153,11 +173,17 @@ html {
     }
 }
 
-@media screen and (min-width: 105.0625em) {
+/* @media screen and (min-width: 105.0625em) {
     html {
-        font-size: calc(22/16*100%);
+        font-size: calc(19/16*100%);
     }
-}
+} */
+
+/* @media screen and (min-width: 105.0625em) {
+    html {
+        font-size: calc(21/16*100%);
+    }
+} */
 
 body {
     font-family: var(--global-font-family-alpha);
@@ -176,6 +202,11 @@ body {
     --selection-background: var(--global-selection-backgroundColor);
     background-color: var(--selection-background);
     color: var(--selection-color);
+}
+
+.dark::selection {
+    --selection-color: var(--global-code-selection-color);
+    --selection-background: var(--global-code-selection-background);
 }
 
 a:any-link {
@@ -208,7 +239,7 @@ hr {
 }
 
 label {
-    --label-fontSize: 16;
+    --label-fontSize: 17;
     display: block;
     font-size: calc(var(--label-fontSize) / var(--root-font-size) * 1rem);
     line-height: calc(var(--global-baseline) * 5);
@@ -222,22 +253,21 @@ textarea {
     width: 100%;
 }
 
-input:not([type='checkbox']),
-input:not([type='radio']),
+input,
 select {
     --input-color: var(--global-text-color);
     --input-borderColor: var(--global-borderColor);
     --input-backgroundColor: var(--global-backgroundColor);
     --input-fontSize: 16;
+    --input-borderRadius: var(--global-borderRadius-sm);
     font-family: inherit;
     font-size: calc(var(--input-fontSize) / var(--root-font-size) * 1rem);
     line-height: calc(var(--global-baseline) * 5);
     padding: var(--global-whitespace-3xs) var(--global-whitespace-2xs);
-    /* border: 1px solid var(--input-borderColor); */
     border: none;
     background-color: var(--input-backgroundColor);
     color: var(--input-color);
-    border-radius: var(--global-borderRadius);
+    border-radius: var(--input-borderRadius);
 }
 
 label input,
@@ -259,6 +289,10 @@ select:focus:not(:focus-visible) {
 input:disabled,
 select:disabled {
     opacity: .5;
+}
+
+input[type="range"] {
+    padding: 0;
 }
 
 code {
@@ -293,8 +327,8 @@ h1,
 
     h1,
     .h1 {
-        --fs: 72;
-        --baseline-multiplier: 16;
+        --fs: 48;
+        --baseline-multiplier: 11;
     }
 }
 
@@ -319,6 +353,35 @@ ul li::marker {
 }
 
 /*
+    Object: Button reset
+    ---
+    Small button reset object
+*/
+
+.button-reset {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    overflow: visible;
+    background: transparent;
+
+    /* inherit font & color from ancestor */
+    color: inherit;
+    font: inherit;
+
+    /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+    line-height: normal;
+
+    /* Corrects font smoothing for webkit */
+    -webkit-font-smoothing: inherit;
+    -moz-osx-font-smoothing: inherit;
+
+    /* Corrects inability to style clickable `input` types in iOS */
+    -webkit-appearance: none;
+}
+
+/*
 Flow Content
 ============
 */
@@ -327,8 +390,17 @@ Flow Content
     margin-top: var(--global-whitespace);
 }
 
+.flow>*+.demo,
+.flow>.demo+* {
+    margin-top: calc(var(--global-whitespace) + var(--global-whitespace-2xs));
+}
+
 .flow>*+h2 {
-    margin-top: calc(var(--global-whitespace) * 2);
+    margin-top: calc(var(--global-whitespace) + var(--global-whitespace-2xs));
+}
+
+.flow>*:has(+style) {
+    margin-bottom: calc(var(--global-whitespace) + var(--global-whitespace-2xs));
 }
 
 /*
@@ -383,6 +455,8 @@ Objects
 
 .container {
     max-width: 36rem;
+    /* max-width: 40rem; */
+    /* max-width: 38rem; */
     margin-left: auto;
     margin-right: auto;
 }
@@ -405,11 +479,12 @@ Components
     height: 1px;
 }
 
+/*
 @media (min-width: 41em) {
     .page-header-observer {
         top: var(--global-whitespace);
     }
-}
+} */
 
 .page-header {
     position: relative;
@@ -457,19 +532,30 @@ body:has(.title-collides) .page-header__date {
 
 .article-header {
     display: grid;
+    /* align-content: center; */
     align-items: end;
-    /* place-items: center; */
-    /* text-align: center; */
-    min-height: calc(50vh - var(--global-whitespace) * 4);
+    place-items: center;
+    text-align: center;
+    min-height: calc(50vh - var(--global-whitespace) * 3);
     border-radius: var(--global-borderRadius);
-    display: grid;
-    grid-template-areas: "header";
-    margin-bottom: calc(var(--global-whitespace) * 2);
+    /* margin-bottom: calc(var(--global-whitespace) * 2); */
+    /* background-color: var(--global-color-tangerine); */
+    /* padding: var(--global-whitespace); */
 }
 
-.article-title,
-.article-canvas {
-    grid-area: header;
+/* .article-header::before {
+    display: block;
+    content: "";
+    background-color: var(--global-color-jade-green);
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+} */
+
+.article-title {
+    max-width: 12em;
+    /* grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    align-self: end; */
 }
 
 .page-footer {
@@ -544,36 +630,53 @@ body:has(.title-collides) .page-header__date {
 
 /* stuff from eleventy */
 
+.token.output {
+    padding: .1em .3em;
+    border-radius: var(--global-borderRadius-sm);
+    color: var(--global-foregroundColor);
+}
+
 .token.output--1 {
-    background-color: rgb(108 196 238);
+    background-color: var(--global-color-jade-green);
 }
 
 .token.output--2 {
-    background-color: rgb(141 211 45);
+    background-color: var(--global-color-sky-blue);
 }
 
-.token.output {
-    color: var(--prism-background);
-    padding: .1em .3em;
-    border-radius: calc(var(--global-borderRadius) / 2);
+.token.output--3 {
+    background-color: var(--global-color-rose);
 }
 
 .demo {
     border-radius: var(--global-borderRadius);
-    margin: var(--global-whitespace-l) 0;
     background-color: var(--global-code-background);
     color: var(--global-text-color);
     overflow: hidden;
+    --fs: 17;
+    font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
+    line-height: calc(var(--global-baseline) * 5);
+    margin-left: calc(var(--global-whitespace) * -1);
+    margin-right: calc(var(--global-whitespace) * -1);
 }
 
 .demo__title {
-    --fs: 16;
+    --fs: 17;
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
     line-height: calc(var(--global-baseline) * 5);
 }
 
 .demo__header {
-    padding: var(--global-whitespace-s) var(--global-whitespace) 0;
+    padding: var(--global-whitespace) var(--global-whitespace) 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.demo__header-options {
+    display: flex;
+    align-items: center;
+    gap: var(--global-whitespace-2xs);
 }
 
 .demo__body {
@@ -583,46 +686,61 @@ body:has(.title-collides) .page-header__date {
 .demo input {
     --input-color: var(--global-color-neutral-025);
     --input-borderColor: var(--global-borderColor);
-    --input-backgroundColor: var(--global-color-neutral-700);
+    --input-backgroundColor: var(--global-color-neutral-600);
+}
+
+.demo__code {
+    padding: var(--global-whitespace);
+    font-family: var(--global-font-family-code);
+    --fs: 16;
+    font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
+    line-height: calc(var(--global-baseline) * 6);
+}
+
+/* .demo__header-button {
+    background-color: var(--global-color-neutral-600);
+    padding: var(--global-whitespace-5xs) var(--global-whitespace-5xs);
+    border-radius: var(--global-borderRadius-sm);
+} */
+
+.demo-toggle {
+    display: flex;
+    align-items: center;
+    /* gap: var(--global-whitespace-xs); */
+    background-color: var(--global-color-neutral-600);
+    border-radius: var(--global-borderRadius-sm);
+    /* padding: 2px; */
+}
+
+.demo-toggle__label {
+    padding: 0;
+    /* color: var(--global-muted-color); */
+    padding: 0 var(--global-whitespace-3xs);
+    /* border-radius: calc(var(--global-borderRadius) - 2px); */
+    border-radius: var(--global-borderRadius-sm);
+    font-family: var(--global-font-family-code);
+    text-transform: uppercase;
+    /* font-weight: 700; */
+
+    --this-fs: 15;
+    font-size: calc(var(--this-fs) / var(--root-font-size) * 1rem);
+}
+
+.demo-toggle__label:has(input:checked) {
+    background-color: var(--global-color-neutral-025);
+    color: var(--global-color-neutral-800);
+    /* color: var(--global-color-neutral-025); */
+    /* color: var(--global-color-neutral-800); */
+    /* font-weight: 700; */
 }
 
 /* .demo__code {
     margin: calc(var(--global-whitespace) * -1);
 } */
 
-.demo__code pre[class*=language-] {
-    margin: 0;
-}
-
-.clamp {
-    display: grid;
-    gap: var(--global-whitespace);
-    grid-template-columns: 1fr 1fr;
-}
-
-.clamp__input {
-    grid-column: 1/-1;
-}
-
-.clamp__output {
-    grid-column: 1/-1;
-    margin: 0 calc(var(--global-whitespace) * -1);
-}
-
-.clamp__output pre {
-    margin: 0;
-    border-radius: 0;
-    border-width: 1px 0;
-}
-
-.clamp__formula::selection {
-    --selection-color: var(--global-code-selection-color);
-    --selection-background: var(--global-code-selection-background);
-}
-
 [data-suffix] {
     display: grid;
-    --suffix-color: var(--global-meta-color);
+    --suffix-color: var(--global-muted-color);
 }
 
 [data-suffix] input,
@@ -641,6 +759,11 @@ body:has(.title-collides) .page-header__date {
     align-self: center;
     color: var(--suffix-color);
     padding-right: var(--global-whitespace-2xs);
+}
+
+.icon {
+    display: block;
+    width: var(--global-whitespace-xs);
 }
 
 /*
@@ -728,9 +851,26 @@ Utilities
 }
 
 .text-s {
-    --fs: 16;
+    --fs: 17;
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
     line-height: calc(var(--global-baseline) * 5);
+}
+
+.text-xs {
+    --fs: 16;
+    font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
+    line-height: calc(var(--global-baseline) * 4);
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
 }
 
 /**
@@ -740,7 +880,7 @@ Utilities
 
 code[class*="language-"],
 pre[class*="language-"] {
-    --fs: 15;
+    --fs: 16;
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
     line-height: calc(var(--global-baseline) * 5);
     color: var(--global-color-neutral-025);

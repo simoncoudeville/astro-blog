@@ -5,8 +5,26 @@ pubDate: 2022-11-22
 description: "This is the second post of my new Astro blog."
 ---
 
-lorem ipsum dolor sit amet
+import Note from "../../components/Note.astro";
 
-import Demo1 from "../../components/Demos/ResponsiveType/Demo1.astro";
+<noscript>
+  <Note noteTitle="Important">
+    For these demos to work, you need to enable JavaScript.
+  </Note>
+</noscript>
 
-<Demo1 />
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae repellat autem, quod maiores molestiae provident, eius atque dolorum quam cumque deserunt totam minima? Sit quae, nam sint voluptatibus molestias alias.
+
+## Classic responsive typopgraphy
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae repellat autem, quod maiores molestiae provident, eius atque dolorum quam cumque deserunt totam minima? Sit quae, nam sint voluptatibus molestias alias.
+
+## Fluid typography
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae repellat autem, quod maiores molestiae provident, eius atque dolorum quam cumque deserunt totam minima? Sit quae, nam sint voluptatibus molestias alias. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae repellat autem, quod maiores molestiae provident, eius atque dolorum quam cumque deserunt totam minima? Sit quae, nam sint voluptatibus molestias alias.
+
+import Test from "../../components/Demos/Test.svelte";
+
+<Test client:load />
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae repellat autem, quod maiores molestiae provident, eius atque dolorum quam cumque deserunt totam minima? Sit quae, nam sint voluptatibus molestias alias.

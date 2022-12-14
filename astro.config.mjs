@@ -7,9 +7,12 @@ import preact from "@astrojs/preact";
 import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
+import svelte from "@astrojs/svelte";
+
+// https://astro.build/config
 export default defineConfig({
-  integrations: [preact(), mdx()],
+  integrations: [preact(), mdx(), svelte()],
   markdown: {
-    syntaxHighlight: 'prism',
-  },
+    syntaxHighlight: 'prism'
+  }
 });
