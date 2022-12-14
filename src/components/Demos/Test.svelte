@@ -43,6 +43,7 @@
   $: zf = (vw * v) / 100 + r * 16;
 
   import Icon from "../Icon.svelte";
+  import Note from "../Note.svelte";
 </script>
 
 <div class="flow">
@@ -306,12 +307,14 @@
         That means pixels get larger. As a result the size of the viewport in
         pixels actually decreases because there are less pixels to work with.
       </p>
-      <div class="note note--alert">
-        <p>
-          <strong>Warning:</strong> The window width is too small for this part to
-          work. Please increase the window width or reset it to the default value.
-        </p>
-      </div>
+      {#if ww < x2}
+        <Note>
+          <p>
+            The window width is too small for this part to work. Please increase
+            the window width or reset it to the default value.
+          </p>
+        </Note>
+      {/if}
       <div class="grid">
         <label>
           Zoom level

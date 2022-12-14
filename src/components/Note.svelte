@@ -1,9 +1,5 @@
----
-const { noteTitle } = Astro.props;
----
-
 <div class="note">
-  <h3 class="note__title">{noteTitle}</h3>
+  <h3 class="note__title">Note</h3>
   <slot />
 </div>
 
