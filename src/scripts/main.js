@@ -35,3 +35,38 @@ if (document.querySelector('.js-article-title')) {
 if (document.querySelector('.js-page-header-observer')) {
     checkInView(document.querySelector('.js-page-header-observer'), 'page-header-observer-collides', 0, '0px');
 }
+
+// fill the svg randomly width maximum 8 ellipses of rx="100" and ry ranging from 300 to 800 and move each ellipse 200 to the right with cx starting from cx="-200"
+
+import { SVG } from '@svgdotjs/svg.js'
+
+// a random function that returns a whole number between min and max
+function random(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+// function random(min, max) {
+//     return Math.random() * (max - min) + min;
+// }
+
+const svg = SVG(".canvas");
+
+const numEllipses = 15;
+
+for (let i = 0; i < numEllipses; i++) {
+    let fill = random(1, 3);
+    // let sizeX = random(200, 1000);
+    // let sizeY = random(200, 1000);
+    // svg
+    //     .ellipse(sizeX, sizeY)
+    //     .cy(0)
+    //     .cx(i * 200 - 900)
+    //     .rotate(-45, i * 200 - 900, 0)
+    //     .attr({ filter: "url(#blur)", class: "fill-" + fill });
+    svg
+        .ellipse(100, random(200, 1000))
+        .cy(0)
+        .cx(i * 200 - 900)
+        // .rotate(-45, i * 200 - 900, 0)
+        // .attr({ filter: "url(#blur)", class: "fill-" + fill });
+        .attr({ filter: "url(#blur)", class: "fill-" + 1 });
+}

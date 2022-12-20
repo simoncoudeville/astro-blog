@@ -1,0 +1,42 @@
+---
+layout: ../../layouts/PostLayout.astro
+title: "Why responsive typography is weird"
+pubDate: 2022-11-22
+description: "This is the second post of my new Astro blog."
+---
+
+I wanted to get to the bottom of this.
+So I started, ahem, zooming in on the issue.
+
+Like most web designers I want my text to adapt to the available space. That means if there's more available space I want my text adapts to it. I like big typography. On the web that means.
+On smaller screens I don't want my type to be too big and on bigger screens I don't want it to be too small.
+
+When we talk about responsive typography there are 2 techniques
+There's two types of responsive typography: static responsive typography and fluid typography. I'm going to look at both techniques and how they behave when using the zoom function of the browser. They both behave differently when zooming in but the basic princple is basicly the same: when the viewport changes stuff starts happening.
+
+## Static responsive typopgraphy
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae repellat autem, quod maiores molestiae provident, eius atque dolorum quam cumque deserunt totam minima? Sit quae, nam sint voluptatibus molestias alias.
+
+## Fluid typography
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae repellat autem, quod maiores molestiae provident, eius atque dolorum quam cumque deserunt totam minima? Sit quae, nam sint voluptatibus molestias alias. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae repellat autem, quod maiores molestiae provident, eius atque dolorum quam cumque deserunt totam minima? Sit quae, nam sint voluptatibus molestias alias.
+
+import Test from "../../components/Demos/Test.svelte";
+
+<Test client:load />
+
+I'm not advocating against responsive or fluid typography. I just wanted to know what actually happens. So I took a deep dive.
+
+This could as well be seen as a feature and not a bug. Is it really broken? What looks more broken to you?
+
+Everybody is looking at the maximum font-size. At a window width of 1680px the font-size without zooming is 48px so we expect that this value should increase according to the zoom level. But what if we didn't implement any responsive typography and just left the font-size at 32px? Zooming in to 400% would equal to a font-size of 128px. And there wouldn't be a problem. Using the fluid clamp formula zooming in to 400% would produce a font-size of 138px which is indeed only 287.5% of 48px but it's also 431.25% of 32px. So just because we chose to implement fluid typography there's now an accessibility problem.
+
+As long as the computed font-size after zooming is larger than the minimum font-size I don't see a problem.
+
+## Takeaways
+
+- Fluid typography is not a good solution for responsive typography.
+- Responsive typography is not a good solution for fluid typography.
+- Fluid typography is a good solution for responsive typography.
+- Responsive typography is a good solution for fluid typography.

@@ -28,13 +28,21 @@
   }
 
   // a rounding function to use in the formula
-  function round(value, decimals) {
-    return Number(Math.round(value + "e" + decimals) + "e-" + decimals);
-    // always add the zeros to the end of the number
-    // return Number(Math.round(value + "e" + decimals) + "e-" + decimals).toFixed(
-    //   decimals
-    // );
+  function round(value, decimals, showdecimals = false) {
+    if (showdecimals) {
+      return Number(
+        Math.round(value + "e" + decimals) + "e-" + decimals
+      ).toFixed(decimals);
+    } else {
+      return Number(Math.round(value + "e" + decimals) + "e-" + decimals);
+    }
   }
+  // function round2(value, decimals) {
+  //   // always add the zeros to the end of the number
+  //   return Number(Math.round(value + "e" + decimals) + "e-" + decimals).toFixed(
+  //     decimals
+  //   );
+  // }
 
   $: v = (100 * (y2 - y1)) / (x2 - x1);
   $: r = (x1 * y2 - x2 * y1) / (x1 - x2) / 16;
@@ -78,91 +86,105 @@
       </div>
     </div>
     <div class="demo__body pb-clear">
-      <div class="grid">
-        <label>
-          Min viewport width
-          <span class="input-field" data-suffix="px">
-            <input
-              type="number"
-              bind:value={x1}
-              min="300"
-              max={x2 - 10}
-              step="10"
-            />
-          </span>
-        </label>
-        <label>
-          Max viewport width
-          <span class="input-field" data-suffix="px">
-            <input
-              type="number"
-              bind:value={x2}
-              min={x1 + 10}
-              max="1920"
-              step="10"
-            />
-          </span>
-        </label>
-        <label>
-          Min font-size
-          <span class="input-field" data-suffix="px">
-            <input
-              type="number"
-              bind:value={y1}
-              min="4"
-              max={y2 - 1}
-              step="1"
-            />
-          </span>
-        </label>
-        <label>
-          Max font-size
-          <span class="input-field" data-suffix="px">
-            <input
-              type="number"
-              bind:value={y2}
-              min={y1 + 1}
-              max="200"
-              step="1"
-            />
-          </span>
-        </label>
+      <div class="calculator">
+        <fieldset class="calculator__fieldset">
+          <legend>Minimum viewport </legend>
+          <label class="calculator__label">
+            Width
+            <span class="input-field" data-suffix="px">
+              <input
+                type="number"
+                bind:value={x1}
+                min="300"
+                max={x2 - 10}
+                step="10"
+              />
+            </span>
+          </label>
+          <label class="calculator__label">
+            Font size
+            <span class="input-field" data-suffix="px">
+              <input
+                type="number"
+                bind:value={y1}
+                min="4"
+                max={y2 - 1}
+                step="1"
+              />
+            </span>
+          </label>
+        </fieldset>
+        <fieldset class="calculator__fieldset">
+          <legend>Maximum viewport</legend>
+          <label class="calculator__label">
+            Width
+            <span class="input-field" data-suffix="px">
+              <input
+                type="number"
+                bind:value={x2}
+                min={x1 + 10}
+                max="1920"
+                step="1"
+              />
+            </span>
+          </label>
+
+          <label class="calculator__label">
+            Font size
+            <span class="input-field" data-suffix="px">
+              <input
+                type="number"
+                bind:value={y2}
+                min={y1 + 1}
+                max="200"
+                step="1"
+              />
+            </span>
+          </label>
+        </fieldset>
       </div>
+      <!-- <h4>Result</h4> -->
     </div>
-    <div class="demo__code">
-      <span class="token output output--1">v</span>
-      <span class="token punctuation">=</span>
-      <span class="token punctuation">(</span>{y2} - {y1}<span
-        class="token punctuation">)</span
-      >
-      /
-      <span class="token punctuation">(</span>{x2} - {x1}<span
-        class="token punctuation">)</span
-      >
-      * 100 <br /><span class="token output output--2">r</span>
-      <span class="token punctuation">=</span>
-      <span class="token punctuation">(</span>{x1} * {y2} - {x2} * {y1}<span
-        class="token punctuation">)</span
-      >
-      / <span class="token punctuation">(</span>{x1} - {x2}<span
-        class="token punctuation">)</span
-      >{unit === "px" ? " " : " / 16"}
-      <br /><br /><span class="token property">font-size</span><span
-        class="token punctuation">:</span
-      >
-      <span class="token">clamp</span><span class="token punctuation">(</span
-      >{unit === "px" ? round(y1, 4) + "px" : round(y1 / 16, 4) + "rem"},
-      <span class="token output output--1"
-        >{round(((y2 - y1) / (x2 - x1)) * 100, 4)}vw</span
-      >
-      +
-      <span class="token output output--2"
-        >{unit === "px"
-          ? round((x1 * y2 - x2 * y1) / (x1 - x2), 4) + "px"
-          : round((x1 * y2 - x2 * y1) / (x1 - x2) / 16, 4) + "rem"}</span
-      >, {unit === "px" ? round(y2, 4) + "px" : round(y2 / 16, 4) + "rem"}<span
-        class="token punctuation">);</span
-      >
+    <div class="demo__code flow-2xs">
+      <h4>Result</h4>
+      <p>
+        <span class="token property">font-size</span><span
+          class="token punctuation">:</span
+        >
+        <span class="token">clamp</span><span class="token punctuation">(</span
+        >{unit === "px" ? round(y1, 4) + "px" : round(y1 / 16, 4) + "rem"},
+        <span class="token output output--1"
+          >{round(((y2 - y1) / (x2 - x1)) * 100, 4)}vw</span
+        >
+        +
+        <span class="token output output--2"
+          >{unit === "px"
+            ? round((x1 * y2 - x2 * y1) / (x1 - x2), 4) + "px"
+            : round((x1 * y2 - x2 * y1) / (x1 - x2) / 16, 4) + "rem"}</span
+        >, {unit === "px"
+          ? round(y2, 4) + "px"
+          : round(y2 / 16, 4) + "rem"}<span class="token punctuation">);</span>
+      </p>
+      <h4>Where</h4>
+      <p>
+        <span class="token output output--1">v</span>
+        <span class="token punctuation">=</span>
+        <span class="token punctuation">(</span>{y2} - {y1}<span
+          class="token punctuation">)</span
+        >
+        /
+        <span class="token punctuation">(</span>{x2} - {x1}<span
+          class="token punctuation">)</span
+        >
+        × 100 <br /><span class="token output output--2">r</span>
+        <span class="token punctuation">=</span>
+        <span class="token punctuation">(</span>{x1} × {y2} - {x2} * {y1}<span
+          class="token punctuation">)</span
+        >
+        / <span class="token punctuation">(</span>{x1} - {x2}<span
+          class="token punctuation">)</span
+        >{unit === "px" ? " " : " / 16"}
+      </p>
     </div>
   </div>
   <p>
@@ -233,32 +255,8 @@
         </div>
       </form>
     </div>
-    <div class="demo__code">
-      {#if ff < y1}
-        <!-- <p><span class="token output output--3">ff</span> = {y1}px</p> -->
-        <p>
-          <span class="token output output--3">ff</span> = {unit === "px"
-            ? y1 + "px"
-            : y1 / 16 + "rem"}
-        </p>
-      {:else if ff <= y2}
-        <p>
-          <span class="token output output--3">ff</span> =
-          <span class="token output output--1"
-            >{ww}px &times; {round((100 * (y2 - y1)) / (x2 - x1), 4)}% = {round(
-              (ww * v) / 100,
-              2
-            )}px</span
-          >
-          +
-          <span class="token output output--2"
-            >{round((x1 * y2 - x2 * y1) / (x1 - x2), 4)}px</span
-          >
-        </p>
-      {:else if ff > y2}
-        <p><span class="token output output--3">ff</span> = {y2}px</p>
-      {:else}{/if}
-      <br />
+    <div class="demo__code flow-2xs">
+      <h4 class="mb-2xs">Result</h4>
       <p>
         <span class="token property">font-size</span><span
           class="token punctuation">:</span
@@ -267,35 +265,72 @@
           <span class="token">clamp</span><span class="token punctuation"
             >(</span
           ><span class="token output output--3">{y1}px</span>,
-          {round(ff, 2)}px, {y2}px<span class="token punctuation">);</span>
+          <span class="cf-input">{round(ff, 2, true)}px</span>, {y2}px<span
+            class="token punctuation">);</span
+          >
         {:else if ff <= y2}
           <span class="token">clamp</span><span class="token punctuation"
             >(</span
           >{y1}px,
-          <span class="token output output--3">{round(ff, 2)}px</span>, {y2}px<span
-            class="token punctuation">);</span
-          >
+          <span class="token output output--3 cf-input"
+            >{round(ff, 2, true)}px</span
+          >, {y2}px<span class="token punctuation">);</span>
         {:else if ff > y2}
           <span class="token">clamp</span><span class="token punctuation"
             >(</span
           >{y1}px,
-          {round(ff, 2)}px,
+          <span class="cf-input">{round(ff, 2, true)}px</span>,
           <span class="token output output--3">{y2}px</span><span
             class="token punctuation">);</span
           >
         {:else}{/if}
       </p>
+
+      <p class="cf-output">
+        <span class="token output output--1"
+          >{ww}px &times; {round((100 * (y2 - y1)) / (x2 - x1), 4)}% = {round(
+            (ww * v) / 100,
+            2,
+            true
+          )}px</span
+        >
+        +
+        <span class="token output output--2"
+          >{round((x1 * y2 - x2 * y1) / (x1 - x2), 2)}px</span
+        >
+      </p>
+
+      <!-- <p>
+        <span class="token">{ff}px</span> =
+        <span class="token output output--1"
+          >{ww}px &times; {round((100 * (y2 - y1)) / (x2 - x1), 4)}% = {round(
+            (ww * v) / 100,
+            2
+          )}px</span
+        >
+        +
+        <span class="token output output--2"
+          >{round((x1 * y2 - x2 * y1) / (x1 - x2), 4)}px</span
+        >
+      </p> -->
     </div>
   </div>
   <p>
     Now let's see what happens when zooming in. When the zoom level goes up the
     pixel density of the screen increases. That means pixels get larger. As a
     result the size of the viewport in pixels actually decreases because there
-    are less pixels to work with.
+    are less pixels to work with. The window width stays the same. But it also
+    plays a role in the calculation. The wider the window the more room there is
+    to zoom in before the maximum viewport width is reached. From that point on
+    the font-size decreases. So as you zoom in the font-size decreases until it
+    reaches the minimum value. At the same you are still zooming in. So from
+    that point the font-size doesn't scale accordinly anymore. In fact under
+    certain circumstances it can even look as it stays the same or even
+    decrease.
   </p>
   <div class="demo dark">
     <div class="demo__header">
-      <h3 class="demo__title">Zooming</h3>
+      <h3 class="demo__title">Zoom behaviour</h3>
       <button class="button-reset demo__header-button" on:click={resetZoom}>
         <Icon />
         <span class="sr-only">reset</span>
@@ -303,15 +338,15 @@
     </div>
     <div class="demo__body pb-clear flow">
       <p>
-        When the zoom level goes up the pixel density of the screen increases.
-        That means pixels get larger. As a result the size of the viewport in
-        pixels actually decreases because there are less pixels to work with.
+        Zooming affects viewport width in the same way as the window width. So
+        once it crosses the maximum viewport width the middle value of the clamp
+        formula is used.
       </p>
       {#if ww < x2}
         <Note>
           <p>
-            The window width is too small for this part to work. Please increase
-            the window width or reset it to the default value.
+            To clearly see the effect please increase the window width or reset
+            it to the default value.
           </p>
         </Note>
       {/if}
@@ -393,24 +428,28 @@
     </div>
     <div class="demo__code">
       <p>
-        window width: {ww} <br />
-        zoom level: {z}% <br />
-        viewport width: {round(vw, 2)} <br />
-        clamp({y1}px, {v} × {round(vw, 2)} = {round(zf, 2)}px + {r * 16}px =
+        font-size: clamp({y1}px, {v} × {round(vw, 2)} = {round(
+          (v * vw) / 100,
+          2
+        )}px + {r * 16}px =
         {round((v * vw) / 100 + r * 16, 2)}px, {y2}px)
         <br />
         {#if zf > y2}
-          <br />
-          {y2}px * {z}% = {round((y2 * z) / 100, 2)}px which is {z}% of {y2}px
-        {:else if zf <= y2}
-          <br />
-          {round(zf, 2)}px × {z}% = {round((zf * z) / 100, 2)}px which is {round(
-            (zf * z) / y2,
+          font-size: {round(y2, 2)}px <br />
+          font-size after zoom: {y2}px * {z}% = {round((y2 * z) / 100, 2)}px
+        {:else if y1 > zf}
+          font-size: {round(y1, 2)}px <br />
+          font-size after zoom: {y1}px * {z}% = {round((y1 * z) / 100, 2)}px
+          which is {z}% of {y1}px
+        {:else if y1 <= zf <= y2}
+          font-size: {round(zf, 2)}px <br />
+          font-size after zoom: {round(zf, 2)}px × {z}% = {round(
+            (zf * z) / 100,
             2
-          )}% of {y2}px
-        {:else if zf <= y1}
-          Test
-          {y1}px * {z}% = {round((y1 * z) / 100, 2)}px which is {z}% of {y1}px
+          )}px which is {round((zf * z) / y2, 2)}% of {y2}px and {round(
+            (zf * z) / y1,
+            2
+          )}% of {y1}px
         {/if}
         <br />
       </p>
@@ -419,10 +458,15 @@
 </div>
 
 <style>
-  .grid {
+  .calculator,
+  .calculator__fieldset {
     display: grid;
-    gap: var(--global-whitespace-xs) var(--global-whitespace);
+    gap: var(--global-whitespace-xs);
     grid-template-columns: 1fr 1fr;
+  }
+
+  .calculator {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   }
 
   .viewport-width {
@@ -507,7 +551,8 @@
   } */
 
   .viewport-width__viz {
-    --fs: 15;
+    --fs: 16;
+    font-family: var(--global-font-family-code);
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
     line-height: calc(var(--global-baseline) * 5);
     color: var(--global-color-neutral-800);
@@ -525,13 +570,11 @@
   .viewport-width__left,
   .viewport-width__mid,
   .viewport-width__right {
-    background: var(--global-color-neutral-500);
+    background: var(--global-color-neutral-600);
     border-radius: var(--global-borderRadius);
     border: 1px solid var(--global-color-neutral-800);
-  }
-
-  .viewport-width__left {
-    /* width: var(--viewport-width-x1); */
+    /* color: var(--global-color-neutral-025); */
+    color: var(--global-muted-color);
   }
 
   .viewport-width__mid {
@@ -540,13 +583,43 @@
     padding: 0 6px;
   }
 
-  .viewport-width__right {
-    background: var(--global-color-neutral-500);
-    /* width: calc(100% - var(--viewport-width-x2)); */
-  }
-
   .active {
     background: var(--global-color-rose);
-    /* color: var(--global-color-neutral-800); */
+    color: var(--global-color-neutral-800);
+  }
+
+  .cf-input {
+    position: relative;
+  }
+
+  .cf-input::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid hotpink;
+    border-radius: var(--global-borderRadius);
+    pointer-events: none;
+  }
+
+  .cf-input::after {
+    content: "";
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 1rem;
+    background-color: hotpink;
+    border-radius: var(--global-borderRadius);
+    pointer-events: none;
+  }
+
+  .cf-output {
+    display: inline-block;
+    padding: 0.1rem;
+    border: 1px solid hotpink;
   }
 </style>
