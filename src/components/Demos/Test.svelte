@@ -213,7 +213,7 @@
         class="viewport-width"
         style="--x1: {x1}; --x2: {x2}; --min-ww: {minww}; --max-ww: {maxww}; --mm-ww: {wwdif};"
       >
-        <label class="viewport-width__label" for="viewportwidthRange">
+        <label class="viewport-width__label" for="windowWidthRange">
           Window width: <span class="text-code text-xs color-muted">{ww}px</span
           >
         </label>
@@ -226,7 +226,7 @@
             min={minww}
             max={maxww}
             step="10"
-            id="viewportwidthRange"
+            id="windowWidthRange"
           />
         </div>
         <div class="viewport-width__viz">
@@ -350,7 +350,7 @@
           </p>
         </Note>
       {/if}
-      <div class="grid">
+      <div class="calculator">
         <label>
           Zoom level
           <span class="input-field" data-suffix="%">
@@ -428,6 +428,8 @@
     </div>
     <div class="demo__code">
       <p>
+        {vw}
+        <br />
         font-size: clamp({y1}px, {v} × {round(vw, 2)} = {round(
           (v * vw) / 100,
           2
@@ -595,11 +597,8 @@
   .cf-input::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 1px solid hotpink;
+    inset: -0.25em -0.25em;
+    border: 1px solid var(--global-color-neutral-300);
     border-radius: var(--global-borderRadius);
     pointer-events: none;
   }
@@ -607,19 +606,20 @@
   .cf-input::after {
     content: "";
     position: absolute;
-    bottom: -1rem;
+    bottom: -1.5em;
     left: 50%;
     transform: translateX(-50%);
     width: 1px;
-    height: 1rem;
-    background-color: hotpink;
+    height: var(--global-whitespace-xs);
+    background-color: var(--global-color-neutral-300);
     border-radius: var(--global-borderRadius);
     pointer-events: none;
   }
 
   .cf-output {
     display: inline-block;
-    padding: 0.1rem;
-    border: 1px solid hotpink;
+    padding: 0.25em;
+    border: 1px solid var(--global-color-neutral-300);
+    border-radius: var(--global-borderRadius);
   }
 </style>
