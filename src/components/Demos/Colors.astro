@@ -1,0 +1,83 @@
+<div class="colors">
+  <div class="color"></div>
+  <div class="color"></div>
+  <div class="color"></div>
+  <div class="color"></div>
+  <div class="color"></div>
+</div>
+<div class="colors grayscale">
+  <div class="color"></div>
+  <div class="color"></div>
+  <div class="color"></div>
+  <div class="color"></div>
+  <div class="color"></div>
+</div>
+<div class="colors">
+  <div class="color color--dark"></div>
+  <div class="color color--dark"></div>
+  <div class="color color--dark"></div>
+  <div class="color color--dark"></div>
+  <div class="color color--dark"></div>
+</div>
+<div class="colors grayscale">
+  <div class="color color--dark"></div>
+  <div class="color color--dark"></div>
+  <div class="color color--dark"></div>
+  <div class="color color--dark"></div>
+  <div class="color color--dark"></div>
+</div>
+
+<style>
+  .colors {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .color {
+    aspect-ratio: 1/1;
+  }
+
+  .grayscale .color {
+    filter: grayscale(100%);
+  }
+
+  .color:nth-child(1) {
+    background-color: var(--global-color-sky-blue);
+  }
+
+  .color:nth-child(2) {
+    background-color: var(--global-color-jade-green);
+  }
+
+  .color:nth-child(3) {
+    background-color: var(--global-color-lilac);
+  }
+
+  .color:nth-child(4) {
+    background-color: var(--global-color-rose);
+  }
+
+  .color:nth-child(5) {
+    background-color: var(--global-color-tangerine);
+  }
+
+  .color--dark:nth-child(1) {
+    background-color: var(--global-color-sky-blue-dark);
+  }
+
+  .color--dark:nth-child(2) {
+    background-color: var(--global-color-jade-green-dark);
+  }
+
+  .color--dark:nth-child(3) {
+    background-color: var(--global-color-lilac-dark);
+  }
+
+  .color--dark:nth-child(4) {
+    background-color: var(--global-color-rose-dark);
+  }
+
+  .color--dark:nth-child(5) {
+    background-color: var(--global-color-tangerine-dark);
+  }
+</style>

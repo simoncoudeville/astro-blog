@@ -12,7 +12,7 @@ const { currentTitle } = Astro.props;
 <h2>
   All {numPosts} Posts
 </h2>
-<ol reversed class="list-reset postlist">
+<ol reversed class="list-reset postlist flow">
   {
     allPosts.map((post) => (
       <li class="postlist__item">
@@ -24,13 +24,13 @@ const { currentTitle } = Astro.props;
               : "postlist__link"
           }
         >
-          {post.frontmatter.title}
           <time
             class="postlist__date text-date color-meta"
             datetime={post.frontmatter.pubDate}
           >
             {formatDate(post.frontmatter.pubDate)}
           </time>
+          {post.frontmatter.title}
         </a>
       </li>
     ))

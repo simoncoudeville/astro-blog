@@ -55,7 +55,7 @@
 </script>
 
 <div class="flow">
-  <div class="demo dark">
+  <div class="demo">
     <div class="demo__header">
       <h3 class="demo__title">Fluid size clamp formula</h3>
       <div class="demo__header-options">

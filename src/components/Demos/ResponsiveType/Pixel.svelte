@@ -1,7 +1,12 @@
-<div class="pixel-holder">
-  <span class="pixel-text text-s">Here it is</span>
-  <div class="pixel-pointer">
-    <div class="pixel" />
+<div class="demo">
+  <header class="demo__header">
+    <h3 class="demo__title">Zoom in on this pixel</h3>
+  </header>
+  <div class="pixel-holder">
+    <span class="pixel-text text-s">Here it is</span>
+    <div class="pixel-pointer">
+      <div class="pixel" />
+    </div>
   </div>
 </div>
 
