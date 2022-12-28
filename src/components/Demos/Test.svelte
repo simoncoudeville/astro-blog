@@ -55,7 +55,7 @@
 </script>
 
 <div class="flow">
-  <div class="demo">
+  <div class="demo dark">
     <div class="demo__header">
       <h3 class="demo__title">Fluid size clamp formula</h3>
       <div class="demo__header-options">
@@ -254,6 +254,19 @@
           {:else}{/if}
         </div>
       </form>
+      {#if ff < y1}
+        <p style="font-size: {round(y1, 2, true)}px;">
+          The quick brown fox jumps over the lazy dog.
+        </p>
+      {:else if ff <= y2}
+        <p style="font-size: {round(ff, 2, true)}px;">
+          The quick brown fox jumps over the lazy dog.
+        </p>
+      {:else if ff > y2}
+        <p style="font-size: {round(y2, 2, true)}px;">
+          The quick brown fox jumps over the lazy dog.
+        </p>
+      {:else}{/if}
     </div>
     <div class="demo__code flow-2xs">
       <h4 class="mb-2xs">Result</h4>
@@ -463,7 +476,7 @@
   .calculator,
   .calculator__fieldset {
     display: grid;
-    gap: var(--global-whitespace-xs);
+    gap: var(--global-whitespace-s);
     grid-template-columns: 1fr 1fr;
   }
 

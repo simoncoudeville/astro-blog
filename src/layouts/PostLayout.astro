@@ -21,45 +21,67 @@ const pageDate = frontmatter.pubDate;
     <title>{pageTitle} - {SITE_ATHOUR}</title>
   </head>
   <body>
+    <svg
+      class="canvas"
+      viewBox="0 0 1000 500"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="none"
+    >
+      <defs>
+        <style>
+          .fill-2,
+          .fill-4 {
+            fill: var(--global-color-sky-blue-light);
+            opacity: 0.5;
+          }
+          .fill-0,
+          .fill-4 {
+            fill: var(--global-color-rose-light);
+            opacity: 0.5;
+          }
+          .fill-1,
+          .fill-3,
+          .fill-5 {
+            fill: var(--global-color-lilac-light);
+            opacity: 0.5;
+          }
+          @media (prefers-color-scheme: dark) {
+            .fill-2,
+            .fill-4 {
+              fill: var(--global-color-sky-blue-dark);
+              opacity: 0.5;
+            }
+            .fill-0,
+            .fill-4 {
+              fill: var(--global-color-rose-dark);
+              opacity: 0.5;
+            }
+            .fill-1,
+            .fill-3,
+            .fill-5 {
+              fill: var(--global-color-lilac-dark);
+              opacity: 0.5;
+            }
+          }
+        </style>
+        <filter id="blur" x="-50%" y="-100%" width="300%" height="300%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="100">
+          </feGaussianBlur>
+        </filter>
+        <!-- <filter id="blur" x="0" y="0" width="200%" height="200%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="100">
+          </feGaussianBlur>
+        </filter> -->
+        <!-- <filter id="blur" x="-100%" y="-100%" width="400%" height="400%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="200">
+          </feGaussianBlur>
+        </filter> -->
+      </defs>
+    </svg>
     <Header headerDate={pageDate} headerTitle={pageTitle} />
     <article class="row pt-clear">
       <div class="container flow">
         <header class="article-header">
-          <svg
-            class="article-header__svg canvas"
-            viewBox="0 0 1000 500"
-            xmlns="http://www.w3.org/2000/svg"
-            preserveAspectRatio="none"
-          >
-            <defs>
-              <style>
-                .fill-1 {
-                  fill: var(--global-color-sky-blue-light);
-                }
-                .fill-2 {
-                  fill: var(--global-color-rose-light);
-                }
-                .fill-3 {
-                  fill: var(--global-color-lilac-light);
-                }
-              </style>
-              <filter id="blur" x="-50%" y="-100%" width="400%" height="400%">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="100">
-                </feGaussianBlur>
-              </filter>
-              <!-- <filter id="blur" x="0" y="0" width="200%" height="200%">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="100">
-                </feGaussianBlur>
-              </filter> -->
-              <!-- <filter id="blur" x="-100%" y="-100%" width="300%" height="300%">
-                <feGaussianBlur
-                  in="SourceGraphic"
-                  stdDeviation="58.41545102088541"
-                >
-                </feGaussianBlur>
-              </filter> -->
-            </defs>
-          </svg>
           <h1 class="article-title js-article-title">{pageTitle}</h1>
         </header>
         <slot />

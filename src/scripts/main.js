@@ -40,33 +40,30 @@
 
 // import { SVG } from '@svgdotjs/svg.js'
 
-// a random function that returns a whole number between min and max
+// // a random function that returns a whole number between min and max
 // function random(min, max) {
 //     return Math.floor(Math.random() * (max - min + 1) + min);
-// }
-// function random(min, max) {
-//     return Math.random() * (max - min) + min;
 // }
 
 // const svg = SVG(".canvas");
 
-// const numEllipses = 15;
+// const numEllipses = 6;
+
+// let width = random(500, 1000);
+// let height = random(500, 1000);
+// let cx = 0;
+// let nextcx = width / 2 + cx;
 
 // for (let i = 0; i < numEllipses; i++) {
-//     let fill = random(1, 3);
-//     // let sizeX = random(200, 1000);
-//     // let sizeY = random(200, 1000);
-//     // svg
-//     //     .ellipse(sizeX, sizeY)
-//     //     .cy(0)
-//     //     .cx(i * 200 - 900)
-//     //     .rotate(-45, i * 200 - 900, 0)
-//     //     .attr({ filter: "url(#blur)", class: "fill-" + fill });
+//     console.log(i, width, height, cx);
 //     svg
-//         .ellipse(100, random(200, 1000))
-//         .cy(0)
-//         .cx(i * 200 - 900)
-//         // .rotate(-45, i * 200 - 900, 0)
-//         // .attr({ filter: "url(#blur)", class: "fill-" + fill });
-//         .attr({ filter: "url(#blur)", class: "fill-" + 1 });
+//         .ellipse(width, height)
+//         .cy(i * height * -0.125)
+//         .cx(cx)
+//         .attr({ filter: "url(#blur)", class: "fill-" + i });
+
+//     nextcx = width / 2 + cx;
+//     cx = nextcx;
+//     width = random(1000, 1500);
+//     height = random(500, 1000);
 // }

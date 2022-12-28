@@ -5,13 +5,18 @@ pubDate: 2022-11-22
 description: "This is the second post of my new Astro blog."
 ---
 
-Like most web designers, I want text to adjust to the available space. Type should not be too large on small screens or too small on large screens, which is where responsive typography comes in. However, when using the zoom functionality in different desktop browsers, seemingly unpredictable jumps in font-size occur. Or zooming in appears to slow down or cease responding, and in some cases text size decreases as you zoom in. I wanted to understand the cause of this issue, so I wrote this article to share what I learned.
+Like most web designers, I want text to adjust to the available space. Type should not be too large on small screens or too small on large screens, which is where responsive typography comes in. However, when using the zoom functionality on desktop browsers seemingly unpredictable jumps in font-size occur, zooming in appears to slow down or cease responding and in some cases text size even decreases as you zoom in. Adrian Roselli has documented these behaviours in extend in <a href="https://adrianroselli.com/2019/12/responsive-type-and-zoom.html">his article</a>.
+I wanted to understand the cause of these issues, so I wrote this article to share what I learned.
 
 Responsive typography offers two techniques: static and fluid. Static responsive typography is based on a set of breakpoints, where each breakpoint triggers a new font size. This can be an effective way to ensure text looks good, but it is limited in that it only adjusts when the viewport crosses a breakpoint, while it ignores the changes between breakpoints. Fluid typography, however, allows for a more dynamic approach. It uses a mathematical formula to adjust font sizes as the viewport changes, allowing for a more natural display of typography across all viewport widths. I’ll look at both techniques and examine how they respond when zooming.
 
+## What influences the eventual font-size
+
+When applying a responsive type technique there 3 variables that influence the final computed font size of an elemtent. Window width, viewport width and user preference font-size. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor pariatur minima et. Perferendis ducimus nulla autem animi omnis non, enim molestias distinctio atque architecto cupiditate quod laboriosam placeat aliquam! Accusamus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor pariatur minima et. Perferendis ducimus nulla autem animi omnis non, enim molestias distinctio atque architecto cupiditate quod laboriosam placeat aliquam! Accusamus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor pariatur minima et. Perferendis ducimus nulla autem animi omnis non, enim molestias distinctio atque architecto cupiditate quod laboriosam placeat aliquam! Accusamus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor pariatur minima et. Perferendis ducimus nulla autem animi omnis non, enim molestias distinctio atque architecto cupiditate quod laboriosam placeat aliquam! Accusamus!
+
 ## What happens when zooming
 
-Zooming on webkit and chromium based browsers changes the device pixel ratio. The device pixel ratio is the ratio between CSS pixels and device pixels. On a retina display the device pixel ratio is 2, meaning 1 CSS pixel is 2 device pixels. When you zoom in the device pixel ratio increases, making CSS pixels larger. Pretty much like how the CSS scale property works. When you zoom in to 500% 1 CSS pixel is now 10 device pixels. The same CSS pixel value now represents a larger area on the screen. This is why zooming in makes everything larger, including text. Even when declaraing everything in static pixels. Everything... except for the viewport, which actually gets smaller. Because there are now 5 times less pixels to fill up the viewport it is now 5 times smaller. So zooming in on to 500% on a 1920px wide window makes the viewport 1920px / 5 = 384px wide.
+Zooming on desktop based browsers changes the device pixel ratio. The device pixel ratio is the ratio between CSS pixels and device pixels. On a retina display the device pixel ratio is 2, meaning 1 CSS pixel is 2 device pixels. When you zoom in the device pixel ratio increases, making CSS pixels larger. Pretty much like how the CSS scale property works. When you zoom in to 500% 1 CSS pixel is now 10 device pixels. The same CSS pixel value now represents a larger area on the screen. This is why zooming in makes everything larger, including text. This also explains why zooming works when declaraing everything in static pixels instead of relative units. Everything... except for the viewport, which actually gets smaller. Because pixels are now 5 times larger there are now 5 times less pixels to fill up the viewport, it is now 5 times smaller. So zooming in on to 500% on a 1920px wide window makes the viewport 1920px / 5 = 384px wide.
 
 Here's a pixel to demonstrate this; try zooming in on it on a webkit or chromium based browser. On Chrome you can zoom in to 500%. At that point the pixel will be 5 times as wide. Take a screenshot if you don't believe me.
 
@@ -21,17 +26,41 @@ import Pixel from "../../components/Demos/ResponsiveType/Pixel.svelte";
 
 If you're viewing this on firefox there's a good chance the pixel doesn't get larger. That's because Firefox has a setting to zoom text only. If you disable that setting zooming works the same as webkit and chromium browsers. When enabled there's some kind of black magic going on. I haven't figured out what it actually does and how this affects responsive typography.
 
+This also explains why
+That's why if you look at the computed font-size of an element after zooming in it won't have changed. The font-size is still the same, it's just the pixels that got larger. If you want to know what the visual font-size is you have to manually multiply it with the zoom level percentage.
+
 ## Static responsive typopgraphy
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae repellat autem, quod maiores molestiae provident, eius atque dolorum quam cumque deserunt totam minima? Sit quae, nam sint voluptatibus molestias alias.
+Static responsive typography is based on a set of breakpoints, where each breakpoint triggers a new font size. This can be an effective way to ensure text looks good, but it is limited in that it only adjusts when the viewport crosses a breakpoint, while it ignores the changes between breakpoints. Personally I don't mind that much. I still think it's a valid technique if you just want to simply increase the font-size. However it comes with it's implications when zooming. This is an example of how it works.
+
+```css
+h1 {
+  font-size: 3rem;
+}
+
+@media (min-width: 52.5em) {
+  h1 {
+    font-size: 4rem;
+  }
+}
+
+@media (min-width: 71em) {
+  h1 {
+    font-size: 6rem;
+  }
+}
+```
+
+On a viewport width of 1680px we start at 6rem (96px). As we zoom in the viewport decreases in width. At first everything works fine, the text increases in size. At a zoom level of 140% the visual font-size is 134.4px But at a zoom level of 150% the viewport width is only 1120px wide so the the last media query doesn't apply anymore. After that point the font-size decreases to 4rem (64px). But with a zoom level of 150% the visual font-size is now 96px again. The same happens at a zoom level of 200%. The viewport is now only 840px wide so the font-size of the h1 is now only 3rem (48px), but with a zoom level of 200% the visual font-size is again 96px. So as we zoom in the font-size keeps turning back to 96px which gives the impression that the text decreases in size as you zoom in.
+You could potentially write a media query for each zoom level and downscale the font-size value so that multiplied with the zoom level the visual font-size wouldn't appear to change at all. But only for that particular window width. Because if you zoom in with a larger window with or with a larger browser font-size the breakpoints inside the media queries breakpoints are not the same. That's why it feels unpredictable and is very complex to test.
+
+import Static from "../../components/Demos/ResponsiveType/Static.svelte";
+
+<Static client:idle />
 
 ## Fluid typography
 
 Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae repellat autem, quod maiores molestiae provident, eius atque dolorum quam cumque deserunt totam minima? Sit quae, nam sint voluptatibus molestias alias. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae repellat autem, quod maiores molestiae provident, eius atque dolorum quam cumque deserunt totam minima? Sit quae, nam sint voluptatibus molestias alias.
-
-import Colors from "../../components/Demos/Colors.astro";
-
-<Colors />
 
 import Test from "../../components/Demos/Test.svelte";
 
