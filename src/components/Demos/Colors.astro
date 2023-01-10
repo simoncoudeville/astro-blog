@@ -4,8 +4,10 @@
   <div class="color color--light"></div>
   <div class="color color--light"></div>
   <div class="color color--light"></div>
+  <div class="color color--light"></div>
 </div>
 <div class="colors grayscale">
+  <div class="color color--light"></div>
   <div class="color color--light"></div>
   <div class="color color--light"></div>
   <div class="color color--light"></div>
@@ -18,8 +20,10 @@
   <div class="color"></div>
   <div class="color"></div>
   <div class="color"></div>
+  <div class="color"></div>
 </div>
 <div class="colors grayscale">
+  <div class="color"></div>
   <div class="color"></div>
   <div class="color"></div>
   <div class="color"></div>
@@ -32,8 +36,10 @@
   <div class="color color--dark"></div>
   <div class="color color--dark"></div>
   <div class="color color--dark"></div>
+  <div class="color color--dark"></div>
 </div>
 <div class="colors grayscale">
+  <div class="color color--dark"></div>
   <div class="color color--dark"></div>
   <div class="color color--dark"></div>
   <div class="color color--dark"></div>
@@ -44,7 +50,7 @@
 <style>
   .colors {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
   }
 
   .color {
@@ -75,6 +81,10 @@
     background-color: var(--global-color-tangerine);
   }
 
+  .color:nth-child(6) {
+    background-color: var(--global-color-gold);
+  }
+
   .color--dark:nth-child(1) {
     background-color: var(--global-color-sky-blue-dark);
   }
@@ -95,6 +105,10 @@
     background-color: var(--global-color-tangerine-dark);
   }
 
+  .color--dark:nth-child(6) {
+    background-color: var(--global-color-gold-dark);
+  }
+
   .color--light:nth-child(1) {
     background-color: var(--global-color-sky-blue-light);
   }
@@ -113,5 +127,8 @@
 
   .color--light:nth-child(5) {
     background-color: var(--global-color-tangerine-light);
+  }
+  .color--light:nth-child(6) {
+    background-color: var(--global-color-gold-light);
   }
 </style>
