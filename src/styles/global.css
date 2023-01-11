@@ -67,6 +67,16 @@ Variables
     --global-color-sky-blue-light: hsl(var(--global-color-sky-blue-hue), 85%, 75%);
     --global-color-sky-blue-dark: hsl(var(--global-color-sky-blue-hue), 100%, 40%);
 
+    --global-color-cyan-hue: 187deg;
+    --global-color-cyan: hsl(var(--global-color-cyan-hue), 100%, 50%);
+    --global-color-cyan-light: hsl(var(--global-color-cyan-hue), 85%, 75%);
+    --global-color-cyan-dark: hsl(var(--global-color-cyan-hue), 100%, 40%);
+
+    --global-color-green-hue: 136deg;
+    --global-color-green: hsl(var(--global-color-green-hue), 65%, 45%);
+    --global-color-green-light: hsl(var(--global-color-green-hue), 85%, 75%);
+    --global-color-green-dark: hsl(var(--global-color-green-hue), 70%, 35%);
+
     --global-color-rose-hue: 0deg;
     --global-color-rose: hsl(var(--global-color-rose-hue), 85%, 70%);
     --global-color-rose-light: hsl(var(--global-color-rose-hue), 85%, 85%);
@@ -92,8 +102,10 @@ Variables
     --global-color-gold-light: hsl(var(--global-color-gold-hue), 85%, 75%);
     --global-color-gold-dark: hsl(var(--global-color-gold-hue), 95%, 35%);
 
-    --global-color-alpha-hue: var(--global-color-sky-blue-hue);
-    --global-neutral-hue: var(--global-color-alpha-hue);
+    /* --global-accent-color-hue: var(--global-color-sky-blue-hue); */
+    /* --global-accent-color-hue: var(--global-color-cyan-hue); */
+    /* --global-neutral-hue: var(--global-color-cyan-hue); */
+    --global-neutral-hue: var(--global-color-jade-green-hue);
     /* --global-neutral-hue: var(--global-color-gold-hue);
     --global-neutral-hue: var(--global-color-lilac-hue); */
     /* --global-neutral-hue: var(--global-color-jade-green-hue); */
@@ -116,7 +128,9 @@ Variables
     /* --global-backgroundColor: var(--global-color-neutral-025); */
     --global-foregroundColor: var(--global-color-neutral-025);
     --global-foregroundColor2: var(--global-color-neutral-050);
-    --global-accent-color: var(--global-color-sky-blue);
+    /* --global-accent-color: var(--global-color-sky-blue); */
+    /* --global-accent-color: var(--global-color-cyan); */
+    --global-accent-color: var(--global-color-jade-green);
     --global-backgroundColor: white;
     /* --global-foregroundColor: white; */
     --global-text-color: var(--global-color-neutral-800);
@@ -157,22 +171,22 @@ Variables
     /* --global-selection-backgroundColor: var(--global-color-rose); */
     --global-selection-color: var(--global-backgroundColor);
 
-    --global-font-family-alpha: "Graphik Web", sans-serif;
-    /* --global-font-family-alpha: "Suisse Web", sans-serif; */
+    /* --global-font-family-alpha: "Graphik Web", sans-serif; */
+    --global-font-family-alpha: "Suisse Web", sans-serif;
     /* --global-font-family-alpha: system-ui, -apple-system, BlinkMacSystemFont, sans-serif; */
-    --global-font-family-beta: "Tiempos Text Web", serif;
-    --global-font-family-title: "Tiempos Headline", serif;
+    /* --global-font-family-beta: "Tiempos Text Web", serif; */
+    /* --global-font-family-title: "Tiempos Headline", serif; */
     /* --global-font-family-title: "Suisse Works", serif; */
-    /* --global-font-family-title: var(--global-font-family-alpha); */
+    --global-font-family-title: var(--global-font-family-alpha);
     /* --global-font-family-title: "At Gambit", serif; */
     /* --global-font-family-title: "Graphik Compact", sans-serif; */
     /* --global-font-family-title: var(--global-font-family-alpha); */
     /* --global-font-family-code: "SFMono-Regular", ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace; */
-    --global-font-family-code: "IA Writer Duo S", "SFMono-Regular", ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
-    /* --global-font-family-code: "Suisse Int'l Mono", "SFMono-Regular", ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace; */
+    /* --global-font-family-code: "IA Writer Duo S", "SFMono-Regular", ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace; */
+    --global-font-family-code: "Suisse Int'l Mono", "SFMono-Regular", ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 
-    /* --global-font-weight-title: 500; */
-    --global-font-weight-title: 700;
+    --global-font-weight-title: 500;
+    /* --global-font-weight-title: 700; */
 
     --root-font-size: 19;
     --root-baseline: 5;
@@ -572,14 +586,14 @@ h1 {
     }
 } */
 
-@media screen and (min-width: 46.5em) {
+/* @media screen and (min-width: 46.5em) {
 
     h1,
     .h1 {
         --fs: 48;
         --baseline-multiplier: 10;
     }
-}
+} */
 
 /* @media screen and (min-width: 64em) {
 
@@ -676,11 +690,13 @@ Flow Content
 
 .flow>*+.demo,
 .flow>.demo+*,
+.flow>*+.note,
+.flow>.note+*,
 .flow>astro-island+*,
 .flow>pre[class*="language-"]+*,
 .flow>*+pre[class*="language-"] {
     /* margin-top: calc(var(--global-whitespace) + var(--global-whitespace-2xs)); */
-    margin-top: calc(var(--global-whitespace) + var(--global-whitespace-3xs));
+    margin-top: calc(var(--global-whitespace) + var(--global-whitespace-4xs));
 }
 
 .flow>*+h2,
@@ -854,7 +870,7 @@ body:has(.title-collides) .page-header__date {
     /* line-height: 1.5; */
     line-height: calc(var(--global-baseline) * 6);
     font-family: var(--global-font-family-alpha);
-    font-weight: normal;
+    /* font-weight: normal; */
 }
 
 .logo__link {
@@ -1011,7 +1027,7 @@ body:has(.title-collides) .article-title {
 }
 
 .demo {
-    --demo-whitespace: var(--global-whitespace-s);
+    --demo-whitespace: var(--global-whitespace);
     border-radius: var(--global-borderRadius-lg);
     /* border-radius: calc(var(--demo-whitespace) / 2); */
     /* background-color: var(--global-code-background); */
@@ -1210,7 +1226,7 @@ Utilities
 }
 
 .text-num {
-    font-feature-settings: "tnum";
+    font-feature-settings: "zero", "tnum";
 }
 
 .text-code {

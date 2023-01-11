@@ -68,7 +68,7 @@
   <div class="demo__body flow-s">
     <div class="controls">
       <div class="coontrols__zoom flex align-center gap-3xs">
-        <span class="color-muted shrink-0">Zoom level</span>
+        <span class="color-muted shrink-0">Zoom</span>
         <button class="button-reset shrink-0" on:click={decrementZoomLevel}>
           <span class="sr-only">Zoom out</span>
           <svg

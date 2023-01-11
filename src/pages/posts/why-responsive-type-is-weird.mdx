@@ -5,8 +5,16 @@ pubDate: 2022-11-22
 description: "This is the second post of my new Astro blog."
 ---
 
+import Note from "../../components/Note.svelte";
+
 Like most web designers, I want text to adjust to the available space. Type should not be too large on small screens or too small on large screens, which is where responsive typography comes in. However, when using the zoom functionality on desktop browsers seemingly unpredictable jumps in font-size occur, zooming in appears to slow down or cease responding and in some cases text size even decreases as you zoom in. Adrian Roselli has documented these behaviours in extend in <a href="https://adrianroselli.com/2019/12/responsive-type-and-zoom.html">his article</a>.
 I wanted to understand the cause of these issues, so I wrote this article to share what I learned.
+
+<Note title="Pixels">
+  I'm using pixels in this article's demos because it's simpler to explain.
+  Using relative units makes the calculations more complicated. And in the end,
+  browsers turn everything into pixels anyway.
+</Note>
 
 Responsive typography offers two techniques: static and fluid. Static responsive typography is based on a set of breakpoints, where each breakpoint triggers a new font size. This can be an effective way to ensure text looks good, but it is limited in that it only adjusts when the viewport crosses a breakpoint, while it ignores the changes between breakpoints. Fluid typography, however, allows for a more dynamic approach. It uses a mathematical formula to adjust font sizes as the viewport changes, allowing for a more natural display of typography across all viewport widths. I’ll look at both techniques and examine how they respond when zooming.
 
@@ -31,7 +39,7 @@ That's why if you look at the computed font-size of an element after zooming in 
 
 ## Static responsive typopgraphy
 
-Static responsive typography is based on a set of breakpoints, where each breakpoint triggers a new font size. This can be an effective way to ensure text looks good, but it is limited in that it only adjusts when the viewport crosses a breakpoint, while it ignores the changes between breakpoints. Personally I don't mind that much. I still think it's a valid technique if you just want to simply increase the font-size. However it comes with it's implications when zooming. This is an example of how it works.
+Static responsive typography is based on a set of breakpoints, where each breakpoint triggers a new font size. This can be an effective way to ensure text looks good, but it is limited in that it only adjusts when the viewport crosses a breakpoint, while it ignores the changes between breakpoints. Personally I don't mind that much. I still think it's a valid technique if you want to control at what point to simply increase the font-size. However it comes with it's implications when zooming. Below is an example of how it works.
 
 ```css
 h1 {
