@@ -260,7 +260,8 @@
   }
 
   .viewport__part.active {
-    background-color: var(--global-accent-color);
+    /* background-color: var(--global-accent-color); */
+    background-color: var(--global-color-analogue3-light);
     color: var(--global-color-neutral-025);
   }
 
@@ -288,7 +289,8 @@
     /* bottom: calc(var(--global-whitespace-3xs) * -0.25); */
     bottom: 2px;
     /* fill: currentColor; */
-    fill: var(--global-accent-color);
+    /* fill: var(--global-accent-color); */
+    fill: var(--global-color-analogue3-light);
     /* rotate: 45deg; */
     /* border: 2px solid var(--global-foregroundColor); */
     /* border: 2px solid var(--global-accent-color); */

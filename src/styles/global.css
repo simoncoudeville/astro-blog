@@ -87,10 +87,40 @@ Variables
     --global-color-tangerine-light: hsl(var(--global-color-tangerine-hue), 85%, 75%);
     --global-color-tangerine-dark: hsl(var(--global-color-tangerine-hue), 100%, 40%);
 
-    --global-color-jade-green-hue: 166deg;
+    --global-color-jade-green-hue: 165deg;
     --global-color-jade-green: hsl(var(--global-color-jade-green-hue), 65%, 48%);
     --global-color-jade-green-light: hsl(var(--global-color-jade-green-hue), 85%, 75%);
     --global-color-jade-green-dark: hsl(var(--global-color-jade-green-hue), 100%, 35%);
+
+    --global-color-analogue1-hue: 333deg;
+    --global-color-analogue1: hsl(var(--global-color-analogue1-hue), 85%, 55%);
+    --global-color-analogue1-light: hsl(var(--global-color-analogue1-hue), 90%, 65%);
+    --global-color-analogue1-dark: hsl(var(--global-color-analogue1-hue), 100%, 35%);
+
+    --global-color-analogue2-hue: 276deg;
+    --global-color-analogue2: hsl(var(--global-color-analogue2-hue), 70%, 55%);
+    --global-color-analogue2-light: hsl(var(--global-color-analogue2-hue), 90%, 65%);
+    --global-color-analogue2-dark: hsl(var(--global-color-analogue2-hue), 100%, 35%);
+
+    --global-color-analogue3-hue: 250deg;
+    --global-color-analogue3: hsl(var(--global-color-analogue3-hue), 90%, 50%);
+    --global-color-analogue3-light: hsl(var(--global-color-analogue3-hue), 100%, 70%);
+    --global-color-analogue3-dark: hsl(var(--global-color-analogue3-hue), 100%, 35%);
+
+    --global-color-analogue4-hue: 220;
+    --global-color-analogue4: hsl(var(--global-color-analogue4-hue), 85%, 60%);
+    --global-color-analogue4-light: hsl(var(--global-color-analogue4-hue), 100%, 70%);
+    --global-color-analogue4-dark: hsl(var(--global-color-analogue4-hue), 100%, 35%);
+
+    --global-color-analogue5-hue: 194deg;
+    --global-color-analogue5: hsl(var(--global-color-analogue5-hue), 100%, 38%);
+    --global-color-analogue5-light: hsl(var(--global-color-analogue5-hue), 85%, 60%);
+    --global-color-analogue5-dark: hsl(var(--global-color-analogue5-hue), 100%, 35%);
+
+    --global-color-analogue6-hue: 165deg;
+    --global-color-analogue6: hsl(var(--global-color-analogue6-hue), 100%, 31%);
+    --global-color-analogue6-light: hsl(var(--global-color-analogue6-hue), 85%, 45%);
+    --global-color-analogue6-dark: hsl(var(--global-color-analogue6-hue), 100%, 35%);
 
     --global-color-lilac-hue: 256deg;
     --global-color-lilac: hsl(var(--global-color-lilac-hue), 90%, 75%);
@@ -105,7 +135,8 @@ Variables
     /* --global-accent-color-hue: var(--global-color-sky-blue-hue); */
     /* --global-accent-color-hue: var(--global-color-cyan-hue); */
     /* --global-neutral-hue: var(--global-color-cyan-hue); */
-    --global-neutral-hue: var(--global-color-jade-green-hue);
+    --global-neutral-hue: var(--global-color-analogue6-hue);
+    /* --global-neutral-hue: var(--global-color-jade-green-hue); */
     /* --global-neutral-hue: var(--global-color-gold-hue);
     --global-neutral-hue: var(--global-color-lilac-hue); */
     /* --global-neutral-hue: var(--global-color-jade-green-hue); */
@@ -130,7 +161,8 @@ Variables
     --global-foregroundColor2: var(--global-color-neutral-050);
     /* --global-accent-color: var(--global-color-sky-blue); */
     /* --global-accent-color: var(--global-color-cyan); */
-    --global-accent-color: var(--global-color-jade-green);
+    /* --global-accent-color: var(--global-color-jade-green); */
+    --global-accent-color: var(--global-color-analogue6);
     --global-backgroundColor: white;
     /* --global-foregroundColor: white; */
     --global-text-color: var(--global-color-neutral-800);
@@ -223,6 +255,7 @@ Variables
         --global-foregroundColor: var(--global-color-neutral-800);
         --global-foregroundColor2: var(--global-color-neutral-700);
         --global-text-color: var(--global-color-neutral-025);
+        --global-accent-color: var(--global-color-analogue6-light);
         /* --global-text-color: var(--global-color-neutral-050); */
         /* --global-title-color: var(--global-color-neutral-025); */
         --global-link-color: var(--global-color-neutral-025);
@@ -1360,7 +1393,7 @@ pre[class*="language-"] {
 pre[class*="language-css"] {
     /* color: var(--language-css-color, var(--global-color-gold-dark)); */
     /* color: var(--language-css-color, var(--global-color-tangerine-dark)); */
-    color: var(--language-css-color, var(--global-color-rose-dark));
+    color: var(--language-css-color, var(--global-color-analogue6));
 }
 
 pre[class*="language-"] code {
@@ -1392,7 +1425,7 @@ pre[class*="language-"] {
 .token.value {
     /* color: var(--language-css-color, var(--global-color-gold-dark)); */
     /* color: var(--token-value-color, var(--global-color-tangerine-dark)); */
-    color: var(--token-value-color, var(--global-color-rose-dark));
+    color: var(--token-value-color, var(--global-color-analogue6));
 }
 
 /* .token.property, */
@@ -1412,7 +1445,7 @@ pre[class*="language-"] {
 .token.rule,
 .token.keyword,
 .token.tag {
-    color: var(--token-operator-color, var(--global-color-lilac-dark));
+    color: var(--token-operator-color, var(--global-color-analogue3));
 }
 
 .token.constant,
@@ -1422,7 +1455,7 @@ pre[class*="language-"] {
 .token.char,
 .token.builtin,
 .token.inserted {
-    color: var(--token-constant-color, var(--global-color-jade-green-dark));
+    color: var(--token-constant-color, var(--global-color-analogue5));
 }
 
 .token.entity {
@@ -1432,16 +1465,16 @@ pre[class*="language-"] {
 .token.literal-property,
 .token.selector {
     /* color: var(--token-selector-color, var(--global-color-rose-dark)); */
-    color: var(--token-selector-color, var(--global-color-tangerine-dark));
+    color: var(--token-selector-color, var(--global-color-analogue1));
 }
 
 .token.boolean {
-    color: var(--token-boolean-color, var(--global-color-tangerine-dark));
+    color: var(--token-boolean-color, var(--global-color-analogue5));
 }
 
 .token.class-name,
 .token.function {
-    color: var(--token-function-color, var(--global-color-sky-blue-dark));
+    color: var(--token-function-color, var(--global-color-analogue4));
 }
 
 .token.italic {
@@ -1474,37 +1507,24 @@ pre[class*=language-][class*=language-css]:after {
     content: "CSS";
 }
 
-.dark {
-    /* --language-css-color: var(--global-color-tangerine); */
-    --language-css-color: var(--global-color-rose);
-    /* --token-value-color: var(--global-color-tangerine); */
-    --token-value-color: var(--global-color-rose);
-    /* --language-css-color: var(--global-color-gold);
-    --token-value-color: var(--global-color-gold); */
-    --token-punctation-color: var(--global-color-neutral-200);
-    --token-operator-color: var(--global-color-lilac);
-    --token-constant-color: var(--global-color-jade-green);
-    /* --token-selector-color: var(--global-color-rose); */
-    --token-selector-color: var(--global-color-tangerine);
-    --token-boolean-color: var(--global-color-tangerine);
-    --token-function-color: var(--global-color-sky-blue);
-}
-
 @media (prefers-color-scheme: dark) {
     body {
-        --language-css-color: var(--global-color-rose);
-        /* --language-css-color: var(--global-color-tangerine); */
-        /* --token-value-color: var(--global-color-tangerine); */
+        /* --language-css-color: var(--global-color-rose);
         --token-value-color: var(--global-color-rose);
-        /* --language-css-color: var(--global-color-gold);
-        --token-value-color: var(--global-color-gold); */
         --token-punctation-color: var(--global-color-neutral-200);
         --token-operator-color: var(--global-color-lilac);
         --token-constant-color: var(--global-color-jade-green);
-        /* --token-selector-color: var(--global-color-rose); */
         --token-selector-color: var(--global-color-tangerine);
         --token-boolean-color: var(--global-color-tangerine);
-        --token-function-color: var(--global-color-sky-blue);
+        --token-function-color: var(--global-color-sky-blue); */
+        --language-css-color: var(--global-color-analogue6-light);
+        --token-value-color: var(--global-color-analogue6-light);
+        --token-punctation-color: var(--global-color-neutral-200);
+        --token-operator-color: var(--global-color-analogue3-light);
+        --token-constant-color: var(--global-color-analogue5-light);
+        --token-selector-color: var(--global-color-analogue1-light);
+        --token-boolean-color: var(--global-color-analogue5-light);
+        --token-function-color: var(--global-color-analogue4-light);
     }
 }
 

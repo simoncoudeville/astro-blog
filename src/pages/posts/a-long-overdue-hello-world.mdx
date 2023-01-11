@@ -39,11 +39,13 @@ In my case at the time of writing the homepage is the latest post. Since I'm usi
 
 In every SSG I tried there was at least one issue I ran into that I didn't like.
 
-## Greeting component
+import Note from "../../components/Note.svelte";
 
-import Greeting from "../../components/Greeting.jsx";
-
-<Greeting client:load messages={["Hej", "Hallo", "Hola", "Habari"]} />
+<Note title="Test">
+  I'm using pixels in this article's demos because it's simpler to explain.
+  Using relative units makes the calculations more complicated. And in the end,
+  browsers turn everything into pixels anyway.
+</Note>
 
 import Colors from "../../components/Demos/Colors.astro";
 

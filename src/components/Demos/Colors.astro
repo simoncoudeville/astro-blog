@@ -47,6 +47,55 @@
   <div class="color color--dark"></div>
 </div>
 
+<div class="colors colors--analogue">
+  <div class="color"></div>
+  <div class="color"></div>
+  <div class="color"></div>
+  <div class="color"></div>
+  <div class="color"></div>
+  <div class="color"></div>
+</div>
+<div class="colors colors--analogue grayscale">
+  <div class="color"></div>
+  <div class="color"></div>
+  <div class="color"></div>
+  <div class="color"></div>
+  <div class="color"></div>
+  <div class="color"></div>
+</div>
+<div class="text-colors">
+  <div class="text-color">Test</div>
+  <div class="text-color">Test</div>
+  <div class="text-color">Test</div>
+  <div class="text-color">Test</div>
+  <div class="text-color">Test</div>
+  <div class="text-color">Test</div>
+</div>
+<div class="colors colors--analogue">
+  <div class="color color--light"></div>
+  <div class="color color--light"></div>
+  <div class="color color--light"></div>
+  <div class="color color--light"></div>
+  <div class="color color--light"></div>
+  <div class="color color--light"></div>
+</div>
+<div class="colors colors--analogue grayscale">
+  <div class="color color--light"></div>
+  <div class="color color--light"></div>
+  <div class="color color--light"></div>
+  <div class="color color--light"></div>
+  <div class="color color--light"></div>
+  <div class="color color--light"></div>
+</div>
+<div class="text-colors dark">
+  <div class="text-color text-color--light">Test</div>
+  <div class="text-color text-color--light">Test</div>
+  <div class="text-color text-color--light">Test</div>
+  <div class="text-color text-color--light">Test</div>
+  <div class="text-color text-color--light">Test</div>
+  <div class="text-color text-color--light">Test</div>
+</div>
+
 <style>
   .colors {
     display: grid;
@@ -128,7 +177,111 @@
   .color--light:nth-child(5) {
     background-color: var(--global-color-tangerine-light);
   }
+
   .color--light:nth-child(6) {
     background-color: var(--global-color-gold-light);
+  }
+
+  /* Analogue colors */
+
+  .colors--analogue .color:nth-child(1) {
+    background-color: var(--global-color-analogue1);
+  }
+
+  .colors--analogue .color:nth-child(2) {
+    background-color: var(--global-color-analogue2);
+  }
+
+  .colors--analogue .color:nth-child(3) {
+    background-color: var(--global-color-analogue3);
+  }
+
+  .colors--analogue .color:nth-child(4) {
+    background-color: var(--global-color-analogue4);
+  }
+
+  .colors--analogue .color:nth-child(5) {
+    background-color: var(--global-color-analogue5);
+  }
+
+  .colors--analogue .color:nth-child(6) {
+    background-color: var(--global-color-analogue6);
+  }
+
+  .colors--analogue .color--light:nth-child(1) {
+    background-color: var(--global-color-analogue1-light);
+  }
+
+  .colors--analogue .color--light:nth-child(2) {
+    background-color: var(--global-color-analogue2-light);
+  }
+
+  .colors--analogue .color--light:nth-child(3) {
+    background-color: var(--global-color-analogue3-light);
+  }
+
+  .colors--analogue .color--light:nth-child(4) {
+    background-color: var(--global-color-analogue4-light);
+  }
+
+  .colors--analogue .color--light:nth-child(5) {
+    background-color: var(--global-color-analogue5-light);
+  }
+
+  .colors--analogue .color--light:nth-child(6) {
+    background-color: var(--global-color-analogue6-light);
+  }
+
+  .text-colors {
+    background-color: var(--global-foregroundColor);
+    padding: var(--global-whitespace);
+  }
+
+  .text-color:nth-child(1) {
+    color: var(--global-color-analogue1);
+  }
+
+  .text-color:nth-child(2) {
+    color: var(--global-color-analogue2);
+  }
+
+  .text-color:nth-child(3) {
+    color: var(--global-color-analogue3);
+  }
+
+  .text-color:nth-child(4) {
+    color: var(--global-color-analogue4);
+  }
+
+  .text-color:nth-child(5) {
+    color: var(--global-color-analogue5);
+  }
+
+  .text-color:nth-child(6) {
+    color: var(--global-color-analogue6);
+  }
+
+  .text-color--light:nth-child(1) {
+    color: var(--global-color-analogue1-light);
+  }
+
+  .text-color--light:nth-child(2) {
+    color: var(--global-color-analogue2-light);
+  }
+
+  .text-color--light:nth-child(3) {
+    color: var(--global-color-analogue3-light);
+  }
+
+  .text-color--light:nth-child(4) {
+    color: var(--global-color-analogue4-light);
+  }
+
+  .text-color--light:nth-child(5) {
+    color: var(--global-color-analogue5-light);
+  }
+
+  .text-color--light:nth-child(6) {
+    color: var(--global-color-analogue6-light);
   }
 </style>
