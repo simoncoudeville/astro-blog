@@ -1,4 +1,6 @@
 <script>
+  import { round } from "../../scripts/round";
+  import Reset from "./Components/Reset.svelte";
   let x1 = 320;
   let x2 = 960;
   let y1 = 32;
@@ -27,23 +29,6 @@
     z = 100;
   }
 
-  // a rounding function to use in the formula
-  function round(value, decimals, showdecimals = false) {
-    if (showdecimals) {
-      return Number(
-        Math.round(value + "e" + decimals) + "e-" + decimals
-      ).toFixed(decimals);
-    } else {
-      return Number(Math.round(value + "e" + decimals) + "e-" + decimals);
-    }
-  }
-  // function round2(value, decimals) {
-  //   // always add the zeros to the end of the number
-  //   return Number(Math.round(value + "e" + decimals) + "e-" + decimals).toFixed(
-  //     decimals
-  //   );
-  // }
-
   $: v = (100 * (y2 - y1)) / (x2 - x1);
   $: r = (x1 * y2 - x2 * y1) / (x1 - x2) / 16;
   $: ff = (ww * v) / 100 + r * 16;
@@ -55,7 +40,7 @@
 </script>
 
 <div class="flow">
-  <div class="demo dark">
+  <div class="demo">
     <div class="demo__header">
       <h3 class="demo__title">Fluid size clamp formula</h3>
       <div class="demo__header-options">
@@ -79,10 +64,7 @@
             />rem</label
           >
         </div>
-        <button class="button-reset demo__header-button" on:click={resetClamp}>
-          <Icon />
-          <span class="sr-only">reset</span>
-        </button>
+        <Reset functionName={resetClamp} />
       </div>
     </div>
     <div class="demo__body pb-clear">
@@ -198,10 +180,7 @@
   <div class="demo dark">
     <div class="demo__header">
       <h3 class="demo__title">Responsive behaviour</h3>
-      <button class="button-reset demo__header-button" on:click={resetViewport}>
-        <Icon />
-        <span class="sr-only">reset</span>
-      </button>
+      <Reset functionName={resetViewport} />
     </div>
     <div class="demo__body pb-clear flow">
       <p>

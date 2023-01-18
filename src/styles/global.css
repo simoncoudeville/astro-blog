@@ -1,3 +1,4 @@
+@import "https://unpkg.com/open-props/colors.min.css";
 /*
 Fonts
 =====
@@ -62,80 +63,98 @@ Variables
 */
 
 :root {
-    --global-color-sky-blue-hue: 212deg;
-    --global-color-sky-blue: hsl(var(--global-color-sky-blue-hue), 100%, 65%);
-    --global-color-sky-blue-light: hsl(var(--global-color-sky-blue-hue), 85%, 75%);
-    --global-color-sky-blue-dark: hsl(var(--global-color-sky-blue-hue), 100%, 40%);
 
-    --global-color-cyan-hue: 187deg;
-    --global-color-cyan: hsl(var(--global-color-cyan-hue), 100%, 50%);
-    --global-color-cyan-light: hsl(var(--global-color-cyan-hue), 85%, 75%);
-    --global-color-cyan-dark: hsl(var(--global-color-cyan-hue), 100%, 40%);
+    --global-color-pink-hue: 320deg;
+    --global-color-pink-50: hsl(var(--global-color-pink-hue), 55%, 97.5%);
+    --global-color-pink-100: hsl(var(--global-color-pink-hue), 54%, 95%);
+    --global-color-pink-200: hsl(var(--global-color-pink-hue), 63%, 90%);
+    --global-color-pink-300: hsl(var(--global-color-pink-hue), 69%, 82%);
+    --global-color-pink-400: hsl(var(--global-color-pink-hue), 70%, 70%);
+    --global-color-pink-500: hsl(var(--global-color-pink-hue), 67%, 60%);
+    --global-color-pink-600: hsl(var(--global-color-pink-hue), 67%, 52%);
+    --global-color-pink-700: hsl(var(--global-color-pink-hue), 67%, 42%);
+    --global-color-pink-800: hsl(var(--global-color-pink-hue), 67%, 35%);
+    --global-color-pink-900: hsl(var(--global-color-pink-hue), 64%, 30%);
 
-    --global-color-green-hue: 136deg;
-    --global-color-green: hsl(var(--global-color-green-hue), 65%, 45%);
-    --global-color-green-light: hsl(var(--global-color-green-hue), 85%, 75%);
-    --global-color-green-dark: hsl(var(--global-color-green-hue), 70%, 35%);
+    --global-color-purple-hue: 260deg;
+    --global-color-purple-50: hsl(var(--global-color-purple-hue), 55%, 97.5%);
+    --global-color-purple-100: hsl(var(--global-color-purple-hue), 54%, 95%);
+    --global-color-purple-200: hsl(var(--global-color-purple-hue), 63%, 90%);
+    --global-color-purple-300: hsl(var(--global-color-purple-hue), 69%, 82%);
+    --global-color-purple-400: hsl(var(--global-color-purple-hue), 70%, 70%);
+    --global-color-purple-500: hsl(var(--global-color-purple-hue), 67%, 60%);
+    --global-color-purple-600: hsl(var(--global-color-purple-hue), 67%, 52%);
+    --global-color-purple-700: hsl(var(--global-color-purple-hue), 67%, 42%);
+    --global-color-purple-800: hsl(var(--global-color-purple-hue), 67%, 35%);
+    --global-color-purple-900: hsl(var(--global-color-purple-hue), 64%, 30%);
 
-    --global-color-rose-hue: 0deg;
-    --global-color-rose: hsl(var(--global-color-rose-hue), 85%, 70%);
-    --global-color-rose-light: hsl(var(--global-color-rose-hue), 85%, 85%);
-    --global-color-rose-dark: hsl(var(--global-color-rose-hue), 85%, 57%);
+    --global-color-violet-hue: 235deg;
+    --global-color-violet-50: hsl(var(--global-color-violet-hue), 55%, 97.5%);
+    --global-color-violet-100: hsl(var(--global-color-violet-hue), 54%, 95%);
+    --global-color-violet-200: hsl(var(--global-color-violet-hue), 63%, 90%);
+    --global-color-violet-300: hsl(var(--global-color-violet-hue), 69%, 82%);
+    --global-color-violet-400: hsl(var(--global-color-violet-hue), 70%, 70%);
+    --global-color-violet-500: hsl(var(--global-color-violet-hue), 67%, 60%);
+    --global-color-violet-600: hsl(var(--global-color-violet-hue), 67%, 52%);
+    --global-color-violet-700: hsl(var(--global-color-violet-hue), 67%, 42%);
+    --global-color-violet-800: hsl(var(--global-color-violet-hue), 67%, 35%);
+    --global-color-violet-900: hsl(var(--global-color-violet-hue), 64%, 30%);
 
-    --global-color-tangerine-hue: 30deg;
-    --global-color-tangerine: hsl(var(--global-color-tangerine-hue), 65%, 60%);
-    --global-color-tangerine-light: hsl(var(--global-color-tangerine-hue), 85%, 75%);
-    --global-color-tangerine-dark: hsl(var(--global-color-tangerine-hue), 100%, 40%);
+    --global-color-indigo-hue: 220;
+    --global-color-indigo-50: hsl(var(--global-color-indigo-hue), 55%, 97.5%);
+    --global-color-indigo-100: hsl(var(--global-color-indigo-hue), 65%, 95%);
+    --global-color-indigo-200: hsl(var(--global-color-indigo-hue), 75%, 90%);
+    --global-color-indigo-300: hsl(var(--global-color-indigo-hue), 85%, 82%);
+    --global-color-indigo-400: hsl(var(--global-color-indigo-hue), 95%, 70%);
+    --global-color-indigo-500: hsl(var(--global-color-indigo-hue), 85%, 60%);
+    --global-color-indigo-600: hsl(var(--global-color-indigo-hue), 75%, 52%);
+    --global-color-indigo-700: hsl(var(--global-color-indigo-hue), 70%, 42%);
+    --global-color-indigo-800: hsl(var(--global-color-indigo-hue), 65%, 35%);
+    --global-color-indigo-900: hsl(var(--global-color-indigo-hue), 60%, 30%);
 
-    --global-color-jade-green-hue: 165deg;
-    --global-color-jade-green: hsl(var(--global-color-jade-green-hue), 65%, 48%);
-    --global-color-jade-green-light: hsl(var(--global-color-jade-green-hue), 85%, 75%);
-    --global-color-jade-green-dark: hsl(var(--global-color-jade-green-hue), 100%, 35%);
+    --global-color-blue-hue: 200deg;
+    --global-color-blue-50: hsl(var(--global-color-blue-hue), 55%, 97.5%);
+    --global-color-blue-100: hsl(var(--global-color-blue-hue), 65%, 95%);
+    --global-color-blue-200: hsl(var(--global-color-blue-hue), 75%, 90%);
+    --global-color-blue-300: hsl(var(--global-color-blue-hue), 85%, 82%);
+    --global-color-blue-400: hsl(var(--global-color-blue-hue), 95%, 70%);
+    --global-color-blue-500: hsl(var(--global-color-blue-hue), 85%, 60%);
+    --global-color-blue-600: hsl(var(--global-color-blue-hue), 75%, 52%);
+    --global-color-blue-700: hsl(var(--global-color-blue-hue), 70%, 42%);
+    --global-color-blue-800: hsl(var(--global-color-blue-hue), 65%, 35%);
+    --global-color-blue-900: hsl(var(--global-color-blue-hue), 60%, 30%);
 
-    --global-color-analogue1-hue: 333deg;
-    --global-color-analogue1: hsl(var(--global-color-analogue1-hue), 85%, 55%);
-    --global-color-analogue1-light: hsl(var(--global-color-analogue1-hue), 90%, 65%);
-    --global-color-analogue1-dark: hsl(var(--global-color-analogue1-hue), 100%, 35%);
+    --global-color-cyan-hue: 180deg;
+    --global-color-cyan-50: hsl(var(--global-color-cyan-hue), 55%, 97.5%);
+    --global-color-cyan-100: hsl(var(--global-color-cyan-hue), 55%, 95%);
+    --global-color-cyan-200: hsl(var(--global-color-cyan-hue), 65%, 90%);
+    --global-color-cyan-300: hsl(var(--global-color-cyan-hue), 70%, 82%);
+    --global-color-cyan-400: hsl(var(--global-color-cyan-hue), 75%, 70%);
+    --global-color-cyan-500: hsl(var(--global-color-cyan-hue), 67%, 60%);
+    --global-color-cyan-600: hsl(var(--global-color-cyan-hue), 67%, 52%);
+    --global-color-cyan-700: hsl(var(--global-color-cyan-hue), 67%, 42%);
+    --global-color-cyan-800: hsl(var(--global-color-cyan-hue), 67%, 35%);
+    --global-color-cyan-900: hsl(var(--global-color-cyan-hue), 64%, 30%);
 
-    --global-color-analogue2-hue: 276deg;
-    --global-color-analogue2: hsl(var(--global-color-analogue2-hue), 70%, 55%);
-    --global-color-analogue2-light: hsl(var(--global-color-analogue2-hue), 90%, 65%);
-    --global-color-analogue2-dark: hsl(var(--global-color-analogue2-hue), 100%, 35%);
-
-    --global-color-analogue3-hue: 250deg;
-    --global-color-analogue3: hsl(var(--global-color-analogue3-hue), 90%, 50%);
-    --global-color-analogue3-light: hsl(var(--global-color-analogue3-hue), 100%, 70%);
-    --global-color-analogue3-dark: hsl(var(--global-color-analogue3-hue), 100%, 35%);
-
-    --global-color-analogue4-hue: 220;
-    --global-color-analogue4: hsl(var(--global-color-analogue4-hue), 85%, 60%);
-    --global-color-analogue4-light: hsl(var(--global-color-analogue4-hue), 100%, 70%);
-    --global-color-analogue4-dark: hsl(var(--global-color-analogue4-hue), 100%, 35%);
-
-    --global-color-analogue5-hue: 194deg;
-    --global-color-analogue5: hsl(var(--global-color-analogue5-hue), 100%, 38%);
-    --global-color-analogue5-light: hsl(var(--global-color-analogue5-hue), 85%, 60%);
-    --global-color-analogue5-dark: hsl(var(--global-color-analogue5-hue), 100%, 35%);
-
-    --global-color-analogue6-hue: 165deg;
-    --global-color-analogue6: hsl(var(--global-color-analogue6-hue), 100%, 31%);
-    --global-color-analogue6-light: hsl(var(--global-color-analogue6-hue), 85%, 45%);
-    --global-color-analogue6-dark: hsl(var(--global-color-analogue6-hue), 100%, 35%);
-
-    --global-color-lilac-hue: 256deg;
-    --global-color-lilac: hsl(var(--global-color-lilac-hue), 90%, 75%);
-    --global-color-lilac-light: hsl(var(--global-color-lilac-hue), 85%, 85%);
-    --global-color-lilac-dark: hsl(var(--global-color-lilac-hue), 75%, 60%);
-
-    --global-color-gold-hue: 45deg;
-    --global-color-gold: hsl(var(--global-color-gold-hue), 65%, 55%);
-    --global-color-gold-light: hsl(var(--global-color-gold-hue), 85%, 75%);
-    --global-color-gold-dark: hsl(var(--global-color-gold-hue), 95%, 35%);
+    --global-color-teal-hue: 160deg;
+    --global-color-teal-50: hsl(var(--global-color-teal-hue), 55%, 97.5%);
+    --global-color-teal-100: hsl(var(--global-color-teal-hue), 54%, 95%);
+    --global-color-teal-200: hsl(var(--global-color-teal-hue), 63%, 90%);
+    --global-color-teal-300: hsl(var(--global-color-teal-hue), 69%, 82%);
+    --global-color-teal-400: hsl(var(--global-color-teal-hue), 70%, 70%);
+    --global-color-teal-500: hsl(var(--global-color-teal-hue), 67%, 60%);
+    --global-color-teal-600: hsl(var(--global-color-teal-hue), 67%, 52%);
+    --global-color-teal-700: hsl(var(--global-color-teal-hue), 67%, 42%);
+    --global-color-teal-800: hsl(var(--global-color-teal-hue), 67%, 35%);
+    --global-color-teal-900: hsl(var(--global-color-teal-hue), 64%, 30%);
 
     /* --global-accent-color-hue: var(--global-color-sky-blue-hue); */
     /* --global-accent-color-hue: var(--global-color-cyan-hue); */
     /* --global-neutral-hue: var(--global-color-cyan-hue); */
-    --global-neutral-hue: var(--global-color-analogue6-hue);
+    /* --global-neutral-hue: var(--global-color-cyan-hue); */
+    /* --global-neutral-hue: var(--global-color-indigo-hue); */
+    --global-neutral-hue: var(--global-color-violet-hue);
+    /* --global-neutral-hue: var(--global-color-teal-hue); */
     /* --global-neutral-hue: var(--global-color-jade-green-hue); */
     /* --global-neutral-hue: var(--global-color-gold-hue);
     --global-neutral-hue: var(--global-color-lilac-hue); */
@@ -162,15 +181,19 @@ Variables
     /* --global-accent-color: var(--global-color-sky-blue); */
     /* --global-accent-color: var(--global-color-cyan); */
     /* --global-accent-color: var(--global-color-jade-green); */
-    --global-accent-color: var(--global-color-analogue6);
+    /* --global-accent-color: var(--global-color-cyan); */
+    /* --global-accent-color: var(--global-color-teal-700); */
+    /* --global-accent-color: var(--global-color-indigo-500); */
+    --global-accent-color: var(--global-color-violet-500);
     --global-backgroundColor: white;
     /* --global-foregroundColor: white; */
     --global-text-color: var(--global-color-neutral-800);
     /* --global-title-color: var(--global-color-neutral-800); */
     --global-title-color: var(--global-text-color);
-    --global-highlight-color: var(--global-color-neutral-800);
+    --global-highlight-color: var(--global-text-color);
     --global-meta-color: var(--global-color-neutral-300);
     --global-muted-color: var(--global-color-neutral-500);
+    /* --global-muted-color: hsl(var(--global-neutral-hue) var(--global-neutral-saturation) 10% / .75); */
     --global-borderColor: var(--global-color-neutral-050);
     --global-borderColor2: var(--global-color-neutral-100);
     --global-code-color: var(--global-color-neutral-025);
@@ -184,17 +207,17 @@ Variables
     --global-borderRadius-lg: calc(var(--global-borderRadius) * 2);
     --global-borderRadius-sm: calc(var(--global-borderRadius) / 2);
 
-    --global-link-color: var(--global-text-color);
-    /* --global-link-color: var(--global-color-gold-dark); */
-    /* --global-link-color: var(--global-color-sky-blue); */
+    /* --global-link-color: var(--global-text-color); */
+    --global-link-color: var(--global-accent-color);
     /* --global-link-underline-color: var(--global-meta-color); */
     /* --global-link-underline-color: var(--global-muted-color); */
     --global-link-underline-color: var(--global-link-color);
     /* --global-link-hover-color: var(--global-link-underline-color); */
     /* --global-link-hover-color: var(--global-link-color); */
     /* --global-link-hover-color: var(--global-muted-color); */
+    --global-link-hover-color: var(--global-accent-color);
     /* --global-link-hover-color: var(--global-meta-color); */
-    --global-link-hover-color: var(--global-text-color);
+    /* --global-link-hover-color: var(--global-text-color); */
     --global-link-active-color: var(--global-link-color);
     /* --global-link-hover-color: var(--global-color-rose); */
     /* --global-link-active-color: var(--global-color-rose); */
@@ -203,22 +226,23 @@ Variables
     /* --global-selection-backgroundColor: var(--global-color-rose); */
     --global-selection-color: var(--global-backgroundColor);
 
-    /* --global-font-family-alpha: "Graphik Web", sans-serif; */
-    --global-font-family-alpha: "Suisse Web", sans-serif;
+    --global-font-family-alpha: "Graphik Web", sans-serif;
+    /* --global-font-family-alpha: "Suisse Web", sans-serif; */
     /* --global-font-family-alpha: system-ui, -apple-system, BlinkMacSystemFont, sans-serif; */
     /* --global-font-family-beta: "Tiempos Text Web", serif; */
-    /* --global-font-family-title: "Tiempos Headline", serif; */
+    --global-font-family-title: "Tiempos Headline", serif;
     /* --global-font-family-title: "Suisse Works", serif; */
-    --global-font-family-title: var(--global-font-family-alpha);
+    /* --global-font-family-title: var(--global-font-family-alpha); */
     /* --global-font-family-title: "At Gambit", serif; */
     /* --global-font-family-title: "Graphik Compact", sans-serif; */
     /* --global-font-family-title: var(--global-font-family-alpha); */
     /* --global-font-family-code: "SFMono-Regular", ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace; */
-    /* --global-font-family-code: "IA Writer Duo S", "SFMono-Regular", ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace; */
-    --global-font-family-code: "Suisse Int'l Mono", "SFMono-Regular", ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+    --global-font-family-code: "IA Writer Duo S", "SFMono-Regular", ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+    /* --global-font-family-code: "Suisse Int'l Mono", "SFMono-Regular", ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace; */
 
-    --global-font-weight-title: 500;
+    /* --global-font-weight-title: 500; */
     /* --global-font-weight-title: 700; */
+    --global-font-weight-title: 400;
 
     --root-font-size: 19;
     --root-baseline: 5;
@@ -240,6 +264,13 @@ Variables
     --global-whitespace-2xl: calc(var(--global-baseline) * 10);
     --global-whitespace-3xl: calc(var(--global-baseline) * 11);
     --global-whitespace-4xl: calc(var(--global-baseline) * 12);
+
+    --global-transition-duration-short: 0.15s;
+    --global-transition-duration: 0.3s;
+    --global-transition-duration-long: 0.45s;
+    --global-transition-duration-longer: 0.6s;
+
+    --global-icon-size: var(--global-whitespace-xs);
 }
 
 /* @supports (color: color(display-p3 1 1 1)) {
@@ -255,16 +286,19 @@ Variables
         --global-foregroundColor: var(--global-color-neutral-800);
         --global-foregroundColor2: var(--global-color-neutral-700);
         --global-text-color: var(--global-color-neutral-025);
-        --global-accent-color: var(--global-color-analogue6-light);
+        /* --global-accent-color: var(--global-color-teal-600); */
+        /* --global-accent-color: var(--global-color-indigo-400); */
+        /* --global-accent-color: var(--global-color-violet-400); */
+        /* --global-accent-color: var(--global-color-cyan-light); */
         /* --global-text-color: var(--global-color-neutral-050); */
         /* --global-title-color: var(--global-color-neutral-025); */
         --global-link-color: var(--global-color-neutral-025);
         /* --global-highlight-color: var(--global-color-neutral-400); */
-        --global-highlight-color: var(--global-color-sky-blue-light);
+        /* --global-highlight-color: var(--global-color-blue-100); */
         --global-borderColor: var(--global-color-neutral-700);
         --global-borderColor2: var(--global-color-neutral-600);
         --global-meta-color: var(--global-color-neutral-400);
-        --global-muted-color: var(--global-color-neutral-300);
+        --global-muted-color: var(--global-color-neutral-200);
         --global-input-backgroundColor: var(--global-color-neutral-600);
     }
 }
@@ -336,7 +370,8 @@ body {
     --body-max-whitespace: 10vw;
     --body-whitespace: var(--body-min-whitespace);
     /* padding: var(--body-whitespace); */
-    padding: clamp(var(--body-min-whitespace), 15vw - var(--body-min-whitespace), calc(var(--global-whitespace-4xl) * 2));
+    /* padding: var(--body-whitespace); */
+    padding: clamp(var(--body-min-whitespace), 12vw - var(--body-min-whitespace), calc(var(--global-whitespace-4xl) * 2));
     /* padding: clamp(1.5rem, 15vw + -1.5rem, 7.5rem);
     padding: clamp(1rem, 11.875vw + -0.8125rem, 7.5rem); */
 }
@@ -366,7 +401,7 @@ a:any-link {
     text-underline-offset: .05em;
     text-decoration-color: var(--link-underline-color, var(--global-link-underline-color));
     transition: all .1s ease;
-    transition-property: color, text-decoration-color;
+    /* transition-property: color, text-decoration-color; */
 }
 
 a:hover {
@@ -442,7 +477,8 @@ select:focus:not(:focus-visible) {
 }
 
 input:disabled,
-select:disabled {
+select:disabled,
+button:disabled {
     opacity: .5;
 }
 
@@ -490,12 +526,14 @@ input[type=range] {
     /* --range-thumb-borderColor: white; */
     --range-thumb-borderColor: var(--global-text-color);
     /* --range-thumb-borderColor: var(--global-foregroundColor); */
+    /* --range-thumb-borderColor: var(--global-backgroundColor); */
     /* --range-thumb-borderColor: var(--global-input-backgroundColor); */
     /* --range-thumb-borderColor: var(--global-borderColor2); */
+    /* --range-thumb-borderColor: var(--global-color-neutral-025); */
     --range-thumb-borderWidth: var(--range-borderWidth);
-    --range-thumb-backgroundColor: var(--global-foregroundColor);
-    /* --range-thumb-backgroundColor: var(--global-input-backgroundColor); */
     /* --range-thumb-backgroundColor: var(--range-thumb-borderColor); */
+    /* --range-thumb-backgroundColor: var(--global-input-backgroundColor); */
+    --range-thumb-backgroundColor: var(--global-foregroundColor);
     /* --range-thumb-backgroundColor: var(--global-accent-color); */
     /* --range-thumb-backgroundColor: var(--global-color-neutral-025); */
     /* --range-thumb-backgroundColor: white; */
@@ -511,6 +549,7 @@ input[type=range]::-webkit-slider-runnable-track {
     height: var(--range-track-height);
     cursor: pointer;
     background: var(--range-track-backgroundColor);
+    border-radius: var(--range-track-height);
 }
 
 input[type=range]::-webkit-slider-thumb {
@@ -530,6 +569,7 @@ input[type=range]::-moz-range-track {
     height: var(--range-track-height);
     cursor: pointer;
     background: var(--range-track-backgroundColor);
+    border-radius: var(--range-track-height);
 }
 
 input[type=range]::-moz-range-thumb {
@@ -549,6 +589,7 @@ input[type=range]::-ms-track {
     background: transparent;
     border-color: transparent;
     color: transparent;
+    border-radius: var(--range-track-height);
 }
 
 input[type=range]::-ms-fill-lower {
@@ -598,7 +639,7 @@ h6 {
 h1 {
     --fs: 32;
     font-size: calc(var(--fs) / 16 * 1rem);
-    line-height: calc(var(--root-baseline) * var(--baseline-multiplier, 7) / var(--fs));
+    line-height: calc(var(--root-baseline) * var(--baseline-multiplier, 8) / var(--fs));
     /* --fs: 56;
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
     line-height: calc(var(--root-baseline) * var(--baseline-multiplier, 11) / var(--fs)); */
@@ -734,7 +775,8 @@ Flow Content
 
 .flow>*+h2,
 .flow>pre[class*="language-"]+h2,
-.flow>.demo+h2 {
+.flow>.demo+h2,
+.flow>.note+h2 {
     margin-top: calc(var(--global-whitespace) + var(--global-whitespace));
 }
 
@@ -742,6 +784,11 @@ Flow Content
 .flow>*:has(+astro-island) {
     margin-bottom: calc(var(--global-whitespace) + var(--global-whitespace-3xs));
     /* margin-bottom: var(--global-whitespace); */
+}
+
+.icon {
+    width: var(--global-icon-size);
+    height: var(--global-icon-size);
 }
 
 /*
@@ -795,7 +842,7 @@ Objects
 }
 
 .row--page-footer {
-    border-top: 1px solid var(--global-borderColor);
+    /* border-top: 1px solid var(--global-borderColor); */
     padding-top: calc(var(--global-whitespace-4xl) * 2);
 }
 
@@ -810,8 +857,9 @@ Objects
     max-width: 36rem;
     /* max-width: 40rem; */
     /* max-width: 38rem; */
-    /* margin-left: auto;
-    margin-right: auto; */
+    margin-left: auto;
+    margin-right: auto;
+    container: container / inline-size;
 }
 
 .list-reset {
@@ -844,9 +892,9 @@ Components
     display: grid;
     gap: var(--global-whitespace);
     grid-template-columns: max-content 1fr; */
-    display: flex;
+    /* display: flex;
     align-items: center;
-    gap: var(--global-whitespace-xs);
+    gap: var(--global-whitespace-xs); */
 }
 
 /* .page-header__title,
@@ -903,7 +951,7 @@ body:has(.title-collides) .page-header__date {
     /* line-height: 1.5; */
     line-height: calc(var(--global-baseline) * 6);
     font-family: var(--global-font-family-alpha);
-    /* font-weight: normal; */
+    font-weight: normal;
 }
 
 .logo__link {
@@ -912,8 +960,8 @@ body:has(.title-collides) .page-header__date {
 }
 
 .article-header {
-    display: grid;
-    align-content: center;
+    /* display: grid; */
+    /* align-content: center; */
     /* align-items: end; */
     /* place-items: center; */
     /* text-align: center; */
@@ -927,18 +975,20 @@ body:has(.title-collides) .page-header__date {
     /* margin: 0 calc(var(--global-whitespace) * -1) var(--global-whitespace-4xl) calc(var(--global-whitespace) * -1); */
     margin-bottom: calc(var(--global-whitespace-4xl) * 2);
     /* color: var(--global-backgroundColor); */
+    /* border-radius: var(--global-borderRadius-lg); */
 }
 
 /* .article-header::before {
     display: block;
     content: "";
-    background-color: var(--global-color-jade-green);
+    background-color: var(--global-color-pink-100);
     grid-column: 1 / -1;
     grid-row: 1 / -1;
 } */
 
 .article-title {
-    max-width: 12em;
+    max-width: 14em;
+    /* max-width: 12em; */
     grid-column: 1 / -1;
     grid-row: 1 / -1;
     /* align-self: end; */
@@ -972,8 +1022,8 @@ body:has(.title-collides) .article-title {
 }
 
 .postlist {
-    --postlist-whitespace: var(--global-whitespace-2xs);
-    --postlist-inline-whitespace: var(--postlist-whitespace);
+    --postlist-whitespace: var(--global-whitespace-xs);
+    --postlist-inline-whitespace: var(--global-whitespace-s);
 }
 
 /* .postlist__item:first-child {
@@ -988,7 +1038,8 @@ body:has(.title-collides) .article-title {
     display: flex;
     gap: 0 var(--postlist-inline-whitespace);
     flex-direction: column-reverse;
-    /* padding: calc(var(--postlist-whitespace) / 2) 0; */
+    padding: calc(var(--postlist-whitespace) / 2) calc(var(--postlist-inline-whitespace) / 2);
+    margin: calc(var(--postlist-whitespace) / -2) calc(var(--postlist-inline-whitespace) / -2);
     text-decoration: none;
     border-radius: var(--global-borderRadius);
     --link-color: var(--global-text-color)
@@ -1000,7 +1051,7 @@ body:has(.title-collides) .article-title {
     text-decoration: none;
 }
 
-/* @media (min-width: 30em) {
+@media (min-width: 30em) {
 
     .postlist__link {
         flex-direction: row;
@@ -1019,13 +1070,20 @@ body:has(.title-collides) .article-title {
     .postlist__date {
         order: 3;
     }
-} */
-
-.postlist__link--active {
-    /* --link-color: var(--global-link-hover-color); */
-    --link-color: var(--global-link-active-color);
-    text-decoration: none;
 }
+
+.postlist__link--active,
+.postlist__link:hover {
+    /* --link-color: var(--global-link-hover-color); */
+    /* --link-color: var(--global-link-active-color); */
+    color: var(--global-link-color);
+    text-decoration: none;
+    background-color: var(--global-foregroundColor);
+}
+
+/* .postlist__link:hover {
+    background-color: var(--global-foregroundColor);
+} */
 
 /* .postlist__link--active::before {
     --this-size: .25rem;
@@ -1048,15 +1106,15 @@ body:has(.title-collides) .article-title {
 }
 
 .token.output--1 {
-    background-color: var(--global-color-jade-green);
+    background-color: var(--global-color-cyan-light);
 }
 
 .token.output--2 {
-    background-color: var(--global-color-sky-blue);
+    background-color: var(--global-color-blue-light);
 }
 
 .token.output--3 {
-    background-color: var(--global-color-rose);
+    background-color: var(--global-color-pink-light);
 }
 
 .demo {
@@ -1175,11 +1233,6 @@ body:has(.title-collides) .article-title {
 
     --this-fs: 15;
     font-size: calc(var(--this-fs) / var(--root-font-size) * 1rem);
-}
-
-.icon {
-    display: block;
-    width: var(--global-whitespace-xs);
 }
 
 /*
@@ -1393,7 +1446,8 @@ pre[class*="language-"] {
 pre[class*="language-css"] {
     /* color: var(--language-css-color, var(--global-color-gold-dark)); */
     /* color: var(--language-css-color, var(--global-color-tangerine-dark)); */
-    color: var(--language-css-color, var(--global-color-analogue6));
+    /* color: var(--language-css-color, var(--global-color-teal-700)); */
+    color: var(--language-css-color, var(--global-color-indigo-500));
 }
 
 pre[class*="language-"] code {
@@ -1425,16 +1479,21 @@ pre[class*="language-"] {
 .token.value {
     /* color: var(--language-css-color, var(--global-color-gold-dark)); */
     /* color: var(--token-value-color, var(--global-color-tangerine-dark)); */
-    color: var(--token-value-color, var(--global-color-analogue6));
+    /* color: var(--token-value-color, var(--global-color-teal-700)); */
+    color: var(--token-value-color, var(--global-color-indigo-500));
 }
 
 /* .token.property, */
 .token.punctuation {
-    color: var(--token-punctation-color, var(--global-color-neutral-600));
+    color: var(--token-punctation-color, var(--global-color-neutral-800));
+    /* color: var(--token-punctation-color, var(--global-meta-color)); */
 }
 
 .token.property {
-    color: var(--global-text-color);
+    /* color: var(--global-text-color); */
+    /* color: var(--global-muted-color); */
+    /* color: var(--token-property-color, var(--global-muted-color)); */
+    color: var(--token-property-color, var(--global-color-neutral-800));
 }
 
 .namespace {
@@ -1445,7 +1504,8 @@ pre[class*="language-"] {
 .token.rule,
 .token.keyword,
 .token.tag {
-    color: var(--token-operator-color, var(--global-color-analogue3));
+    color: var(--token-operator-color, var(--global-color-cyan-700));
+    /* color: var(--token-operator-color, var(--global-color-indigo-500)); */
 }
 
 .token.constant,
@@ -1455,7 +1515,7 @@ pre[class*="language-"] {
 .token.char,
 .token.builtin,
 .token.inserted {
-    color: var(--token-constant-color, var(--global-color-analogue5));
+    color: var(--token-constant-color, var(--global-color-indigo-500));
 }
 
 .token.entity {
@@ -1465,16 +1525,16 @@ pre[class*="language-"] {
 .token.literal-property,
 .token.selector {
     /* color: var(--token-selector-color, var(--global-color-rose-dark)); */
-    color: var(--token-selector-color, var(--global-color-analogue1));
+    color: var(--token-selector-color, var(--global-color-purple-500));
 }
 
 .token.boolean {
-    color: var(--token-boolean-color, var(--global-color-analogue5));
+    color: var(--token-boolean-color, var(--global-color-blue-600));
 }
 
 .token.class-name,
 .token.function {
-    color: var(--token-function-color, var(--global-color-analogue4));
+    color: var(--token-function-color, var(--global-color-blue-600));
 }
 
 .token.italic {
@@ -1509,22 +1569,21 @@ pre[class*=language-][class*=language-css]:after {
 
 @media (prefers-color-scheme: dark) {
     body {
-        /* --language-css-color: var(--global-color-rose);
-        --token-value-color: var(--global-color-rose);
+        /* --token-operator-color: var(--global-color-indigo-400);
+        --token-constant-color: var(--global-color-indigo-400);
+        --token-function-color: var(--global-color-blue-500);
+        --token-function-color: var(--global-color-cyan-600);
+        --token-selector-color: var(--global-color-cyan-600); */
+
         --token-punctation-color: var(--global-color-neutral-200);
-        --token-operator-color: var(--global-color-lilac);
-        --token-constant-color: var(--global-color-jade-green);
-        --token-selector-color: var(--global-color-tangerine);
-        --token-boolean-color: var(--global-color-tangerine);
-        --token-function-color: var(--global-color-sky-blue); */
-        --language-css-color: var(--global-color-analogue6-light);
-        --token-value-color: var(--global-color-analogue6-light);
-        --token-punctation-color: var(--global-color-neutral-200);
-        --token-operator-color: var(--global-color-analogue3-light);
-        --token-constant-color: var(--global-color-analogue5-light);
-        --token-selector-color: var(--global-color-analogue1-light);
-        --token-boolean-color: var(--global-color-analogue5-light);
-        --token-function-color: var(--global-color-analogue4-light);
+        --token-selector-color: var(--global-color-purple-400);
+        --language-css-color: var(--global-color-indigo-400);
+        --token-value-color: var(--global-color-indigo-400);
+        --token-constant-color: var(--global-color-indigo-400);
+        --token-operator-color: var(--global-color-cyan-600);
+        --token-function-color: var(--global-color-blue-500);
+        --token-property-color: var(--global-color-neutral-100);
+        --token-punctation-color: var(--global-color-neutral-100);
     }
 }
 
@@ -1543,4 +1602,77 @@ pre[class*=language-][class*=language-css]:after {
     /* background-color: var(--control-button-background-color, var(--global-backgroundColor)); */
     border-radius: 9999px;
     padding: var(--global-whitespace-5xs) var(--global-whitespace-5xs);
+}
+
+.note {
+    --note-backgroundColor: var(--global-foregroundColor);
+    /* --note-backgroundColor: var(--global-color-indigo-50); */
+    --note-color: var(--global-muted-color);
+    /* --note-color: var(--global-color-indigo-700); */
+    /* --note-backgroundColor: var(--global-color-lilac-light); */
+    /* --note-title-color: var(--global-color-indigo-500); */
+    --note-title-color: var(--global-accent-color);
+    /* --note-title-color: var(--note-color); */
+    --note-whitespace: var(--global-whitespace);
+    background-color: var(--note-backgroundColor);
+    border-radius: var(--global-borderRadius-lg);
+    padding: var(--note-whitespace);
+    /* border: 1px solid var(--global-color-rose); */
+    margin-left: calc(var(--note-whitespace) * -1);
+    margin-right: calc(var(--note-whitespace) * -1);
+    color: var(--note-color);
+    /* color: var(--global-muted-color); */
+    /* color: var(--global-color-lilac-dark); */
+}
+
+.note__title,
+.note {
+    --fs: 17;
+    font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
+    line-height: calc(var(--global-baseline) * 6);
+    /* font-weight: normal; */
+    /* color: var(--global-muted-color); */
+    /* color: var(--global-color-rose); */
+    /* color: var(--global-color-lilac-dark); */
+}
+
+.note__header {
+    /* color: var(--global-title-color); */
+    /* color: var(--global-accent-color); */
+    color: var(--note-title-color);
+    display: flex;
+    align-items: center;
+    /* flex-direction: row-reverse;
+    justify-content: flex-end; */
+    gap: var(--global-whitespace-3xs);
+    justify-content: space-between;
+
+    /* margin-bottom: var(--global-whitespace-xs); */
+}
+
+.note__title {
+    color: inherit;
+    font-weight: normal;
+    /* color: var(--global-color-rose); */
+    /* color: var(--global-text-color); */
+    /* color: var(--global-meta-color); */
+}
+
+@media (prefers-color-scheme: dark) {
+    .note {
+        --note-title-color: var(--global-color-indigo-500);
+        --note-color: var(--global-muted-color);
+        --note-backgroundColor: var(--global-foregroundColor);
+        /* --note-backgroundColor: var(--global-color-indigo-900); */
+        /* --note-color: var(--teal-1); */
+    }
+}
+
+@container container (min-width: calc(100vw - 3.3rem)) {
+
+    .demo,
+    pre[class*=language-],
+    .note {
+        border-radius: 0;
+    }
 }

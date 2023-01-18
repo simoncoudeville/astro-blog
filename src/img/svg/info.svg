@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clip-icon-info);
+      }
+
+      .cls-2, .cls-3 {
+        fill: none;
+        stroke: #707070;
+        stroke-width: 1.5px;
+      }
+
+      .cls-2 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+    </style>
+    <clipPath id="clip-icon-info">
+      <rect width="20" height="20"/>
+    </clipPath>
+  </defs>
+  <g id="icon-info" class="cls-1">
+    <line id="Line_3" data-name="Line 3" class="cls-2" y1="4" transform="translate(10 10)"/>
+    <line id="Line_4" data-name="Line 4" class="cls-2" x2="0.01" transform="translate(10 6)"/>
+    <circle id="Ellipse_1" data-name="Ellipse 1" class="cls-3" cx="9.25" cy="9.25" r="9.25" transform="translate(0.75 0.75)"/>
+  </g>
+</svg>

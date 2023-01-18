@@ -1,13 +1,21 @@
 <script>
+  import { round } from "../../../scripts/round";
+  import Reset from "../Components/Reset.svelte";
+  import IconMinCircle from "../../Icons/IconMinCircle.svelte";
+  import IconPlusCircle from "../../Icons/IconPlusCircle.svelte";
+
   let zoomLevel = 100;
+  let zoomlevels = [
+    25, 33, 50, 67, 75, 80, 90, 100, 110, 125, 133, 140, 150, 175, 200, 250,
+    300, 400, 500,
+  ];
   let windowWidth = 1680;
   let maxWindowWidth = 1920;
   let minWindowWidth = 300;
   let windowRange = maxWindowWidth - minWindowWidth;
   let fs = 24;
-  let breakpoint1 = 848;
-  let breakpoint2 = 1136;
-  let zoomlevels = [100, 110, 125, 133, 140, 150, 175, 200, 250, 300, 400, 500];
+  let breakpoint1 = 860;
+  let breakpoint2 = 1140;
   let active = "right";
 
   // a reset function to reset the zoom level and window width
@@ -50,61 +58,34 @@
     viewportThumbPosition = 0;
   }
 
-  // a rounding function to use in the formula
-  function round(value, decimals, showdecimals = false) {
-    if (showdecimals) {
-      return Number(
-        Math.round(value + "e" + decimals) + "e-" + decimals
-      ).toFixed(decimals);
-    } else {
-      return Number(Math.round(value + "e" + decimals) + "e-" + decimals);
-    }
+  $: if (viewportWidth > maxWindowWidth) {
+    viewportThumbPosition = 1;
   }
-
-  import Reset from "../Components/Reset.svelte";
 </script>
 
-<div class="demo ">
+<div class="demo">
   <div class="demo__body flow-s">
     <div class="controls">
-      <div class="coontrols__zoom flex align-center gap-3xs">
+      <div class="controls__zoom flex align-center gap-3xs">
         <span class="color-muted shrink-0">Zoom</span>
-        <button class="button-reset shrink-0" on:click={decrementZoomLevel}>
+        <button
+          class="button-reset shrink-0"
+          on:click={decrementZoomLevel}
+          disabled={zoomLevel <= 25}
+        >
           <span class="sr-only">Zoom out</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12" /></svg
-          >
+          <IconMinCircle />
         </button>
         <output class="zoom__output text-num" id="staticZoomLevel"
           >{zoomLevel}%</output
         >
-        <button class="button-reset shrink-0" on:click={incrementZoomLevel}>
+        <button
+          class="button-reset shrink-0"
+          on:click={incrementZoomLevel}
+          disabled={zoomLevel >= 500}
+        >
           <span class="sr-only">Zoom in</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            ><line x1="12" y1="5" x2="12" y2="19" /><line
-              x1="5"
-              y1="12"
-              x2="19"
-              y2="12"
-            /></svg
-          >
+          <IconPlusCircle />
         </button>
       </div>
       <div class="controls__window flex align-center gap-3xs">
@@ -124,7 +105,10 @@
         >
       </div>
       <div class="controls__reset">
-        <Reset functionName={resetStatic} />
+        <Reset
+          functionName={resetStatic}
+          disabledParameters={viewportWidth == 1680}
+        />
       </div>
     </div>
 
@@ -136,8 +120,7 @@
         <span class="color-muted shrink-0">Viewport width</span>
         <span class="text-num">{round(viewportWidth, 2)}px</span>
       </p>
-      <div class="viewport__range" style="--viewport-position: {viewportWidth}">
-        <!-- <div class="viewport__thumb" /> -->
+      <div class="viewport__range">
         <svg
           class="viewport__thumb"
           xmlns="http://www.w3.org/2000/svg"
@@ -162,8 +145,8 @@
             ? 'active'
             : ''}"
         >
-          <span class="viewport__breakpoint-value text-code"
-            >{breakpoint1 / 16}em</span
+          <span class="viewport__breakpoint-value text-num"
+            >{breakpoint1}px</span
           >
         </div>
         <div
@@ -171,23 +154,21 @@
             ? 'active'
             : ''}"
         >
-          <span class="viewport__breakpoint-value text-code"
-            >{breakpoint2 / 16}em</span
+          <span class="viewport__breakpoint-value text-num"
+            >{breakpoint2}px</span
           >
         </div>
       </div>
     </div>
     <div class="demo-text">
       <p class="demo-text" style="font-size: {fs * (zoomLevel / 100)}px;">
-        <!-- Almost before we knew it, we had left the ground. -->
-        <!-- Why responsive typography is weird -->
-        <!-- Almost before we knew it -->
         The issue with responsive typography and zoom
       </p>
     </div>
-
     <p class="text-code text-xs">
-      font-size<span class="token punctuation">:</span>
+      <span class="token property">font-size</span><span
+        class="token punctuation">:</span
+      >
       <span class="token value">{fs}px</span>
       <span class="token punctuation">×</span>
       <span class="token value">{zoomLevel}%</span>
@@ -199,8 +180,6 @@
 
 <style>
   .demo-text {
-    /* height: 300px;
-    line-height: 1.2; */
     line-height: 200px;
     /* ellipsis */
     overflow: hidden;
@@ -217,7 +196,7 @@
     align-items: center;
   }
 
-  @media (max-width: 46.5em) {
+  @media (max-width: 32em) {
     .controls__window {
       grid-row: 2;
       grid-column: 1/-1;
@@ -229,6 +208,7 @@
   }
 
   .viewport {
+    --viewport-accent-color: var(--global-accent-color);
     --viewport-gap: 2px;
     --viewport-thumb-size: var(--global-whitespace-3xs);
     --window-range: calc(var(--maxww) - var(--minww));
@@ -254,48 +234,29 @@
 
   .viewport__part {
     background-color: var(--global-input-backgroundColor);
-    /* border: 1px solid var(--global-foregroundColor); */
     border-radius: var(--global-borderRadius-sm);
     padding: 0 var(--global-whitespace-4xs);
+    transition: background-color var(--global-transition-duration-short);
   }
 
   .viewport__part.active {
-    /* background-color: var(--global-accent-color); */
-    background-color: var(--global-color-analogue3-light);
+    background-color: var(--viewport-accent-color);
     color: var(--global-color-neutral-025);
   }
 
   .viewport__range {
     position: relative;
-    /* bottom: calc(var(--global-whitespace-3xs) * -0.25); */
   }
 
   .viewport__thumb {
-    /* --viewport-thumb-position: calc(
-      calc(
-          calc(var(--viewport-position) - var(--minww)) / var(--window-range) *
-            100%
-        ) - calc(var(--viewport-thumb-size) / 2)
-    ); */
     --viewport-thumb-position: calc(
       calc(var(--thumb-position) * 100%) - calc(var(--viewport-thumb-size) / 2)
     );
     position: relative;
-    width: var(--viewport-thumb-size);
-    /* height: var(--viewport-thumb-size); */
-    /* background-color: var(--global-text-color); */
-    position: relative;
-    left: var(--viewport-thumb-position);
-    /* bottom: calc(var(--global-whitespace-3xs) * -0.25); */
     bottom: 2px;
-    /* fill: currentColor; */
-    /* fill: var(--global-accent-color); */
-    fill: var(--global-color-analogue3-light);
-    /* rotate: 45deg; */
-    /* border: 2px solid var(--global-foregroundColor); */
-    /* border: 2px solid var(--global-accent-color); */
-    /* border-width: 0 2px 2px 0; */
-    /* border-radius: 100%; */
-    /* border-radius: 1px; */
+    width: var(--viewport-thumb-size);
+    left: var(--viewport-thumb-position);
+    fill: var(--viewport-accent-color);
+    transition: left var(--global-transition-duration-short);
   }
 </style>

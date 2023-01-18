@@ -11,18 +11,17 @@ const { headerDate, headerTitle } = Astro.props;
         src="https://dann.thatportfolio.com/wp-content/uploads/sites/57/2020/05/dann-avatar-1.png"
         alt=""
       /> -->
-      <div class="page-header__text">
-        <h2 class="logo">
-          <a class="logo__link" href="/">{SITE_ATHOUR}</a>
-        </h2>
-        <!-- <span class="page-header__title color-meta">{headerTitle}</span> -->
-        <time
-          class="page-header__date color-meta text-date"
-          datetime={headerDate}
-        >
-          {formatDate(headerDate)}
-        </time>
-      </div>
+
+      <h2 class="logo">
+        <a class="logo__link" href="/">{SITE_ATHOUR}</a>
+      </h2>
+      <!-- <span class="page-header__title color-meta">{headerTitle}</span> -->
+      <time
+        class="page-header__date color-meta text-date"
+        datetime={headerDate}
+      >
+        {formatDate(headerDate)}
+      </time>
     </div>
   </div>
 </header>
