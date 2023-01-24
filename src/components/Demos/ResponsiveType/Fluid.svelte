@@ -86,7 +86,7 @@
           <span class="sr-only">Zoom out</span>
           <IconMinCircle />
         </button>
-        <output class="zoom__output text-num">{zoomLevel}%</output>
+        <output class="zoom__output text-code">{zoomLevel}%</output>
         <button
           class="button-reset shrink-0"
           on:click={incrementZoomLevel}
@@ -109,7 +109,8 @@
           max={maxWindowWidth}
           step="1"
         />
-        <output class="text-num" for="fluidWindowWidth">{windowWidth}px</output>
+        <output class="text-code" for="fluidWindowWidth">{windowWidth}px</output
+        >
       </div>
       <div class="controls__reset">
         <Reset
@@ -124,7 +125,7 @@
     >
       <p class="viewport__title flex justify-between">
         <span class="color-muted shrink-0">Viewport width</span>
-        <span class="text-num">{round(viewportWidth, 2)}px</span>
+        <span class="text-code">{round(viewportWidth, 2)}px</span>
       </p>
       <div class="viewport__range">
         <svg
@@ -151,7 +152,7 @@
             ? 'active'
             : ''}"
         >
-          <span class="viewport__breakpoint-value text-num"
+          <span class="viewport__breakpoint-value text-code"
             >{breakpoint1}px</span
           >
         </div>
@@ -160,13 +161,13 @@
             ? 'active'
             : ''}"
         >
-          <span class="viewport__breakpoint-value text-num"
+          <span class="viewport__breakpoint-value text-code"
             >{breakpoint2}px</span
           >
         </div>
       </div>
     </div>
-    <div class="demo-text">
+    <div class="demo-text-wrapper">
       {#if zf < $y1}
         <p
           class="demo-text"
@@ -195,10 +196,11 @@
         class="token punctuation">:</span
       >
       {#if ff < $y1}
-        <span class="token function">clamp</span>
-        <span class="token punctuation">(</span><span
-          class="token output output--3">{$y1}px</span
-        ><span class="token punctuation">,</span>
+        <span class="token function">clamp</span><span class="token punctuation"
+          >(</span
+        ><span class="token output output--3">{$y1}px</span><span
+          class="token punctuation">,</span
+        >
         <!-- <span class="token value">{v}vw</span>
         <span class="token punctuation">×</span>
         <span class="token value">{round(viewportWidth, 2)}px</span>
@@ -212,7 +214,9 @@
         <span class="token value"
           >{round((v * viewportWidth) / 100 + r, 2, true)}px</span
         ><span class="token punctuation">,</span>
-        {$y2}px<span class="token punctuation">);</span>
+        <span class="token value">{$y2}px</span><span class="token punctuation"
+          >);</span
+        >
       {:else if ff <= $y2}
         <span class="token function">clamp</span><span class="token punctuation"
           >(</span

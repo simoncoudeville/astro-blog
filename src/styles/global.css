@@ -66,87 +66,87 @@ Variables
 
     --global-color-pink-hue: 320deg;
     --global-color-pink-50: hsl(var(--global-color-pink-hue), 55%, 97.5%);
-    --global-color-pink-100: hsl(var(--global-color-pink-hue), 54%, 95%);
-    --global-color-pink-200: hsl(var(--global-color-pink-hue), 63%, 90%);
-    --global-color-pink-300: hsl(var(--global-color-pink-hue), 69%, 82%);
+    --global-color-pink-100: hsl(var(--global-color-pink-hue), 55%, 95.5%);
+    --global-color-pink-200: hsl(var(--global-color-pink-hue), 65%, 90%);
+    --global-color-pink-300: hsl(var(--global-color-pink-hue), 70%, 82%);
     --global-color-pink-400: hsl(var(--global-color-pink-hue), 70%, 70%);
-    --global-color-pink-500: hsl(var(--global-color-pink-hue), 67%, 60%);
-    --global-color-pink-600: hsl(var(--global-color-pink-hue), 67%, 52%);
-    --global-color-pink-700: hsl(var(--global-color-pink-hue), 67%, 42%);
-    --global-color-pink-800: hsl(var(--global-color-pink-hue), 67%, 35%);
-    --global-color-pink-900: hsl(var(--global-color-pink-hue), 64%, 30%);
+    --global-color-pink-500: hsl(var(--global-color-pink-hue), 70%, 60%);
+    --global-color-pink-600: hsl(var(--global-color-pink-hue), 70%, 52%);
+    --global-color-pink-700: hsl(var(--global-color-pink-hue), 70%, 42%);
+    --global-color-pink-800: hsl(var(--global-color-pink-hue), 70%, 35%);
+    --global-color-pink-900: hsl(var(--global-color-pink-hue), 65%, 30%);
 
     --global-color-purple-hue: 260deg;
     --global-color-purple-50: hsl(var(--global-color-purple-hue), 55%, 97.5%);
-    --global-color-purple-100: hsl(var(--global-color-purple-hue), 54%, 96%);
-    --global-color-purple-200: hsl(var(--global-color-purple-hue), 63%, 90%);
-    --global-color-purple-300: hsl(var(--global-color-purple-hue), 69%, 82%);
-    --global-color-purple-400: hsl(var(--global-color-purple-hue), 70%, 70%);
-    --global-color-purple-500: hsl(var(--global-color-purple-hue), 67%, 60%);
-    --global-color-purple-600: hsl(var(--global-color-purple-hue), 67%, 52%);
-    --global-color-purple-700: hsl(var(--global-color-purple-hue), 67%, 42%);
-    --global-color-purple-800: hsl(var(--global-color-purple-hue), 67%, 35%);
-    --global-color-purple-900: hsl(var(--global-color-purple-hue), 64%, 30%);
+    --global-color-purple-100: hsl(var(--global-color-purple-hue), 55%, 96%);
+    --global-color-purple-200: hsl(var(--global-color-purple-hue), 65%, 91%);
+    --global-color-purple-300: hsl(var(--global-color-purple-hue), 85%, 84%);
+    --global-color-purple-400: hsl(var(--global-color-purple-hue), 80%, 74%);
+    --global-color-purple-500: hsl(var(--global-color-purple-hue), 70%, 65%);
+    --global-color-purple-600: hsl(var(--global-color-purple-hue), 70%, 60%);
+    --global-color-purple-700: hsl(var(--global-color-purple-hue), 70%, 54%);
+    --global-color-purple-800: hsl(var(--global-color-purple-hue), 65%, 46%);
+    --global-color-purple-900: hsl(var(--global-color-purple-hue), 65%, 40%);
 
     --global-color-violet-hue: 235deg;
     --global-color-violet-50: hsl(var(--global-color-violet-hue), 55%, 97.5%);
-    --global-color-violet-100: hsl(var(--global-color-violet-hue), 54%, 96%);
-    --global-color-violet-200: hsl(var(--global-color-violet-hue), 63%, 90%);
-    --global-color-violet-300: hsl(var(--global-color-violet-hue), 69%, 82%);
-    --global-color-violet-400: hsl(var(--global-color-violet-hue), 70%, 70%);
-    --global-color-violet-500: hsl(var(--global-color-violet-hue), 67%, 60%);
-    --global-color-violet-600: hsl(var(--global-color-violet-hue), 67%, 52%);
-    --global-color-violet-700: hsl(var(--global-color-violet-hue), 67%, 42%);
-    --global-color-violet-800: hsl(var(--global-color-violet-hue), 67%, 35%);
-    --global-color-violet-900: hsl(var(--global-color-violet-hue), 64%, 30%);
+    --global-color-violet-100: hsl(var(--global-color-violet-hue), 55%, 96%);
+    --global-color-violet-200: hsl(var(--global-color-violet-hue), 65%, 91%);
+    --global-color-violet-300: hsl(var(--global-color-violet-hue), 100%, 85.5%);
+    --global-color-violet-400: hsl(var(--global-color-violet-hue), 90%, 74.5%);
+    --global-color-violet-500: hsl(var(--global-color-violet-hue), 85%, 68%);
+    --global-color-violet-600: hsl(var(--global-color-violet-hue), 70%, 60%);
+    --global-color-violet-700: hsl(var(--global-color-violet-hue), 70%, 55%);
+    --global-color-violet-800: hsl(var(--global-color-violet-hue), 65%, 49%);
+    --global-color-violet-900: hsl(var(--global-color-violet-hue), 65%, 40%);
 
     --global-color-indigo-hue: 220;
     --global-color-indigo-50: hsl(var(--global-color-indigo-hue), 55%, 97.5%);
-    --global-color-indigo-100: hsl(var(--global-color-indigo-hue), 65%, 95.5%);
-    --global-color-indigo-200: hsl(var(--global-color-indigo-hue), 75%, 90%);
-    --global-color-indigo-300: hsl(var(--global-color-indigo-hue), 85%, 82%);
-    --global-color-indigo-400: hsl(var(--global-color-indigo-hue), 95%, 70%);
+    --global-color-indigo-100: hsl(var(--global-color-indigo-hue), 55%, 95.5%);
+    --global-color-indigo-200: hsl(var(--global-color-indigo-hue), 65%, 90%);
+    --global-color-indigo-300: hsl(var(--global-color-indigo-hue), 100%, 82%);
+    --global-color-indigo-400: hsl(var(--global-color-indigo-hue), 100%, 71%);
     --global-color-indigo-500: hsl(var(--global-color-indigo-hue), 85%, 60%);
-    --global-color-indigo-600: hsl(var(--global-color-indigo-hue), 75%, 52%);
-    --global-color-indigo-700: hsl(var(--global-color-indigo-hue), 70%, 42%);
+    --global-color-indigo-600: hsl(var(--global-color-indigo-hue), 75%, 51%);
+    --global-color-indigo-700: hsl(var(--global-color-indigo-hue), 65%, 42%);
     --global-color-indigo-800: hsl(var(--global-color-indigo-hue), 65%, 35%);
-    --global-color-indigo-900: hsl(var(--global-color-indigo-hue), 60%, 30%);
+    --global-color-indigo-900: hsl(var(--global-color-indigo-hue), 60%, 27%);
 
     --global-color-blue-hue: 200deg;
     --global-color-blue-50: hsl(var(--global-color-blue-hue), 55%, 97.5%);
-    --global-color-blue-100: hsl(var(--global-color-blue-hue), 65%, 94.5%);
-    --global-color-blue-200: hsl(var(--global-color-blue-hue), 75%, 90%);
-    --global-color-blue-300: hsl(var(--global-color-blue-hue), 85%, 82%);
-    --global-color-blue-400: hsl(var(--global-color-blue-hue), 95%, 70%);
-    --global-color-blue-500: hsl(var(--global-color-blue-hue), 85%, 60%);
-    --global-color-blue-600: hsl(var(--global-color-blue-hue), 75%, 52%);
-    --global-color-blue-700: hsl(var(--global-color-blue-hue), 70%, 42%);
-    --global-color-blue-800: hsl(var(--global-color-blue-hue), 65%, 35%);
-    --global-color-blue-900: hsl(var(--global-color-blue-hue), 60%, 30%);
+    --global-color-blue-100: hsl(var(--global-color-blue-hue), 55%, 94.5%);
+    --global-color-blue-200: hsl(var(--global-color-blue-hue), 65%, 87.5%);
+    --global-color-blue-300: hsl(var(--global-color-blue-hue), 85%, 74%);
+    --global-color-blue-400: hsl(var(--global-color-blue-hue), 85%, 56%);
+    --global-color-blue-500: hsl(var(--global-color-blue-hue), 85%, 45%);
+    --global-color-blue-600: hsl(var(--global-color-blue-hue), 75%, 35%);
+    --global-color-blue-700: hsl(var(--global-color-blue-hue), 75%, 30%);
+    --global-color-blue-800: hsl(var(--global-color-blue-hue), 70%, 25%);
+    --global-color-blue-900: hsl(var(--global-color-blue-hue), 65%, 20%);
 
     --global-color-cyan-hue: 180deg;
     --global-color-cyan-50: hsl(var(--global-color-cyan-hue), 55%, 97.5%);
     --global-color-cyan-100: hsl(var(--global-color-cyan-hue), 55%, 94%);
-    --global-color-cyan-200: hsl(var(--global-color-cyan-hue), 65%, 90%);
-    --global-color-cyan-300: hsl(var(--global-color-cyan-hue), 70%, 82%);
-    --global-color-cyan-400: hsl(var(--global-color-cyan-hue), 75%, 70%);
-    --global-color-cyan-500: hsl(var(--global-color-cyan-hue), 67%, 60%);
-    --global-color-cyan-600: hsl(var(--global-color-cyan-hue), 67%, 52%);
-    --global-color-cyan-700: hsl(var(--global-color-cyan-hue), 67%, 42%);
-    --global-color-cyan-800: hsl(var(--global-color-cyan-hue), 67%, 35%);
-    --global-color-cyan-900: hsl(var(--global-color-cyan-hue), 64%, 30%);
+    --global-color-cyan-200: hsl(var(--global-color-cyan-hue), 60%, 83%);
+    --global-color-cyan-300: hsl(var(--global-color-cyan-hue), 60%, 60%);
+    --global-color-cyan-400: hsl(var(--global-color-cyan-hue), 75%, 42%);
+    --global-color-cyan-500: hsl(var(--global-color-cyan-hue), 85%, 34%);
+    --global-color-cyan-600: hsl(var(--global-color-cyan-hue), 75%, 27%);
+    --global-color-cyan-700: hsl(var(--global-color-cyan-hue), 70%, 23%);
+    --global-color-cyan-800: hsl(var(--global-color-cyan-hue), 65%, 20%);
+    --global-color-cyan-900: hsl(var(--global-color-cyan-hue), 65%, 15%);
 
     --global-color-teal-hue: 160deg;
     --global-color-teal-50: hsl(var(--global-color-teal-hue), 55%, 97.5%);
-    --global-color-teal-100: hsl(var(--global-color-teal-hue), 54%, 95%);
-    --global-color-teal-200: hsl(var(--global-color-teal-hue), 63%, 90%);
-    --global-color-teal-300: hsl(var(--global-color-teal-hue), 69%, 82%);
-    --global-color-teal-400: hsl(var(--global-color-teal-hue), 70%, 70%);
-    --global-color-teal-500: hsl(var(--global-color-teal-hue), 67%, 60%);
-    --global-color-teal-600: hsl(var(--global-color-teal-hue), 67%, 52%);
-    --global-color-teal-700: hsl(var(--global-color-teal-hue), 67%, 42%);
-    --global-color-teal-800: hsl(var(--global-color-teal-hue), 67%, 35%);
-    --global-color-teal-900: hsl(var(--global-color-teal-hue), 64%, 30%);
+    --global-color-teal-100: hsl(var(--global-color-teal-hue), 55%, 95%);
+    --global-color-teal-200: hsl(var(--global-color-teal-hue), 66%, 83%);
+    --global-color-teal-300: hsl(var(--global-color-teal-hue), 70%, 60%);
+    --global-color-teal-400: hsl(var(--global-color-teal-hue), 70%, 44%);
+    --global-color-teal-500: hsl(var(--global-color-teal-hue), 70%, 38%);
+    --global-color-teal-600: hsl(var(--global-color-teal-hue), 70%, 27%);
+    --global-color-teal-700: hsl(var(--global-color-teal-hue), 70%, 24%);
+    --global-color-teal-800: hsl(var(--global-color-teal-hue), 70%, 20%);
+    --global-color-teal-900: hsl(var(--global-color-teal-hue), 65%, 15%);
 
     /* --global-accent-color-hue: var(--global-color-sky-blue-hue); */
     /* --global-accent-color-hue: var(--global-color-cyan-hue); */
@@ -433,12 +433,11 @@ label {
     padding-bottom: var(--global-whitespace-4xs);
 }
 
-label,
 input,
 select,
 textarea {
     display: block;
-    /* width: 100%; */
+    width: 100%;
 }
 
 input,
@@ -446,7 +445,7 @@ select {
     --input-color: var(--global-text-color);
     --input-borderColor: var(--global-borderColor);
     --input-backgroundColor: var(--global-input-backgroundColor);
-    --input-fontSize: 16;
+    --input-fontSize: 15;
     --input-borderRadius: var(--global-borderRadius-sm);
     font-family: inherit;
     font-size: calc(var(--input-fontSize) / var(--root-font-size) * 1rem);
@@ -515,7 +514,7 @@ fieldset {
     /* border: none;
     padding: 0;
     margin: 0; */
-    all: unset;
+    /* all: unset; */
     border: 1px solid var(--global-borderColor);
     border-radius: var(--global-borderRadius);
     padding: var(--global-whitespace-s);
@@ -534,12 +533,18 @@ code {
     font-family: var(--global-font-family-code);
 }
 
+input[type=number] {
+    font-family: var(--global-font-family-code);
+}
+
 input[type=range] {
     margin: var(--global-whitespace-3xs) 0;
     padding: 0;
     width: 100%;
     --range-borderWidth: 1.5px;
     --range-track-height: var(--range-borderWidth);
+    /* --range-track-height: var(--global-whitespace-xs); */
+    /* --range-track-borderRadius: 100px; */
     /* --range-track-backgroundColor: var(--global-text-color); */
     /* --range-track-backgroundColor: var(--global-input-backgroundColor); */
     --range-track-backgroundColor: var(--global-borderColor2);
@@ -557,6 +562,8 @@ input[type=range] {
     /* --range-thumb-borderColor: var(--global-foregroundColor); */
     /* --range-thumb-borderColor: var(--global-backgroundColor); */
     /* --range-thumb-borderColor: var(--global-input-backgroundColor); */
+    /* --range-thumb-borderColor: var(--global-accent-color); */
+    /* --range-thumb-borderColor: var(--global-borderColor); */
     /* --range-thumb-borderColor: var(--global-borderColor2); */
     /* --range-thumb-borderColor: var(--global-color-neutral-025); */
     --range-thumb-borderWidth: var(--range-borderWidth);
@@ -578,7 +585,7 @@ input[type=range]::-webkit-slider-runnable-track {
     height: var(--range-track-height);
     cursor: pointer;
     background: var(--range-track-backgroundColor);
-    border-radius: var(--range-track-height);
+    border-radius: var(--range-track-borderRadius);
 }
 
 input[type=range]::-webkit-slider-thumb {
@@ -598,7 +605,7 @@ input[type=range]::-moz-range-track {
     height: var(--range-track-height);
     cursor: pointer;
     background: var(--range-track-backgroundColor);
-    border-radius: var(--range-track-height);
+    border-radius: var(--range-track-borderRadius);
 }
 
 input[type=range]::-moz-range-thumb {
@@ -618,7 +625,7 @@ input[type=range]::-ms-track {
     background: transparent;
     border-color: transparent;
     color: transparent;
-    border-radius: var(--range-track-height);
+    border-radius: var(--range-track-borderRadius);
 }
 
 input[type=range]::-ms-fill-lower {
@@ -638,6 +645,11 @@ input[type=range]::-ms-thumb {
     background: var(--range-thumb-backgroundColor);
     cursor: pointer;
     box-shadow: var(--range-thumb-boxShadow);
+}
+
+input.range-rect {
+    --range-thumb-width: calc(var(--range-thumb-height) / 2);
+    --range-thumb-borderRadius: var(--global-borderRadius-sm);
 }
 
 /*
@@ -1152,7 +1164,7 @@ body:has(.title-collides) .article-title {
 }
 
 .demo__title {
-    --fs: 15;
+    --fs: 17;
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
     line-height: calc(var(--global-baseline) * 5);
     /* font-weight: normal; */
@@ -1161,8 +1173,8 @@ body:has(.title-collides) .article-title {
 .demo__header {
     /* padding: var(--global-whitespace) var(--global-whitespace) 0; */
     /* padding: var(--global-whitespace-xs) var(--demo-whitespace); */
-    padding: var(--demo-whitespace);
-    border-bottom: 1px solid var(--global-backgroundColor);
+    padding: var(--demo-whitespace) var(--demo-whitespace) 0;
+    /* border-bottom: 1px solid var(--global-backgroundColor); */
     /* border-bottom: 1px solid var(--global-borderColor); */
     display: flex;
     align-items: center;
@@ -1502,8 +1514,8 @@ pre[class*="language-"] {
 .token.rule,
 .token.keyword,
 .token.tag {
-    color: var(--token-operator-color, var(--global-color-cyan-700));
-    /* color: var(--token-operator-color, var(--global-color-indigo-500)); */
+    color: var(--token-operator-color, var(--global-color-cyan-500));
+    /* color: var(--token-operator-color, var(--global-color-indigo-400)); */
 }
 
 .token.constant,
@@ -1527,12 +1539,12 @@ pre[class*="language-"] {
 }
 
 .token.boolean {
-    color: var(--token-boolean-color, var(--global-color-blue-600));
+    color: var(--token-boolean-color, var(--global-color-blue-500));
 }
 
 .token.class-name,
 .token.function {
-    color: var(--token-function-color, var(--global-color-blue-600));
+    color: var(--token-function-color, var(--global-color-blue-500));
 }
 
 .token.italic {
@@ -1578,8 +1590,8 @@ pre[class*=language-][class*=language-css]:after {
         --language-css-color: var(--global-color-violet-400);
         --token-value-color: var(--global-color-violet-400);
         --token-constant-color: var(--global-color-indigo-400);
-        --token-operator-color: var(--global-color-cyan-600);
-        --token-function-color: var(--global-color-blue-500);
+        --token-operator-color: var(--global-color-cyan-400);
+        --token-function-color: var(--global-color-blue-400);
         --token-property-color: var(--global-color-neutral-100);
         --token-punctation-color: var(--global-color-neutral-100);
     }
@@ -1650,7 +1662,7 @@ pre[class*=language-][class*=language-css]:after {
 
 .note__title {
     color: inherit;
-    font-weight: normal;
+    /* font-weight: normal; */
     /* color: var(--global-color-rose); */
     /* color: var(--global-text-color); */
     /* color: var(--global-meta-color); */

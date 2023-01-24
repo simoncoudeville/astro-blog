@@ -71,11 +71,16 @@ Try zooming in to 150% and 200%. Notice how the visual font-size keeps turning b
 
 ## Fluid typography
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae repellat autem, quod maiores molestiae provident, eius atque dolorum quam cumque deserunt totam minima? Sit quae, nam sint voluptatibus molestias alias. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae repellat autem, quod maiores molestiae provident, eius atque dolorum quam cumque deserunt totam minima? Sit quae, nam sint voluptatibus molestias alias.
+Fluid typography uses the clamp function to grow the font-size as the viewport width increases. The clamp function takes a minimum, a desired value and a maximum. The value is clamped between the minimum and maximum. So if the value is smaller than the minimum the minimum is returned. If the value is larger than the maximum the maximum is returned. If the value is between the minimum and maximum the value itself is returned. This is how it works:
+
+The most recent fluid typography technique uses a <a href="https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/">very clever formula</a> to calculate the value between 2 breakpoints in the middle part of the clamp function. It also adds a rem value to the vw unit to make sure the font-size still scales when the user sets a bigger font-size in their browser settings.
+Now I allways scratched my head when it comes to this so called desired value. What does it mean?
 
 import FluidCalculator from "../../components/Demos/ResponsiveType/FluidCalculator.svelte";
 
 <FluidCalculator client:idle />
+
+So here’s how I would explain it. Before a viewport width of 320px the font-size should be 32px. After 320px the font-size should grow to 48px and stop at 960px viewport width. That’s what this formula does:
 
 import Fluid from "../../components/Demos/ResponsiveType/Fluid.svelte";
 

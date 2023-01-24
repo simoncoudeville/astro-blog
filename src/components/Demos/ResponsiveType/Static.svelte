@@ -76,7 +76,7 @@
           <span class="sr-only">Zoom out</span>
           <IconMinCircle />
         </button>
-        <output class="zoom__output text-num">{zoomLevel}%</output>
+        <output class="zoom__output text-code">{zoomLevel}%</output>
         <button
           class="button-reset shrink-0"
           on:click={incrementZoomLevel}
@@ -87,7 +87,7 @@
         </button>
       </div>
       <div class="controls__window flex align-center gap-3xs">
-        <label class="color-muted shrink-0" for="staticWindowWidth">
+        <label class="color-muted shrink-0 pb-clear" for="staticWindowWidth">
           Window width
         </label>
         <input
@@ -99,7 +99,8 @@
           max={maxWindowWidth}
           step="1"
         />
-        <output class="text-num" for="staticWindowWidth">{windowWidth}px</output
+        <output class="text-code" for="staticWindowWidth"
+          >{windowWidth}px</output
         >
       </div>
       <div class="controls__reset">
@@ -116,7 +117,7 @@
     >
       <p class="viewport__title flex justify-between">
         <span class="color-muted shrink-0">Viewport width</span>
-        <span class="text-num">{round(viewportWidth, 2)}px</span>
+        <span class="text-code">{round(viewportWidth, 2)}px</span>
       </p>
       <div class="viewport__range">
         <svg
@@ -143,7 +144,7 @@
             ? 'active'
             : ''}"
         >
-          <span class="viewport__breakpoint-value text-num"
+          <span class="viewport__breakpoint-value text-code"
             >{breakpoint1}px</span
           >
         </div>
@@ -152,13 +153,13 @@
             ? 'active'
             : ''}"
         >
-          <span class="viewport__breakpoint-value text-num"
+          <span class="viewport__breakpoint-value text-code"
             >{breakpoint2}px</span
           >
         </div>
       </div>
     </div>
-    <div class="demo-text">
+    <div class="demo-text-wrapper">
       <p class="demo-text" style="font-size: {fs * (zoomLevel / 100)}px;">
         The issue with responsive typography and zoom
       </p>
