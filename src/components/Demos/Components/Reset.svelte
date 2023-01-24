@@ -1,6 +1,6 @@
 <script>
   export let functionName;
-  export let disabledParameters;
+  export let disabledParameters = false;
   import IconRefresh from "../../Icons/IconRefresh.svelte";
 </script>
 

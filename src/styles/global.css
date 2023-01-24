@@ -78,7 +78,7 @@ Variables
 
     --global-color-purple-hue: 260deg;
     --global-color-purple-50: hsl(var(--global-color-purple-hue), 55%, 97.5%);
-    --global-color-purple-100: hsl(var(--global-color-purple-hue), 54%, 95%);
+    --global-color-purple-100: hsl(var(--global-color-purple-hue), 54%, 96%);
     --global-color-purple-200: hsl(var(--global-color-purple-hue), 63%, 90%);
     --global-color-purple-300: hsl(var(--global-color-purple-hue), 69%, 82%);
     --global-color-purple-400: hsl(var(--global-color-purple-hue), 70%, 70%);
@@ -90,7 +90,7 @@ Variables
 
     --global-color-violet-hue: 235deg;
     --global-color-violet-50: hsl(var(--global-color-violet-hue), 55%, 97.5%);
-    --global-color-violet-100: hsl(var(--global-color-violet-hue), 54%, 95%);
+    --global-color-violet-100: hsl(var(--global-color-violet-hue), 54%, 96%);
     --global-color-violet-200: hsl(var(--global-color-violet-hue), 63%, 90%);
     --global-color-violet-300: hsl(var(--global-color-violet-hue), 69%, 82%);
     --global-color-violet-400: hsl(var(--global-color-violet-hue), 70%, 70%);
@@ -102,7 +102,7 @@ Variables
 
     --global-color-indigo-hue: 220;
     --global-color-indigo-50: hsl(var(--global-color-indigo-hue), 55%, 97.5%);
-    --global-color-indigo-100: hsl(var(--global-color-indigo-hue), 65%, 95%);
+    --global-color-indigo-100: hsl(var(--global-color-indigo-hue), 65%, 95.5%);
     --global-color-indigo-200: hsl(var(--global-color-indigo-hue), 75%, 90%);
     --global-color-indigo-300: hsl(var(--global-color-indigo-hue), 85%, 82%);
     --global-color-indigo-400: hsl(var(--global-color-indigo-hue), 95%, 70%);
@@ -114,7 +114,7 @@ Variables
 
     --global-color-blue-hue: 200deg;
     --global-color-blue-50: hsl(var(--global-color-blue-hue), 55%, 97.5%);
-    --global-color-blue-100: hsl(var(--global-color-blue-hue), 65%, 95%);
+    --global-color-blue-100: hsl(var(--global-color-blue-hue), 65%, 94.5%);
     --global-color-blue-200: hsl(var(--global-color-blue-hue), 75%, 90%);
     --global-color-blue-300: hsl(var(--global-color-blue-hue), 85%, 82%);
     --global-color-blue-400: hsl(var(--global-color-blue-hue), 95%, 70%);
@@ -126,7 +126,7 @@ Variables
 
     --global-color-cyan-hue: 180deg;
     --global-color-cyan-50: hsl(var(--global-color-cyan-hue), 55%, 97.5%);
-    --global-color-cyan-100: hsl(var(--global-color-cyan-hue), 55%, 95%);
+    --global-color-cyan-100: hsl(var(--global-color-cyan-hue), 55%, 94%);
     --global-color-cyan-200: hsl(var(--global-color-cyan-hue), 65%, 90%);
     --global-color-cyan-300: hsl(var(--global-color-cyan-hue), 70%, 82%);
     --global-color-cyan-400: hsl(var(--global-color-cyan-hue), 75%, 70%);
@@ -241,8 +241,8 @@ Variables
     /* --global-font-family-code: "Suisse Int'l Mono", "SFMono-Regular", ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace; */
 
     /* --global-font-weight-title: 500; */
-    /* --global-font-weight-title: 700; */
-    --global-font-weight-title: 400;
+    --global-font-weight-title: 700;
+    /* --global-font-weight-title: 400; */
 
     --root-font-size: 19;
     --root-baseline: 5;
@@ -299,7 +299,7 @@ Variables
         --global-borderColor2: var(--global-color-neutral-600);
         --global-meta-color: var(--global-color-neutral-400);
         --global-muted-color: var(--global-color-neutral-200);
-        --global-input-backgroundColor: var(--global-color-neutral-600);
+        --global-input-backgroundColor: var(--global-color-neutral-700);
     }
 }
 
@@ -430,7 +430,7 @@ label {
     display: block;
     /* font-size: calc(var(--label-fontSize) / var(--root-font-size) * 1rem);
     line-height: calc(var(--global-baseline) * 5); */
-    /* padding-bottom: var(--global-whitespace-4xs); */
+    padding-bottom: var(--global-whitespace-4xs);
 }
 
 label,
@@ -466,7 +466,7 @@ label select {
 input:focus-visible,
 select:focus-visible,
 button:focus-visible {
-    outline: 1px solid var(--global-highlight-color);
+    outline: 1px solid var(--global-accent-color);
     outline-offset: 3px;
     /* outline-offset: .2em; */
 }
@@ -480,6 +480,35 @@ input:disabled,
 select:disabled,
 button:disabled {
     opacity: .5;
+}
+
+[data-suffix] {
+    display: grid;
+    --suffix-color: var(--global-muted-color);
+}
+
+[data-suffix] input,
+[data-suffix]::after {
+    grid-column: 1 / -1;
+    grid-row: 1;
+}
+
+[data-suffix] input {
+    padding-right: var(--global-whitespace-xl);
+}
+
+[data-suffix]::after {
+    content: attr(data-suffix);
+    justify-self: end;
+    align-self: center;
+    color: var(--suffix-color);
+    padding-right: var(--global-whitespace-2xs);
+    font-family: var(--global-font-family-code);
+    text-transform: uppercase;
+    /* font-weight: 700; */
+
+    --this-fs: 15;
+    font-size: calc(var(--this-fs) / var(--root-font-size) * 1rem);
 }
 
 fieldset {
@@ -512,8 +541,8 @@ input[type=range] {
     --range-borderWidth: 1.5px;
     --range-track-height: var(--range-borderWidth);
     /* --range-track-backgroundColor: var(--global-text-color); */
-    --range-track-backgroundColor: var(--global-input-backgroundColor);
-    /* --range-track-backgroundColor: var(--global-borderColor2); */
+    /* --range-track-backgroundColor: var(--global-input-backgroundColor); */
+    --range-track-backgroundColor: var(--global-borderColor2);
     --range-thumb-height: var(--global-whitespace-xs);
     /* --range-thumb-height: 20px; */
     /* --range-thumb-width: var(--global-whitespace-3xs); */
@@ -888,16 +917,16 @@ Components
 } */
 
 .page-header {
-    /* position: relative;
+    position: relative;
     display: grid;
     gap: var(--global-whitespace);
-    grid-template-columns: max-content 1fr; */
+    grid-template-columns: max-content 1fr;
     /* display: flex;
     align-items: center;
     gap: var(--global-whitespace-xs); */
 }
 
-/* .page-header__title,
+.page-header__title,
 .page-header__date {
     grid-row: 1;
     grid-column: 2;
@@ -907,7 +936,7 @@ Components
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-} */
+}
 
 .page-header__title {
     display: none;
@@ -960,11 +989,11 @@ body:has(.title-collides) .page-header__date {
 }
 
 .article-header {
-    /* display: grid; */
+    display: grid;
     /* align-content: center; */
     /* align-items: end; */
-    /* place-items: center; */
-    /* text-align: center; */
+    place-items: center;
+    text-align: center;
     /* min-height: calc(50vh - var(--global-whitespace) * 4); */
     /* overflow: hidden; */
     /* margin-bottom: calc(var(--global-whitespace) * 2); */
@@ -1076,7 +1105,7 @@ body:has(.title-collides) .article-title {
 .postlist__link:hover {
     /* --link-color: var(--global-link-hover-color); */
     /* --link-color: var(--global-link-active-color); */
-    color: var(--global-link-color);
+    color: var(--global-text-color);
     text-decoration: none;
     background-color: var(--global-foregroundColor);
 }
@@ -1102,19 +1131,8 @@ body:has(.title-collides) .article-title {
 .token.output {
     padding: .1em .3em;
     border-radius: var(--global-borderRadius-sm);
-    color: var(--global-backgroundColor);
-}
-
-.token.output--1 {
-    background-color: var(--global-color-cyan-light);
-}
-
-.token.output--2 {
-    background-color: var(--global-color-blue-light);
-}
-
-.token.output--3 {
-    background-color: var(--global-color-pink-light);
+    color: var(--global-color-neutral-025);
+    background-color: var(--global-accent-color);
 }
 
 .demo {
@@ -1146,6 +1164,9 @@ body:has(.title-collides) .article-title {
     padding: var(--demo-whitespace);
     border-bottom: 1px solid var(--global-backgroundColor);
     /* border-bottom: 1px solid var(--global-borderColor); */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .demo__header-options {
@@ -1206,34 +1227,9 @@ body:has(.title-collides) .article-title {
     margin: calc(var(--global-whitespace) * -1);
 } */
 
-[data-suffix] {
-    display: grid;
-    --suffix-color: var(--global-muted-color);
-}
-
-[data-suffix] input,
-[data-suffix]::after {
-    grid-column: 1 / -1;
-    grid-row: 1;
-}
-
-[data-suffix] input {
-    padding-right: var(--global-whitespace-l);
-}
-
-[data-suffix]::after {
-    content: attr(data-suffix);
-    justify-self: end;
-    align-self: center;
-    color: var(--suffix-color);
-    padding-right: var(--global-whitespace-2xs);
-    font-family: var(--global-font-family-code);
-    text-transform: uppercase;
-    /* font-weight: 700; */
-
-    --this-fs: 15;
-    font-size: calc(var(--this-fs) / var(--root-font-size) * 1rem);
-}
+/* .demo input {
+    --input-backgroundColor: var(--global-backgroundColor);
+} */
 
 /*
 Utilities
@@ -1447,7 +1443,8 @@ pre[class*="language-css"] {
     /* color: var(--language-css-color, var(--global-color-gold-dark)); */
     /* color: var(--language-css-color, var(--global-color-tangerine-dark)); */
     /* color: var(--language-css-color, var(--global-color-teal-700)); */
-    color: var(--language-css-color, var(--global-color-indigo-500));
+    /* color: var(--language-css-color, var(--global-color-indigo-500)); */
+    color: var(--language-css-color, var(--global-color-violet-500));
 }
 
 pre[class*="language-"] code {
@@ -1480,13 +1477,14 @@ pre[class*="language-"] {
     /* color: var(--language-css-color, var(--global-color-gold-dark)); */
     /* color: var(--token-value-color, var(--global-color-tangerine-dark)); */
     /* color: var(--token-value-color, var(--global-color-teal-700)); */
-    color: var(--token-value-color, var(--global-color-indigo-500));
+    color: var(--token-value-color, var(--global-color-violet-500));
 }
 
 /* .token.property, */
 .token.punctuation {
-    color: var(--token-punctation-color, var(--global-color-neutral-800));
+    /* color: var(--token-punctation-color, var(--global-color-neutral-800)); */
     /* color: var(--token-punctation-color, var(--global-meta-color)); */
+    color: var(--token-punctation-color, var(--global-muted-color));
 }
 
 .token.property {
@@ -1577,8 +1575,8 @@ pre[class*=language-][class*=language-css]:after {
 
         --token-punctation-color: var(--global-color-neutral-200);
         --token-selector-color: var(--global-color-purple-400);
-        --language-css-color: var(--global-color-indigo-400);
-        --token-value-color: var(--global-color-indigo-400);
+        --language-css-color: var(--global-color-violet-400);
+        --token-value-color: var(--global-color-violet-400);
         --token-constant-color: var(--global-color-indigo-400);
         --token-operator-color: var(--global-color-cyan-600);
         --token-function-color: var(--global-color-blue-500);
@@ -1610,8 +1608,8 @@ pre[class*=language-][class*=language-css]:after {
     --note-color: var(--global-muted-color);
     /* --note-color: var(--global-color-indigo-700); */
     /* --note-backgroundColor: var(--global-color-lilac-light); */
-    /* --note-title-color: var(--global-color-indigo-500); */
-    --note-title-color: var(--global-accent-color);
+    --note-title-color: var(--global-color-violet-500);
+    /* --note-title-color: var(--global-accent-color); */
     /* --note-title-color: var(--note-color); */
     --note-whitespace: var(--global-whitespace);
     background-color: var(--note-backgroundColor);
@@ -1660,9 +1658,10 @@ pre[class*=language-][class*=language-css]:after {
 
 @media (prefers-color-scheme: dark) {
     .note {
-        --note-title-color: var(--global-color-indigo-500);
-        --note-color: var(--global-muted-color);
-        --note-backgroundColor: var(--global-foregroundColor);
+        /* --note-title-color: var(--global-color-indigo-500); */
+        --note-title-color: var(--global-color-violet-400);
+        /* --note-color: var(--global-muted-color); */
+        /* --note-backgroundColor: var(--global-foregroundColor); */
         /* --note-backgroundColor: var(--global-color-indigo-900); */
         /* --note-color: var(--teal-1); */
     }

@@ -11,7 +11,7 @@
   ];
   let windowWidth = 1680;
   let maxWindowWidth = 1920;
-  let minWindowWidth = 300;
+  let minWindowWidth = 240;
   let windowRange = maxWindowWidth - minWindowWidth;
   let fs = 24;
   let breakpoint1 = 860;
@@ -63,7 +63,7 @@
   }
 </script>
 
-<div class="demo">
+<div class="demo test">
   <div class="demo__body flow-s">
     <div class="controls">
       <div class="controls__zoom flex align-center gap-3xs">
@@ -76,9 +76,7 @@
           <span class="sr-only">Zoom out</span>
           <IconMinCircle />
         </button>
-        <output class="zoom__output text-num" id="staticZoomLevel"
-          >{zoomLevel}%</output
-        >
+        <output class="zoom__output text-num">{zoomLevel}%</output>
         <button
           class="button-reset shrink-0"
           on:click={incrementZoomLevel}
@@ -179,84 +177,5 @@
 </div>
 
 <style>
-  .demo-text {
-    line-height: 200px;
-    /* ellipsis */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-family: var(--global-font-family-title);
-    font-weight: var(--global-font-weight-title);
-  }
-
-  .controls {
-    display: grid;
-    gap: var(--global-whitespace-xs) var(--global-whitespace);
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-  }
-
-  @media (max-width: 32em) {
-    .controls__window {
-      grid-row: 2;
-      grid-column: 1/-1;
-    }
-
-    .controls__reset {
-      grid-column-end: -1;
-    }
-  }
-
-  .viewport {
-    --viewport-accent-color: var(--global-accent-color);
-    --viewport-gap: 2px;
-    --viewport-thumb-size: var(--global-whitespace-3xs);
-    --window-range: calc(var(--maxww) - var(--minww));
-    --breakpoint-range: calc(var(--breakpoint2) - var(--breakpoint1));
-    --viewport-leftover: calc(
-      calc(calc(var(--breakpoint1) - var(--minww)) / var(--window-range) * 100%) -
-        var(--viewport-gap) / 2
-    );
-    --viewport-breakpoint-1: calc(
-      calc(var(--breakpoint-range) / var(--window-range) * 100%) -
-        var(--viewport-gap)
-    );
-    --viewport-breakpoint-2: 1fr;
-  }
-
-  .viewport__bar {
-    display: grid;
-    grid-template-columns: var(--viewport-leftover) var(--viewport-breakpoint-1) var(
-        --viewport-breakpoint-2
-      );
-    gap: var(--viewport-gap);
-  }
-
-  .viewport__part {
-    background-color: var(--global-input-backgroundColor);
-    border-radius: var(--global-borderRadius-sm);
-    padding: 0 var(--global-whitespace-4xs);
-    transition: background-color var(--global-transition-duration-short);
-  }
-
-  .viewport__part.active {
-    background-color: var(--viewport-accent-color);
-    color: var(--global-color-neutral-025);
-  }
-
-  .viewport__range {
-    position: relative;
-  }
-
-  .viewport__thumb {
-    --viewport-thumb-position: calc(
-      calc(var(--thumb-position) * 100%) - calc(var(--viewport-thumb-size) / 2)
-    );
-    position: relative;
-    bottom: 2px;
-    width: var(--viewport-thumb-size);
-    left: var(--viewport-thumb-position);
-    fill: var(--viewport-accent-color);
-    transition: left var(--global-transition-duration-short);
-  }
+  @import "../../../styles/demos/responsiveType/styles.css";
 </style>
