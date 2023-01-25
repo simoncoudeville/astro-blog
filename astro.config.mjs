@@ -10,8 +10,15 @@ import mdx from "@astrojs/mdx";
 import svelte from "@astrojs/svelte";
 
 // https://astro.build/config
+
+// https://astro.build/config
 export default defineConfig({
-  integrations: [preact(), mdx(), svelte()],
+  integrations: [preact(), mdx({
+    extendPlugins: 'defaults',
+    extendMarkdownConfig: false,
+    smartypants: true,
+    gfm: true
+  }), svelte()],
   markdown: {
     syntaxHighlight: 'prism'
   }
