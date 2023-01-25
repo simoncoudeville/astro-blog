@@ -2,7 +2,6 @@
   import { round } from "../../../scripts/round";
   import { x1, x2, y1, y2 } from "./stores.js";
   import Reset from "../Components/Reset.svelte";
-  import { e } from "../../../../dist/chunks/index.adc5df70";
   let unit = "px";
 
   // a function that resets the values to the default ones

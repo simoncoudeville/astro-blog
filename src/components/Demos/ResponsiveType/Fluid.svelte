@@ -189,7 +189,7 @@
         >
           The quick brown fox jumps over the lazy dog.
         </p>
-      {:else}{/if}
+      {/if}
     </div>
     <p class="text-code text-xs">
       <span class="token property">font-size</span><span
@@ -254,7 +254,7 @@
         <span class="token output output--3">{$y2}px</span><span
           class="token punctuation">);</span
         >
-      {:else}{/if}
+      {/if}
     </p>
     <p class="text-code text-xs">
       <span class="token property">font-size</span><span

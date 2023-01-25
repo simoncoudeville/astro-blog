@@ -47,14 +47,4 @@
     background-color: var(--global-accent-color);
     top: calc(var(--global-whitespace) * -1);
   }
-
-  .output {
-    /* align-self: flex-end; */
-    /* justify-self: flex-end; */
-    /* margin-top: auto; */
-    /* position: absolute; */
-    /* bottom: var(--global-whitespace);
-    left: var(--global-whitespace);
-    right: var(--global-whitespace); */
-  }
 </style>
