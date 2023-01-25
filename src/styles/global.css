@@ -251,6 +251,10 @@ Variables
     --global-line-height: calc(var(--root-line-height) / var(--root-font-size));
     --global-baseline: calc(var(--root-baseline) / var(--root-font-size) * 1rem);
 
+    --global-font-size: var(--root-font-size);
+    --global-font-size-s: 17;
+    --global-font-size-xs: 21;
+
     --global-whitespace-5xs: calc(var(--global-baseline) * .5);
     --global-whitespace-4xs: calc(var(--global-baseline) * 1);
     --global-whitespace-3xs: calc(var(--global-baseline) * 2);
@@ -291,7 +295,7 @@ Variables
         /* --global-accent-color: var(--global-color-violet-400); */
         /* --global-accent-color: var(--global-color-cyan-light); */
         /* --global-text-color: var(--global-color-neutral-050); */
-        /* --global-title-color: var(--global-color-neutral-025); */
+        --global-title-color: var(--global-color-neutral-025);
         --global-link-color: var(--global-color-neutral-025);
         /* --global-highlight-color: var(--global-color-neutral-400); */
         /* --global-highlight-color: var(--global-color-blue-100); */
@@ -308,6 +312,7 @@ Variables
     --global-foregroundColor: var(--global-color-neutral-800);
     --global-foregroundColor2: var(--global-color-neutral-700);
     --global-text-color: var(--global-color-neutral-025);
+    --global-title-color: var(--global-color-neutral-025);
     /* --global-highlight-color: var(--global-color-neutral-300); */
     --global-highlight-color: var(--global-color-sky-blue);
     --global-borderColor: var(--global-color-neutral-700);
@@ -370,10 +375,16 @@ body {
     --body-max-whitespace: 10vw;
     --body-whitespace: var(--body-min-whitespace);
     /* padding: var(--body-whitespace); */
-    /* padding: var(--body-whitespace); */
-    padding: clamp(var(--body-min-whitespace), 12vw - var(--body-min-whitespace), calc(var(--global-whitespace-4xl) * 2));
+    padding: 0 0 var(--body-whitespace) 0;
+    /* padding: clamp(var(--body-min-whitespace), 12vw - var(--body-min-whitespace), calc(var(--global-whitespace-4xl))); */
     /* padding: clamp(1.5rem, 15vw + -1.5rem, 7.5rem);
     padding: clamp(1rem, 11.875vw + -0.8125rem, 7.5rem); */
+}
+
+@media (min-width: 41em) {
+    body {
+        padding-top: var(--body-whitespace);
+    }
 }
 
 /* @media (min-width: 46.5em) {
@@ -431,6 +442,10 @@ label {
     /* font-size: calc(var(--label-fontSize) / var(--root-font-size) * 1rem);
     line-height: calc(var(--global-baseline) * 5); */
     padding-bottom: var(--global-whitespace-4xs);
+
+    --fs: 16;
+    font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
+    line-height: calc(var(--global-baseline) * 5);
 }
 
 input,
@@ -457,17 +472,11 @@ select {
     border-radius: var(--input-borderRadius);
 }
 
-label input,
-label select {
-    margin-top: var(--global-whitespace-4xs);
-}
-
 input:focus-visible,
 select:focus-visible,
 button:focus-visible {
     outline: 1px solid var(--global-accent-color);
     outline-offset: 3px;
-    /* outline-offset: .2em; */
 }
 
 input:focus:not(:focus-visible),
@@ -497,24 +506,18 @@ button:disabled {
 }
 
 [data-suffix]::after {
+    --this-fs: 16;
     content: attr(data-suffix);
     justify-self: end;
     align-self: center;
     color: var(--suffix-color);
     padding-right: var(--global-whitespace-2xs);
     font-family: var(--global-font-family-code);
-    text-transform: uppercase;
-    /* font-weight: 700; */
-
-    --this-fs: 15;
+    /* text-transform: uppercase; */
     font-size: calc(var(--this-fs) / var(--root-font-size) * 1rem);
 }
 
 fieldset {
-    /* border: none;
-    padding: 0;
-    margin: 0; */
-    /* all: unset; */
     border: 1px solid var(--global-borderColor);
     border-radius: var(--global-borderRadius);
     padding: var(--global-whitespace-s);
@@ -525,8 +528,9 @@ legend {
     color: var(--global-muted-color);
     padding: 0 var(--global-whitespace-4xs);
     margin-left: calc(var(--global-whitespace-4xs) * -1);
-    /* padding-bottom: var(--global-whitespace-2xs); */
-    /* border-bottom: 1px solid var(--global-borderColor2); */
+    --fs: 16;
+    font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
+    line-height: calc(var(--global-baseline) * 5);
 }
 
 code {
@@ -840,7 +844,7 @@ Objects
 .row {
     position: relative;
     display: flow-root;
-    /* padding: 0 var(--global-whitespace); */
+    padding: 0 var(--global-whitespace);
 }
 
 .row+.row {
@@ -848,14 +852,14 @@ Objects
 }
 
 .row--page-header {
-    /* --row-page-header-background-color: hsla(var(--global-neutral-hue), var(--global-neutral-saturation), var(--row-page-header-background-color-lightness, 95%), var(--row-page-header-background-color-opacity, .5));
+    --row-page-header-background-color: hsla(var(--global-neutral-hue), var(--global-neutral-saturation), var(--row-page-header-background-color-lightness, 100%), var(--row-page-header-background-color-opacity, .5));
     --row-page-header-border-color: hsla(var(--global-neutral-hue), var(--global-neutral-saturation), var(--row-page-header-border-color-lightness, 10%), var(--row-page-header-border-color-opacity, .1));
     position: sticky;
     top: 0;
     z-index: 1;
     background-color: var(--row-page-header-background-color);
-    backdrop-filter: blur(5px); */
-    /* padding: var(--global-whitespace); */
+    backdrop-filter: blur(5px);
+    padding: var(--global-whitespace);
     will-change: background-color;
     transition: background-color .1s ease;
     /* opacity: 0; */
@@ -921,12 +925,12 @@ Components
     height: 1px;
 }
 
-/*
+
 @media (min-width: 41em) {
     .page-header-observer {
         top: var(--global-whitespace);
     }
-} */
+}
 
 .page-header {
     position: relative;
@@ -951,7 +955,6 @@ Components
 }
 
 .page-header__title {
-    display: none;
     transform: translateY(100%);
     opacity: 0;
 }
@@ -1006,7 +1009,7 @@ body:has(.title-collides) .page-header__date {
     /* align-items: end; */
     place-items: center;
     text-align: center;
-    /* min-height: calc(50vh - var(--global-whitespace) * 4); */
+    min-height: calc(50vh - var(--global-whitespace) * 5);
     /* overflow: hidden; */
     /* margin-bottom: calc(var(--global-whitespace) * 2); */
     /* background-color: var(--global-color-sky-blue-light); */
@@ -1014,7 +1017,8 @@ body:has(.title-collides) .page-header__date {
     /* background-color: var(--global-foregroundColor); */
     /* padding: calc(var(--global-whitespace) * 3) 0; */
     /* margin: 0 calc(var(--global-whitespace) * -1) var(--global-whitespace-4xl) calc(var(--global-whitespace) * -1); */
-    margin-bottom: calc(var(--global-whitespace-4xl) * 2);
+    /* margin-bottom: calc(var(--global-whitespace-4xl) * 2); */
+    /* margin-top: calc(var(--global-whitespace) * -1); */
     /* color: var(--global-backgroundColor); */
     /* border-radius: var(--global-borderRadius-lg); */
 }
@@ -1156,9 +1160,9 @@ body:has(.title-collides) .article-title {
     /* border: 1px solid var(--global-borderColor); */
     color: var(--global-text-color);
     overflow: hidden;
-    --fs: 15;
+    /* --fs: 16;
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
-    line-height: calc(var(--global-baseline) * 5);
+    line-height: calc(var(--global-baseline) * 5); */
     margin-left: calc(var(--demo-whitespace) * -1);
     margin-right: calc(var(--demo-whitespace) * -1);
 }
@@ -1167,7 +1171,7 @@ body:has(.title-collides) .article-title {
     --fs: 17;
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
     line-height: calc(var(--global-baseline) * 5);
-    /* font-weight: normal; */
+    font-weight: normal;
 }
 
 .demo__header {
@@ -1262,6 +1266,10 @@ Utilities
     color: var(--global-muted-color);
 }
 
+.mt-clear {
+    margin-top: 0 !important;
+}
+
 .mb-clear {
     margin-bottom: 0;
 }
@@ -1330,13 +1338,13 @@ Utilities
 }
 
 .text-s {
-    --fs: 17;
+    --fs: 16;
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
     line-height: calc(var(--global-baseline) * 5);
 }
 
 .text-xs {
-    --fs: 15;
+    --fs: 16;
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
     line-height: calc(var(--global-baseline) * 5);
 }
@@ -1420,7 +1428,7 @@ Utilities
 
 code[class*="language-"],
 pre[class*="language-"] {
-    --fs: 15;
+    --fs: 16;
     --pre-whitespace: var(--global-whitespace);
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
     line-height: calc(var(--global-baseline) * 5);
@@ -1597,6 +1605,18 @@ pre[class*=language-][class*=language-css]:after {
     }
 }
 
+.dark {
+    --token-punctation-color: var(--global-color-neutral-200);
+    --token-selector-color: var(--global-color-purple-400);
+    --language-css-color: var(--global-color-violet-400);
+    --token-value-color: var(--global-color-violet-400);
+    --token-constant-color: var(--global-color-indigo-400);
+    --token-operator-color: var(--global-color-cyan-400);
+    --token-function-color: var(--global-color-blue-400);
+    --token-property-color: var(--global-color-neutral-100);
+    --token-punctation-color: var(--global-color-neutral-100);
+}
+
 /* .material-symbols-rounded {
     font-variation-settings:
         'FILL' 0,
@@ -1616,12 +1636,12 @@ pre[class*=language-][class*=language-css]:after {
 
 .note {
     --note-backgroundColor: var(--global-foregroundColor);
-    /* --note-backgroundColor: var(--global-color-indigo-50); */
+    /* --note-backgroundColor: var(--global-color-violet-50); */
     --note-color: var(--global-muted-color);
     /* --note-color: var(--global-color-indigo-700); */
     /* --note-backgroundColor: var(--global-color-lilac-light); */
-    --note-title-color: var(--global-color-violet-500);
-    /* --note-title-color: var(--global-accent-color); */
+    /* --note-title-color: var(--global-color-violet-500); */
+    --note-title-color: var(--global-accent-color);
     /* --note-title-color: var(--note-color); */
     --note-whitespace: var(--global-whitespace);
     background-color: var(--note-backgroundColor);
@@ -1639,7 +1659,7 @@ pre[class*=language-][class*=language-css]:after {
 .note {
     --fs: 17;
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
-    line-height: calc(var(--global-baseline) * 6);
+    line-height: calc(var(--global-baseline) * 5.5);
     /* font-weight: normal; */
     /* color: var(--global-muted-color); */
     /* color: var(--global-color-rose); */
@@ -1662,7 +1682,10 @@ pre[class*=language-][class*=language-css]:after {
 
 .note__title {
     color: inherit;
-    /* font-weight: normal; */
+    /* text-transform: uppercase; */
+    /* letter-spacing: .05em; */
+    /* --fs: 14; */
+    font-weight: normal;
     /* color: var(--global-color-rose); */
     /* color: var(--global-text-color); */
     /* color: var(--global-meta-color); */

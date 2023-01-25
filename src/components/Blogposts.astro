@@ -5,8 +5,9 @@ const allPosts = (await Astro.glob("../pages/posts/*.{md,mdx}")).sort(
     new Date(b.frontmatter.pubDate).valueOf() -
     new Date(a.frontmatter.pubDate).valueOf()
 );
-const numPosts = allPosts.length;
 const { currentTitle } = Astro.props;
+const nonDraftPosts = allPosts.filter((post) => !post.frontmatter.draft);
+const numPosts = nonDraftPosts.length;
 ---
 
 <h2>
@@ -14,7 +15,7 @@ const { currentTitle } = Astro.props;
 </h2>
 <ol reversed class="list-reset postlist flow-xs">
   {
-    allPosts.map((post) => (
+    nonDraftPosts.map((post) => (
       <li class="postlist__item">
         <a
           href={post.url}

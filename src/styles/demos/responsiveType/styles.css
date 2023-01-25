@@ -63,7 +63,8 @@
 }
 
 .viewport__part {
-    background-color: var(--global-borderColor2);
+    /* background-color: var(--global-borderColor2); */
+    background-color: var(--global-input-backgroundColor);
     border-radius: var(--global-borderRadius-sm);
     padding: 1px var(--global-whitespace-4xs) 2px;
     transition: background-color var(--global-transition-duration-short);

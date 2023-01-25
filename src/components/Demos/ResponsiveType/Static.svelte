@@ -65,7 +65,7 @@
 
 <div class="demo test">
   <div class="demo__body flow-s">
-    <div class="controls">
+    <div class="controls text-s">
       <div class="controls__zoom flex align-center gap-3xs">
         <span class="color-muted shrink-0">Zoom</span>
         <button
@@ -112,7 +112,7 @@
     </div>
 
     <div
-      class="viewport"
+      class="viewport text-s"
       style="--minww: {minWindowWidth}; --maxww: {maxWindowWidth}; --breakpoint1: {breakpoint1}; --breakpoint2: {breakpoint2}; --thumb-position: {viewportThumbPosition}"
     >
       <p class="viewport__title flex justify-between">

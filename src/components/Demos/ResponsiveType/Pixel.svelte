@@ -22,13 +22,13 @@
   }
 
   .pixel-text {
-    color: var(--global-color-cyan-500);
+    color: var(--global-accent-color);
   }
 
   .pixel-pointer {
     width: 40px;
     height: 40px;
-    border: 1px solid var(--global-color-cyan-500);
+    border: 1px solid var(--global-accent-color);
     align-self: center;
     justify-self: center;
     border-radius: 100%;
@@ -44,7 +44,7 @@
     position: absolute;
     width: 1px;
     height: var(--global-whitespace);
-    background-color: var(--global-color-cyan-500);
+    background-color: var(--global-accent-color);
     top: calc(var(--global-whitespace) * -1);
   }
 
