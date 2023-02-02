@@ -2,6 +2,7 @@
   import { round } from "../../../scripts/round";
   import { x1, x2, y1, y2 } from "./stores.js";
   import Reset from "../Components/Reset.svelte";
+  import IconDown from "../../Icons/IconDown.svelte";
   let unit = "px";
 
   // a function that resets the values to the default ones
@@ -15,15 +16,15 @@
 
   let presets = [
     {
-      option: "Preset 1: zoom keeps working but slower",
+      option: "Zoom keeps working but slower",
       id: 1,
     },
     {
-      option: "Preset 2: zoom stops working",
+      option: "Zoom stops working",
       id: 2,
     },
     {
-      option: "Preset 3: negative zoom",
+      option: "Negative zoom",
       id: 3,
     },
   ];
@@ -42,9 +43,9 @@
     y1.set(24);
     y2.set(72);
   } else if (selectedPreset.id == 3) {
-    x1.set(400);
-    x2.set(800);
-    y1.set(40);
+    x1.set(500);
+    x2.set(1000);
+    y1.set(30);
     y2.set(100);
   }
 
@@ -54,28 +55,42 @@
 
 <div class="flow">
   <div class="demo">
-    <div class="demo__header">
+    <!-- <div class="demo__header">
       <h3 class="demo__title">fluid type clamp formula calculator</h3>
-      <Reset
-        functionName={resetClampCalculator}
-        disabledParameters={$x1 == 320 && $x2 == 960 && $y1 == 24 && $y2 == 48}
-      />
-    </div>
-    <div class="demo__body flow">
-      <!-- <select name="presets" id="presets" bind:value={selectedPreset}>
-      {#each presets as preset}
-        <option value={preset}>
-          {preset.option}
-        </option>
-      {/each}
-    </select> -->
 
+    </div> -->
+    <div class="demo__body flow">
+      <div class="flex align-center gap">
+        <label class="pb-clear" for="presets">Presets: </label>
+        <div class="custom-select grow-1">
+          <select
+            class="custom-select__select"
+            name="presets"
+            id="presets"
+            bind:value={selectedPreset}
+          >
+            {#each presets as preset}
+              <option value={preset}>
+                {preset.option}
+              </option>
+            {/each}
+          </select>
+          <IconDown className="custom-select__down" />
+        </div>
+        <Reset
+          functionName={resetClampCalculator}
+          disabledParameters={$x1 == 320 &&
+            $x2 == 960 &&
+            $y1 == 24 &&
+            $y2 == 48}
+        />
+      </div>
       <div class="calculator">
         <fieldset>
           <legend>Minimum viewport </legend>
           <div class="calculator__fieldset">
             <p>
-              <label class="calculator__label" for="x1"> Width </label>
+              <label class="calculator__label" for="x1">Width</label>
               <span class="input-field" data-suffix="px">
                 <input
                   type="number"
@@ -83,7 +98,7 @@
                   min="300"
                   max={$x2 - 10}
                   step="10"
-                  id="$"
+                  id="x1"
                 />
               </span>
             </p>
@@ -159,6 +174,7 @@
           ><span class="token punctuation">);</span>
 <span class="token punctuation">&rcub;</span></code
         ></pre>
+
       <!-- <p class="text-code text-xs">
       <span class="token property">font-size</span><span
         class="token punctuation">:</span

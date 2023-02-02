@@ -1,7 +1,8 @@
 ---
-layout: ../../layouts/PostLayout.astro
-title: "Why responsive typography behaves weird on zoom"
-pubDate: 2022-11-22
+# title: "Why responsive typography behaves weird on zoom"
+title: "The trouble with responsive type and zoom"
+slug: why-responsive-typography-behaves-weird-on-zoom
+pubDate: 2023-01-22
 description: "This is the second post of my new Astro blog."
 ---
 
@@ -75,8 +76,10 @@ The values in this example are deliberately chosen to demonstrate the behaviour 
 
 Fluid typography uses the clamp function to grow the font-size as the viewport width increases. The clamp function takes a minimum, a desired value and a maximum. The value is clamped between the minimum and maximum. So if the value is smaller than the minimum the minimum is returned. If the value is larger than the maximum the maximum is returned. If the value is between the minimum and maximum the value itself is returned. This is how it works:
 
-The most recent fluid typography technique uses a <a href="https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/">very clever formula</a> to calculate the value between 2 breakpoints in the middle part of the clamp function. It also adds a rem value to the vw unit to make sure the font-size still scales when the user sets a bigger font-size in their browser settings.
+The most recent fluid typography technique uses a <a href="https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/">clever formula</a> to calculate the value between 2 breakpoints in the middle part of the clamp function. It also adds a rem value to the vw unit to make sure the font-size still scales when the user sets a bigger font-size in their browser settings.
 Now I allways scratched my head when it comes to this so called desired value. What does it mean?
+
+The same behaviour as static responsive typography applies: at some point the font-size decreases while the zoom level increases. So zooming in will
 
 import FluidCalculator from "../../components/Demos/ResponsiveType/FluidCalculator.svelte";
 
@@ -87,6 +90,12 @@ So here’s how I would explain it. Before a viewport width of 320px the font-si
 import Fluid from "../../components/Demos/ResponsiveType/Fluid.svelte";
 
 <Fluid client:idle />
+
+Depending on the combination of parameters the result after zooming in is one of these 3 scenario's: Zoom keeps working but slows down, zoom stops working or negative zoom.
+
+### Zoom keeps working but slows down
+
+Between the min and max font-size ranges the zoom level is still applied to the font-size. But it does so at a slower pace. The zoom level is applied to the font-size after it has already been decreased because the viewport gets smaller. Basicly the zoom level is still larger then the rate at which the font-size gets smaller. The larger the difference between the min and max font-size the more the zoom level slows down. This is because the font-size gets smaller faster than the zoom level can increase it.
 
 This could as well be seen as a feature and not a bug. Is it really broken? What looks more broken to you?
 

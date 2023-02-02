@@ -1,5 +1,10 @@
 ---
-import { Content } from "./posts/why-responsive-type-is-weird.mdx";
+import { getEntryBySlug } from "astro:content";
+const entry = await getEntryBySlug("blog", "hello-world");
+const { Content } = await entry.render();
+import PostLayout from "../layouts/PostLayout.astro";
 ---
 
-<Content />
+<PostLayout {...entry.data}>
+  <Content />
+</PostLayout>

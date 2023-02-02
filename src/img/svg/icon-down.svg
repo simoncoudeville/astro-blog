@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clip-icon-down);
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #707070;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 1.5px;
+      }
+    </style>
+    <clipPath id="clip-icon-down">
+      <rect width="20" height="20"/>
+    </clipPath>
+  </defs>
+  <g id="icon-down" class="cls-1">
+    <path id="Path_7" data-name="Path 7" class="cls-2" d="M-5,0l4,4L-5,8" transform="translate(14 13) rotate(90)"/>
+  </g>
+</svg>

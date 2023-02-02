@@ -1,4 +1,5 @@
 export const SITE_ATHOUR = 'Simon Coudeville';
+// export const SITE_ATHOUR = 'Astro blog';
 
 // a function tho set the dates to .toLocaleDateString("en-gb").replace(/\//g, "-")
 // export const formatDate = (date: string | number | Date) => {

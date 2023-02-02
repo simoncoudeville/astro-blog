@@ -1,37 +1,40 @@
 ---
 import formatDate from "../config";
-const allPosts = (await Astro.glob("../pages/posts/*.{md,mdx}")).sort(
+import { getCollection } from "astro:content";
+const allPosts = (
+  await getCollection("blog", ({ data }) => {
+    return data.draft !== true;
+  })
+).sort(
   (a, b) =>
-    new Date(b.frontmatter.pubDate).valueOf() -
-    new Date(a.frontmatter.pubDate).valueOf()
+    new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
 );
 const { currentTitle } = Astro.props;
-const nonDraftPosts = allPosts.filter((post) => !post.frontmatter.draft);
-const numPosts = nonDraftPosts.length;
+const numPosts = allPosts.length;
 ---
 
 <h2>
-  All {numPosts} Posts
+  {numPosts} posts so far
 </h2>
 <ol reversed class="list-reset postlist flow-xs">
   {
-    nonDraftPosts.map((post) => (
+    allPosts.map((post) => (
       <li class="postlist__item">
         <a
-          href={post.url}
+          href={`/blog/${post.slug}/`}
           class={
-            currentTitle === post.frontmatter.title
+            currentTitle === post.data.title
               ? "postlist__link postlist__link--active"
               : "postlist__link"
           }
         >
           <time
             class="postlist__date text-date color-meta"
-            datetime={post.frontmatter.pubDate}
+            datetime={post.data.pubDate}
           >
-            {formatDate(post.frontmatter.pubDate)}
+            {formatDate(post.data.pubDate)}
           </time>
-          {post.frontmatter.title}
+          {post.data.title}
         </a>
       </li>
     ))

@@ -28,7 +28,8 @@ function checkInView(element, className, treshold, rootMargin) {
 
 // // check if js-article-title exists and if so run checkinView()
 if (document.querySelector('.js-article-title')) {
-    checkInView(document.querySelector('.js-article-title'), 'title-collides', 0.5, '-' + pageHeaderHeight + ' 0px 0px 0px');
+    // checkInView(document.querySelector('.js-article-title'), 'title-collides', 0.5, '-' + pageHeaderHeight + ' 0px 0px 0px');
+    checkInView(document.querySelector('.js-article-title'), 'title-collides', 0, '-' + pageHeaderHeight + ' 0px 0px 0px');
 }
 
 // // check if js-page-header-observer exists and if so run checkinView()
@@ -40,7 +41,7 @@ if (document.querySelector('.js-page-header-observer')) {
 
 // import { SVG } from '@svgdotjs/svg.js'
 
-// // a random function that returns a whole number between min and max
+// a random function that returns a whole number between min and max
 // function random(min, max) {
 //     return Math.floor(Math.random() * (max - min + 1) + min);
 // }
@@ -58,12 +59,58 @@ if (document.querySelector('.js-page-header-observer')) {
 //     console.log(i, width, height, cx);
 //     svg
 //         .ellipse(width, height)
-//         .cy(i * height * -0.125)
+//         .cy(i * height * -0.05)
 //         .cx(cx)
 //         .attr({ filter: "url(#blur)", class: "fill-" + i });
+//     // .attr({ class: "fill-" + i });
 
 //     nextcx = width / 2 + cx;
 //     cx = nextcx;
 //     width = random(1000, 1500);
-//     height = random(500, 1000);
+//     height = random(500, 1500);
+// }
+
+// const numEllipses = 60;
+
+// let width = 200;
+// let height = random(500, 1000);
+// let cx = 0;
+// let nextcx = width + cx;
+
+// for (let i = 0; i < numEllipses; i++) {
+//     console.log(i, width, height, cx);
+//     svg
+//         .ellipse(width, height)
+//         .cy(i * height * -0.05)
+//         .cx(cx)
+//         .attr({ filter: "url(#blur)", class: "fill-" + i })
+//     // .rotate(-45);
+//     // .attr({ class: "fill-" + i });
+
+//     nextcx = width + cx;
+//     cx = nextcx;
+//     // width = random(1000, 1500);
+//     height = random(500, 1500);
+// }
+
+// const numEllipses = 20;
+
+// let width = random(250, 750);
+// let height = random(500, 1000);
+// let cx = width / 2;
+// let nextcx = width / 2 + cx;
+
+// for (let i = 0; i < numEllipses; i++) {
+//     console.log(i, width, height, cx);
+//     svg
+//         .rect(width, height)
+//         .cy(0)
+//         .cx(cx)
+//         .attr({ class: "fill-" + i });
+//     // .attr({ class: "fill-" + i });
+
+//     nextcx = width / 2 + cx;
+//     cx = nextcx;
+//     width = random(250, 750);
+//     height = random(500, 1500);
 // }

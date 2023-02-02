@@ -5,7 +5,7 @@
 
 <aside class="note flow-xs">
   <header class="note__header">
-    <h3 class="note__title">{title}</h3>
+    <h2 class="note__title">{title}</h2>
     <IconInfo />
   </header>
   <slot />
