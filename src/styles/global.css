@@ -136,13 +136,14 @@ Variables
     --global-color-neutral-035: hsl(var(--global-neutral-hue), var(--global-neutral-saturation), 94%);
     --global-color-neutral-040: hsl(var(--global-neutral-hue), var(--global-neutral-saturation), 92%);
     --global-color-neutral-050: hsl(var(--global-neutral-hue), var(--global-neutral-saturation), 90%);
-    --global-color-neutral-060: hsl(var(--global-neutral-hue), var(--global-neutral-saturation), 87.5%);
+    --global-color-neutral-060: hsl(var(--global-neutral-hue), var(--global-neutral-saturation), 86.5%);
     --global-color-neutral-075: hsl(var(--global-neutral-hue), var(--global-neutral-saturation), 85%);
     --global-color-neutral-100: hsl(var(--global-neutral-hue), var(--global-neutral-saturation), 80%);
     --global-color-neutral-200: hsl(var(--global-neutral-hue), var(--global-neutral-saturation), 70%);
     --global-color-neutral-300: hsl(var(--global-neutral-hue), var(--global-neutral-saturation), 59.75%);
     --global-color-neutral-400: hsl(var(--global-neutral-hue), var(--global-neutral-saturation), 50%);
     --global-color-neutral-500: hsl(var(--global-neutral-hue), var(--global-neutral-saturation), 44%);
+    --global-color-neutral-550: hsl(var(--global-neutral-hue), var(--global-neutral-saturation), 35%);
     --global-color-neutral-600: hsl(var(--global-neutral-hue), var(--global-neutral-saturation), 30%);
     --global-color-neutral-650: hsl(var(--global-neutral-hue), var(--global-neutral-saturation), 25%);
     --global-color-neutral-675: hsl(var(--global-neutral-hue), var(--global-neutral-saturation), 22.5%);
@@ -166,7 +167,8 @@ Variables
     /* --global-input-backgroundColor: var(--global-color-neutral-040); */
     --global-input-borderColor: var(--global-borderColor);
     /* --global-input-borderColor: var(--global-color-neutral-040); */
-    --global-input-backgroundColor: var(--global-color-neutral-050);
+    --global-input-backgroundColor: var(--global-color-neutral-040);
+    /* --global-input-backgroundColor: var(--global-color-neutral-050); */
     /* --global-input-backgroundColor: var(--global-backgroundColor); */
     /* --global-input-backgroundColor: var(--global-foregroundColor); */
 
@@ -220,7 +222,8 @@ Variables
     --global-transition-duration-longer: 0.6s;
 
     --global-icon-size: var(--global-whitespace-xs);
-    --global-icon-stroke: var(--global-borderWidth);
+    /* --global-icon-stroke: var(--global-borderWidth); */
+    --global-icon-stroke: 1.25px;
 }
 
 
@@ -228,11 +231,11 @@ Variables
     :root {
         --global-backgroundColor: var(--global-color-neutral-900);
         --global-foregroundColor: var(--global-color-neutral-800);
-        --global-foregroundColor2: var(--global-color-neutral-700);
+        --global-foregroundColor2: var(--global-color-neutral-675);
         --global-text-color: var(--global-color-neutral-050);
         --global-title-color: var(--global-color-neutral-025);
         --global-code-color: var(--global-color-neutral-100);
-        --global-borderColor: var(--global-color-neutral-700);
+        --global-borderColor: var(--global-color-neutral-650);
         --global-borderColor2: var(--global-color-neutral-600);
         --global-meta-color: var(--global-color-neutral-400);
         --global-muted-color: var(--global-color-neutral-200);
@@ -452,27 +455,20 @@ input[type=range] {
     width: 100%;
     border: 0;
     --range-borderWidth: var(--global-borderWidth);
-    /* --range-track-height: var(--global-whitespace-5xs); */
-    --range-track-height: var(--global-borderWidth);
+    --range-track-height: 1.5px;
     --range-track-borderRadius: var(--range-track-height);
     --range-track-backgroundColor: var(--global-borderColor2);
     /* --range-track-backgroundColor: var(--global-input-backgroundColor); */
     --range-thumb-height: var(--global-whitespace-xs);
     --range-thumb-width: var(--range-thumb-height);
     --range-thumb-borderRadius: 50%;
-    --range-thumb-borderColor: var(--global-input-backgroundColor);
-    /* --range-thumb-borderColor: var(--global-borderColor2); */
-    /* --range-thumb-borderColor: var(--global-color-neutral-025); */
-    --range-thumb-borderColor: var(--global-text-color);
+    --range-thumb-borderColor: var(--global-borderColor2);
     --range-thumb-borderWidth: var(--range-borderWidth);
-    /* --range-thumb-backgroundColor: var(--global-input-backgroundColor); */
-    --range-thumb-backgroundColor: var(--global-foregroundColor);
-    /* --range-thumb-backgroundColor: var(--global-color-neutral-025); */
-    /* --range-thumb-backgroundColor: var(--global-foregroundColor); */
-    /* --range-thumb-boxShadow: 0 1px 2px 0 hsl(0deg 0% 0% / 0.1); */
-    /* --range-thumb-boxShadow: 0 0 0 1px hsl(0deg 0% 0% / 0.1), 0 1px 2px 0 hsl(0deg 0% 0% / 0.1); */
+    --range-thumb-backgroundColor: white;
+    /* --range-thumb-boxShadow: 0 0 0 1px hsl(0deg 0% 0% / 0.1), 0 1px 3px 0 hsl(0deg 0% 0% / 0.2); */
+    /* --range-thumb-boxShadow: 0 1px 3px rgb(0 0 0 / 20%), 0 1px 3px rgb(0 0 0 / 20%); */
     --range-thumb-pointer: ew-resize;
-    --range-track-focus-backgroundColor: var(--global-accent-color);
+    --range-focus-color: var(--global-accent-color);
     -webkit-appearance: none;
     background-color: transparent;
     outline: none;
@@ -545,24 +541,19 @@ input[type=range]::-ms-thumb {
     box-shadow: var(--range-thumb-boxShadow);
 }
 
-input[type=range]:focus-visible::-webkit-slider-runnable-track {
-    background: var(--range-track-focus-backgroundColor);
+input[type=range]:focus-visible {
+    --range-track-backgroundColor: var(--global-accent-color);
+    --range-thumb-borderColor: var(--global-accent-color);
 }
 
-input[type=range]:focus-visible::-moz-range-track {
-    background: var(--range-track-focus-backgroundColor);
-}
+@media (prefers-color-scheme: dark) {
+    input[type=range] {
+        --range-thumb-borderColor: white;
+    }
 
-input[type=range]:focus-visible::-ms-fill-lower {
-    background: var(--range-track-focus-backgroundColor);
-}
-
-input[type=range]:focus-visible::-ms-fill-upper {
-    background: var(--range-track-focus-backgroundColor);
-}
-
-input[type=range]:focus-visible::-ms-track {
-    background: var(--range-track-focus-backgroundColor);
+    input[type=range]:focus-visible {
+        --range-thumb-borderColor: white;
+    }
 }
 
 /* input.range--resize {
@@ -903,19 +894,21 @@ body:has(.title-collides) .page-header__date {
     display: grid;
     /* place-items: center;
     text-align: center; */
-    min-height: calc(50vh - var(--global-whitespace) * 7);
+    /* min-height: calc(50vh - var(--global-whitespace) * 7); */
+    min-height: 50vh;
     margin: var(--global-whitespace) 0 var(--global-whitespace-4xl) 0;
 }
 
-/* .article-header::before {
+.article-header::before {
     display: block;
     content: "";
-    background-color: var(--global-color-violet-100);
-    background-color: var(--global-foregroundColor);
+    background-color: var(--global-color-violet-800);
+    /* background-color: tomato; */
+    /* background-color: var(--global-foregroundColor); */
     grid-column: 1 / -1;
     grid-row: 1 / -1;
     border-radius: var(--global-borderRadius-lg);
-} */
+}
 
 .article-title {
     max-width: 14em;
@@ -924,7 +917,7 @@ body:has(.title-collides) .page-header__date {
     align-self: center;
     justify-self: center;
     text-align: center;
-    /* color: var(--global-color-violet-900); */
+    color: var(--global-color-violet-100);
     transition: all .2s ease;
     transition-property: transform, opacity;
 }
