@@ -713,7 +713,7 @@ Objects
 }
 
 .row--page-header {
-    --row-page-header-background-color: hsla(var(--global-neutral-hue), var(--global-neutral-saturation), var(--row-page-header-background-color-lightness, 100%), var(--row-page-header-background-color-opacity, .5));
+    --row-page-header-background-color: hsla(var(--global-neutral-hue), var(--global-neutral-saturation), var(--row-page-header-background-color-lightness, 100%), var(--row-page-header-background-color-opacity, .9));
     --row-page-header-border-color: hsla(var(--global-neutral-hue), var(--global-neutral-saturation), var(--row-page-header-border-color-lightness, 10%), var(--row-page-header-border-color-opacity, .1));
     position: sticky;
     top: 0;
@@ -738,9 +738,10 @@ Objects
     transition: opacity .1s ease;
 }
 
+/*
 :root:has(.page-header-observer-collides) .row--page-header {
     --row-page-header-background-color-opacity: .9;
-}
+} */
 
 :root:has(.page-header-observer-collides) .row--page-header::after {
     opacity: 1;
@@ -892,34 +893,36 @@ body:has(.title-collides) .page-header__date {
 
 .article-header {
     display: grid;
-    /* place-items: center;
-    text-align: center; */
+    position: relative;
+    place-items: center;
+    text-align: center;
     /* min-height: calc(50vh - var(--global-whitespace) * 7); */
     min-height: 50vh;
     margin: var(--global-whitespace) 0 var(--global-whitespace-4xl) 0;
-}
-
-.article-header::before {
-    display: block;
-    content: "";
-    background-color: var(--global-color-violet-800);
-    /* background-color: tomato; */
-    /* background-color: var(--global-foregroundColor); */
-    grid-column: 1 / -1;
-    grid-row: 1 / -1;
+    background-color: var(--article-header-backgroundColor, var(--global-color-teal-100));
     border-radius: var(--global-borderRadius-lg);
+    overflow: hidden;
 }
 
 .article-title {
+    position: relative;
     max-width: 14em;
     grid-column: 1 / -1;
     grid-row: 1 / -1;
     align-self: center;
     justify-self: center;
     text-align: center;
-    color: var(--global-color-violet-100);
+    /* color: var(--global-color-violet-100); */
+    /* color: var(--global-color-teal-300); */
+    color: var(--article-header-color, var(--global-color-teal-400));
     transition: all .2s ease;
     transition-property: transform, opacity;
+}
+
+@media (prefers-color-scheme: dark) {
+    .article-header {
+        --article-header-backgroundColor: var(--global-color-teal-900);
+    }
 }
 
 body:has(.title-collides) .article-title {
