@@ -4,11 +4,44 @@ import type { CollectionEntry } from "astro:content";
 type Props = CollectionEntry<"blog">["data"];
 import Blogposts from "../components/Blogposts.astro";
 import Header from "../components/Header.astro";
+import Doodle from "../components/doodle.astro";
 import About from "../components/About.astro";
 import Footer from "../components/Footer.astro";
 import { SITE_ATHOUR } from "../config";
-const { title, description, pubDate, headerBackground } = Astro.props;
+const { title, description, pubDate, seed } = Astro.props;
+// generate a random number between 0 and 100000
+// const seed = Math.floor(Math.random() * 100000);
+const flecksWorkletURL = new URL("/src/scripts/flecks.js", Astro.url);
+const powderedGradientWorkletURL = new URL(
+  "/src/scripts/powdered-gradient.js",
+  Astro.url
+);
+const staticGradientWorkletURL = new URL(
+  "/src/scripts/static-gradient.js",
+  Astro.url
+);
+const cornerGradientWorkletURL = new URL(
+  "/src/scripts/corner-gradient.js",
+  Astro.url
+);
 ---
+
+<style define:vars={{ title, articleSeed: seed }}></style>
+<script
+  define:vars={{
+    flecksWorkletURL,
+    powderedGradientWorkletURL,
+    staticGradientWorkletURL,
+    cornerGradientWorkletURL,
+  }}
+>
+  if ("paintWorklet" in CSS) {
+    CSS.paintWorklet.addModule(flecksWorkletURL);
+    CSS.paintWorklet.addModule(powderedGradientWorkletURL);
+    CSS.paintWorklet.addModule(staticGradientWorkletURL);
+    CSS.paintWorklet.addModule(cornerGradientWorkletURL);
+  }
+</script>
 
 <html lang="en">
   <head>
@@ -20,142 +53,11 @@ const { title, description, pubDate, headerBackground } = Astro.props;
     <title>{title} - {SITE_ATHOUR}</title>
   </head>
   <body>
-    <div class="background" data-title={title}></div>
-    <!-- <div class="background" data-title="Coudeville Simon"></div> -->
-    <svg
-      class="canvas"
-      viewBox="0 0 1000 500"
-      xmlns="http://www.w3.org/2000/svg"
-      preserveAspectRatio="none"
-    >
-      <defs>
-        <style>
-          [class|="fill"] {
-            opacity: 0.5;
-            /* fill: transparent; */
-            /* background: radial-gradient(black 15%, transparent 16%); */
-            /* background-size: 1rem 1rem; */
-            filter: blur(100px);
-          }
-          [class|="fill"]:nth-child(3n - 1) {
-            fill: var(--global-color-neutral-100);
-          }
-          [class|="fill"]:nth-child(3n) {
-            fill: var(--global-color-neutral-050);
-          }
-          [class|="fill"]:nth-child(3n + 1) {
-            fill: var(--global-color-neutral-025);
-          }
-          @media (prefers-color-scheme: dark) {
-            .fill-2,
-            .fill-4 {
-              fill: var(--global-color-sky-blue-dark);
-              opacity: 0.5;
-            }
-            .fill-0,
-            .fill-4 {
-              fill: var(--global-color-rose-dark);
-              opacity: 0.5;
-            }
-            .fill-1,
-            .fill-3,
-            .fill-5 {
-              fill: var(--global-color-lilac-dark);
-              opacity: 0.5;
-            }
-          }
-        </style>
-        <filter id="blur" x="-50%" y="-100%" width="300%" height="300%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="200">
-          </feGaussianBlur>
-        </filter>
-        <filter id="blur2" x="0" y="0" width="200%" height="200%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="100">
-          </feGaussianBlur>
-        </filter>
-        <filter id="blur3" x="-100%" y="-100%" width="400%" height="400%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="200">
-          </feGaussianBlur>
-        </filter>
-        <filter id="noise" x="0%" y="0%" width="100%" height="100%">
-          <feTurbulence
-            type="fractalNoise"
-            baseFrequency="0 0.2"
-            result="NOISE"
-            numOctaves="2"
-          >
-            <animate
-              attributeName="baseFrequency"
-              calcMode="discrete"
-              dur="0.3s"
-              values="0 0.3; 0 0.9; 0 0.4"
-              repeatCount="indefinite"></animate>
-          </feTurbulence>
-          <feDisplacementMap
-            in="SourceGraphic"
-            in2="NOISE"
-            scale="30"
-            xChannelSelector="R"
-            yChannelSelector="R"></feDisplacementMap>
-        </filter>
-        <filter id="noise1" x="0%" y="0%" width="100%" height="100%">
-          <feTurbulence
-            type="fractalNoise"
-            baseFrequency="0 0.2"
-            result="NOISE"
-            numOctaves="2"></feTurbulence>
-          <feDisplacementMap
-            in="SourceGraphic"
-            in2="NOISE"
-            scale="30"
-            xChannelSelector="R"
-            yChannelSelector="R"></feDisplacementMap>
-        </filter>
-        <filter id="noise2" x="0%" y="0%" width="100%" height="100%">
-          <feTurbulence
-            type="fractalNoise"
-            baseFrequency="0 0.4"
-            result="NOISE"
-            numOctaves="2"></feTurbulence>
-          <feDisplacementMap
-            in="SourceGraphic"
-            in2="NOISE"
-            scale="30"
-            xChannelSelector="R"
-            yChannelSelector="R"></feDisplacementMap>
-        </filter>
-        <filter id="noise3" x="0%" y="0%" width="100%" height="100%">
-          <feTurbulence
-            type="fractalNoise"
-            baseFrequency="0 0.3"
-            result="NOISE"
-            numOctaves="2"></feTurbulence>
-          <feDisplacementMap
-            in="SourceGraphic"
-            in2="NOISE"
-            scale="100"
-            xChannelSelector="R"
-            yChannelSelector="R"></feDisplacementMap>
-        </filter>
-        <filter id="noise4" x="0%" y="0%" width="100%" height="100%">
-          <feTurbulence
-            type="fractalNoise"
-            baseFrequency="5 0.3"
-            result="NOISE"
-            numOctaves="1"></feTurbulence>
-          <feDisplacementMap
-            in="SourceGraphic"
-            in2="NOISE"
-            scale="700"
-            xChannelSelector="R"
-            yChannelSelector="R"></feDisplacementMap>
-        </filter>
-      </defs>
-    </svg>
     <Header headerDate={pubDate} headerTitle={title} />
     <article class="row pt-clear mt-clear">
       <div class="container flow">
-        <header class="article-header" data-title={title}>
+        <header class="article-header">
+          <!-- <Doodle /> -->
           <h1 class="article-title js-article-title">{title}</h1>
         </header>
         <slot />

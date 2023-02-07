@@ -1,0 +1,26 @@
+<script>
+  import "css-doodle";
+</script>
+
+<style>
+  /* prettier-ignore */
+  css-doodle {
+    position: absolute;
+    top:0;
+    left: 0;
+
+    --rule: (
+      @grid: 8 / 100cqi;
+      background: #60569e;
+      transform: scale(@rand(.1, 1));
+      border-radius: @r(100px);
+      /* @grid: 20 / 100cqi; */
+
+      /* transform: scale(@rand(.1, .9)) translate3d(@r(50px), @r(100px), 0);
+      background-color: #fff;
+	    border-radius: @r(10px); */
+
+    );
+  }
+</style>
+<css-doodle use="var(--rule)" seed="var(--articleSeed)"></css-doodle>

@@ -39,14 +39,49 @@ if (document.querySelector('.js-page-header-observer')) {
 
 // fill the svg randomly width maximum 8 ellipses of rx="100" and ry ranging from 300 to 800 and move each ellipse 200 to the right with cx starting from cx="-200"
 
-// import { SVG } from '@svgdotjs/svg.js'
-
 // a random function that returns a whole number between min and max
 // function random(min, max) {
 //     return Math.floor(Math.random() * (max - min + 1) + min);
 // }
 
 // const svg = SVG(".canvas");
+
+// import { SVG } from "https://cdn.skypack.dev/@svgdotjs/svg.js@3.1.2";
+// import { random } from "https://cdn.skypack.dev/@georgedoescode/generative-utils@1.0.37";
+// import PoissonDiskSampling from "https://cdn.skypack.dev/poisson-disk-sampling@2.2.3";
+
+// const width = 1024;
+// const height = 1024;
+
+// // svg.rect(width, height).fill("#CCE2DD");
+
+// const minDistance = 200;
+
+// const p = new PoissonDiskSampling({
+//     shape: [width, height],
+//     // Minimum distance between each circle, increase for less dense arrangements & larger circles
+//     minDistance: minDistance,
+//     // How many times should we try to generate each point
+//     tries: 50
+// });
+// const points = p.fill();
+
+// for (let i = 0; i < points.length; i++) {
+//     if (random(0, 1) > 0.5) {
+//         svg
+//             .circle(random(1, minDistance / 2))
+//             .cx(points[i][0])
+//             .cy(points[i][1])
+//             .fill("var(--article-canvas-color)");
+//     } else {
+//         svg
+//             .rect(minDistance / 2, minDistance / random(4, 8))
+//             .cx(points[i][0])
+//             .cy(points[i][1])
+//             .fill("var(--article-canvas-color)")
+//             .rotate(random(-45, 45));
+//     }
+// }
 
 // const numEllipses = 6;
 

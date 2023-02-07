@@ -595,6 +595,7 @@ h1 {
     font-weight: var(--global-font-weight-title);
 }
 
+
 h2 {
     --fs: 25;
     font-family: var(--global-font-family-title);
@@ -779,11 +780,8 @@ Components
     position: absolute;
     top: 0;
     left: 0;
-    max-width: 1000px;
-    /* right: 0; */
-    /* width: 1000px;
-    height: 500px; */
     overflow: visible;
+    display: none;
 }
 
 .icon {
@@ -899,9 +897,79 @@ body:has(.title-collides) .page-header__date {
     /* min-height: calc(50vh - var(--global-whitespace) * 7); */
     min-height: 50vh;
     margin: var(--global-whitespace) 0 var(--global-whitespace-4xl) 0;
-    background-color: var(--article-header-backgroundColor, var(--global-color-teal-100));
+    padding: var(--global-whitespace);
     border-radius: var(--global-borderRadius-lg);
     overflow: hidden;
+
+    /* --article-header-backgroundColor: var(--global-color-violet-100);
+    --article-header-color: var(--global-color-violet-600);
+    --fleck-color-1: white;
+    --fleck-color-2: var(--global-color-violet-200);
+    --fleck-color-3: var(--global-color-violet-300); */
+
+    /* --article-header-color: var(--global-backgroundColor); */
+    /* --article-header-color: var(--global-color-neutral-025); */
+    /* --article-header-color: var(--global-color-violet-500); */
+    --article-header-color: var(--global-color-indigo-100);
+    --article-header-backgroundColor: var(--global-color-violet-500);
+    --fleck-color-1: var(--global-color-violet-700);
+    --fleck-color-2: var(--global-color-violet-300);
+    --fleck-color-3: var(--global-color-violet-200);
+
+    --fleck-seed: var(--articleSeed);
+    --fleck-count: 500;
+    --fleck-size-base: 4px;
+
+    /* background-color: var(--article-header-backgroundColor); */
+    background-image: paint(fleck);
+
+    /* background-image: paint(powdered-gradient);
+    --powdered-gradient-direction: to-top;
+    --powdered-gradient-color: black;
+    --powdered-gradient-size: 10; */
+
+    /* background-image: paint(static-gradient);
+    --static-gradient-direction: to-top;
+    --static-gradient-color: var(--global-color-violet-200);
+    --static-gradient-size: 1; */
+
+
+
+    /* background-image: linear-gradient(0deg, hsla(0 100% 50% / 80%), hsla(0 100% 50% / 0) 75%),
+    linear-gradient(60deg, hsla(60 100% 50% / 80%), hsla(60 100% 50% / 0) 75%),
+    linear-gradient(120deg, hsla(120 100% 50% / 80%), hsla(120 100% 50% / 0) 75%),
+    linear-gradient(180deg, hsla(180 100% 50% / 80%), hsla(180 100% 50% / 0) 75%),
+    linear-gradient(240deg, hsla(240 100% 50% / 80%), hsla(240 100% 50% / 0) 75%),
+    linear-gradient(300deg, hsla(300 100% 50% / 80%), hsla(300 100% 50% / 0) 75%);
+    ; */
+    /* background-image: linear-gradient(to right, var(--global-color-violet-100), var(--global-color-indigo-100)); */
+}
+
+/* .article-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    background: linear-gradient(to right, var(--global-color-violet-100), var(--global-color-teal-100));
+    -webkit-mask: linear-gradient(#0000, #000);
+    mask: linear-gradient(#0000, #000);
+
+} */
+
+.article-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    background-color: var(--article-header-backgroundColor);
+    /* opacity: var(--article-header-backgroundOpacity, .125); */
+    opacity: var(--article-header-backgroundOpacity, 1);
 }
 
 .article-title {
@@ -912,16 +980,21 @@ body:has(.title-collides) .page-header__date {
     align-self: center;
     justify-self: center;
     text-align: center;
-    /* color: var(--global-color-violet-100); */
-    /* color: var(--global-color-teal-300); */
-    color: var(--article-header-color, var(--global-color-teal-400));
+    color: var(--article-header-color);
     transition: all .2s ease;
     transition-property: transform, opacity;
+    background-image: paint(headerHighlight);
 }
 
 @media (prefers-color-scheme: dark) {
     .article-header {
-        --article-header-backgroundColor: var(--global-color-teal-900);
+        /* --article-header-backgroundColor: var(--global-color-neutral-800); */
+        --article-header-color: var(--global-color-neutral-025);
+        --article-header-backgroundOpacity: .25;
+        --fleck-color-1: var(--global-color-neutral-675);
+        --fleck-color-2: var(--global-color-neutral-850);
+        --fleck-color-3: var(--global-color-neutral-700);
+        --fleck-color-4: var(--global-color-neutral-900);
     }
 }
 

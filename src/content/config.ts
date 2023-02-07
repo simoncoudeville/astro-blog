@@ -12,6 +12,7 @@ const blog = defineCollection({
 			.or(z.date())
 			.transform((val) => new Date(val)),
 		draft: z.boolean().optional(),
+		seed: z.number().optional(),
 	}),
 });
 
