@@ -73,6 +73,8 @@
       zoomLevel = zoomlevels[zoomlevels.indexOf(zoomLevel) - 1];
     }
   }
+
+  console.log("From fluid svelte");
 </script>
 
 <div class="demo test">

@@ -1,5 +1,9 @@
+<script>
+  export let className;
+</script>
+
 <svg
-  class="icon icon-min"
+  class="icon icon-min {className}"
   xmlns="http://www.w3.org/2000/svg"
   xmlns:xlink="http://www.w3.org/1999/xlink"
   width="20"

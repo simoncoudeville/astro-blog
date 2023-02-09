@@ -1,0 +1,186 @@
+---
+---
+
+<div class="demo js-cursor-demo">
+  <nav class="demo-nav text-s">
+    <ul class="demo-nav__list">
+      <li class="demo-nav__item">
+        <a href="#!" class="demo-nav__link">Default</a>
+      </li>
+      <li class="demo-nav__item">
+        <a href="#!" class="demo-nav__link cursor-read">Word</a>
+      </li>
+      <li class="demo-nav__item">
+        <a href="#!" class="demo-nav__link cursor-icon">Icon</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="cursor">
+    <div class="cursor__pointer cursor__pointer--default"></div>
+    <div class="cursor__pointer cursor__pointer--action cursor__pointer--read">
+      View
+    </div>
+    <div class="cursor__pointer cursor__pointer--action cursor__pointer--icon">
+      <svg
+        class="icon cursor__icon"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+      >
+        <g id="Group_1" data-name="Group 1" transform="translate(-0.75 -0.75)">
+          <line
+            id="Line_1"
+            data-name="Line 1"
+            class="icon-plus-line"
+            y2="10"
+            transform="translate(10.75 5.75)"></line>
+          <line
+            id="Line_2"
+            data-name="Line 2"
+            class="icon-plus-line"
+            y2="10"
+            transform="translate(15.75 10.75) rotate(90)"></line>
+        </g>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  // import { round } from "../../../scripts/round";
+  // track mouse position inside js-cursor-demo and and update --x and --y custom properties relative to js-cursor-demo element when the mouse moves over it
+  const cursorDemo = document.querySelector(".js-cursor-demo");
+
+  cursorDemo.addEventListener(
+    "mousemove",
+    (e) => {
+      const rect = cursorDemo.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      cursorDemo.style.setProperty("--x", `${x}px`);
+      cursorDemo.style.setProperty("--y", `${y}px`);
+    },
+    { passive: true }
+  );
+</script>
+
+<style>
+  .demo {
+    position: relative;
+    cursor: none;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    min-height: 600px;
+  }
+
+  .demo:hover .cursor {
+    opacity: 1;
+  }
+
+  .cursor {
+    --cursor-width: 80px;
+    --cursor-height: 80px;
+    position: absolute;
+    top: calc(var(--cursor-height) / -2);
+    left: calc(var(--cursor-width) / -2);
+    translate: var(--x) var(--y);
+    border-radius: 50%;
+    height: var(--cursor-height);
+    width: var(--cursor-width);
+    pointer-events: none;
+    display: grid;
+    opacity: 0;
+  }
+
+  .cursor__pointer {
+    grid-row: 1;
+    grid-column: 1;
+    position: relative;
+    width: var(--cursor-width);
+    height: var(--cursor-height);
+    transform-origin: 50% 50%;
+    border-radius: 50%;
+    background: var(--global-accent-color);
+    transition: 0.25s ease;
+    scale: 0.25;
+    color: var(--global-color-neutral-025);
+  }
+
+  .cursor__pointer--action {
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.675rem;
+    font-family: var(--global-font-family-code);
+    text-transform: uppercase;
+  }
+
+  .cursor__icon {
+    scale: 2;
+  }
+
+  .demo-nav__list {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    list-style: none;
+    padding: 0;
+    /* gap: var(--global-whitespace); */
+  }
+
+  .demo-nav__link:any-link {
+    color: var(--global-text-color);
+    cursor: none;
+    text-decoration: none;
+    transition: 0.2s ease;
+    padding: 0.25rem;
+    /* background-color: var(--global-foregroundColor2);
+    border-radius: 2rem; */
+  }
+
+  .demo-nav__link:hover {
+    color: var(--global-accent-color);
+  }
+
+  .demo:has(a:hover) .cursor__pointer {
+    scale: 0.5;
+  }
+
+  .demo:has(a:hover) .cursor__pointer--default {
+    opacity: 0.5;
+  }
+
+  .demo:has(.cursor-read:hover) .cursor__pointer {
+    scale: 1;
+  }
+
+  .demo:has(.cursor-read:active) .cursor__pointer {
+    scale: 0.95;
+  }
+
+  .demo:has(.cursor-read:hover) .cursor__pointer--read {
+    opacity: 1;
+  }
+
+  .demo:has(.cursor-icon:hover) .cursor__pointer {
+    scale: 0.5;
+  }
+
+  .demo:has(.cursor-icon:active) .cursor__pointer {
+    scale: 0.45;
+  }
+
+  .demo:has(.cursor-icon:hover) .cursor__pointer--icon {
+    opacity: 1;
+  }
+
+  .demo:has(a:active) .cursor__pointer--default {
+    scale: 0.45;
+  }
+</style>

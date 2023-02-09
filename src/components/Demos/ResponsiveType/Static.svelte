@@ -63,6 +63,7 @@
   $: if (viewportWidth > maxWindowWidth) {
     viewportThumbPosition = 1;
   }
+  console.log("From static svelte");
 </script>
 
 <div class="demo">

@@ -1,12 +1,53 @@
 ---
-title: "My Fourth Blog Post"
-slug: my-fourth-blog-post
+title: "Custom cursor hover effects with :has"
+slug: custom-cursor-hover-effects-with-has
 description: "This post will show up on its own!"
 pubDate: 2023-01-31
 draft: false
 seed: 4
 ---
 
-## testing
+Every once and a while you see a website that has a custom cursor. Something like a little dot that follows your cursor around the screen and changes color or grows when you hover interactive elements. Especially on sites like awwwards there ar plenty of examples with a variety of this effects. The latest example I've seen which I found quite nice is by [Koto Studio](https://koto.studio/). While the implications on accessibility and usability are surely debatable, it's still a neat trick to play with.
 
-This post should show up with my other blog posts, because `Astro.glob()` is returning a list of all my posts in order to create my list.
+When inspecting these websites I allways found there's a fair amount of javaScript that is used to create the effect. I started wondering if it was possible to create this effect with as little javaScript as possible. Ofcouse there's some javaScript needed to get the mouse position and apply it to the cursor. And with CSS custom properties we can pass the mouse coordinates as variables and let CSS do the rest. But what about mouse interactions such as hover? Well, we can use the `:has` pseudo-class to check if the cursor is hovering over an element and apply different styles to the custom cursor.
+
+Custom properties to follow the cursor.
+
+It's a neat effect. I'm not here to tell you if you should do it or not. I'm just here to show you how to do it.
+When inspecting these websites, you'll notice that they use a custom element that follows the cursor.
+
+This is a post with a custom cursor hover effect. It uses the `:has` pseudo-class to apply a custom cursor to the `a` element when it is hovered over.
+
+```css
+.cursor {
+  --cursor-width: 10px;
+  --cursor-height: 10px;
+  width: var(--cursor-width);
+  height: var(--cursor-height);
+  position: absolute;
+  top: calc(var(--y) - var(--cursor-height) / 2);
+  left: calc(var(--x) - var(--cursor-width) / 2);
+  border-radius: 50%;
+  pointer-events: none;
+  background-color: indigo;
+}
+
+.body:has(a:hover) .cursor {
+  opacity: 0.75;
+  scale: 2;
+}
+
+.demo:has(a:active) .cursor {
+  scale: 1.5;
+}
+```
+
+import CursorBasic from "../../components/Demos/Cursor/CursorBasic.svelte";
+
+<CursorBasic client:idle />
+
+The cursor is a simple div with a fixed width and height. The position is calculated using CSS custom properties. The `--x` and `--y` properties are set using JavaScript. The `:has` pseudo-class is used to check if the cursor is hovering over an `a` element. If it is, the cursor will grow and change color.
+
+import Cursor from "../../components/Demos/Cursor/Cursor.svelte";
+
+<Cursor client:idle />

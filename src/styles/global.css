@@ -434,13 +434,13 @@ legend {
 }
 
 code {
-    --fs: 16;
+    --fs: 18;
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
     line-height: calc(var(--global-baseline) * 6);
     font-family: var(--global-font-family-code);
     color: var(--global-code-color);
     background-color: var(--global-code-background);
-    padding: var(--global-whitespace-4xs) var(--global-whitespace-4xs);
+    padding: var(--global-whitespace-5xs) var(--global-whitespace-4xs);
     border-radius: var(--global-borderRadius-sm);
 }
 
@@ -917,10 +917,10 @@ body:has(.title-collides) .page-header__date {
     --fleck-color-3: var(--global-color-violet-200);
 
     --fleck-seed: var(--articleSeed);
-    --fleck-count: 500;
+    --fleck-count: 200;
     --fleck-size-base: 4px;
 
-    /* background-color: var(--article-header-backgroundColor); */
+    background-color: var(--article-header-backgroundColor);
     background-image: paint(fleck);
 
     /* background-image: paint(powdered-gradient);
@@ -960,7 +960,7 @@ body:has(.title-collides) .page-header__date {
 } */
 
 .article-header::before {
-    content: '';
+    /* content: ''; */
     position: absolute;
     top: 0;
     left: 0;
@@ -969,7 +969,7 @@ body:has(.title-collides) .page-header__date {
     border-radius: inherit;
     background-color: var(--article-header-backgroundColor);
     /* opacity: var(--article-header-backgroundOpacity, .125); */
-    opacity: var(--article-header-backgroundOpacity, 1);
+    /* opacity: var(--article-header-backgroundOpacity, 1); */
 }
 
 .article-title {
@@ -989,12 +989,13 @@ body:has(.title-collides) .page-header__date {
 @media (prefers-color-scheme: dark) {
     .article-header {
         /* --article-header-backgroundColor: var(--global-color-neutral-800); */
-        --article-header-color: var(--global-color-neutral-025);
-        --article-header-backgroundOpacity: .25;
-        --fleck-color-1: var(--global-color-neutral-675);
+        /* --article-header-color: var(--global-color-neutral-025); */
+        /* --article-header-color: var(--global-color-neutral-900); */
+        /* --article-header-backgroundOpacity: .25; */
+        /* --fleck-color-1: var(--global-color-neutral-675);
         --fleck-color-2: var(--global-color-neutral-850);
         --fleck-color-3: var(--global-color-neutral-700);
-        --fleck-color-4: var(--global-color-neutral-900);
+        --fleck-color-4: var(--global-color-neutral-900); */
     }
 }
 
@@ -1246,6 +1247,10 @@ Utilities
     --fs: 16;
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
     line-height: calc(var(--global-baseline) * 5);
+}
+
+.fw-normal {
+    font-weight: normal;
 }
 
 .sr-only {
