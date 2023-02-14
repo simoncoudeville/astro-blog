@@ -149,7 +149,7 @@
           </div>
         </fieldset>
       </div>
-      <pre class="text-xs"><code
+      <pre class="text-xs"><code class="language-css"
           ><span class="token selector">h1</span> <span
             class="token punctuation">&lcub;</span
           >
@@ -174,53 +174,6 @@
           ><span class="token punctuation">);</span>
 <span class="token punctuation">&rcub;</span></code
         ></pre>
-
-      <!-- <p class="text-code text-xs">
-      <span class="token property">font-size</span><span
-        class="token punctuation">:</span
-      >
-      <span class="token function">clamp</span><span class="token punctuation"
-        >(</span
-      ><span class="token value"
-        >{unit === "px"
-          ? round($y1, 4) + "px"
-          : round($y1 / 16, 4) + "rem"}</span
-      ><span class="token punctuation">,</span>
-      <span class="token value"
-        >{round((($y2 - $y1) / ($x2 - $x1)) * 100, 4)}vw</span
-      >
-      <span class="token punctuation">+</span>
-      <span class="token value"
-        >{unit === "px"
-          ? round(($x1 * $y2 - $x2 * $y1) / ($x1 - $x2), 4) + "px"
-          : round(($x1 * $y2 - $x2 * $y1) / ($x1 - $x2) / 16, 4) + "rem"}</span
-      ><span class="token punctuation">,</span>
-      <span class="token value"
-        >{unit === "px"
-          ? round($y2, 4) + "px"
-          : round($y2 / 16, 4) + "rem"}</span
-      ><span class="token punctuation">);</span>
-    </p> -->
-      <!-- <h4>Where</h4>
-    <p class="text-code text-xs">
-      <span class="token output output--1">v</span>
-      <span class="token punctuation">=</span>
-      <span class="token punctuation">(</span>{y2} - {y1}<span
-        class="token punctuation">)</span
-      >
-      /
-      <span class="token punctuation">(</span>{x2} - {x1}<span
-        class="token punctuation">)</span
-      >
-      × 100 <br /><span class="token output output--2">r</span>
-      <span class="token punctuation">=</span>
-      <span class="token punctuation">(</span>{x1} × {y2} - {x2} * {y1}<span
-        class="token punctuation">)</span
-      >
-      / <span class="token punctuation">(</span>{x1} - {x2}<span
-        class="token punctuation">)</span
-      >{unit === "px" ? " " : " / 16"}
-    </p> -->
     </div>
   </div>
 </div>

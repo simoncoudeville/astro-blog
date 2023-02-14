@@ -14,7 +14,10 @@
   on:mousemove={handleMousemove}
   style="--x: {m.x}px; --y: {m.y}px"
 >
-  <nav class="demo-nav text-s">
+  <div class="demo__header">
+    <h2 class="demo__title">Advanced demo</h2>
+  </div>
+  <div class="demo-nav text-s">
     <ul class="demo-nav__list">
       <li class="demo-nav__item">
         <a href="#!" class="demo-nav__link">Default</a>
@@ -26,7 +29,7 @@
         <a href="#!" class="demo-nav__link cursor-icon">Icon</a>
       </li>
     </ul>
-  </nav>
+  </div>
   <!-- <p>
     The mouse position is {round(m.x, 0)} x {round(m.y, 0)}
   </p> -->
@@ -77,6 +80,12 @@
     min-height: 50vh;
   }
 
+  .demo__header {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
   .demo:hover .cursor {
     opacity: 1;
   }
@@ -93,6 +102,7 @@
     pointer-events: none;
     display: grid;
     opacity: 0;
+    transition: opacity 0.25s ease;
   }
 
   .cursor__pointer {
@@ -114,7 +124,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.675rem;
+    font-size: 14px;
     font-family: var(--global-font-family-code);
     text-transform: uppercase;
   }

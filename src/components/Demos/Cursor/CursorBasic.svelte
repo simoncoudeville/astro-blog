@@ -1,6 +1,6 @@
 <script>
   import { round } from "../../../scripts/round";
-  let m = { x: 0, y: 0 };
+  let m = { x: 300, y: 200 };
 
   function handleMousemove(event) {
     const r = event.currentTarget.getBoundingClientRect();
@@ -12,9 +12,12 @@
 <div
   class="demo"
   on:mousemove={handleMousemove}
-  style="--x: {m.x}px; --y: {m.y}px"
+  style="--mx: {m.x}px; --my: {m.y}px"
 >
-  <a href="#!" class="demo__link text-s">Hover me</a>
+  <div class="demo__header">
+    <h2 class="demo__title">Basic demo</h2>
+  </div>
+  <a href="#!" class="demo__link text-s">Default</a>
   <!-- <p>
     The mouse position is {round(m.x, 0)} x {round(m.y, 0)}
   </p> -->
@@ -33,6 +36,12 @@
     min-height: 50vh;
   }
 
+  .demo__header {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
   .demo:hover .cursor {
     opacity: 1;
   }
@@ -41,18 +50,19 @@
     --cursor-width: 20px;
     --cursor-height: 20px;
     position: absolute;
-    top: calc(var(--y) - var(--cursor-height) / 2);
-    left: calc(var(--x) - var(--cursor-width) / 2);
+    top: calc(var(--my) - var(--cursor-height) / 2);
+    left: calc(var(--mx) - var(--cursor-width) / 2);
     /* top: calc(var(--cursor-height) / -2);
     left: calc(var(--cursor-width) / -2); */
-    /* translate: var(--x) var(--y); */
+    /* translate: var(--mx) var(--my); */
     border-radius: 50%;
     height: var(--cursor-height);
     width: var(--cursor-width);
     pointer-events: none;
-    opacity: 0;
+    /* opacity: 0; */
     background-color: var(--global-accent-color);
-    transition: all 0.25s ease;
+    will-change: scale, opacity;
+    transition: 0.25s ease;
     transition-property: scale, opacity;
   }
 
@@ -64,9 +74,10 @@
     text-decoration-color: inherit;
     transition: 0.2s ease;
     padding: var(--global-whitespace-4xs) var(--global-whitespace-2xs);
-    /* background-color: var(--global-foregroundColor2); */
+    /* background-color: var(--global-backgroundColor); */
     border: 1px solid var(--global-borderColor);
     border-radius: var(--global-borderRadius);
+    /* box-shadow: 0 1px 0 1px var(--global-borderColor); */
     /* border-radius: 2rem; */
   }
 

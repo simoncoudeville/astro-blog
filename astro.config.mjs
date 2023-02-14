@@ -13,6 +13,9 @@ export default defineConfig({
     extendMarkdownConfig: false,
     smartypants: true,
     gfm: true,
-    syntaxHighlight: 'prism'
+    syntaxHighlight: 'prism',
+    // shikiConfig: {
+    //   theme: 'css-variables',
+    // },
   }), svelte()],
 });

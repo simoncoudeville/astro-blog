@@ -18,20 +18,47 @@ When inspecting these websites, you'll notice that they use a custom element tha
 
 This is a post with a custom cursor hover effect. It uses the `:has` pseudo-class to apply a custom cursor to the `a` element when it is hovered over.
 
+The basic setup is to add an empty `<div class="cursor"></div>` element at the end of the body. This makes sure the cursor is always on top of other elements by default.
+
+You could add a `z-index` to the cursor, but this is only necessary if you already have elements with a higher `z-index` on the page.
+
+The javascript is pretty simple. We just need to get the mouse position and apply it to the document root as CSS custom properties. I'm adding px to the end of the values to make sure they can be used as CSS values. You could to that in CSS as well.
+
+```javascript
+document.addEventListener("mousemove", (e) => {
+  document.documentElement.style.setProperty("--mx", e.x + "px");
+  document.documentElement.style.setProperty("--my", e.y + "px");
+});
+```
+
+That’s all the JavaScript we need to let the custom cursor follow the mouse. We can now use the `--mx` and `--my` properties to position the cursor with CSS. Since the custom properties update when the mouse moves, the cursor will follow the mouse when we use them in the `top` and `left` properties. Or we can use the `translate` property to position the cursor.
+
 ```css
 .cursor {
-  --cursor-width: 10px;
-  --cursor-height: 10px;
+  --cursor-width: 20px;
+  --cursor-height: 20px;
   width: var(--cursor-width);
   height: var(--cursor-height);
   position: absolute;
-  top: calc(var(--y) - var(--cursor-height) / 2);
-  left: calc(var(--x) - var(--cursor-width) / 2);
-  border-radius: 50%;
-  pointer-events: none;
+  /* position the cursor in the middle of the mouse with top and left */
+  top: calc(var(--my) - var(--cursor-height) / 2);
+  left: calc(var(--mx) - var(--cursor-width) / 2);
+  /* or with translate */
+  translate: calc(var(--mx) - var(--cursor-width) / 2) calc(
+      var(--my) - var(--cursor-height) / 2
+    );
   background-color: indigo;
+  border-radius: 50%;
+  transition: 0.25s ease;
+  transition-property: scale, opacity;
+  will-change: scale, opacity;
+  pointer-events: none;
 }
+```
 
+I'm using custom properties to set the width and height of the cursor. This makes it easy to change the size of the cursor in one place. To position the cursor in the middle of the mouse, I'm using the `calc` function to subtract half the width and height from the mouse position.
+
+```css
 .body:has(a:hover) .cursor {
   opacity: 0.75;
   scale: 2;

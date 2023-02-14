@@ -156,7 +156,7 @@ Variables
     --global-foregroundColor: var(--global-color-neutral-030);
     --global-foregroundColor2: var(--global-color-neutral-050);
     --global-accent-color: var(--global-color-violet-500);
-    --global-text-color: var(--global-color-neutral-700);
+    --global-text-color: var(--global-color-neutral-800);
     --global-title-color: var(--global-color-neutral-900);
     --global-meta-color: var(--global-color-neutral-300);
     --global-muted-color: var(--global-color-neutral-500);
@@ -189,6 +189,9 @@ Variables
     --global-font-family-alpha: "Graphik Web", sans-serif;
     --global-font-family-title: "Tiempos Headline", serif;
     --global-font-family-code: "IA Writer Duo Web", "SFMono-Regular", ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+    /* --global-font-family-code: "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace; */
+    /* mono font stack */
+    /* --global-font-family-code: "SFMono-Regular", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace; */
     --global-font-weight-title: 700;
 
     --root-font-size: 19;
@@ -434,14 +437,7 @@ legend {
 }
 
 code {
-    --fs: 18;
-    font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
-    line-height: calc(var(--global-baseline) * 6);
     font-family: var(--global-font-family-code);
-    color: var(--global-code-color);
-    background-color: var(--global-code-background);
-    padding: var(--global-whitespace-5xs) var(--global-whitespace-4xs);
-    border-radius: var(--global-borderRadius-sm);
 }
 
 input[type=number] {
@@ -455,18 +451,21 @@ input[type=range] {
     width: 100%;
     border: 0;
     --range-borderWidth: var(--global-borderWidth);
-    --range-track-height: 1.5px;
+    --range-track-height: 1px;
     --range-track-borderRadius: var(--range-track-height);
     --range-track-backgroundColor: var(--global-borderColor2);
     /* --range-track-backgroundColor: var(--global-input-backgroundColor); */
     --range-thumb-height: var(--global-whitespace-xs);
     --range-thumb-width: var(--range-thumb-height);
     --range-thumb-borderRadius: 50%;
-    --range-thumb-borderColor: var(--global-borderColor2);
+    --range-thumb-borderColor: var(--global-borderColor);
+    /* --range-thumb-borderColor: var(--global-borderColor2); */
+    /* --range-thumb-borderColor: white; */
     --range-thumb-borderWidth: var(--range-borderWidth);
     --range-thumb-backgroundColor: white;
     /* --range-thumb-boxShadow: 0 0 0 1px hsl(0deg 0% 0% / 0.1), 0 1px 3px 0 hsl(0deg 0% 0% / 0.2); */
     /* --range-thumb-boxShadow: 0 1px 3px rgb(0 0 0 / 20%), 0 1px 3px rgb(0 0 0 / 20%); */
+    --range-thumb-boxShadow: 0 1px 1px 0 var(--global-borderColor);
     --range-thumb-pointer: ew-resize;
     --range-focus-color: var(--global-accent-color);
     -webkit-appearance: none;
@@ -894,8 +893,8 @@ body:has(.title-collides) .page-header__date {
     position: relative;
     place-items: center;
     text-align: center;
-    /* min-height: calc(50vh - var(--global-whitespace) * 7); */
-    min-height: 50vh;
+    min-height: calc(50vh - var(--global-whitespace) * 7);
+    /* min-height: 50vh; */
     margin: var(--global-whitespace) 0 var(--global-whitespace-4xl) 0;
     padding: var(--global-whitespace);
     border-radius: var(--global-borderRadius-lg);
@@ -917,11 +916,11 @@ body:has(.title-collides) .page-header__date {
     --fleck-color-3: var(--global-color-violet-200);
 
     --fleck-seed: var(--articleSeed);
-    --fleck-count: 200;
-    --fleck-size-base: 4px;
+    --fleck-count: 1000;
+    --fleck-size-base: 1px;
 
-    background-color: var(--article-header-backgroundColor);
-    background-image: paint(fleck);
+    /* background-color: var(--article-header-backgroundColor);
+    background-image: paint(fleck); */
 
     /* background-image: paint(powdered-gradient);
     --powdered-gradient-direction: to-top;
@@ -1071,7 +1070,9 @@ body:has(.title-collides) .article-title {
     --fs: 17;
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
     line-height: calc(var(--global-baseline) * 5);
+    font-family: var(--global-font-family-alpha);
     font-weight: normal;
+    color: var(--global-muted-color);
 }
 
 .demo__header {
@@ -1383,8 +1384,14 @@ pre[class*="language-"] {
 
 /* Inline code */
 :not(pre)>code[class*="language-"] {
-    padding: .1em;
-    border-radius: .3em;
+    --fs: 18;
+    font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
+    line-height: calc(var(--global-baseline) * 6);
+    font-family: var(--global-font-family-code);
+    color: var(--global-code-color);
+    background-color: var(--global-code-background);
+    padding: 0 var(--global-whitespace-3xs) var(--global-whitespace-5xs);
+    border-radius: var(--global-borderRadius-sm);
 }
 
 .token.output {

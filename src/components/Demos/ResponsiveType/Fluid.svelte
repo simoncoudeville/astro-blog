@@ -90,7 +90,7 @@
           <span class="sr-only">Zoom out</span>
           <IconMin />
         </button>
-        <output class="zoom__output text-code text-xs">{zoomLevel}%</output>
+        <output class="zoom__output text-num">{zoomLevel}%</output>
         <button
           class="button-reset controls__button shrink-0"
           on:click={incrementZoomLevel}
@@ -114,9 +114,7 @@
           max={maxWindowWidth}
           step="1"
         />
-        <output class="text-code text-xs" for="fluidWindowWidth"
-          >{windowWidth}px</output
-        >
+        <output class="text-num" for="fluidWindowWidth">{windowWidth}px</output>
       </div>
       <div class="controls__reset">
         <Reset
@@ -131,7 +129,7 @@
     >
       <p class="viewport__label flex justify-between">
         <span class="color-muted shrink-0">Viewport width</span>
-        <span class="text-code text-xs">{round(viewportWidth, 2)}px</span>
+        <span class="text-num">{round(viewportWidth, 2)}px</span>
       </p>
       <div class="viewport__bar">
         <div
@@ -145,7 +143,7 @@
             ? 'active'
             : ''}"
         >
-          <span class="viewport__breakpoint-value text-code"
+          <span class="viewport__breakpoint-value text-num"
             >{breakpoint1}px</span
           >
         </div>
@@ -154,7 +152,7 @@
             ? 'active'
             : ''}"
         >
-          <span class="viewport__breakpoint-value text-code"
+          <span class="viewport__breakpoint-value text-num"
             >{breakpoint2}px</span
           >
         </div>
