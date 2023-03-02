@@ -78,7 +78,7 @@ Variables
     --global-color-violet-600: hsl(var(--global-color-violet-hue), 70%, 60%);
     --global-color-violet-700: hsl(var(--global-color-violet-hue), 70%, 55%);
     --global-color-violet-800: hsl(var(--global-color-violet-hue), 65%, 49%);
-    --global-color-violet-900: hsl(var(--global-color-violet-hue), 65%, 40%);
+    --global-color-violet-900: hsl(var(--global-color-violet-hue), 65%, 25%);
 
     --global-color-indigo-hue: 220;
     --global-color-indigo-50: hsl(var(--global-color-indigo-hue), 55%, 97.5%);
@@ -86,11 +86,11 @@ Variables
     --global-color-indigo-200: hsl(var(--global-color-indigo-hue), 65%, 90%);
     --global-color-indigo-300: hsl(var(--global-color-indigo-hue), 100%, 82%);
     --global-color-indigo-400: hsl(var(--global-color-indigo-hue), 100%, 71%);
-    --global-color-indigo-500: hsl(var(--global-color-indigo-hue), 85%, 60%);
+    --global-color-indigo-500: hsl(var(--global-color-indigo-hue), 100%, 65%);
     --global-color-indigo-600: hsl(var(--global-color-indigo-hue), 75%, 51%);
     --global-color-indigo-700: hsl(var(--global-color-indigo-hue), 65%, 42%);
     --global-color-indigo-800: hsl(var(--global-color-indigo-hue), 65%, 35%);
-    --global-color-indigo-900: hsl(var(--global-color-indigo-hue), 60%, 27%);
+    --global-color-indigo-900: hsl(var(--global-color-indigo-hue), 73%, 22%);
 
     --global-color-blue-hue: 200deg;
     --global-color-blue-50: hsl(var(--global-color-blue-hue), 55%, 97.5%);
@@ -187,11 +187,13 @@ Variables
     --global-selection-color: var(--global-color-neutral-025);
 
     --global-font-family-alpha: "Graphik Web", sans-serif;
+    /* --global-font-family-title: var(--global-font-family-alpha); */
     --global-font-family-title: "Tiempos Headline", serif;
-    --global-font-family-code: "IA Writer Duo Web", "SFMono-Regular", ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+    /* --global-font-family-code: "IA Writer Duo Web", "SFMono-Regular", ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace; */
+    /* --global-font-family-code: "JetBrains Mono", "SFMono-Regular", ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace; */
     /* --global-font-family-code: "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace; */
     /* mono font stack */
-    /* --global-font-family-code: "SFMono-Regular", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace; */
+    --global-font-family-code: "SFMono-Regular", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
     --global-font-weight-title: 700;
 
     --root-font-size: 19;
@@ -594,6 +596,15 @@ h1 {
     font-weight: var(--global-font-weight-title);
 }
 
+/* @media (min-width: 769px) {
+    h1 {
+        --fs: 40;
+        font-size: calc(var(--fs) / 16 * 1rem);
+        line-height: calc(var(--root-baseline) * var(--baseline-multiplier, 9) / var(--fs));
+    }
+} */
+
+
 
 h2 {
     --fs: 25;
@@ -759,7 +770,8 @@ Objects
 }
 
 .container {
-    max-width: 40rem;
+    /* max-width: 40rem; */
+    max-width: 36rem;
     margin-left: auto;
     margin-right: auto;
     container: container / inline-size;
@@ -891,71 +903,88 @@ body:has(.title-collides) .page-header__date {
 .article-header {
     display: grid;
     position: relative;
-    place-items: center;
-    text-align: center;
-    min-height: calc(50vh - var(--global-whitespace) * 7);
-    /* min-height: 50vh; */
+    /* min-height: calc(50vh - var(--global-whitespace) * 7); */
+    min-height: 50vh;
     margin: var(--global-whitespace) 0 var(--global-whitespace-4xl) 0;
     padding: var(--global-whitespace);
     border-radius: var(--global-borderRadius-lg);
     overflow: hidden;
+    background-color: var(--article-header-backgroundColor);
 
-    /* --article-header-backgroundColor: var(--global-color-violet-100);
-    --article-header-color: var(--global-color-violet-600);
-    --fleck-color-1: white;
-    --fleck-color-2: var(--global-color-violet-200);
-    --fleck-color-3: var(--global-color-violet-300); */
-
-    /* --article-header-color: var(--global-backgroundColor); */
-    /* --article-header-color: var(--global-color-neutral-025); */
-    /* --article-header-color: var(--global-color-violet-500); */
-    --article-header-color: var(--global-color-indigo-100);
     --article-header-backgroundColor: var(--global-color-violet-500);
-    --fleck-color-1: var(--global-color-violet-700);
-    --fleck-color-2: var(--global-color-violet-300);
-    --fleck-color-3: var(--global-color-violet-200);
+    /* --article-header-color: var(--global-color-violet-900); */
+    --article-header-color: var(--global-backgroundColor);
 
+    /* background-image: paint(fleck); */
+    --article-header-backgroundColor: var(--global-color-violet-500);
+    --fleck-color-1: var(--global-color-violet-600);
+    --fleck-color-2: var(--global-color-violet-400);
+    --fleck-color-3: var(--global-color-violet-700);
     --fleck-seed: var(--articleSeed);
-    --fleck-count: 1000;
-    --fleck-size-base: 1px;
-
-    /* background-color: var(--article-header-backgroundColor);
-    background-image: paint(fleck); */
+    --fleck-count: 100;
+    --fleck-size-base: 3px;
 
     /* background-image: paint(powdered-gradient);
     --powdered-gradient-direction: to-top;
-    --powdered-gradient-color: black;
-    --powdered-gradient-size: 10; */
+    --powdered-gradient-color: var(--global-color-violet-600);
+    --powdered-gradient-size: 50; */
 
     /* background-image: paint(static-gradient);
     --static-gradient-direction: to-top;
-    --static-gradient-color: var(--global-color-violet-200);
-    --static-gradient-size: 1; */
+    --static-gradient-color: var(--global-color-violet-400);
+    --static-gradient-size: 2; */
+
+    /* --article-header-backgroundColor: var(--global-color-violet-500); */
+    /* background-image: paint(placeholder-box);
+    --fill: var(--global-color-violet-600);
+    --stroke-color: var(--global-color-violet-700);
+    --stroke-color-2: var(--global-color-violet-800);
+    --stroke-color-3: var(--global-color-violet-600);
+    --cols: 20;
+    --rows: 10;
+    --theta: .25;
+    --line-lenght: 20;
+    --stroke-width: 2; */
 
 
+    /* background-image: paint(curves);
+    --lines: 5;
+    --seed: var(--articleSeed);
+    --article-header-backgroundColor: var(--global-color-violet-700);
+    --article-header-color: var(--global-color-violet-900);
+    --gradient-stop-1: var(--global-color-violet-500);
+    --gradient-stop-2: var(--article-header-backgroundColor); */
+    /* --article-header-backgroundColor: var(--global-color-violet-600);
+    --gradient-stop-1: var(--global-color-indigo-400); */
+    /* --article-header-backgroundColor: var(--global-color-indigo-700);
+    --gradient-stop-1: var(--global-color-indigo-500); */
+    /* --article-header-backgroundColor: tomato;
+    --gradient-stop-1: gold; */
+    /* --article-header-backgroundColor: darkslateblue;
+    --gradient-stop-1: slateblue; */
+    /* --article-header-backgroundColor: LightSeaGreen;
+    --gradient-stop-1: turquoise; */
+    /* --article-header-backgroundColor: var(--global-color-blue-600);
+    --gradient-stop-1: var(--global-color-cyan-400); */
+    /* --article-header-backgroundColor: var(--global-color-violet-700);
+    --gradient-stop-1: var(--global-color-indigo-500); */
 
-    /* background-image: linear-gradient(0deg, hsla(0 100% 50% / 80%), hsla(0 100% 50% / 0) 75%),
-    linear-gradient(60deg, hsla(60 100% 50% / 80%), hsla(60 100% 50% / 0) 75%),
-    linear-gradient(120deg, hsla(120 100% 50% / 80%), hsla(120 100% 50% / 0) 75%),
-    linear-gradient(180deg, hsla(180 100% 50% / 80%), hsla(180 100% 50% / 0) 75%),
-    linear-gradient(240deg, hsla(240 100% 50% / 80%), hsla(240 100% 50% / 0) 75%),
-    linear-gradient(300deg, hsla(300 100% 50% / 80%), hsla(300 100% 50% / 0) 75%);
-    ; */
-    /* background-image: linear-gradient(to right, var(--global-color-violet-100), var(--global-color-indigo-100)); */
+    background-image: paint(curves2);
+    --lines: 90;
+    --seed: var(--articleSeed);
+    --article-header-backgroundColor: var(--global-color-violet-400);
+    --article-header-color: var(--global-color-violet-900);
+    --stroke-color: var(--global-color-violet-500);
+    --seed: var(--articleSeed);
+
+
 }
 
-/* .article-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: inherit;
-    background: linear-gradient(to right, var(--global-color-violet-100), var(--global-color-teal-100));
-    -webkit-mask: linear-gradient(#0000, #000);
-    mask: linear-gradient(#0000, #000);
-
+/* @media (prefers-color-scheme: dark) {
+    .article-header {
+        --article-header-backgroundColor: var(--global-color-violet-700);
+        --gradient-stop-1: var(--global-color-violet-600);
+    }
 } */
 
 .article-header::before {
@@ -967,18 +996,29 @@ body:has(.title-collides) .page-header__date {
     bottom: 0;
     border-radius: inherit;
     background-color: var(--article-header-backgroundColor);
+    background-image: url("https://previews.123rf.com/images/vectora/vectora1504/vectora150400226/38616631-Horizontal-lines-stripes-pattern-or-background-with-wavy-curving-distortion-effect-Bending-warped-li-Stock-Vector.jpg");
+    /* background-image: url("https://cdnx.jumpseller.com/pavlovpulus/image/31745776/SORT3D-3357.jpg?1676058867"); */
+    background-size: cover;
+    /* background-position: center; */
+    /* background-size: 100%; */
+    background-blend-mode: soft-light;
+    opacity: .15;
     /* opacity: var(--article-header-backgroundOpacity, .125); */
     /* opacity: var(--article-header-backgroundOpacity, 1); */
 }
 
 .article-title {
     position: relative;
-    max-width: 14em;
+    /* text-wrap: balance; */
+    /* max-width: 12em; */
+    max-width: 19ch;
     grid-column: 1 / -1;
     grid-row: 1 / -1;
     align-self: center;
     justify-self: center;
     text-align: center;
+    /* align-self: end; */
+    /* margin: var(--global-whitespace); */
     color: var(--article-header-color);
     transition: all .2s ease;
     transition-property: transform, opacity;

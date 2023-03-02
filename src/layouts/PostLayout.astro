@@ -7,9 +7,7 @@ import Header from "../components/Header.astro";
 import About from "../components/About.astro";
 import Footer from "../components/Footer.astro";
 import { SITE_ATHOUR } from "../config";
-const { title, description, pubDate, seed } = Astro.props;
-// generate a random number between 0 and 100000
-// const seed = Math.floor(Math.random() * 100000);
+const { title, description, pubDate, seed, slug } = Astro.props;
 const flecksWorkletURL = new URL("/src/scripts/flecks.js", Astro.url);
 const powderedGradientWorkletURL = new URL(
   "/src/scripts/powdered-gradient.js",
@@ -23,6 +21,10 @@ const cornerGradientWorkletURL = new URL(
   "/src/scripts/corner-gradient.js",
   Astro.url
 );
+const customPaintWorkletURL = new URL("/src/scripts/paint.js", Astro.url);
+const customLinesWorkletURL = new URL("/src/scripts/lines.js", Astro.url);
+const customCurvesWorkletURL = new URL("/src/scripts/curves.js", Astro.url);
+const customCurves2WorkletURL = new URL("/src/scripts/curves2.js", Astro.url);
 ---
 
 <style define:vars={{ title, articleSeed: seed }}></style>
@@ -32,6 +34,10 @@ const cornerGradientWorkletURL = new URL(
     powderedGradientWorkletURL,
     staticGradientWorkletURL,
     cornerGradientWorkletURL,
+    customPaintWorkletURL,
+    customLinesWorkletURL,
+    customCurvesWorkletURL,
+    customCurves2WorkletURL,
   }}
 >
   if ("paintWorklet" in CSS) {
@@ -39,6 +45,9 @@ const cornerGradientWorkletURL = new URL(
     CSS.paintWorklet.addModule(powderedGradientWorkletURL);
     CSS.paintWorklet.addModule(staticGradientWorkletURL);
     CSS.paintWorklet.addModule(cornerGradientWorkletURL);
+    CSS.paintWorklet.addModule(customPaintWorkletURL);
+    CSS.paintWorklet.addModule(customCurvesWorkletURL);
+    CSS.paintWorklet.addModule(customCurves2WorkletURL);
   }
 </script>
 
@@ -49,6 +58,18 @@ const cornerGradientWorkletURL = new URL(
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    <meta
+      property="og:image"
+      content={slug !== undefined
+        ? `/assets/blog/${slug}.png`
+        : `/assets/fallback-image.png`}
+    />
+    <meta
+      property="twitter:image"
+      content={slug !== undefined
+        ? `/assets/your-posts-folder/${slug}.png`
+        : `/assets/fallback-image.png`}
+    />
     <title>{title} - {SITE_ATHOUR}</title>
   </head>
   <body>

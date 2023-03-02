@@ -4,7 +4,7 @@ slug: custom-cursor-hover-effects-with-has
 description: "This post will show up on its own!"
 pubDate: 2023-01-31
 draft: false
-seed: 4
+seed: 40
 ---
 
 Every once and a while you see a website that has a custom cursor. Something like a little dot that follows your cursor around the screen and changes color or grows when you hover interactive elements. Especially on sites like awwwards there ar plenty of examples with a variety of this effects. The latest example I've seen which I found quite nice is by [Koto Studio](https://koto.studio/). While the implications on accessibility and usability are surely debatable, it's still a neat trick to play with.
@@ -59,13 +59,14 @@ That’s all the JavaScript we need to let the custom cursor follow the mouse. W
 I'm using custom properties to set the width and height of the cursor. This makes it easy to change the size of the cursor in one place. To position the cursor in the middle of the mouse, I'm using the `calc` function to subtract half the width and height from the mouse position.
 
 ```css
-.body:has(a:hover) .cursor {
-  opacity: 0.75;
+body:has(:is(a:hover, button:hover)) .cursor {
   scale: 2;
+  opacity: 0.75;
 }
 
-.demo:has(a:active) .cursor {
+body:has(:is(a:active, button:active)) .cursor {
   scale: 1.5;
+  opacity: 0.75;
 }
 ```
 
