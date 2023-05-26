@@ -1,12 +1,14 @@
+import random from "https://cdn.skypack.dev/random";
+import seedrandom from "https://cdn.skypack.dev/seedrandom";
+
 class CurvesPainter2 {
     static get inputProperties() { return ['--gradient-stop-1', '--stroke-color', '--seed', '--gradient-stop-2', '--lines']; }
     paint(context, size, properties) {
-        const lines = properties.get('--lines');
-        const seed = Math.floor(properties.get('--seed'));
-        // const lines = 5;
-
         const width = size.width;
         const height = size.height;
+        // const lines = properties.get('--lines');
+        const lines = height / properties.get('--lines');
+        const seed = Math.floor(properties.get('--seed'));
 
         context.lineWidth = 1;
         context.strokeStyle = properties.get('--stroke-color');
@@ -16,11 +18,10 @@ class CurvesPainter2 {
         for (var i = 0; i < height + height / lines * 10; i += height / lines) {
             var wave = {
                 y: i - height / lines * 2,
-                // y: i - height / lines * 2,
                 // grow the difference between the waves from top to bottom
-                amplitude: 20,
+                // amplitude: 20,
                 // make the amplitude differ slightly from one wave to the next
-                // amplitude: height / lines * 2 + i / lines * 2,
+                amplitude: height / lines * 2 + i / lines * 2,
                 // amplitude: 0,
                 frequency: 0.01,
                 phase: seed * 10 + Math.PI * 2 + i / lines
@@ -40,6 +41,8 @@ class CurvesPainter2 {
         function render() {
             // clear the canvas
             // context.clearRect(0, 0, width, height);
+
+            random.use(seedrandom(seed));
 
             // draw sine waves
             for (var i = 0; i < waves.length; i += 1) {
@@ -63,25 +66,18 @@ class CurvesPainter2 {
                 // gradient.addColorStop(0, properties.get('--gradient-stop-1'));
                 // gradient.addColorStop(1, properties.get('--gradient-stop-2'));
 
-                // context.fillStyle = gradient;
-                // context.fill();
-                // context.filter = "blur(" + i + "px)";
-                // make the first waves blurrier and the last ones sharper
-                // context.filter = "blur(" + (waves.length - i - lines / 2) + "px)";
-                // math random number between 1 and 6
-                // context.filter = "blur(" + Math.floor(Math.random() * 6) + "px)";
-                // context.filter = "blur(10px)";
-                // random opacity filter
                 // context.filter = "opacity(" + Math.random() * 10 + "%)";
-                // context.fill();
                 // change the linewidth from top to bottom
                 // context.lineWidth = 1 + i / lines * 2;
                 // change the linewidth from top to center and back
                 // context.lineWidth = 1 + i / lines * 2;
-                context.lineWidth = 1 + i / lines * 2 + Math.random() * height / lines;
+                // context.lineWidth = 1 + i / lines * 2 + Math.random() * height / lines;
                 // context.lineWidth = 1 + Math.random() * height / lines * 2;
 
+                // context.setLineDash([Math.random() * width + height, Math.random() * width + height]);
+
                 context.stroke();
+                // context.rotate((180 * Math.PI) / 180);
             }
 
             // call this function again in one frame tick

@@ -13,6 +13,7 @@ const blog = defineCollection({
 			.transform((val) => new Date(val)),
 		draft: z.boolean().optional(),
 		seed: z.number().optional(),
+		titleWidth: z.number().optional(),
 	}),
 });
 

@@ -1,10 +1,24 @@
 ---
-title: "Hello world"
+title: "A Long Overdue Hello World"
 slug: hello-world
 pubDate: 2022-10-07
 description: "This is my first blog post on my new personal blog ever."
 seed: 10
+titleWidth: 14
 ---
+
+If you're reading this I've finally done it, I posted my first personal blogpost.
+It's taken me 15 years to finally take the step. Writing this text was the hardest thing I have ever done. Even now I'm fiddeling with the code and design instead of just writing.
+Even when I was writing this I started to code a way to balance the text of the titles of blogposts individually. (It involves setting a custom property through the post's frontmatter). So you see the main problem is that I really enjoy the design and coding part. Building it.
+
+When I was a kid I really loved playing with Lego. With every set there used to be an alternative design you could build. According to my mother I would build the main design and the moment it was finished I would just take it apart and make the alternative design. I wouldn't even play with it. That's exaclty what's happening with this blog. Since I first started to think about having a blog I've only been building it. First with Hugo, then Zola and also Eleventy. I've had a working version with every tool but then lost interest and started again with an alternative tool. Allways fiddling with different designs and cleaning up the code. A long the way new CSS features were released and I wanted to try them out. So I would start over again, but this time with CSS grid and custom properties. Never completely happy with the result. Never really finishing it. I reallize now that finishing it doesn't mean it's done. It's just the start. I'm going to keep building on it and making it better. I'm going to start playing with it.
+
+## Astro
+
+When building this website I kept struggling with the same issue: how to handle specific javascript for indivdual posts. I know I want to embed interacti demo's instead of using codepen or something like that. I have nothing against those services, but I wanted to have full control over the code and the styling.
+I also wanted to get better at writing and handling javascript.
+
+## Design
 
 Welcome to my new blog about learning Astro! Here, I will share my learning journey as I build a new website. scripts per component that just work. It allows me to make a component and write the markup, styles and script in one document. If I include the component it just works. In Eleventy I was trying to figure out a system how to do that. scripts per component that just work. It allows me to make a component and write the markup, styles and script in one document. If I include the component it just works. In Eleventy I was trying to figure out a system how to do that. scripts per component that just work. It allows me to make a component and write the markup, styles and script in one document. If I include the component it just works. In Eleventy I was trying to figure out a system how to do that.
 
@@ -13,6 +27,23 @@ Welcome to my new blog about learning Astro! Here, I will share my learning jour
 Syntax highlighting out of the box
 
 scripts per component that just work. It allows me to make a component and write the markup, styles and script in one document. If I include the component it just works. In Eleventy I was trying to figure out a system how to do that.
+
+PostCSS out of the box.
+
+I haven't written Sass in a long time.
+With that I can write stuff like this in my css:
+
+```css
+h1 {
+  font-size: var(--mct-font-size-xl);
+  line-height: calc(var(--mct-baseline) * 7);
+
+  @media (--bp2) {
+    font-size: var(--mct-font-size-xxl);
+    line-height: calc(var(--mct-baseline) * 8);
+  }
+}
+```
 
 ## Cons
 

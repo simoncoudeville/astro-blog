@@ -7,7 +7,8 @@ import Header from "../components/Header.astro";
 import About from "../components/About.astro";
 import Footer from "../components/Footer.astro";
 import { SITE_ATHOUR } from "../config";
-const { title, description, pubDate, seed, slug } = Astro.props;
+const { title, description, pubDate, seed, slug, titleWidth } = Astro.props;
+
 const flecksWorkletURL = new URL("/src/scripts/flecks.js", Astro.url);
 const powderedGradientWorkletURL = new URL(
   "/src/scripts/powdered-gradient.js",
@@ -25,9 +26,13 @@ const customPaintWorkletURL = new URL("/src/scripts/paint.js", Astro.url);
 const customLinesWorkletURL = new URL("/src/scripts/lines.js", Astro.url);
 const customCurvesWorkletURL = new URL("/src/scripts/curves.js", Astro.url);
 const customCurves2WorkletURL = new URL("/src/scripts/curves2.js", Astro.url);
+const voronoiPatternWorkletURL = new URL(
+  "https://codepen.io/georgedoescode/pen/zYdjBVg.js",
+  Astro.url
+);
 ---
 
-<style define:vars={{ title, articleSeed: seed }}></style>
+<style define:vars={{ title, seed, titleWidth }}></style>
 <script
   define:vars={{
     flecksWorkletURL,
@@ -38,6 +43,7 @@ const customCurves2WorkletURL = new URL("/src/scripts/curves2.js", Astro.url);
     customLinesWorkletURL,
     customCurvesWorkletURL,
     customCurves2WorkletURL,
+    voronoiPatternWorkletURL,
   }}
 >
   if ("paintWorklet" in CSS) {
@@ -48,6 +54,7 @@ const customCurves2WorkletURL = new URL("/src/scripts/curves2.js", Astro.url);
     CSS.paintWorklet.addModule(customPaintWorkletURL);
     CSS.paintWorklet.addModule(customCurvesWorkletURL);
     CSS.paintWorklet.addModule(customCurves2WorkletURL);
+    CSS.paintWorklet.addModule(voronoiPatternWorkletURL);
   }
 </script>
 
