@@ -1,18 +1,4 @@
-<script>
-  import { round } from "../../../scripts/round";
-  let m = { x: 300, y: 200 };
-
-  function handleMousemove(event) {
-    m.x = event.clientX;
-    m.y = event.clientY;
-  }
-</script>
-
-<div
-  class="demo"
-  on:mousemove={handleMousemove}
-  style="--mx: {m.x}px; --my: {m.y}px"
->
+<div class="demo js-cursor-basic-demo">
   <div class="demo__header">
     <h2 class="demo__title">Basic demo</h2>
   </div>
@@ -20,16 +6,33 @@
     <a href="#!" class="demo__link text-s">Link</a>
     <button class="demo__button text-s">Button</button>
   </div>
-  <!-- <p class="text-xs color-muted text-code">
-    Mouse position: {round(m.x, 0)} x {round(m.y, 0)}
-  </p> -->
-  <div class="cursor" />
+  <div class="cursor"></div>
 </div>
+
+<script is:inline>
+  const demo = document.querySelector(".js-cursor-basic-demo");
+  const cursor = demo.querySelector(".cursor");
+
+  demo.addEventListener("mousemove", (e) => {
+    demo.style.setProperty("--mx", e.clientX + "px");
+    demo.style.setProperty("--my", e.clientY + "px");
+  });
+
+  // demo.addEventListener("mouseleave", (e) => {
+  //   // set the cursor to display: none
+  //   cursor.style.display = "none";
+  // });
+
+  // demo.addEventListener("mouseenter", (e) => {
+  //   // set the cursor to display: block
+  //   cursor.style.display = "block";
+  // });
+</script>
 
 <style>
   .demo {
     position: relative;
-    cursor: none;
+    /* cursor: none; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -43,6 +46,15 @@
     left: 0;
   }
 
+  .demo__collision {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    transition: 0.25s ease;
+    transition-property: opacity;
+  }
+
   .demo:hover .cursor {
     opacity: 1;
   }
@@ -54,28 +66,32 @@
   }
 
   .cursor {
-    --cursor-diameter: 20px;
-    width: var(--cursor-diameter);
-    aspect-ratio: 1/1;
-    background-color: var(--global-accent-color);
-    border-radius: 50%;
+    --cursor-width: 20px;
+    --cursor-height: 20px;
     position: fixed;
-    top: 0;
-    left: 0;
-    translate: calc(var(--mx) - var(--cursor-diameter) / 2)
-      calc(var(--my) - var(--cursor-diameter) / 2);
+    /* top: calc(var(--my) - var(--cursor-height) / 2);
+    left: calc(var(--mx) - var(--cursor-width) / 2); */
+    top: calc(var(--cursor-height) / -2);
+    left: calc(var(--cursor-width) / -2);
+    /* top: 0;
+    left: 0; */
+    translate: var(--mx) var(--my);
+    border-radius: 50%;
+    height: var(--cursor-height);
+    width: var(--cursor-width);
+    pointer-events: none;
     opacity: 0;
+    background-color: var(--global-accent-color);
     /* backdrop-filter: invert(1) grayscale(1) contrast(150%); */
     will-change: scale, opacity;
     transition: 0.25s ease;
     transition-property: scale, opacity;
-    pointer-events: none;
   }
 
   .demo__link:any-link {
     display: inline-block;
     color: var(--global-text-color);
-    cursor: none;
+    /* cursor: none; */
     /* text-decoration: none; */
     text-decoration-color: inherit;
     /* background-color: var(--global-backgroundColor); */
@@ -90,7 +106,7 @@
     font-family: inherit;
     display: inline-block;
     color: var(--global-text-color);
-    cursor: none;
+    /* cursor: none; */
     text-decoration: none;
     text-decoration-color: inherit;
     transition: 0.2s ease;

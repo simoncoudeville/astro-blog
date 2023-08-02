@@ -3,16 +3,15 @@
   let m = { x: 0, y: 0 };
 
   function handleMousemove(event) {
-    const r = event.currentTarget.getBoundingClientRect();
-    m.x = event.clientX - r.x;
-    m.y = event.clientY - r.y;
+    m.x = event.clientX;
+    m.y = event.clientY;
   }
 </script>
 
 <div
   class="demo"
   on:mousemove={handleMousemove}
-  style="--x: {m.x}px; --y: {m.y}px"
+  style="--mx: {m.x}px; --my: {m.y}px"
 >
   <div class="demo__header">
     <h2 class="demo__title">Advanced demo</h2>
@@ -91,14 +90,15 @@
   }
 
   .cursor {
-    --cursor-width: 80px;
-    --cursor-height: 80px;
-    position: absolute;
-    top: calc(var(--y) - var(--cursor-height) / 2);
-    left: calc(var(--x) - var(--cursor-width) / 2);
+    --cursor-diameter: 80px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    translate: calc(var(--mx) - var(--cursor-diameter) / 2)
+      calc(var(--my) - var(--cursor-diameter) / 2);
     border-radius: 50%;
-    height: var(--cursor-height);
-    width: var(--cursor-width);
+    width: var(--cursor-diameter);
+    aspect-ratio: 1/1;
     pointer-events: none;
     display: grid;
     opacity: 0;
@@ -109,8 +109,8 @@
     grid-row: 1;
     grid-column: 1;
     position: relative;
-    width: var(--cursor-width);
-    height: var(--cursor-height);
+    width: var(--cursor-diameter);
+    height: var(--cursor-diameter);
     transform-origin: 50% 50%;
     border-radius: 50%;
     background: var(--global-accent-color);

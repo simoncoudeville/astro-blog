@@ -1,15 +1,15 @@
 <script>
   import { round } from "../../../scripts/round";
   import Reset from "../Components/Reset.svelte";
-  import IconMinCircle from "../../Icons/IconMinCircle.svelte";
-  import IconPlusCircle from "../../Icons/IconPlusCircle.svelte";
+  // import IconMinCircle from "../../Icons/IconMinCircle.svelte";
+  // import IconPlusCircle from "../../Icons/IconPlusCircle.svelte";
   import IconPlus from "../../Icons/IconPlus.svelte";
   import IconMin from "../../Icons/IconMin.svelte";
 
   let zoomLevel = 100;
   let zoomlevels = [
-    25, 33, 50, 67, 75, 80, 90, 100, 110, 125, 133, 140, 150, 175, 200, 250,
-    300, 400, 500,
+    25, 33, 50, 67, 75, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180,
+    190, 200, 250, 300, 400, 500,
   ];
   let windowWidth = 1680;
   let maxWindowWidth = 1920;

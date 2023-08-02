@@ -36,23 +36,22 @@ That’s all the JavaScript we need to let the custom cursor follow the mouse. W
 
 ```css
 .cursor {
-  --cursor-width: 20px;
-  --cursor-height: 20px;
-  width: var(--cursor-width);
-  height: var(--cursor-height);
-  position: absolute;
+  --cursor-diameter: 20px;
+  width: var(--cursor-diameter);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: indigo;
+  position: fixed;
   /* position the cursor in the middle of the mouse with top and left */
   top: calc(var(--my) - var(--cursor-height) / 2);
-  left: calc(var(--mx) - var(--cursor-width) / 2);
+  left: calc(var(--mx) - var(--cursor-diameter) / 2);
   /* or with translate */
-  translate: calc(var(--mx) - var(--cursor-width) / 2) calc(
-      var(--my) - var(--cursor-height) / 2
+  translate: calc(var(--mx) - var(--cursor-diameter) / 2) calc(
+      var(--my) - var(--cursor-diameter) / 2
     );
-  background-color: indigo;
-  border-radius: 50%;
+  will-change: scale, opacity;
   transition: 0.25s ease;
   transition-property: scale, opacity;
-  will-change: scale, opacity;
   pointer-events: none;
 }
 ```
@@ -71,9 +70,13 @@ body:has(:is(a:active, button:active)) .cursor {
 }
 ```
 
+Svelte solution
+
 import CursorBasic from "../../components/Demos/Cursor/CursorBasic.svelte";
 
 <CursorBasic client:idle />
+
+javascript solution
 
 The cursor is a simple div with a fixed width and height. The position is calculated using CSS custom properties. The `--x` and `--y` properties are set using JavaScript. The `:has` pseudo-class is used to check if the cursor is hovering over an `a` element. If it is, the cursor will grow and change color.
 

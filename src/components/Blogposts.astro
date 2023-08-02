@@ -40,3 +40,66 @@ const numPosts = allPosts.length;
     ))
   }
 </ol>
+
+<style>
+  .postlist {
+    --postlist-whitespace: var(--global-whitespace-xs);
+    --postlist-inline-whitespace: var(--global-whitespace-s);
+  }
+
+  .postlist__link {
+    --link-color: var(--global-text-color);
+    display: flex;
+    gap: 0 var(--postlist-inline-whitespace);
+    flex-direction: column-reverse;
+    /* padding: calc(var(--postlist-whitespace) / 2) calc(var(--postlist-inline-whitespace) / 2); */
+    /* padding: calc(var(--postlist-whitespace) / 2) 0; */
+    /* margin: calc(var(--postlist-whitespace) / -2) calc(var(--postlist-inline-whitespace) / -2); */
+    /* margin: calc(var(--postlist-whitespace) / -2) 0; */
+    text-decoration: none;
+    border-radius: var(--global-borderRadius-lg);
+  }
+
+  .postlist__date {
+    flex-shrink: 0;
+    justify-self: flex-end;
+    text-decoration: none;
+  }
+
+  /* @media (min-width: 30em) {
+    .postlist__link {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .postlist__link::after {
+      display: block;
+      content: "";
+      height: 1px;
+      background-color: var(--global-borderColor);
+      flex-grow: 1;
+      order: 2;
+    }
+
+    .postlist__date {
+      order: 3;
+    }
+  } */
+
+  /* .postlist__link--active,
+.postlist__link--active:hover {
+    padding: calc(var(--postlist-whitespace) / 2) calc(var(--postlist-inline-whitespace) / 2);
+    color: var(--global-text-color);
+    text-decoration: none;
+    background-color: var(--global-foregroundColor);
+} */
+
+  .postlist__link--active:any-link,
+  .postlist__link:hover {
+    /* color: var(--global-text-color); */
+    /* text-decoration: none; */
+    /* color: var(--global-accent-color) */
+    /* background-color: var(--global-foregroundColor); */
+    color: var(--global-meta-color);
+  }
+</style>
