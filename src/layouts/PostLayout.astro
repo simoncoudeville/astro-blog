@@ -1,108 +1,38 @@
 ---
-import "../styles/global.css";
-import type { CollectionEntry } from "astro:content";
-type Props = CollectionEntry<"blog">["data"];
+// import "../styles/global.css";
+import BaseLayout from "./BaseLayout.astro";
 import Blogposts from "../components/Blogposts.astro";
 import Header from "../components/Header.astro";
 import About from "../components/About.astro";
-import Footer from "../components/Footer.astro";
-import { SITE_ATHOUR } from "../config";
-const { title, description, pubDate, seed, slug, titleWidth } = Astro.props;
-
-const flecksWorkletURL = new URL("/src/scripts/flecks.js", Astro.url);
-const powderedGradientWorkletURL = new URL(
-  "/src/scripts/powdered-gradient.js",
-  Astro.url
-);
-const staticGradientWorkletURL = new URL(
-  "/src/scripts/static-gradient.js",
-  Astro.url
-);
-const cornerGradientWorkletURL = new URL(
-  "/src/scripts/corner-gradient.js",
-  Astro.url
-);
-const customPaintWorkletURL = new URL("/src/scripts/paint.js", Astro.url);
-const customLinesWorkletURL = new URL("/src/scripts/lines.js", Astro.url);
-const customCurvesWorkletURL = new URL("/src/scripts/curves.js", Astro.url);
-const customCurves2WorkletURL = new URL("/src/scripts/curves2.js", Astro.url);
-const voronoiPatternWorkletURL = new URL(
-  "https://codepen.io/georgedoescode/pen/zYdjBVg.js",
-  Astro.url
-);
+import type { CollectionEntry } from "astro:content";
+type Props = CollectionEntry<"blog">["data"];
+const { title, description, pubDate, titleWidth } = Astro.props;
 ---
 
-<style define:vars={{ title, seed, titleWidth }}></style>
-<script
-  define:vars={{
-    flecksWorkletURL,
-    powderedGradientWorkletURL,
-    staticGradientWorkletURL,
-    cornerGradientWorkletURL,
-    customPaintWorkletURL,
-    customLinesWorkletURL,
-    customCurvesWorkletURL,
-    customCurves2WorkletURL,
-    voronoiPatternWorkletURL,
-  }}
->
-  if ("paintWorklet" in CSS) {
-    CSS.paintWorklet.addModule(flecksWorkletURL);
-    CSS.paintWorklet.addModule(powderedGradientWorkletURL);
-    CSS.paintWorklet.addModule(staticGradientWorkletURL);
-    CSS.paintWorklet.addModule(cornerGradientWorkletURL);
-    CSS.paintWorklet.addModule(customPaintWorkletURL);
-    CSS.paintWorklet.addModule(customCurvesWorkletURL);
-    CSS.paintWorklet.addModule(customCurves2WorkletURL);
-    CSS.paintWorklet.addModule(voronoiPatternWorkletURL);
+<BaseLayout title={title} description={description}>
+  <Header headerDate={pubDate} headerTitle={title} />
+  <article class="row pt-clear mt-clear">
+    <div class="container flow">
+      <header class="article-header">
+        <!-- <Doodle /> -->
+        <h1 class="article-title js-article-title">{title}</h1>
+      </header>
+      <slot />
+    </div>
+  </article>
+  <section class="row">
+    <div class="container flow">
+      <About />
+    </div>
+  </section>
+  <section class="row">
+    <div class="container flow">
+      <Blogposts currentTitle={title} />
+    </div>
+  </section>
+</BaseLayout>
+<style define:vars={{ titleWidth }}>
+  h1 {
+    max-width: var(--title-width);
   }
-</script>
-
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={description} />
-    <meta
-      property="og:image"
-      content={slug !== undefined
-        ? `/assets/blog/${slug}.png`
-        : `/assets/fallback-image.png`}
-    />
-    <meta
-      property="twitter:image"
-      content={slug !== undefined
-        ? `/assets/your-posts-folder/${slug}.png`
-        : `/assets/fallback-image.png`}
-    />
-    <title>{title} - {SITE_ATHOUR}</title>
-  </head>
-  <body>
-    <Header headerDate={pubDate} headerTitle={title} />
-    <article class="row pt-clear mt-clear">
-      <div class="container flow">
-        <header class="article-header">
-          <!-- <Doodle /> -->
-          <h1 class="article-title js-article-title">{title}</h1>
-        </header>
-        <slot />
-      </div>
-    </article>
-    <section class="row">
-      <div class="container flow">
-        <About />
-      </div>
-    </section>
-    <section class="row">
-      <div class="container flow">
-        <Blogposts currentTitle={title} />
-      </div>
-    </section>
-    <Footer />
-    <script>
-      import "../scripts/main.js";
-    </script>
-  </body>
-</html>
+</style>

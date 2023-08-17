@@ -1,5 +1,5 @@
 ---
-title: "Custom cursor hover effects with :has"
+title: "Custom cursor interactions with :has"
 slug: custom-cursor-hover-effects-with-has
 description: "This post will show up on its own!"
 pubDate: 2023-01-31
@@ -27,8 +27,8 @@ The javascript is pretty simple. We just need to get the mouse position and appl
 
 ```javascript
 document.addEventListener("mousemove", (e) => {
-  document.documentElement.style.setProperty("--mx", e.x + "px");
-  document.documentElement.style.setProperty("--my", e.y + "px");
+  document.documentElement.style.setProperty("--mx", e.clientX + "px");
+  document.documentElement.style.setProperty("--my", e.clientY + "px");
 });
 ```
 

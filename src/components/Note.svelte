@@ -45,9 +45,9 @@
     font-weight: normal;
   }
 
-  @media (prefers-color-scheme: dark) {
+  /* @media (prefers-color-scheme: dark) {
     .note {
       --note-title-color: var(--global-color-violet-400);
     }
-  }
+  } */
 </style>

@@ -1,10 +1,13 @@
 ---
-import { getEntryBySlug } from "astro:content";
-const entry = await getEntryBySlug("blog", "hello-world");
-const { Content } = await entry.render();
-import PostLayout from "../layouts/PostLayout.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Blogposts from "../components/Blogposts.astro";
 ---
 
-<PostLayout {...entry.data}>
-  <Content />
-</PostLayout>
+<BaseLayout>
+  <p>Test</p>
+  <section class="row">
+    <div class="container flow">
+      <Blogposts />
+    </div>
+  </section>
+</BaseLayout>
