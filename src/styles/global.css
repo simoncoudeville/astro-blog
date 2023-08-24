@@ -196,18 +196,28 @@ Variables
     --global-selection-backgroundColor: var(--global-accent-color);
     --global-selection-color: var(--global-color-neutral-025);
 
-    /* --global-font-family-alpha: "Tiempos Text", sans-serif; */
     --global-font-family-alpha: "Graphik Web", sans-serif;
+    /* --global-font-family-alpha: "Graphik", sans-serif; */
+    /* --global-font-family-alpha: "Haskoy", sans-serif; */
     /* --global-font-family-alpha: "Def Sans", sans-serif; */
+    /* --global-font-family-alpha: "Instrument Sans", sans-serif; */
+    /* --global-font-family-alpha: "Suisse Int'l Trial", sans-serif; */
+    /* --global-font-family-alpha: "Suisse Int'l", sans-serif; */
+    /* --global-font-family-alpha: "Aspekta", sans-serif; */
+    /* --global-font-family-alpha: "Allrounder Grotesk", sans-serif; */
     --global-font-family-title: var(--global-font-family-alpha);
+    /* --global-font-family-title: "Suisse Works"; */
     /* --global-font-family-title: "Graphik Compact", sans-serif; */
     --global-font-family-title: "Tiempos Headline", serif;
+    /* --global-font-family-title: "Tiempos Text", sans-serif; */
     /* --global-font-family-code: "IA Writer Duo Web", "SFMono-Regular", ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace; */
     /* --global-font-family-code: "JetBrains Mono", "SFMono-Regular", ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace; */
     /* --global-font-family-code: "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace; */
     /* mono font stack */
     --global-font-family-code: "SFMono-Regular", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
-    /* --global-font-weight-title: 700; */
+    --global-font-weight-title: 400;
+    --global-font-weight-title: 500;
+    /* --global-font-weight-title: 600; */
     --global-font-weight-title: 700;
 
     --root-font-size: 19;
@@ -328,14 +338,14 @@ html {
 } */
 
 body {
-    padding: var(--global-whitespace) 0;
+    padding: 0 0 var(--global-whitespace) 0;
 }
 
-@media (min-width: 46.5em) {
+/* @media (min-width: 46.5em) {
     body {
         padding-top: var(--global-whitespace-4xl);
     }
-}
+} */
 
 ::selection {
     --selection-color: var(--global-selection-color);
@@ -631,22 +641,22 @@ h6 {
 }
 
 h1 {
-    --fs: var(--ms5);
-    /* --fs: var(--ms3);
-    --fs: var(--ms4); */
+    /* --fs: var(--ms5); */
+    /* --fs: var(--ms3); */
+    --fs: var(--ms4);
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
     line-height: calc(var(--root-baseline) * var(--baseline-multiplier, 8) / var(--fs));
     font-family: var(--global-font-family-title);
     font-weight: var(--global-font-weight-title);
 }
 
-@media (min-width: 46.5em) {
+/* @media (min-width: 46.5em) {
     h1 {
         --fs: var(--ms6);
         font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
-        line-height: calc(var(--root-baseline) * var(--baseline-multiplier, 9) / var(--fs));
+        line-height: calc(var(--root-baseline) * var(--baseline-multiplier, 10) / var(--fs));
     }
-}
+} */
 
 /*
 @media (min-width: 46.5em) {
@@ -660,7 +670,7 @@ h1 {
 
 
 h2 {
-    --fs: 25;
+    /* --fs: 25; */
     --fs: var(--ms2);
     font-family: var(--global-font-family-title);
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
@@ -670,9 +680,11 @@ h2 {
 
 h3 {
     font-family: var(--global-font-family-title);
+    font-family: var(--global-font-family-alpha);
     font-size: 1rem;
     line-height: calc(var(--global-baseline) * 6);
     font-weight: var(--global-font-weight-title);
+    font-weight: 600;
 }
 
 
@@ -779,14 +791,14 @@ Objects
 }
 
 .row--page-header {
-    --row-page-header-background-color: hsla(var(--global-neutral-hue), var(--global-neutral-saturation), var(--row-page-header-background-color-lightness, 100%), var(--row-page-header-background-color-opacity, .9));
+    --row-page-header-background-color: hsla(var(--global-neutral-hue), var(--row-page-header-background-color-saturation, var(--global-neutral-saturation)), var(--row-page-header-background-color-lightness, 100%), var(--row-page-header-background-color-opacity, .9));
     --row-page-header-border-color: hsla(var(--global-neutral-hue), var(--global-neutral-saturation), var(--row-page-header-border-color-lightness, 10%), var(--row-page-header-border-color-opacity, .1));
-    /* position: sticky; */
+    position: sticky;
     top: 0;
     z-index: 1;
-    /* background-color: var(--row-page-header-background-color);
-    backdrop-filter: blur(5px); */
-    /* padding: var(--global-whitespace); */
+    background-color: var(--row-page-header-background-color);
+    backdrop-filter: blur(5px);
+    padding: var(--global-whitespace);
     will-change: background-color;
     transition: background-color .1s ease;
 }
@@ -816,13 +828,14 @@ Objects
 /* .row--page-footer {
     padding-top: calc(var(--global-whitespace-4xl) * 2);
 } */
-/*
+
 @media (prefers-color-scheme: dark) {
     .row--page-header {
+        --row-page-header-background-color-saturation: 15%;
         --row-page-header-background-color-lightness: 10%;
         --row-page-header-border-color-lightness: 95%;
     }
-} */
+}
 
 .container {
     /* max-width: 40rem; */
@@ -894,14 +907,42 @@ Components
 
 .page-header {
     position: relative;
-    /* display: grid; */
+    display: grid;
     gap: var(--global-whitespace);
     grid-template-columns: max-content 1fr;
+    grid-template-rows: auto auto;
     /* display: flex;
     align-items: center; */
     /* text-align: center; */
-    gap: var(--global-whitespace-xs);
+    gap: 0 var(--global-whitespace-xs);
 }
+
+.page-header__avatar {
+    position: relative;
+    width: var(--global-whitespace-4xl);
+    /* left: calc(var(--global-whitespace-4xl) * -1); */
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    overflow: hidden;
+    /* border: var(--global-borderWidth) solid var(--global-borderColor); */
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    display: none;
+}
+
+.page-header .logo {
+    grid-column: 1;
+    grid-row: 1;
+    /* text-align: right; */
+    /* --fs: var(--ms-2);
+    font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
+    line-height: calc(var(--global-baseline) * 5); */
+}
+
+/* .page-header__meta {
+    grid-column: 1;
+    grid-row: 2
+} */
 
 .page-header-observer {
     position: absolute;
@@ -922,7 +963,7 @@ Components
     display: block;
     grid-row: 1;
     grid-column: 2;
-    /* text-align: right; */
+    text-align: right;
     transition: all .2s ease;
     transition-property: transform, opacity;
     white-space: nowrap;
@@ -934,7 +975,7 @@ Components
 }
 
 .page-header__title {
-    display: none;
+    /* display: none; */
     transform: translateY(100%);
     opacity: 0;
 }
@@ -988,15 +1029,18 @@ body:has(.title-collides) .page-header__date {
 
 .article-header {
     display: grid;
-    /* place-items: center;
-    text-align: center; */
+    /* place-items: center; */
+    /* text-align: center; */
+    /* place-items: end; */
     position: relative;
-    /* min-height: calc(50vh - var(--global-whitespace) * 6); */
+    min-height: calc(50vh - var(--global-whitespace) * 6);
     /* min-height: 50vh; */
-    margin: calc(var(--global-whitespace-4xl) * 2) 0 var(--global-whitespace-4xl) 0;
+    /* margin: calc(var(--global-whitespace-4xl) * 2) 0 var(--global-whitespace-4xl) 0; */
+    margin: var(--global-whitespace-4xl) 0 var(--global-whitespace-4xl) 0;
     /* margin: var(--global-whitespace-4xl) 0; */
     /* padding: var(--global-whitespace); */
     border-radius: var(--global-borderRadius-lg);
+    /* margin-bottom: var(--global-whitespace-4xl); */
     /* overflow: hidden; */
     /* background-color: var(--article-header-backgroundColor);
     color: var(--article-header-color); */

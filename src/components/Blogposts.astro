@@ -66,25 +66,31 @@ const numPosts = allPosts.length;
     text-decoration: none;
   }
 
-  /* @media (min-width: 30em) {
+  @media (min-width: 30em) {
     .postlist__link {
       flex-direction: row;
       align-items: center;
+      justify-content: space-between;
     }
 
-    .postlist__link::after {
+    /* .postlist__link::after {
       display: block;
       content: "";
       height: 1px;
       background-color: var(--global-borderColor);
       flex-grow: 1;
       order: 2;
-    }
+    } */
 
     .postlist__date {
       order: 3;
     }
-  } */
+  }
+
+  .postlist__item + .postlist__item {
+    padding-top: var(--global-whitespace-xs);
+    border-top: 1px solid var(--global-borderColor);
+  }
 
   /* .postlist__link--active,
 .postlist__link--active:hover {
