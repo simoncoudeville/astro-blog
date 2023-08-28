@@ -6,17 +6,17 @@ const { headerDate, headerTitle } = Astro.props;
 <header class="row row--page-header js-page-header">
   <div class="container">
     <div class="page-header">
-      <img
+      <!-- <img
         class="page-header__avatar"
         src="https://unavatar.io/linusrogge"
         alt=""
-      />
+      /> -->
       <h2 class="logo">
         <a class="logo__link" href="/">{SITE_ATHOUR}</a>
       </h2>
-      <span class="page-header__title color-meta">{headerTitle}</span>
+      <!-- <span class="page-header__title color-meta text-date">{headerTitle}</span> -->
       <time
-        class="page-header__date page-header__meta color-meta text-date"
+        class="page-header__date page-header__meta text-date color-meta"
         datetime={headerDate}
       >
         {formatDate(headerDate)}
@@ -25,7 +25,7 @@ const { headerDate, headerTitle } = Astro.props;
   </div>
 </header>
 
-<script>
+<!-- <script>
   // add an element .page-header-observer.page-header-observer before .js-page-header if .js-page-header exists
   if (document.querySelector(".js-page-header")) {
     let pageHeaderObserver = document.createElement("div");
@@ -80,4 +80,4 @@ const { headerDate, headerTitle } = Astro.props;
       "0px"
     );
   }
-</script>
+</script> -->

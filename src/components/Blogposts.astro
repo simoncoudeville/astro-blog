@@ -1,5 +1,7 @@
 ---
 import formatDate from "../config";
+import dayjs from "dayjs";
+
 import { getCollection } from "astro:content";
 const allPosts = (
   await getCollection("blog", ({ data }) => {
@@ -16,7 +18,7 @@ const numPosts = allPosts.length;
 <h2>
   {numPosts} posts so far
 </h2>
-<ol reversed class="list-reset postlist flow-xs">
+<ol reversed class="list-reset postlist flow">
   {
     allPosts.map((post) => (
       <li class="postlist__item">
@@ -33,6 +35,7 @@ const numPosts = allPosts.length;
             datetime={post.data.pubDate}
           >
             {formatDate(post.data.pubDate)}
+            <!--{dayjs(post.data.pubDate).format("MM.DD.YYYY")}-->
           </time>
           {post.data.title}
         </a>
@@ -51,7 +54,9 @@ const numPosts = allPosts.length;
     --link-color: var(--global-text-color);
     display: flex;
     gap: 0 var(--postlist-inline-whitespace);
+    /* flex-direction: row; */
     flex-direction: column-reverse;
+    /* flex-direction: column; */
     /* padding: calc(var(--postlist-whitespace) / 2) calc(var(--postlist-inline-whitespace) / 2); */
     /* padding: calc(var(--postlist-whitespace) / 2) 0; */
     /* margin: calc(var(--postlist-whitespace) / -2) calc(var(--postlist-inline-whitespace) / -2); */
@@ -89,6 +94,7 @@ const numPosts = allPosts.length;
 
   .postlist__item + .postlist__item {
     padding-top: var(--global-whitespace-xs);
+    padding-top: var(--global-whitespace);
     border-top: 1px solid var(--global-borderColor);
   }
 

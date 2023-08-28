@@ -1,0 +1,38 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE_ATHOUR } from "../../config";
+---
+
+<BaseLayout>
+  <header class="row row--page-header js-page-header">
+    <div class="container">
+      <div class="page-header">
+        <h2 class="logo">
+          <a class="logo__link" href="/">{SITE_ATHOUR}</a>
+        </h2>
+        <p class="page-header__meta color-meta">Colophon</p>
+      </div>
+    </div>
+  </header>
+  <div class="row pt-clear mt-clear">
+    <div class="container flow">
+      <header class="article-header">
+        <h1 class="article-title js-article-title">
+          Everything about this website
+        </h1>
+      </header>
+      <div class="content flow">
+        <!-- <p>Last updated Aug 11, 2023</p> -->
+        <h2>Technical details</h2>
+        <h2>Typography</h2>
+        <h2>Inspiration</h2>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  h1 {
+    --titleWidth: 15;
+  }
+</style>

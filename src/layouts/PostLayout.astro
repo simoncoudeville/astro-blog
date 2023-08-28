@@ -17,7 +17,9 @@ const { title, description, pubDate, titleWidth } = Astro.props;
         <!-- <Doodle /> -->
         <h1 class="article-title js-article-title">{title}</h1>
       </header>
-      <slot />
+      <div class="content flow">
+        <slot />
+      </div>
     </div>
   </article>
   <section class="row">
