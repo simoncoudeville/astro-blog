@@ -3,7 +3,7 @@
   import IconInfo from "./Icons/IconInfo.svelte";
 </script>
 
-<aside class="note flow-xs">
+<aside class="note readable flow-xs">
   <header class="note__header">
     <h2 class="note__title">{title}</h2>
     <!-- <IconInfo /> -->

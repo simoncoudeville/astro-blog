@@ -149,7 +149,10 @@
     text-decoration: none;
     text-decoration-color: inherit;
     transition: 0.2s ease;
-    padding: var(--global-whitespace-4xs) var(--global-whitespace-2xs);
+    /* padding: var(--global-whitespace-4xs) var(--global-whitespace-2xs)
+      calc(var(--global-whitespace-4xs) + 2px); */
+    padding: calc(var(--global-whitespace-4xs) - 1px)
+      var(--global-whitespace-2xs) calc(var(--global-whitespace-4xs) + 1px);
     /* background-color: var(--global-foregroundColor2); */
     border: 1px solid var(--global-borderColor);
     border-radius: var(--global-borderRadius);

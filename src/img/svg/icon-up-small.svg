@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clip-icon-up);
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #707070;
+        stroke-linecap: round;
+        stroke-width: 1.5px;
+      }
+    </style>
+    <clipPath id="clip-icon-up">
+      <rect width="20" height="20"/>
+    </clipPath>
+  </defs>
+  <g id="icon-up" class="cls-1">
+    <path id="Path_7" data-name="Path 7" class="cls-2" d="M0,13V1" transform="translate(10 3)"/>
+    <path id="Path_10" data-name="Path 10" class="cls-2" d="M0,4,5-1" transform="translate(5 5)"/>
+    <path id="Path_9" data-name="Path 9" class="cls-2" d="M4,4-1-1" transform="translate(11 5)"/>
+  </g>
+</svg>

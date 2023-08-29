@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clip-icon-up);
+      }
+
+      .cls-2, .cls-3 {
+        fill: none;
+        stroke: #707070;
+        stroke-linecap: round;
+        stroke-width: 1.5px;
+      }
+
+      .cls-2 {
+        stroke-linejoin: round;
+      }
+    </style>
+    <clipPath id="clip-icon-up">
+      <rect width="20" height="20"/>
+    </clipPath>
+  </defs>
+  <g id="icon-up" class="cls-1">
+    <line id="Line_3" data-name="Line 3" class="cls-2" y1="18" transform="translate(10 1)"/>
+    <line id="Line_5" data-name="Line 5" class="cls-3" y1="7" x2="7" transform="translate(3 1)"/>
+    <line id="Line_6" data-name="Line 6" class="cls-3" x1="7" y1="7" transform="translate(10 1)"/>
+  </g>
+</svg>
