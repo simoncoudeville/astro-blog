@@ -777,7 +777,7 @@ Flow Content
     margin-bottom: calc(var(--global-whitespace) + var(--global-whitespace-3xs));
 }
 
-.content {
+.readable {
     /* font-feature-settings: "calt"; */
     font-feature-settings: "ss02";
 }
