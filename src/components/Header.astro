@@ -1,9 +1,13 @@
 ---
 import { SITE_ATHOUR, formatDate } from "../config";
+import IconUpSmall from "./Icons/IconUpSmall.astro";
 const { headerDate, headerTitle } = Astro.props;
 ---
 
 <header class="row row--page-header js-page-header">
+  <!-- <a class="link-icon link-meta" href="#">
+    <IconUpSmall />
+  </a> -->
   <div class="container">
     <div class="page-header readable">
       <!-- <img
@@ -11,12 +15,15 @@ const { headerDate, headerTitle } = Astro.props;
         src="https://unavatar.io/linusrogge"
         alt=""
       /> -->
-      <h2 class="logo text-s">
+      <h2 class="logo">
         <a class="logo__link" href="/">{SITE_ATHOUR}</a>
       </h2>
+      <!-- <a class="link-icon link-meta" href="#">
+        <IconUpSmall />
+      </a> -->
       <!-- <span class="page-header__title color-meta text-date">{headerTitle}</span> -->
       <time
-        class="page-header__date page-header__meta text-date text-s color-meta"
+        class="page-header__date page-header__meta text-date color-meta"
         datetime={headerDate}
       >
         {formatDate(headerDate)}
@@ -81,3 +88,9 @@ const { headerDate, headerTitle } = Astro.props;
     );
   }
 </script> -->
+
+<style>
+  .icon {
+    rotate: -90deg;
+  }
+</style>

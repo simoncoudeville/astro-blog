@@ -1,5 +1,6 @@
 ---
 // import "../styles/global.css";
+import { SITE_ATHOUR, formatDate } from "../config";
 import BaseLayout from "./BaseLayout.astro";
 import Blogposts from "../components/Blogposts.astro";
 import Header from "../components/Header.astro";
@@ -9,16 +10,35 @@ type Props = CollectionEntry<"blog">["data"];
 const { title, description, pubDate, titleWidth } = Astro.props;
 ---
 
+<style define:vars={{ titleWidth }}>
+  h1 {
+    max-width: calc(var(--titleWidth, 20) * 1ch);
+  }
+
+  .end {
+    margin-top: var(--global-whitespace-4xl);
+  }
+
+  .start {
+    margin-bottom: var(--global-whitespace-4xl);
+  }
+</style>
 <BaseLayout title={title} description={description}>
-  <Header headerDate={pubDate} headerTitle={title} />
+  <!-- <Header headerDate={pubDate} headerTitle={title} /> -->
   <article class="row pt-clear mt-clear">
     <div class="container flow">
       <header class="article-header">
-        <!-- <Doodle /> -->
         <h1 class="article-title js-article-title">{title}</h1>
       </header>
       <div class="readable flow">
+        <hr class="start" />
         <slot />
+        <hr class="end" />
+        <p class="color-meta text-s">
+          Published <time datetime={pubDate} class="text-date color-meta">
+            {formatDate(pubDate)}
+          </time>
+        </p>
       </div>
     </div>
   </article>
@@ -33,8 +53,3 @@ const { title, description, pubDate, titleWidth } = Astro.props;
     </div>
   </section>
 </BaseLayout>
-<style define:vars={{ titleWidth }}>
-  h1 {
-    max-width: var(--title-width);
-  }
-</style>
