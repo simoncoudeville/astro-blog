@@ -71,6 +71,17 @@ Variables
     --global-color-purple-700: hsl(var(--global-color-purple-hue), 70%, 54%);
     --global-color-purple-800: hsl(var(--global-color-purple-hue), 65%, 46%);
     --global-color-purple-900: hsl(var(--global-color-purple-hue), 65%, 40%);
+    --global-color-purple-hue: 290deg;
+    --global-color-purple-50: oklch(95% 0.017 var(--global-color-purple-hue));
+    --global-color-purple-100: oklch(89% 0.044 var(--global-color-purple-hue));
+    --global-color-purple-200: oklch(83% 0.076 var(--global-color-purple-hue));
+    --global-color-purple-300: oklch(76.5% 0.114 var(--global-color-purple-hue));
+    --global-color-purple-400: oklch(70.5% 0.147 var(--global-color-purple-hue));
+    --global-color-purple-500: oklch(64.5% 0.182 var(--global-color-purple-hue));
+    --global-color-purple-600: oklch(58.5% 0.217 var(--global-color-purple-hue));
+    --global-color-purple-700: oklch(52% 0.258 var(--global-color-purple-hue));
+    --global-color-purple-800: oklch(46% 0.23 var(--global-color-purple-hue));
+    --global-color-purple-900: oklch(39.96% 0.1998 var(--global-color-purple-hue));
 
     --global-color-violet-hue: 240deg;
     --global-color-violet-50: hsl(var(--global-color-violet-hue), 55%, 97.5%);
@@ -83,6 +94,17 @@ Variables
     --global-color-violet-700: hsl(var(--global-color-violet-hue), 70%, 55%);
     --global-color-violet-800: hsl(var(--global-color-violet-hue), 65%, 49%);
     --global-color-violet-900: hsl(var(--global-color-violet-hue), 65%, 25%);
+    --global-color-violet-hue: 272deg;
+    --global-color-violet-50: oklch(95% 0.017 var(--global-color-violet-hue));
+    --global-color-violet-100: oklch(89% 0.044 var(--global-color-violet-hue));
+    --global-color-violet-200: oklch(83% 0.076 var(--global-color-violet-hue));
+    --global-color-violet-300: oklch(76.5% 0.114 var(--global-color-violet-hue));
+    --global-color-violet-400: oklch(70.5% 0.147 var(--global-color-violet-hue));
+    --global-color-violet-500: oklch(64.5% 0.182 var(--global-color-violet-hue));
+    --global-color-violet-600: oklch(58.5% 0.217 var(--global-color-violet-hue));
+    --global-color-violet-700: oklch(52% 0.258 var(--global-color-violet-hue));
+    --global-color-violet-800: oklch(46% 0.23 var(--global-color-violet-hue));
+    --global-color-violet-900: oklch(39.96% 0.1998 var(--global-color-violet-hue));
 
     --global-color-indigo-hue: 220;
     --global-color-indigo-50: hsl(var(--global-color-indigo-hue), 55%, 97.5%);
@@ -95,6 +117,17 @@ Variables
     --global-color-indigo-700: hsl(var(--global-color-indigo-hue), 65%, 42%);
     --global-color-indigo-800: hsl(var(--global-color-indigo-hue), 65%, 35%);
     --global-color-indigo-900: hsl(var(--global-color-indigo-hue), 73%, 22%);
+    --global-color-indigo-hue: 262deg;
+    --global-color-indigo-50: oklch(95% 0.017 var(--global-color-indigo-hue));
+    --global-color-indigo-100: oklch(89% 0.044 var(--global-color-indigo-hue));
+    --global-color-indigo-200: oklch(83% 0.076 var(--global-color-indigo-hue));
+    --global-color-indigo-300: oklch(76.5% 0.114 var(--global-color-indigo-hue));
+    --global-color-indigo-400: oklch(70.5% 0.147 var(--global-color-indigo-hue));
+    --global-color-indigo-500: oklch(64.5% 0.182 var(--global-color-indigo-hue));
+    --global-color-indigo-600: oklch(58.5% 0.217 var(--global-color-indigo-hue));
+    --global-color-indigo-700: oklch(52% 0.258 var(--global-color-indigo-hue));
+    --global-color-indigo-800: oklch(46% 0.23 var(--global-color-indigo-hue));
+    --global-color-indigo-900: oklch(39.96% 0.1998 var(--global-color-indigo-hue));
 
     --global-color-blue-hue: 200deg;
     --global-color-blue-50: hsl(var(--global-color-blue-hue), 55%, 97.5%);
@@ -107,6 +140,17 @@ Variables
     --global-color-blue-700: hsl(var(--global-color-blue-hue), 75%, 30%);
     --global-color-blue-800: hsl(var(--global-color-blue-hue), 70%, 25%);
     --global-color-blue-900: hsl(var(--global-color-blue-hue), 65%, 20%);
+    --global-color-blue-hue: 234deg;
+    --global-color-blue-50: oklch(95% 0.017 var(--global-color-blue-hue));
+    --global-color-blue-100: oklch(89% 0.044 var(--global-color-blue-hue));
+    --global-color-blue-200: oklch(83% 0.076 var(--global-color-blue-hue));
+    --global-color-blue-300: oklch(76.5% 0.114 var(--global-color-blue-hue));
+    --global-color-blue-400: oklch(70.5% 0.147 var(--global-color-blue-hue));
+    --global-color-blue-500: oklch(66% 0.18 var(--global-color-blue-hue));
+    --global-color-blue-600: oklch(58.5% 0.217 var(--global-color-blue-hue));
+    --global-color-blue-700: oklch(48% 0.17 var(--global-color-blue-hue));
+    --global-color-blue-800: oklch(43% 0.16 var(--global-color-blue-hue));
+    --global-color-blue-900: oklch(38% 0.15 var(--global-color-blue-hue));
 
     --global-color-cyan-hue: 180deg;
     --global-color-cyan-50: hsl(var(--global-color-cyan-hue), 55%, 97.5%);
@@ -119,6 +163,17 @@ Variables
     --global-color-cyan-700: hsl(var(--global-color-cyan-hue), 70%, 23%);
     --global-color-cyan-800: hsl(var(--global-color-cyan-hue), 65%, 20%);
     --global-color-cyan-900: hsl(var(--global-color-cyan-hue), 65%, 15%);
+    --global-color-cyan-hue: 195deg;
+    --global-color-cyan-50: oklch(95% 0.017 var(--global-color-cyan-hue));
+    --global-color-cyan-100: oklch(89% 0.044 var(--global-color-cyan-hue));
+    --global-color-cyan-200: oklch(83% 0.076 var(--global-color-cyan-hue));
+    --global-color-cyan-300: oklch(76.5% 0.114 var(--global-color-cyan-hue));
+    --global-color-cyan-400: oklch(70.5% 0.147 var(--global-color-cyan-hue));
+    --global-color-cyan-500: oklch(64.5% 0.182 var(--global-color-cyan-hue));
+    --global-color-cyan-600: oklch(57% 0.13 var(--global-color-cyan-hue));
+    --global-color-cyan-700: oklch(48% 0.11 var(--global-color-cyan-hue));
+    --global-color-cyan-800: oklch(43% 0.1 var(--global-color-cyan-hue));
+    --global-color-cyan-900: oklch(38% 0.09 var(--global-color-cyan-hue));
 
     --global-color-teal-hue: 160deg;
     --global-color-teal-50: hsl(var(--global-color-teal-hue), 55%, 97.5%);
@@ -131,8 +186,19 @@ Variables
     --global-color-teal-700: hsl(var(--global-color-teal-hue), 70%, 24%);
     --global-color-teal-800: hsl(var(--global-color-teal-hue), 70%, 20%);
     --global-color-teal-900: hsl(var(--global-color-teal-hue), 65%, 15%);
+    --global-color-teal-hue: 166deg;
+    --global-color-teal-50: oklch(95% 0.017 var(--global-color-teal-hue));
+    --global-color-teal-100: oklch(89% 0.044 var(--global-color-teal-hue));
+    --global-color-teal-200: oklch(83% 0.076 var(--global-color-teal-hue));
+    --global-color-teal-300: oklch(76.5% 0.114 var(--global-color-teal-hue));
+    --global-color-teal-400: oklch(70.5% 0.147 var(--global-color-teal-hue));
+    --global-color-teal-500: oklch(64.5% 0.182 var(--global-color-teal-hue));
+    --global-color-teal-600: oklch(57% 0.17 var(--global-color-teal-hue));
+    --global-color-teal-700: oklch(48% 0.16 var(--global-color-teal-hue));
+    --global-color-teal-800: oklch(43% 0.14 var(--global-color-teal-hue));
+    --global-color-teal-900: oklch(38% 0.13 var(--global-color-teal-hue));
 
-    --global-neutral-hue: var(--global-color-violet-hue);
+    --global-neutral-hue: 240deg;
     --global-neutral-saturation: 5%;
 
     --global-color-neutral-025: hsl(var(--global-neutral-hue), var(--global-neutral-saturation), 98.5%);
@@ -160,7 +226,7 @@ Variables
     --global-foregroundColor: var(--global-color-neutral-030);
     --global-foregroundColor2: var(--global-color-neutral-050);
     --global-text-color: var(--global-color-neutral-800);
-    --global-accent-color: var(--global-color-violet-500);
+    --global-accent-color: var(--global-color-violet-600);
     --global-title-color: var(--global-color-neutral-900);
     --global-meta-color: var(--global-color-neutral-300);
     --global-muted-color: var(--global-color-neutral-500);
@@ -271,11 +337,11 @@ Variables
         --global-backgroundColor: var(--global-color-neutral-900);
         --global-foregroundColor: var(--global-color-neutral-800);
         --global-foregroundColor2: var(--global-color-neutral-675);
-        --global-accent-color: var(--global-color-violet-400);
+        --global-accent-color: var(--global-color-violet-500);
         --global-text-color: var(--global-color-neutral-050);
         --global-title-color: var(--global-color-neutral-025);
         --global-code-color: var(--global-color-neutral-100);
-        --global-borderColor: var(--global-color-neutral-650);
+        --global-borderColor: var(--global-color-neutral-700);
         --global-borderColor2: var(--global-color-neutral-600);
         --global-meta-color: var(--global-color-neutral-400);
         --global-muted-color: var(--global-color-neutral-200);
@@ -344,11 +410,11 @@ body {
     padding: var(--global-whitespace) 0;
 }
 
-@media (min-width: 46.5em) {
+/* @media (min-width: 46.5em) {
     body {
         padding: var(--global-whitespace-4xl) var(--global-whitespace);
     }
-}
+} */
 
 ::selection {
     --selection-color: var(--global-selection-color);
@@ -1120,7 +1186,7 @@ body:has(.title-collides) .article-title {
     /* grid-template-rows: auto auto; */
     display: flex;
     /* flex-direction: column; */
-    align-items: center;
+    /* align-items: center; */
     justify-content: space-between;
     /* display: flex;
     align-items: center; */
@@ -1128,7 +1194,7 @@ body:has(.title-collides) .article-title {
     gap: 0 var(--global-whitespace-xs);
     border-bottom: 1px solid var(--global-borderColor);
     padding-bottom: var(--global-whitespace);
-    padding-bottom: var(--global-whitespace-xs);
+    /* padding-bottom: var(--global-whitespace-xs); */
     /* margin-bottom: calc(var(--global-baseline) * 1); */
 }
 

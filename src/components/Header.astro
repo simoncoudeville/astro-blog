@@ -11,12 +11,12 @@ const { headerDate, headerTitle } = Astro.props;
         src="https://unavatar.io/linusrogge"
         alt=""
       /> -->
-      <h2 class="logo">
+      <h2 class="logo text-s">
         <a class="logo__link" href="/">{SITE_ATHOUR}</a>
       </h2>
       <!-- <span class="page-header__title color-meta text-date">{headerTitle}</span> -->
       <time
-        class="page-header__date page-header__meta text-date color-meta"
+        class="page-header__date page-header__meta text-date text-s color-meta"
         datetime={headerDate}
       >
         {formatDate(headerDate)}
