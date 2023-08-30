@@ -60,18 +60,6 @@ Variables
 */
 
 :root {
-    --global-color-pink-hue: 320deg;
-    --global-color-pink-50: hsl(var(--global-color-pink-hue), 55%, 97.5%);
-    --global-color-pink-100: hsl(var(--global-color-pink-hue), 55%, 95.5%);
-    --global-color-pink-200: hsl(var(--global-color-pink-hue), 65%, 90%);
-    --global-color-pink-300: hsl(var(--global-color-pink-hue), 70%, 82%);
-    --global-color-pink-400: hsl(var(--global-color-pink-hue), 70%, 70%);
-    --global-color-pink-500: hsl(var(--global-color-pink-hue), 70%, 60%);
-    --global-color-pink-600: hsl(var(--global-color-pink-hue), 70%, 52%);
-    --global-color-pink-700: hsl(var(--global-color-pink-hue), 70%, 42%);
-    --global-color-pink-800: hsl(var(--global-color-pink-hue), 70%, 35%);
-    --global-color-pink-900: hsl(var(--global-color-pink-hue), 65%, 30%);
-
     --global-color-purple-hue: 260deg;
     --global-color-purple-50: hsl(var(--global-color-purple-hue), 55%, 97.5%);
     --global-color-purple-100: hsl(var(--global-color-purple-hue), 55%, 96%);
@@ -176,7 +164,7 @@ Variables
     --global-title-color: var(--global-color-neutral-900);
     --global-meta-color: var(--global-color-neutral-300);
     --global-muted-color: var(--global-color-neutral-500);
-    --global-borderColor: var(--global-color-neutral-060);
+    --global-borderColor: var(--global-color-neutral-050);
     --global-borderColor2: var(--global-color-neutral-075);
     --global-code-color: var(--global-color-neutral-700);
     --global-code-background: var(--global-foregroundColor);
@@ -229,8 +217,8 @@ Variables
     --global-font-family-code: "SFMono-Regular", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
     --global-font-family-code: "Suisse Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
     --global-font-weight-title: 400;
-    --global-font-weight-title: 500;
-    /* --global-font-weight-title: 600; */
+    /* --global-font-weight-title: 500; */
+    --global-font-weight-title: 600;
     /* --global-font-weight-title: 700; */
 
     --root-font-size: 19;
@@ -790,10 +778,10 @@ Flow Content
     margin-bottom: calc(var(--global-whitespace) + var(--global-whitespace-3xs));
 }
 
-.readable {
-    /* font-feature-settings: "calt"; */
+/* .readable {
+    font-feature-settings: "calt";
     font-feature-settings: "ss02";
-}
+} */
 
 /*
 Objects
@@ -1130,7 +1118,7 @@ body:has(.title-collides) .article-title {
     /* gap: var(--global-whitespace); */
     /* grid-template-columns: max-content 1fr; */
     /* grid-template-rows: auto auto; */
-    /* display: flex; */
+    display: flex;
     /* flex-direction: column; */
     align-items: center;
     justify-content: space-between;
@@ -1138,8 +1126,9 @@ body:has(.title-collides) .article-title {
     align-items: center; */
     /* text-align: center; */
     gap: 0 var(--global-whitespace-xs);
-    /* border-bottom: 1px solid var(--global-borderColor);
-    padding-bottom: var(--global-whitespace); */
+    border-bottom: 1px solid var(--global-borderColor);
+    padding-bottom: var(--global-whitespace);
+    padding-bottom: var(--global-whitespace-xs);
     /* margin-bottom: calc(var(--global-baseline) * 1); */
 }
 
@@ -1635,7 +1624,7 @@ pre[class*="language-"] {
 
 .token.literal-property,
 .token.selector {
-    color: var(--token-selector-color, var(--global-color-purple-500));
+    color: var(--token-selector-color, var(--global-color-teal-500));
 }
 
 .token.boolean {

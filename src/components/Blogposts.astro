@@ -18,7 +18,7 @@ const numPosts = allPosts.length;
 <h2>
   {numPosts} posts so far
 </h2>
-<ol reversed class="list-reset postlist readable flow">
+<ol reversed class="list-reset postlist readable flow-xs">
   {
     allPosts.map((post) => (
       <li class="postlist__item">
@@ -72,11 +72,11 @@ const numPosts = allPosts.length;
   }
 
   @media (min-width: 30em) {
-    /* .postlist__link {
+    .postlist__link {
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
-    } */
+    }
 
     /* .postlist__link::after {
       display: block;
@@ -92,11 +92,11 @@ const numPosts = allPosts.length;
     }
   }
 
-  /* .postlist__item + .postlist__item {
+  .postlist__item + .postlist__item {
     padding-top: var(--global-whitespace-xs);
-    padding-top: var(--global-whitespace);
+    /* padding-top: var(--global-whitespace); */
     border-top: 1px solid var(--global-borderColor);
-  } */
+  }
 
   /* .postlist__link--active,
 .postlist__link--active:hover {
