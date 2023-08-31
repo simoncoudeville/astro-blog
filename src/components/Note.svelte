@@ -26,9 +26,9 @@
 
   .note__title,
   .note {
-    --fs: var(--ms-1);
+    --fs: var(--ms0);
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
-    line-height: calc(var(--global-baseline) * 5.5);
+    /* line-height: calc(var(--global-baseline) * 5.5); */
   }
 
   .note__header {

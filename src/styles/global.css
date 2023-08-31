@@ -375,6 +375,7 @@ Page
 }
 
 html {
+    /* font-size: calc(var(--root-font-size)/16*100%); */
     line-height: var(--global-line-height);
     background-color: var(--global-backgroundColor);
     /* font-size: clamp(16px, 0.625vw + 14px, 19px); */
@@ -393,11 +394,11 @@ html {
     scroll-behavior: smooth;
 }
 
-@media screen and (min-width: 46.5em) {
+/* @media screen and (min-width: 46.5em) {
     html {
         font-size: calc(var(--root-font-size)/16*100%);
     }
-}
+} */
 
 /*
 @media screen and (min-width: 105.0625em) {
@@ -452,9 +453,9 @@ hr {
 }
 
 label {
-    --fs: var(--ms-1);
+    /* --fs: var(--ms-1);
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
-    line-height: calc(var(--global-baseline) * 5);
+    line-height: calc(var(--global-baseline) * 5); */
     display: block;
     padding-bottom: var(--global-whitespace-4xs);
 }
@@ -471,7 +472,7 @@ select {
     --input-color: var(--global-text-color);
     --input-borderColor: var(--global-input-borderColor);
     --input-backgroundColor: var(--global-input-backgroundColor);
-    --input-fontSize: 17;
+    --input-fontSize: 16;
     --input-borderRadius: var(--global-borderRadius);
     --input-whitespace: var(--global-whitespace-3xs) var(--global-whitespace-2xs);
     font-family: inherit;
@@ -539,7 +540,7 @@ fieldset {
 }
 
 legend {
-    --fs: var(--ms-1);
+    --fs: var(--ms0);
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
     line-height: calc(var(--global-baseline) * 5);
     padding: 0;
@@ -712,10 +713,14 @@ h6 {
 h1 {
     /* --fs: var(--ms5); */
     /* --fs: var(--ms3); */
-    --fs: var(--ms4);
+    --fs: var(--ms0);
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
-    line-height: calc(var(--root-baseline) * var(--baseline-multiplier, 8) / var(--fs));
+    /* line-height: calc(var(--root-baseline) * var(--baseline-multiplier, 8) / var(--fs)); */
+    /* --fs: var(--ms4);
+    font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
+    line-height: calc(var(--root-baseline) * var(--baseline-multiplier, 8) / var(--fs)); */
     font-family: var(--global-font-family-title);
+    font-family: var(--global-font-family-alpha);
     font-weight: var(--global-font-weight-title);
 }
 
@@ -740,20 +745,23 @@ h1 {
 
 h2 {
     /* --fs: 25; */
-    --fs: var(--ms2);
-    font-family: var(--global-font-family-title);
+    /* --fs: var(--ms2);
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
     line-height: calc(var(--root-baseline) * 7 / var(--fs));
+    font-family: var(--global-font-family-title); */
+    --fs: var(--ms0);
+    font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
     font-weight: var(--global-font-weight-title);
 }
 
 h3 {
-    font-family: var(--global-font-family-title);
+    /* font-family: var(--global-font-family-title); */
     font-family: var(--global-font-family-alpha);
     font-size: 1rem;
     line-height: calc(var(--global-baseline) * 6);
-    font-weight: var(--global-font-weight-title);
-    font-weight: 600;
+    font-weight: normal;
+    color: var(--global-muted-color);
+    /* font-weight: var(--global-font-weight-title); */
 }
 
 
@@ -923,8 +931,8 @@ Objects
 }
 
 .container {
-    /* max-width: 40rem; */
-    max-width: 36rem;
+    max-width: 40rem;
+    /* max-width: 36rem; */
     margin-left: auto;
     margin-right: auto;
     /* container: container / inline-size; */
@@ -1162,8 +1170,8 @@ Components
 
 .article-title {
     position: relative;
-    text-wrap: pretty;
-    max-width: calc(var(--titleWidth, 20) * 1ch);
+    /* text-wrap: pretty; */
+    /* max-width: calc(var(--titleWidth, 20) * 1ch); */
     grid-column: 1 / -1;
     grid-row: 1 / -1;
     /* align-self: end; */
@@ -1589,7 +1597,7 @@ Utilities
 
 code[class*="language-"],
 pre[class*="language-"] {
-    --fs: var(--ms-2);
+    --fs: var(--ms-1);
     --pre-whitespace: var(--global-whitespace);
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
     line-height: calc(var(--global-baseline) * 5);

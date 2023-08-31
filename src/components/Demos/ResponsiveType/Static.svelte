@@ -68,7 +68,7 @@
 
 <div class="demo">
   <div class="demo__body flow-s">
-    <div class="controls text-s">
+    <div class="controls">
       <div class="controls__zoom flex align-center gap-3xs">
         <span class="color-muted shrink-0">Zoom</span>
         <button
@@ -115,7 +115,7 @@
     </div>
 
     <div
-      class="viewport text-s"
+      class="viewport"
       style="--minww: {minWindowWidth}; --maxww: {maxWindowWidth}; --breakpoint1: {breakpoint1}; --breakpoint2: {breakpoint2}; --thumb-position: {viewportThumbPosition}"
     >
       <p class="viewport__label flex justify-between align-items-center">
@@ -167,7 +167,7 @@
         The trouble with responsive type and zoom
       </p>
     </div>
-    <p class="text-code text-xs">
+    <p class="text-code text-s">
       <span class="token property">font-size</span><span
         class="token punctuation">:</span
       >

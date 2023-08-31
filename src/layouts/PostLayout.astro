@@ -11,9 +11,9 @@ const { title, description, pubDate, titleWidth } = Astro.props;
 ---
 
 <style define:vars={{ titleWidth }}>
-  h1 {
+  /* h1 {
     max-width: calc(var(--titleWidth, 20) * 1ch);
-  }
+  } */
 
   .end {
     margin-top: var(--global-whitespace-4xl);
@@ -29,16 +29,21 @@ const { title, description, pubDate, titleWidth } = Astro.props;
     <div class="container flow">
       <header class="article-header">
         <h1 class="article-title js-article-title">{title}</h1>
-      </header>
-      <div class="readable flow">
-        <hr class="start" />
-        <slot />
-        <hr class="end" />
-        <p class="color-meta text-s">
+        <p class="color-meta">
           Published <time datetime={pubDate} class="text-date color-meta">
             {formatDate(pubDate)}
           </time>
         </p>
+      </header>
+      <div class="readable flow">
+        <!-- <hr class="start" /> -->
+        <slot />
+        <!-- <hr class="end" /> -->
+        <!-- <p class="color-meta text-s">
+          Published <time datetime={pubDate} class="text-date color-meta">
+            {formatDate(pubDate)}
+          </time>
+        </p> -->
       </div>
     </div>
   </article>

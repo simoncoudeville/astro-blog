@@ -91,7 +91,7 @@
     border-radius: var(--global-borderRadius-sm);
     padding: 1px var(--global-whitespace-4xs) 2px;
     transition: background-color var(--global-transition-duration-short);
-    --fs: 16;
+    --fs: var(--ms-1);
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
     line-height: calc(var(--global-baseline) * 5);
 }
