@@ -17,7 +17,7 @@
     --note-color: var(--global-muted-color);
     /* --note-title-color: var(--global-accent-color); */
     --note-title-color: var(--global-muted-color);
-    /* --note-title-color: var(--global-text-color); */
+    --note-title-color: var(--global-text-color);
     --note-whitespace: var(--global-whitespace);
     background-color: var(--note-backgroundColor);
     border-radius: var(--global-borderRadius-lg);
@@ -42,9 +42,9 @@
 
   .note__title {
     font-family: var(--global-font-family-alpha);
-    font-family: var(--global-font-family-beta);
-    font-style: italic;
-    color: currentColor;
+    /* font-family: var(--global-font-family-beta); */
+    /* font-style: italic; */
+    color: var(--note-title-color);
     font-weight: normal;
   }
 

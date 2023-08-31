@@ -256,12 +256,18 @@ Variables
     --global-link-hover-color: var(--global-meta-color);
     /* --global-link-hover-color: var(--global-muted-color); */
     --global-link-active-color: var(--global-link-color);
-    --global-selection-backgroundColor: var(--global-accent-color);
-    --global-selection-color: var(--global-color-neutral-025);
+    /* --global-selection-backgroundColor: var(--global-accent-color);
+    --global-selection-color: var(--global-color-neutral-025); */
+    /* --global-selection-backgroundColor: var(--global-text-color);
+    --global-selection-color: var(--global-foregroundColor); */
+    --global-selection-backgroundColor: var(--global-color-violet-100);
+    --global-selection-backgroundColor: var(--global-color-neutral-050);
+    --global-selection-color: var(--global-text-color);
 
     /* --global-font-family-alpha: "Graphik Web", sans-serif; */
     /* --global-font-family-alpha: "Uncut Sans", sans-serif; */
     --global-font-family-alpha: "Graphik", sans-serif;
+    /* --global-font-family-alpha: "Inter", sans-serif; */
     /* --global-font-family-alpha: "Haskoy", sans-serif; */
     /* --global-font-family-alpha: "Def Sans", sans-serif; */
     /* --global-font-family-alpha: "Instrument Sans", sans-serif; */
@@ -345,6 +351,7 @@ Variables
         --global-meta-color: var(--global-color-neutral-400);
         --global-muted-color: var(--global-color-neutral-200);
         --global-input-backgroundColor: var(--global-color-neutral-700);
+        --global-selection-backgroundColor: var(--global-color-neutral-600);
     }
 }
 
@@ -391,6 +398,8 @@ html {
     -webkit-text-size-adjust: 100%;
     /* smooth scrolling */
     scroll-behavior: smooth;
+    /* scrollbar-color: var(--global-accent-color) var(--global-backgroundColor);
+    scrollbar-width: thin; */
 }
 
 /* @media screen and (min-width: 46.5em) {
@@ -783,12 +792,12 @@ h3 {
     /* font-family: var(--global-font-family-alpha); */
     font-size: 1rem;
     /* line-height: calc(var(--global-baseline) * 6); */
-    font-family: var(--global-font-family-beta);
-    /* font-family: var(--global-font-family-alpha); */
-    font-style: italic;
-    font-weight: normal;
+    /* font-family: var(--global-font-family-beta); */
+    font-family: var(--global-font-family-alpha);
+    /* font-style: italic; */
+    /* font-weight: normal; */
     /* color: var(--global-muted-color); */
-    /* font-weight: var(--global-font-weight-title); */
+    font-weight: var(--global-font-weight-title);
 }
 
 
@@ -1268,8 +1277,13 @@ body:has(.title-collides) .article-title {
         width: var(--global-whitespace-xl);
         height: var(--global-whitespace-xl);
         border-radius: 100%;
-        background-color: var(--global-color-violet-50);
+        /* background-color: var(--global-color-violet-50); */
         /* background-color: var(--global-foregroundColor); */
+        /* background-color: var(--global-foregroundColor2); */
+        /* background-color: var(--global-color-neutral-050); */
+        background-color: var(--global-color-neutral-030);
+        background-color: var(--global-color-neutral-035);
+        background-color: var(--global-color-neutral-040);
         /* box-shadow: inset 0 0 0 1px var(--global-borderColor); */
     }
 
@@ -1286,13 +1300,12 @@ body:has(.title-collides) .article-title {
     /* width: var(--global-whitespace-xl); */
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
     .page-header__avatar {
-        /* filter: grayscale(100%) sepia(10%) hue-rotate(220deg) contrast(120%); */
-        /* filter: grayscale(100%) sepia(20%) hue-rotate(220deg) contrast(120%); */
+        filter: grayscale(100%) sepia(10%) hue-rotate(220deg) contrast(120%);
+        filter: grayscale(100%) sepia(20%) hue-rotate(220deg) contrast(120%);
     }
-
-}
+} */
 
 .page-footer {
     color: var(--global-meta-color);
@@ -1317,8 +1330,8 @@ body:has(.title-collides) .article-title {
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
     line-height: calc(var(--global-baseline) * 5);
     font-family: var(--global-font-family-alpha);
-    font-family: var(--global-font-family-beta);
-    font-style: italic;
+    /* font-family: var(--global-font-family-beta); */
+    /* font-style: italic; */
     font-weight: normal;
     color: var(--global-muted-color);
 }
