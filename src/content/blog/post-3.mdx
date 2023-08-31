@@ -1,6 +1,6 @@
 ---
 # title: "Why responsive typography behaves weird on zoom"
-title: "The trouble with responsive type and zoom"
+title: "Responsive type and zoom"
 slug: the-trouble-with-responsive-type-and-zoom
 pubDate: 2023-01-22
 description: "This is the second post of my new Astro blog."
@@ -95,7 +95,7 @@ import Fluid from "../../components/Demos/ResponsiveType/Fluid.svelte";
 
 Depending on the combination of parameters the result after zooming in is one of these 3 scenario's: Zoom keeps working but slows down, zoom stops working or negative zoom.
 
-### Zoom keeps working but slows down
+### 1. Zoom keeps working but slows down
 
 Between the min and max font-size ranges the zoom level is still applied to the font-size. But it does so at a slower pace. The zoom level is applied to the font-size after it has already been decreased because the viewport gets smaller. Basicly the zoom level is still larger then the rate at which the font-size gets smaller. The larger the difference between the min and max font-size the more the zoom level slows down. This is because the font-size gets smaller faster than the zoom level can increase it.
 

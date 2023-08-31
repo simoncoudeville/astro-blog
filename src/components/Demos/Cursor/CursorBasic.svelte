@@ -1,5 +1,4 @@
 <script>
-  import { round } from "../../../scripts/round";
   let m = { x: 300, y: 200 };
 
   function handleMousemove(event) {
@@ -17,8 +16,8 @@
     <h2 class="demo__title">Basic demo</h2>
   </div>
   <div class="demo__elements">
-    <a href="#!" class="demo__link text-s">Link</a>
-    <button class="demo__button text-s">Button</button>
+    <a href="#!" class="demo__link">Link</a>
+    <button class="demo__button">Button</button>
   </div>
   <!-- <p class="text-xs color-muted text-code">
     Mouse position: {round(m.x, 0)} x {round(m.y, 0)}
@@ -94,8 +93,8 @@
     text-decoration: none;
     text-decoration-color: inherit;
     transition: 0.2s ease;
-    padding: calc(var(--global-whitespace-4xs) - 1px)
-      var(--global-whitespace-2xs) calc(var(--global-whitespace-4xs) + 1px);
+    padding: calc(var(--global-whitespace-3xs) - 1px)
+      var(--global-whitespace-xs) calc(var(--global-whitespace-3xs) + 1px);
     /* background-color: var(--global-backgroundColor); */
     border: 1px solid var(--global-borderColor);
     border-radius: var(--global-borderRadius);

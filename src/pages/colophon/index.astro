@@ -1,26 +1,35 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { SITE_ATHOUR } from "../../config";
+import { SITE_ATHOUR, formatDate } from "../../config";
+import Header from "../../components/Header.astro";
+const title = "Colophon";
+const upDate = new Date();
 ---
 
 <BaseLayout>
-  <header class="row row--page-header js-page-header">
-    <div class="container">
-      <div class="page-header">
-        <h2 class="logo">
-          <a class="logo__link" href="/">{SITE_ATHOUR}</a>
-        </h2>
-        <p class="page-header__meta color-meta text-date">Colophon</p>
-      </div>
-    </div>
-  </header>
   <div class="row pt-clear mt-clear">
     <div class="container flow">
-      <header class="article-header">
-        <h1 class="article-title js-article-title">
-          Everything about this website
-        </h1>
-      </header>
+      <Header
+        headerTitle={title}
+        headerMeta={`Last updated <time datetime=${upDate} class='text-date'>${formatDate(
+          upDate
+        )}</time>`}
+      />
+      <!-- <header class="article-header">
+        <h1 class="article-header__title js-article-title">Colophon</h1>
+        <p class="article-header__meta color-meta">
+          Last updated <time datetime={upDate} class="text-date color-meta">
+            {formatDate(upDate)}
+          </time>
+        </p>
+        <a href="/" class="article-header__link">
+          <img
+            class="article-header__avatar"
+            src="https://unavatar.io/linusrogge"
+            alt=""
+          />
+        </a>
+      </header> -->
       <div class="content flow">
         <!-- <p>Last updated Aug 11, 2023</p> -->
         <h2>Technical details</h2>

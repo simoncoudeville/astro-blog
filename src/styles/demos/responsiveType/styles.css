@@ -67,7 +67,7 @@
 .viewport {
     --viewport-accent-color: var(--global-accent-color);
     --viewport-gap: 2px;
-    --viewport-thumb-size: var(--global-whitespace-3xs);
+    --viewport-thumb-size: calc(var(--global-baseline) * 2);
     --window-range: calc(var(--maxww) - var(--minww));
     --breakpoint-range: calc(var(--breakpoint2) - var(--breakpoint1));
     --viewport-leftover: calc(calc(calc(var(--breakpoint1) - var(--minww)) / var(--window-range) * 100%) - var(--viewport-gap) / 2);
@@ -76,7 +76,7 @@
 }
 
 .viewport__label {
-    margin-bottom: var(--global-whitespace-4xs);
+    margin-bottom: var(--global-whitespace-3xs);
 }
 
 .viewport__bar {
@@ -89,7 +89,7 @@
     /* background-color: var(--global-borderColor2); */
     background-color: var(--global-foregroundColor2);
     border-radius: var(--global-borderRadius-sm);
-    padding: 1px var(--global-whitespace-4xs) 2px;
+    padding: 1px var(--global-whitespace-2xs) 2px;
     transition: background-color var(--global-transition-duration-short);
     --fs: var(--ms-1);
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);

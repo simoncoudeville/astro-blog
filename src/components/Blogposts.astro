@@ -16,9 +16,10 @@ const numPosts = allPosts.length;
 ---
 
 <h2>
-  {numPosts} posts so far
+  <!-- {numPosts} articles -->
+  Writing
 </h2>
-<ol reversed class="list-reset postlist readable flow-2xs">
+<ol reversed class="list-reset postlist readable flow-xs">
   {
     allPosts.map((post) => (
       <li class="postlist__item">
@@ -94,7 +95,7 @@ const numPosts = allPosts.length;
 
   .postlist__item + .postlist__item {
     /* padding-top: var(--global-whitespace-xs); */
-    padding-top: var(--global-whitespace-2xs);
+    padding-top: var(--global-whitespace-xs);
     /* padding-top: var(--global-whitespace); */
     border-top: 1px solid var(--global-borderColor);
   }

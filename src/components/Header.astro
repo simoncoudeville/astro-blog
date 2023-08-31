@@ -1,35 +1,26 @@
 ---
 import { SITE_ATHOUR, formatDate } from "../config";
-import IconUpSmall from "./Icons/IconUpSmall.astro";
-const { headerDate, headerTitle } = Astro.props;
+import { Image } from "astro:assets";
+// import avatarImg from "../img/linus-rogge.png";
+import avatarImg from "../img/test-avatar-3.png";
+const { headerTitle, headerMeta } = Astro.props;
 ---
 
-<header class="row row--page-header js-page-header">
-  <!-- <a class="link-icon link-meta" href="#">
-    <IconUpSmall />
-  </a> -->
-  <div class="container">
-    <div class="page-header readable">
-      <!-- <img
-        class="page-header__avatar"
-        src="https://unavatar.io/linusrogge"
-        alt=""
-      /> -->
-      <h2 class="logo">
-        <a class="logo__link" href="/">{SITE_ATHOUR}</a>
-      </h2>
-      <!-- <a class="link-icon link-meta" href="#">
-        <IconUpSmall />
-      </a> -->
-      <!-- <span class="page-header__title color-meta text-date">{headerTitle}</span> -->
-      <time
-        class="page-header__date page-header__meta text-date color-meta"
-        datetime={headerDate}
-      >
-        {formatDate(headerDate)}
-      </time>
-    </div>
-  </div>
+<header class="page-header">
+  <a class="page-header__link" href="/">
+    <Image
+      class="page-header__avatar"
+      src={avatarImg}
+      alt={SITE_ATHOUR}
+      width="100"
+    />
+  </a>
+  <h1>
+    {headerTitle}
+  </h1>
+  <p class="page-header__meta color-meta">
+    <Fragment set:html={headerMeta} />
+  </p>
 </header>
 
 <!-- <script>
@@ -88,9 +79,3 @@ const { headerDate, headerTitle } = Astro.props;
     );
   }
 </script> -->
-
-<style>
-  .icon {
-    rotate: -90deg;
-  }
-</style>

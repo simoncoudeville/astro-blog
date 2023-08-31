@@ -69,7 +69,7 @@
 <div class="demo">
   <div class="demo__body flow-s">
     <div class="controls">
-      <div class="controls__zoom flex align-center gap-3xs">
+      <div class="controls__zoom flex align-center gap-2xs">
         <span class="color-muted shrink-0">Zoom</span>
         <button
           class="button-reset controls__button shrink-0"
@@ -89,7 +89,7 @@
           <IconPlus />
         </button>
       </div>
-      <div class="controls__window flex align-center gap-3xs">
+      <div class="controls__window flex align-center gap-2xs">
         <label class="color-muted shrink-0 pb-clear" for="staticWindowWidth">
           Window width
         </label>

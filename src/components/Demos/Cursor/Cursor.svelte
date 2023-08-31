@@ -16,7 +16,7 @@
   <div class="demo__header">
     <h2 class="demo__title">Advanced demo</h2>
   </div>
-  <div class="demo-nav text-s">
+  <div class="demo-nav">
     <ul class="demo-nav__list">
       <li class="demo-nav__item">
         <a href="#!" class="demo-nav__link">Default</a>
@@ -151,8 +151,8 @@
     transition: 0.2s ease;
     /* padding: var(--global-whitespace-4xs) var(--global-whitespace-2xs)
       calc(var(--global-whitespace-4xs) + 2px); */
-    padding: calc(var(--global-whitespace-4xs) - 1px)
-      var(--global-whitespace-2xs) calc(var(--global-whitespace-4xs) + 1px);
+    padding: calc(var(--global-whitespace-3xs) - 1px)
+      var(--global-whitespace-xs) calc(var(--global-whitespace-3xs) + 1px);
     /* background-color: var(--global-foregroundColor2); */
     border: 1px solid var(--global-borderColor);
     border-radius: var(--global-borderRadius);

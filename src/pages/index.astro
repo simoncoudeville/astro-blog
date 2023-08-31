@@ -1,48 +1,23 @@
 ---
+import { SITE_ATHOUR, SITE_DESCRIPTION } from "../config";
+import Header from "../components/Header.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Blogposts from "../components/Blogposts.astro";
-import About from "../components/About.astro";
-import { SITE_ATHOUR } from "../config";
 ---
 
 <BaseLayout>
-  <!-- <header class="row row--page-header js-page-header">
-    <div class="container">
-      <div class="page-header">
-        <img
-          class="page-header__avatar"
-          src="https://unavatar.io/linusrogge"
-          alt=""
-        />
-        <h2 class="logo">
-          <a class="logo__link" href="/">{SITE_ATHOUR}</a>
-        </h2>
-        <p class="page-header__meta color-meta">
-          Designer, coder &amp; teacher
-        </p>
-      </div>
-    </div>
-  </header> -->
-  <!-- <section class="row">
-    <div class="container flow">
-      <About />
-    </div>
-  </section> -->
   <div class="row pt-clear mt-clear">
     <div class="container flow">
-      <header class="article-header" id="top">
-        <h1 class="article-title js-article-title">
-          Hi, I'm Simon, a designer who likes to code.
-        </h1>
-      </header>
-      <div class="readable">
-        <p>
-          I'm a designer who likes to code. I'm into responsive web-design, HTML
-          & CSS, Javascript, typography and animation. Currently I'm teaching
-          these topics at MCT and Devine. Feel free to send me an email. Follow
-          me on Codepen or Twitter.
-        </p>
-      </div>
+      <Header
+        headerMeta={`<span class='text-date'>${SITE_DESCRIPTION}</time>`}
+        headerTitle={SITE_ATHOUR}
+      />
+      <p>
+        I'm a designer who likes to code. I'm into responsive web-design, HTML &
+        CSS, Javascript, typography and animation. Currently I'm teaching these
+        topics at MCT and Devine. Feel free to send me an email. Follow me on
+        Codepen or Twitter.
+      </p>
     </div>
   </div>
   <section class="row">
@@ -51,15 +26,3 @@ import { SITE_ATHOUR } from "../config";
     </div>
   </section>
 </BaseLayout>
-
-<style>
-  body {
-    /* padding-top: calc(
-      var(--global-whitespace) * 3 + var(--global-whitespace-xs)
-    ); */
-    /* padding-top: calc(var(--global-whitespace) * 2); */
-  }
-  h1 {
-    --titleWidth: 20;
-  }
-</style>

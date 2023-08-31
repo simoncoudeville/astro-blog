@@ -86,7 +86,7 @@
 <div class="demo test">
   <div class="demo__body flow-s">
     <div class="controls">
-      <div class="controls__zoom flex align-center gap-3xs">
+      <div class="controls__zoom flex align-center gap-2xs">
         <span class="color-muted shrink-0">Zoom</span>
         <button
           class="button-reset controls__button shrink-0"
@@ -106,7 +106,7 @@
           <IconPlus />
         </button>
       </div>
-      <div class="controls__window flex align-center gap-3xs">
+      <div class="controls__window flex align-center gap-2xs">
         <label class="color-muted shrink-0 pb-clear" for="fluidWindowWidth">
           Window width
         </label>
@@ -266,7 +266,7 @@
         >
       {/if}
     </p>
-    <p class="text-code text-xs">
+    <p class="text-code text-s">
       <span class="token property">font-size</span><span
         class="token punctuation">:</span
       >
