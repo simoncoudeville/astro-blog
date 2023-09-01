@@ -20,6 +20,14 @@ Fonts
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'Graphik Web';
+    src: url('../fonts/Graphik-Medium-Web.woff') format('woff'),
+        url('../fonts/Graphik-Medium-Web.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
 
 @font-face {
     font-family: 'Graphik Web';
@@ -231,14 +239,14 @@ Variables
     --global-meta-color: var(--global-color-neutral-300);
     --global-muted-color: var(--global-color-neutral-500);
     --global-borderColor: var(--global-color-neutral-050);
-    --global-borderColor2: var(--global-color-neutral-075);
+    --global-borderColor2: var(--global-color-neutral-060);
     --global-code-color: var(--global-color-neutral-700);
     --global-code-background: var(--global-foregroundColor);
     /* --global-input-backgroundColor: var(--global-color-neutral-040); */
     --global-input-borderColor: var(--global-borderColor);
     /* --global-input-borderColor: var(--global-color-neutral-040); */
-    --global-input-backgroundColor: var(--global-color-neutral-040);
-    /* --global-input-backgroundColor: var(--global-color-neutral-050); */
+    /* --global-input-backgroundColor: var(--global-color-neutral-040); */
+    --global-input-backgroundColor: var(--global-color-neutral-050);
     /* --global-input-backgroundColor: var(--global-backgroundColor); */
     /* --global-input-backgroundColor: var(--global-foregroundColor); */
 
@@ -250,10 +258,13 @@ Variables
     /* --global-borderWidth: 1px; */
 
     /* --global-link-color: var(--global-accent-color); */
-    --global-link-color: var(--global-text-color);
+    /* --global-link-color: var(--global-text-color); */
+    --global-link-color: var(--global-muted-color);
     --global-link-underline-color: var(--global-link-color);
+    /* --global-link-underline-color: var(--global-meta-color); */
     /* --global-link-hover-color: var(--global-accent-color); */
-    --global-link-hover-color: var(--global-meta-color);
+    /* --global-link-hover-color: var(--global-meta-color); */
+    --global-link-hover-color: var(--global-text-color);
     /* --global-link-hover-color: var(--global-muted-color); */
     --global-link-active-color: var(--global-link-color);
     /* --global-selection-backgroundColor: var(--global-accent-color);
@@ -264,9 +275,10 @@ Variables
     --global-selection-backgroundColor: var(--global-color-neutral-050);
     --global-selection-color: var(--global-text-color);
 
-    /* --global-font-family-alpha: "Graphik Web", sans-serif; */
+    --global-font-family-alpha: "Graphik Web", sans-serif;
     /* --global-font-family-alpha: "Uncut Sans", sans-serif; */
-    --global-font-family-alpha: "Graphik", sans-serif;
+    /* --global-font-family-alpha: "Graphik", sans-serif; */
+    /* --global-font-family-alpha: "Sohne Test", sans-serif; */
     /* --global-font-family-alpha: "Inter", sans-serif; */
     /* --global-font-family-alpha: "Haskoy", sans-serif; */
     /* --global-font-family-alpha: "Def Sans", sans-serif; */
@@ -286,6 +298,7 @@ Variables
     /* --global-font-family-code: "JetBrains Mono", "SFMono-Regular", ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace; */
     /* --global-font-family-code: "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace; */
     /* mono font stack */
+    /* --global-font-family-code: "Sohne Mono Test", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace; */
     --global-font-family-code: "SFMono-Regular", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
     /* --global-font-family-code: "Suisse Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace; */
     --global-font-weight-title: 400;
@@ -464,6 +477,7 @@ label {
     /* --fs: var(--ms-1);
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
     line-height: calc(var(--global-baseline) * 5); */
+    color: var(--global-muted-color);
     display: block;
     padding-bottom: var(--global-whitespace-3xs);
 }
@@ -566,7 +580,7 @@ button {
 }
 
 fieldset {
-    border: var(--global-borderWidth) solid var(--global-borderColor);
+    border: var(--global-borderWidth) solid var(--global-input-borderColor);
     border-radius: var(--global-borderRadius);
     padding: var(--global-whitespace-s);
 }
@@ -596,7 +610,8 @@ code:not([class]) {
 }
 
 input[type=number] {
-    font-family: var(--global-font-family-code);
+    /* font-family: var(--global-font-family-code); */
+    font-feature-settings: "tnum";
     --input-fontSize: 16;
 }
 
@@ -1249,18 +1264,48 @@ body:has(.title-collides) .article-title {
 }
 
 .page-header {
-    display: grid;
-    gap: 0 var(--global-whitespace);
+    /* display: grid;
     grid-template-columns: 1fr auto;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto auto; */
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    flex-direction: row-reverse;
+    gap: 0 var(--global-whitespace);
     margin: var(--global-whitespace-4xl) 0;
+    scroll-margin: var(--global-whitespace-4xl);
+    /* margin: calc(var(--global-whitespace-4xl) - var(--global-whitespace-2xs)) calc(var(--global-whitespace-2xs) * -1);
+    position: sticky;
+    top: var(--global-whitespace);
+    background-color: hsl(0deg 0% 100% / 0.9);
+    padding: var(--global-whitespace-2xs);
+    backdrop-filter: blur(5px); */
+
+    &:hover .page-header__avatar {
+        transform: translateY(var(--global-whitespace-3xs));
+        /* transform: translateY(0); */
+        /* transition-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28); */
+    }
+}
+
+.page-header--inline {
+
+    & .page-header__title,
+    & .page-header__meta {
+        display: inline;
+    }
+
+    & .page-header__content {
+        max-width: 40ch;
+    }
 }
 
 .page-header__link {
     position: relative;
     display: block;
-    grid-column: 2;
-    grid-row: 1 / -1;
+    flex-shrink: 0;
+    /* grid-column: 2;
+    grid-row: 1 / -1; */
     width: var(--global-whitespace-xl);
     height: calc(var(--global-whitespace-xl) + var(--global-whitespace-xs));
     margin-top: calc(var(--global-whitespace-xs) * -1);
@@ -1277,27 +1322,42 @@ body:has(.title-collides) .article-title {
         width: var(--global-whitespace-xl);
         height: var(--global-whitespace-xl);
         border-radius: 100%;
-        /* background-color: var(--global-color-violet-50); */
+        /* background-color: var(--global-color-teal-50); */
+        /* background-color: var(--global-color-violet-100); */
         /* background-color: var(--global-foregroundColor); */
         /* background-color: var(--global-foregroundColor2); */
         /* background-color: var(--global-color-neutral-050); */
-        background-color: var(--global-color-neutral-030);
-        background-color: var(--global-color-neutral-035);
+        /* background-color: var(--global-color-neutral-030); */
+        /* background-color: var(--global-color-neutral-035); */
         background-color: var(--global-color-neutral-040);
         /* box-shadow: inset 0 0 0 1px var(--global-borderColor); */
+        /* animation: colors 10s alternate linear infinite; */
+    }
+}
+
+@keyframes colors {
+    0% {
+        background-color: var(--global-color-purple-50);
     }
 
-    &:hover .page-header__avatar {
-        transform: translateY(0);
+    50% {
+        background-color: var(--global-color-blue-50);
+    }
+
+    100% {
+        background-color: var(--global-color-teal-50);
     }
 }
 
 .page-header__avatar {
     position: absolute;
     bottom: 0;
-    transform: translateY(calc(var(--global-whitespace-xs) * 1));
-    transition: transform .1s ease;
-    /* width: var(--global-whitespace-xl); */
+    transform: translateY(var(--global-whitespace-xs));
+    /* transition: transform .25s ease-out; */
+    transition: transform .25s cubic-bezier(0.22, 0.61, 0.36, 1)
+        /* transition: transform .25s cubic-bezier(0.18, 0.89, 0.32, 1.28); */
+        /* transition-delay: .2s; */
+        /* width: var(--global-whitespace-xl); */
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -1555,6 +1615,10 @@ Utilities
 
 .fw-normal {
     font-weight: normal;
+}
+
+.fw-medium {
+    font-weight: 500;
 }
 
 .sr-only {

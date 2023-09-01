@@ -6,13 +6,14 @@ import Header from "../components/Header.astro";
 import About from "../components/About.astro";
 import type { CollectionEntry } from "astro:content";
 type Props = CollectionEntry<"blog">["data"];
-const { title, description, pubDate, titleWidth } = Astro.props;
+const { title, description, pubDate } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
-  <article class="row pt-clear mt-clear">
+  <main class="row pt-clear mt-clear">
     <div class="container flow">
       <Header
+        headerClass="normal"
         headerTitle={title}
         headerMeta={`Published on <time datetime=${pubDate} class='text-date'>${formatDate(
           pubDate
@@ -23,7 +24,7 @@ const { title, description, pubDate, titleWidth } = Astro.props;
         <slot />
       </div>
     </div>
-  </article>
+  </main>
   <section class="row">
     <div class="container flow">
       <About />

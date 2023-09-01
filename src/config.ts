@@ -1,5 +1,9 @@
 export const SITE_ATHOUR = 'Simon Coudeville';
-export const SITE_DESCRIPTION = 'Designer, coder & teacher';
+export const SITE_DESCRIPTION = 'Designer who likes to code';
+// export const SITE_DESCRIPTION = 'Designer & teacher who likes to code';
+// export const SITE_DESCRIPTION = 'Teaching design and code';
+// export const SITE_DESCRIPTION = 'Designing and building interfaces';
+// export const SITE_DESCRIPTION = 'Crafting interfaces';
 
 // a function to set the dates to .toLocaleTimeString("en-gb") with options
 export const formatDate = (date: string | number | Date) => {

@@ -1,13 +1,13 @@
 ---
+import { formatDate } from "../../config";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { SITE_ATHOUR, formatDate } from "../../config";
 import Header from "../../components/Header.astro";
 const title = "Colophon";
 const upDate = new Date();
 ---
 
 <BaseLayout>
-  <div class="row pt-clear mt-clear">
+  <main class="row pt-clear mt-clear">
     <div class="container flow">
       <Header
         headerTitle={title}
@@ -37,11 +37,5 @@ const upDate = new Date();
         <h2>Inspiration</h2>
       </div>
     </div>
-  </div>
+  </main>
 </BaseLayout>
-
-<style>
-  h1 {
-    --titleWidth: 15;
-  }
-</style>

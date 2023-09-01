@@ -2,10 +2,32 @@
 import "../styles/global.css";
 import Footer from "../components/Footer.astro";
 import { SITE_ATHOUR } from "../config";
+import { ViewTransitions } from "astro:transitions";
+
+const anim = {
+  old: {
+    name: "slideOut",
+    duration: ".1s",
+    easing: "ease",
+    fillMode: "forwards",
+  },
+  new: {
+    name: "slideIn",
+    duration: ".3s",
+    easing: "ease",
+    fillMode: "backwards",
+  },
+};
+
+const sliding = {
+  forwards: anim,
+  backwards: anim,
+};
+
 const { title = "", description = "Test" } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="en" transition:animate={sliding}>
   <head>
     <title>
       {title ? `${title} - ${SITE_ATHOUR}` : SITE_ATHOUR}
@@ -15,9 +37,25 @@ const { title = "", description = "Test" } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <ViewTransitions />
   </head>
   <body>
     <slot />
     <Footer />
+    <style>
+      @keyframes slideIn {
+        from {
+          transform: translateX(15px);
+          opacity: 0;
+        }
+      }
+
+      @keyframes slideOut {
+        to {
+          transform: translateX(-15px);
+          opacity: 0;
+        }
+      }
+    </style>
   </body>
 </html>

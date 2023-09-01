@@ -7,29 +7,9 @@ import IconUpSmall from "./Icons/IconUpSmall.astro";
 <footer class="row row--page-footer">
   <div class="container flow">
     <div class="page-footer">
-      <!-- <p>
-        <span class="text-date">&copy; {year}</span> - Designed and coded by
-        {SITE_ATHOUR}. Built with <a href="#">Astro</a>. Browse the source code
-        on <a href="#">GitHub</a>.
-      </p> -->
-      <!-- <p>
-        <span class="text-date">&copy; {year}</span>. All rights reserved.
-      </p> -->
-      <!-- <p>
-        &copy;{year} Simon Coudeville. Built with <a href="#">Astro</a>. Browse
-        the source code on <a href="#">GitHub</a>.
-      </p> -->
-      <!-- <p class="text-date">
-        <span class="text-date">&copy;{year}</span>
-        {SITE_ATHOUR}
-      </p> -->
-      <!-- <p class="readable">
-        <span class="text-date">&copy;{year}</span>
-        {SITE_ATHOUR}
-      </p> -->
       <ul class="readable list-reset">
-        <li>
-          <span class="text-date">&copy;{year}</span>
+        <li class="text-date">
+          &copy;{year}
         </li>
         <li>
           <a class="link-meta" href="/">Home</a>
@@ -40,69 +20,17 @@ import IconUpSmall from "./Icons/IconUpSmall.astro";
         <li>
           <a class="link-meta" href="/feed.xml">RSS</a>
         </li>
-        <!-- <li>
-          <a class="link-icon link-meta" href="#">
-            <IconUpSmall />
-          </a>
-        </li> -->
       </ul>
-      <!-- <p class="text-s color-meta">
-        <span class="text-date">&copy; {year}</span> &ndash; Designed and coded by
-        {SITE_ATHOUR}.
-      </p> -->
-
-      <a class="link-icon link-meta" href="#">
+      <a class="link-icon link-meta" href="#top">
         <IconUpSmall />
       </a>
-      <!-- <p class="color-meta text-date">
-        <span class="text-date">&copy;{year}</span>
-        {SITE_ATHOUR}
-      </p> -->
-      <!-- <p>Built with <a href="https://astro.build">{Astro.generator}</a></p> -->
-
-      <!-- <p>
-        Handcrafted by Simon Coudeville with <a href="#">Astro</a>. Browse the
-        source code on <a href="#">GitHub</a>.
-      </p> -->
-      <!-- <p>
-        Last build August 16, 2023 with <a href="#">Astro</a>. Browse the source
-        code on <a href="#">GitHub</a>.
-      </p> -->
-      <!-- <p>
-        <a
-          class="badge"
-          href="https://www.websitecarbon.com/website/simoncoudeville-be/"
-        >
-          0.03 g of CO2
-        </a>
-      </p> -->
     </div>
-    <!-- <p class="text-s color-meta">
-      <span class="text-date">&copy; {year}</span>
-    </p> -->
-    <!-- <p class="text-s color-meta">
-      <span class="text-date">&copy; {year}</span> &ndash; Designed and coded by
-      {SITE_ATHOUR}.
-    </p> -->
-    <!-- <ul class="readable list-reset text-s">
-      <li>
-        <a class="link-meta" href="/">Home</a>
-      </li>
-      <li>
-        <a class="link-meta" href="/colophon">Colophon</a>
-      </li>
-      <li>
-        <a class="link-meta" href="/feed.xml">RSS</a>
-      </li>
-    </ul> -->
   </div>
 </footer>
 <style>
   .page-footer {
     display: flex;
-    /* flex-wrap: wrap; */
     justify-content: space-between;
-    /* align-items: center; */
     align-items: start;
     gap: var(--global-whitespace);
     /* padding: var(--global-whitespace-3xs) var(--global-whitespace-2xs);
@@ -111,7 +39,8 @@ import IconUpSmall from "./Icons/IconUpSmall.astro";
   }
 
   .link-icon {
-    margin-top: calc(var(--global-whitespace-4xs) / 2);
+    flex-shrink: 0;
+    margin-top: calc(var(--global-whitespace-4xs));
   }
 
   ul {

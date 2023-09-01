@@ -10,7 +10,7 @@ titleWidth: 20
 
 import Note from "../../components/Note.svelte";
 
-Like most web designers, I want text to adjust to the available space. Type should not be too large on small screens or too small on large screens, which is where responsive typography comes in. However, when using the zoom functionality on desktop browsers seemingly unpredictable jumps in font-size occur, zooming in appears to slow down or cease responding and in some cases text size even decreases as you zoom in. Adrian Roselli has documented these behaviours in extend in <a href="https://adrianroselli.com/2019/12/responsive-type-and-zoom.html">his article</a>. I wanted to understand the cause of these issues, so I wrote this article to share what I learned.
+In many cases, text should adjust to the available space. Type should not be too large on small screens or too small on large screens, which is where responsive typography comes in. However, when using the zoom functionality on desktop browsers seemingly unpredictable jumps in font-size occur, zooming in appears to slow down or cease responding and in some cases text size even decreases as you zoom in. Adrian Roselli has documented these behaviours in extend in <a href="https://adrianroselli.com/2019/12/responsive-type-and-zoom.html">his article</a>. I wanted to understand the cause of these issues, so I wrote this article to share what I learned.
 
 <Note title="A note on pixels">
   In all the examples and demos in this article I'm using pixels. This is
@@ -47,30 +47,30 @@ Static responsive typography is based on a set of breakpoints, where each breakp
 
 ```css
 h1 {
-  font-size: 24px;
+  font-size: 25px;
 }
 
 @media (min-width: 860px) {
   h1 {
-    font-size: 32px;
+    font-size: 40px;
   }
 }
 
-@media (min-width: 1140px) {
+@media (min-width: 1360px) {
   h1 {
-    font-size: 48px;
+    font-size: 50px;
   }
 }
 ```
 
-On a viewport width of 1680px we start at 48px. As we zoom in the viewport decreases in width. At first everything works fine, the text increases in size. At a zoom level of 140% the visual font-size is 67.2px. At a zoom level of 150% the viewport width is only 1120px wide so the the last media query doesn't apply anymore. After that point the font-size decreases to 32px. But with a zoom level of 150% the visual font-size is now 48px again. The same happens at a zoom level of 200%. The viewport is now only 840px wide so the font-size of the h1 is now only 24px, but with a zoom level of 200% the visual font-size is again 48px. So as we zoom in the font-size keeps turning back to 48px which gives the impression that the text decreases in size as you zoom in.
+On a viewport width of 1680px we start at 60px. As we zoom in the viewport decreases in width. At first everything works fine, the text increases in size. At a zoom level of 125% the visual font-size is 75px. At a zoom level of 150% the viewport width is only 1120px wide so the the last media query doesn't apply anymore. After that point the font-size decreases to 40px. But with a zoom level of 150% the visual font-size is now 60px again. The same happens at a zoom level of 300%. The viewport is now only 560px wide so the font-size of the h1 is now only 20px, but with a zoom level of 300% the visual font-size is again 60px. So as we zoom in the font-size keeps turning back to 60px which gives the impression that the text decreases in size as you zoom in.
 You could potentially write a media query for each zoom level and downscale the font-size value so that multiplied with the zoom level the visual font-size wouldn't appear to change at all. But only for a particular window width range. Because if you zoom in with a larger window the viewport width after zoom is also larger, so the media queries get triggered at different zoom levels. That's why it feels unpredictable and is rather complex to test. Below is a demo of how this behaves.
 
 import Static from "../../components/Demos/ResponsiveType/Static.svelte";
 
 <Static client:idle />
 
-Try zooming in to 150% and 200%. Notice how the visual font-size keeps turning back to 48px. Then try zooming in again but this time with a larger window width. The font-size doesn't turn back to 48px anymore. This is because the viewport width is now larger so the media queries get triggered at different zoom levels.
+Try zooming in to 150% and 300%. Notice how the visual font-size keeps turning back to 60px. Then try zooming in again but this time with a larger window width. The font-size doesn't turn back to 60x anymore. This is because the viewport width is now larger so the media queries get triggered at different zoom levels.
 
 The values in this example are deliberately chosen to demonstrate the behaviour and to make the effect clear. In reality you would probably use different breakpoints. But the result would remain the same. At some point the font-size decreases while the zoom level increases. Causing a seemingly broken experience.
 

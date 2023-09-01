@@ -8,16 +8,15 @@
 
   let zoomLevel = 100;
   let zoomlevels = [
-    25, 33, 50, 67, 75, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180,
-    190, 200, 250, 300, 400, 500,
+    25, 33, 67, 75, 80, 90, 100, 110, 125, 150, 175, 200, 250, 300, 400, 500,
   ];
   let windowWidth = 1680;
   let maxWindowWidth = 1920;
   let minWindowWidth = 240;
   let windowRange = maxWindowWidth - minWindowWidth;
-  let fs = 24;
-  let breakpoint1 = 860;
-  let breakpoint2 = 1140;
+  let fs = 20;
+  let breakpoint1 = 600;
+  let breakpoint2 = 1200;
   let active = "right";
 
   // a reset function to reset the zoom level and window width
@@ -46,13 +45,13 @@
 
   // update fs based on viewport width
   $: if (viewportWidth < breakpoint1) {
-    fs = 24;
+    fs = 20;
     active = "left";
   } else if (viewportWidth < breakpoint2) {
-    fs = 32;
+    fs = 40;
     active = "middle";
   } else {
-    fs = 48;
+    fs = 60;
     active = "right";
   }
 

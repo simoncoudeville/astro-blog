@@ -1,81 +1,25 @@
 ---
-import { SITE_ATHOUR, formatDate } from "../config";
+import { SITE_ATHOUR } from "../config";
 import { Image } from "astro:assets";
-// import avatarImg from "../img/linus-rogge.png";
 import avatarImg from "../img/test-avatar-3.png";
-const { headerTitle, headerMeta } = Astro.props;
+const { headerTitle, headerMeta, headerClass } = Astro.props;
 ---
 
-<header class="page-header">
+<header class={`page-header page-header--${headerClass}`} id="top">
   <a class="page-header__link" href="/">
     <Image
       class="page-header__avatar"
       src={avatarImg}
-      alt={SITE_ATHOUR}
+      alt={`Avatar of ${SITE_ATHOUR}`}
       width="100"
     />
   </a>
-  <h1>
-    {headerTitle}
-  </h1>
-  <p class="page-header__meta color-meta">
-    <Fragment set:html={headerMeta} />
-  </p>
+  <div class="page-header__content">
+    <h1 class="page-header__title">
+      {headerTitle}
+    </h1>
+    <p class="page-header__meta color-meta">
+      <Fragment set:html={headerMeta} />
+    </p>
+  </div>
 </header>
-
-<!-- <script>
-  // add an element .page-header-observer.page-header-observer before .js-page-header if .js-page-header exists
-  if (document.querySelector(".js-page-header")) {
-    let pageHeaderObserver = document.createElement("div");
-    pageHeaderObserver.classList.add("page-header-observer");
-    pageHeaderObserver.classList.add("js-page-header-observer");
-    document
-      .querySelector(".js-page-header")
-      .insertAdjacentElement("beforebegin", pageHeaderObserver);
-  }
-
-  // // a variable of js-page-header's height in pixels
-  let pageHeaderHeight =
-    document.querySelector(".js-page-header").offsetHeight.toString() + "px";
-
-  // // function that is able to check whether an element is in view and put a class on it with options to set the element, the class and the treshold
-  function checkInView(element, className, treshold, rootMargin) {
-    let observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting === false) {
-            element.classList.add(className);
-          } else {
-            element.classList.remove(className);
-          }
-        });
-      },
-      {
-        threshold: [treshold],
-        rootMargin: [rootMargin],
-      }
-    );
-    observer.observe(element);
-  }
-
-  // // check if js-article-title exists and if so run checkinView()
-  if (document.querySelector(".js-article-title")) {
-    // checkInView(document.querySelector('.js-article-title'), 'title-collides', 0.5, '-' + pageHeaderHeight + ' 0px 0px 0px');
-    checkInView(
-      document.querySelector(".js-article-title"),
-      "title-collides",
-      0,
-      "-" + pageHeaderHeight + " 0px 0px 0px"
-    );
-  }
-
-  // // check if js-page-header-observer exists and if so run checkinView()
-  if (document.querySelector(".js-page-header-observer")) {
-    checkInView(
-      document.querySelector(".js-page-header-observer"),
-      "page-header-observer-collides",
-      0,
-      "0px"
-    );
-  }
-</script> -->

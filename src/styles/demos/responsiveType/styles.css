@@ -89,7 +89,7 @@
     /* background-color: var(--global-borderColor2); */
     background-color: var(--global-foregroundColor2);
     border-radius: var(--global-borderRadius-sm);
-    padding: 1px var(--global-whitespace-2xs) 2px;
+    padding: 1px calc(var(--global-whitespace-3xs) + var(--global-whitespace-4xs)) 2px;
     transition: background-color var(--global-transition-duration-short);
     --fs: var(--ms-1);
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
