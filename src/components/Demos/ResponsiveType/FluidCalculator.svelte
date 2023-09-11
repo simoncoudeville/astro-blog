@@ -91,7 +91,7 @@
           <div class="calculator__fieldset">
             <p>
               <label class="calculator__label" for="x1">Width</label>
-              <span class="input-field" data-suffix="px">
+              <span class="input-field">
                 <input
                   type="number"
                   bind:value={$x1}
@@ -103,8 +103,8 @@
               </span>
             </p>
             <p>
-              <label class="calculator__label" for="y1"> Font size </label>
-              <span class="input-field" data-suffix="px">
+              <label class="calculator__label" for="y1">Font size </label>
+              <span class="input-field">
                 <input
                   type="number"
                   bind:value={$y1}
@@ -121,8 +121,8 @@
           <legend>Maximum viewport</legend>
           <div class="calculator__fieldset">
             <p>
-              <label class="calculator__label" for="x2"> Width </label>
-              <span class="input-field" data-suffix="px">
+              <label class="calculator__label" for="x2">Width </label>
+              <span class="input-field">
                 <input
                   type="number"
                   bind:value={$x2}
@@ -134,8 +134,8 @@
               </span>
             </p>
             <p>
-              <label class="calculator__label" for="y2"> Font size </label>
-              <span class="input-field" data-suffix="px">
+              <label class="calculator__label" for="y2">Font size </label>
+              <span class="input-field">
                 <input
                   type="number"
                   bind:value={$y2}

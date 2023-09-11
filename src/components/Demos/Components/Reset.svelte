@@ -5,7 +5,7 @@
 </script>
 
 <button
-  class="button-reset shrink-0"
+  class="button-reset"
   on:click={functionName}
   disabled={disabledParameters}
 >

@@ -1,0 +1,174 @@
+<div class="cursor">
+  <div class="cursor__pointer cursor__pointer--default"></div>
+  <div class="cursor__pointer cursor__pointer--action cursor__pointer--read">
+    View
+  </div>
+  <div class="cursor__pointer cursor__pointer--action cursor__pointer--icon">
+    <svg
+      class="icon icon-plus cursor__icon"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+    >
+      <g id="Group_1" data-name="Group 1" transform="translate(-0.75 -0.75)">
+        <line
+          id="Line_1"
+          data-name="Line 1"
+          class="icon-plus-line"
+          y2="10"
+          transform="translate(10.75 5.75)"></line>
+        <line
+          id="Line_2"
+          data-name="Line 2"
+          class="icon-plus-line"
+          y2="10"
+          transform="translate(15.75 10.75) rotate(90)"></line>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<style>
+  /* * {
+    cursor: none;
+  } */
+
+  .cursor {
+    --cursor-diameter: calc(var(--global-whitespace) * 3);
+    margin-top: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    translate: calc(var(--mx) - var(--cursor-diameter) / 2)
+      calc(var(--my) - var(--cursor-diameter) / 2);
+    width: var(--cursor-diameter);
+    aspect-ratio: 1/1;
+    pointer-events: none;
+    display: grid;
+    z-index: 1000;
+    opacity: 0;
+    scale: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  body:hover .cursor {
+    opacity: 1;
+    scale: 1;
+  }
+
+  .cursor__pointer {
+    grid-row: 1;
+    grid-column: 1;
+    position: relative;
+    width: var(--cursor-diameter);
+    height: var(--cursor-diameter);
+    transform-origin: 50% 50%;
+    border-radius: 50%;
+    background: var(--global-accent-color);
+    transition: 0.25s ease;
+    scale: 0.2;
+    /* opacity: 0.5; */
+    color: var(--global-color-neutral-025);
+  }
+
+  .cursor__pointer--action {
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-family: var(--global-font-family-code);
+    text-transform: uppercase;
+  }
+
+  .cursor__icon {
+    scale: 2;
+  }
+
+  body:has(
+      :is(
+          p:hover,
+          h1:hover,
+          h2:hover,
+          h3:hover,
+          h4:hover,
+          ul:hover,
+          ol:hover,
+          pre:hover,
+          blockquote:hover
+        )
+    )
+    .cursor__pointer--default {
+    /* scale: 0.1; */
+    opacity: 0.5;
+  }
+
+  .cursor__pointer--default {
+    /* scale: 0.1; */
+    opacity: 0.5;
+  }
+
+  body:has(:is(a:hover, button:hover)) .cursor__pointer {
+    scale: 0.5;
+  }
+
+  body:has(:is(a:hover, button:hover)) .cursor__pointer--default {
+    opacity: 0.5;
+  }
+
+  body:has(.cursor-read:hover) .cursor__pointer {
+    scale: 1;
+  }
+
+  body:has(.cursor-read:active) .cursor__pointer {
+    scale: 0.9;
+  }
+
+  body:has(.cursor-read:hover) .cursor__pointer--read {
+    opacity: 1;
+  }
+
+  body:has(.cursor-icon:hover) .cursor__pointer {
+    scale: 0.5;
+  }
+
+  body:has(.cursor-icon:active) .cursor__pointer {
+    scale: 0.4;
+  }
+
+  body:has(.cursor-icon:hover) .cursor__pointer--icon {
+    opacity: 1;
+  }
+
+  body:has(:is(a:active, button:active)) .cursor__pointer--default {
+    scale: 0.4;
+  }
+</style>
+
+<script>
+  const delay = 5;
+
+  let posX = 0,
+    posY = 0,
+    mouseX = 0,
+    mouseY = 0;
+
+  const animate = () => {
+    posX += (mouseX - posX) / delay;
+    posY += (mouseY - posY) / delay;
+
+    document.documentElement.style.setProperty("--mx", posX + "px");
+    document.documentElement.style.setProperty("--my", posY + "px");
+
+    requestAnimationFrame(animate);
+  };
+
+  animate();
+
+  document.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+</script>

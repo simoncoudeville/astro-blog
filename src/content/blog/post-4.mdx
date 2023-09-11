@@ -8,6 +8,10 @@ seed: 40
 titleWidth: 19
 ---
 
+import Cursor from "../../components/Demos/Cursor/Cursor.astro";
+
+<Cursor />
+
 Every once and a while you see a website that has a custom cursor. Something like a little dot that follows your cursor around the screen and changes color or grows when you hover interactive elements. Especially on sites like awwwards there ar plenty of examples with a variety of this effects. The latest example I've seen which I found quite nice is by [Koto Studio](https://koto.studio/). While the implications on accessibility and usability are surely debatable, it's still a neat trick to play with.
 
 When inspecting these websites I allways found there's a fair amount of javaScript that is used to create the effect. I started wondering if it was possible to create this effect with as little javaScript as possible. Ofcouse there's some javaScript needed to get the mouse position and apply it to the cursor. And with CSS custom properties we can pass the mouse coordinates as variables and let CSS do the rest. But what about mouse interactions such as hover? Well, we can use the `:has` pseudo-class to check if the cursor is hovering over an element and apply different styles to the custom cursor.
@@ -72,14 +76,14 @@ body:has(:is(a:active, button:active)) .cursor {
 
 Svelte solution
 
-import CursorBasic from "../../components/Demos/Cursor/CursorBasic.svelte";
+import CursorBasic from "../../components/Demos/Cursor/CursorBasic.astro";
 
-<CursorBasic client:idle />
+<CursorBasic />
 
 javascript solution
 
 The cursor is a simple div with a fixed width and height. The position is calculated using CSS custom properties. The `--x` and `--y` properties are set using JavaScript. The `:has` pseudo-class is used to check if the cursor is hovering over an `a` element. If it is, the cursor will grow and change color.
 
-import Cursor from "../../components/Demos/Cursor/Cursor.svelte";
+import CursorAdvanced from "../../components/Demos/Cursor/CursorAdvanced.astro";
 
-<Cursor client:idle />
+<CursorAdvanced />

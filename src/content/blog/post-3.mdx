@@ -50,38 +50,49 @@ h1 {
   font-size: 25px;
 }
 
-@media (min-width: 860px) {
+@media (min-width: 600px) {
   h1 {
     font-size: 40px;
   }
 }
 
-@media (min-width: 1360px) {
+@media (min-width: 1200px) {
   h1 {
     font-size: 50px;
   }
 }
 ```
 
-On a viewport width of 1680px we start at 60px. As we zoom in the viewport decreases in width. At first everything works fine, the text increases in size. At a zoom level of 125% the visual font-size is 75px. At a zoom level of 150% the viewport width is only 1120px wide so the the last media query doesn't apply anymore. After that point the font-size decreases to 40px. But with a zoom level of 150% the visual font-size is now 60px again. The same happens at a zoom level of 300%. The viewport is now only 560px wide so the font-size of the h1 is now only 20px, but with a zoom level of 300% the visual font-size is again 60px. So as we zoom in the font-size keeps turning back to 60px which gives the impression that the text decreases in size as you zoom in.
-You could potentially write a media query for each zoom level and downscale the font-size value so that multiplied with the zoom level the visual font-size wouldn't appear to change at all. But only for a particular window width range. Because if you zoom in with a larger window the viewport width after zoom is also larger, so the media queries get triggered at different zoom levels. That's why it feels unpredictable and is rather complex to test. Below is a demo of how this behaves.
+I created a demo to test how this behaves when zooming in. You can zoom in and change the window width to see how the font-size changes. The font-size is displayed in the bottom left corner. The visual font-size is the font-size multiplied with the zoom level percentage.
 
 import Static from "../../components/Demos/ResponsiveType/Static.svelte";
 
 <Static client:idle />
+Try zooming in with a viewport width of 1680px. At first everything works fine, the
+text increases in size. At a zoom level of 125% the visual font-size is 75px. At
+a zoom level of 150% the viewport width is only 1120px wide so the the last media
+query doesn't apply anymore. After that point the font-size decreases to 40px. But
+with a zoom level of 150% the visual font-size is now 60px again. The same happens
+at a zoom level of 300%. The viewport is now only 560px wide so the font-size of
+the h1 is now only 20px, but with a zoom level of 300% the visual font-size is again
+60px. So as you zoom in the visual font-size keeps turning back to 60px which gives
+the impression that the text decreases in size as you zoom in.
 
-Try zooming in to 150% and 300%. Notice how the visual font-size keeps turning back to 60px. Then try zooming in again but this time with a larger window width. The font-size doesn't turn back to 60x anymore. This is because the viewport width is now larger so the media queries get triggered at different zoom levels.
+You could potentially
+write a media query for each zoom level and downscale the font-size value so that
+multiplied with the zoom level the visual font-size wouldn't appear to change at
+all. But only for a particular window width range. Because if you zoom in with a
+larger window the viewport width after zoom is also larger, so the media queries
+get triggered at different zoom levels. That's why it feels unpredictable and is
+rather complex to test. You can see for yourself how it behaves with a larger window width.
 
-The values in this example are deliberately chosen to demonstrate the behaviour and to make the effect clear. In reality you would probably use different breakpoints. But the result would remain the same. At some point the font-size decreases while the zoom level increases. Causing a seemingly broken experience.
+The values in this example are deliberately chosen to demonstrate the behaviour and to make the effect clear. In reality you would probably use different breakpoints. But the result would remain the same. At some point the font-size decreases while the zoom level increases. Causing a somewhat broken experience.
 
 ## Fluid typography
 
-Fluid typography uses the clamp function to grow the font-size as the viewport width increases. The clamp function takes a minimum, a desired value and a maximum. The value is clamped between the minimum and maximum. So if the value is smaller than the minimum the minimum is returned. If the value is larger than the maximum the maximum is returned. If the value is between the minimum and maximum the value itself is returned. This is how it works:
+Fluid typography uses the clamp function to grow the font-size as the viewport width increases. The clamp function takes a minimum, a desired value and a maximum. The value is clamped between the minimum and maximum. So if the value is smaller than the minimum the minimum is returned. If the value is larger than the maximum the maximum is returned. If the value is between the minimum and maximum the value itself is returned.
 
-The most recent fluid typography technique uses a <a href="https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/">clever formula</a> to calculate the value between 2 breakpoints in the middle part of the clamp function. It also adds a rem value to the vw unit to make sure the font-size still scales when the user sets a bigger font-size in their browser settings.
-Now I allways scratched my head when it comes to this so called desired value. What does it mean?
-
-The same behaviour as static responsive typography applies: at some point the font-size decreases while the zoom level increases. So zooming in will
+The most recent fluid typography technique uses a rather <a href="https://www.aleksandrhovhannisyan.com/blog/fluid-type-scale-with-css-clamp/">clever formula</a> to calculate the value between 2 breakpoints in the middle part of the clamp function. It also adds a rem value to the vw unit to make sure the font-size still scales when the user sets a bigger font-size in their browser settings or when the user zooms in. I created a calculator to test different values and combinations. You can try it out below.
 
 import FluidCalculator from "../../components/Demos/ResponsiveType/FluidCalculator.svelte";
 

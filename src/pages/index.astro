@@ -2,6 +2,7 @@
 import { SITE_ATHOUR, SITE_DESCRIPTION } from "../config";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
+import About from "../components/About.astro";
 import Blogposts from "../components/Blogposts.astro";
 ---
 
@@ -13,30 +14,7 @@ import Blogposts from "../components/Blogposts.astro";
         headerMeta={SITE_DESCRIPTION}
         headerTitle={SITE_ATHOUR}
       />
-      <!-- <p>
-        I'm a designer who likes to code. I'm into responsive web-design, HTML &
-        CSS, Javascript, typography and animation. Currently I'm teaching these
-        topics at MCT and Devine. Feel free to send me an email. Follow me on
-        Codepen or Twitter.
-      </p> -->
-      <p>
-        Driven by curiosity and a love for great, high-quality and thoughtful
-        design. Pushing the boundaries and striving to create something truly
-        unique and meaningful. My goal is to continue improving, learning, and
-        exploring all the different areas life has to offer.
-      </p>
-      <p>
-        Currently studying at the <a href="#!">University of Design</a> in Schwäbisch
-        Gmünd. Curating <a href="#!">Curations</a> and working on different <a
-          href="#!">side projects</a
-        >.
-      </p>
-      <p>
-        If you’d like to learn more <a href="#!">about me</a>, or discuss
-        design, technology or life in general, feel free to <a href="#!"
-          >reach out</a
-        >. I’m always happy to chat.
-      </p>
+      <About />
     </div>
   </main>
   <section class="row">
