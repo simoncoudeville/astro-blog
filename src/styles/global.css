@@ -212,7 +212,7 @@ Variables
     --global-color-teal-800: oklch(43% 0.14 var(--global-color-teal-hue));
     --global-color-teal-900: oklch(38% 0.13 var(--global-color-teal-hue));
 
-    --global-neutral-hue: 240deg;
+    --global-neutral-hue: 180deg;
     --global-neutral-saturation: 5%;
 
     --global-color-neutral-025: hsl(var(--global-neutral-hue), var(--global-neutral-saturation), 98.5%);
@@ -240,7 +240,7 @@ Variables
     --global-foregroundColor: var(--global-color-neutral-030);
     --global-foregroundColor2: var(--global-color-neutral-050);
     --global-text-color: var(--global-color-neutral-800);
-    --global-accent-color: var(--global-color-violet-600);
+    --global-accent-color: var(--global-color-cyan-500);
     --global-title-color: var(--global-color-neutral-900);
     --global-meta-color: var(--global-color-neutral-300);
     --global-muted-color: var(--global-color-neutral-500);
@@ -250,13 +250,6 @@ Variables
     --global-code-background: var(--global-foregroundColor);
     --global-input-borderColor: var(--global-borderColor);
     --global-input-backgroundColor: var(--global-color-neutral-050);
-
-    --global-borderRadius: var(--global-baseline);
-    --global-borderRadius-lg: calc(var(--global-borderRadius) * 2);
-    --global-borderRadius-sm: calc(var(--global-borderRadius) / 2);
-
-    --global-borderWidth: 1px;
-
     --global-link-color: var(--global-muted-color);
     --global-link-underline-color: var(--global-link-color);
     --global-link-hover-color: var(--global-text-color);
@@ -265,15 +258,14 @@ Variables
     --global-selection-backgroundColor: var(--global-color-neutral-050);
     --global-selection-color: var(--global-text-color);
 
+    --global-borderRadius: var(--global-baseline);
+    --global-borderRadius-lg: calc(var(--global-borderRadius) * 2);
+    --global-borderRadius-sm: calc(var(--global-borderRadius) / 2);
+
+    --global-borderWidth: 1px;
+
     --global-font-family-alpha: "Graphik Web", sans-serif;
-    /* --global-font-family-alpha: "Moderat Trial", sans-serif; */
-    /* --global-font-family-alpha: "Everett Trial", sans-serif; */
-    /* --global-font-family-alpha: "FK Grotesk Neue Trial", sans-serif; */
-    /* --global-font-family-alpha: "Aeonik Trial", sans-serif; */
-    /* --global-font-family-alpha: "Noi Grotesk Trial", sans-serif; */
-    /* --global-font-family-alpha: "Studio Feixen Sans Trial", sans-serif; */
     --global-font-family-beta: "Tiempos Text", serif;
-    /* --global-font-family-beta: "Moderat Serif Trial", serif; */
     --global-font-family-title: var(--global-font-family-alpha);
     --global-font-family-code: "SFMono-Regular", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
     --global-font-weight-title: 500;
@@ -326,7 +318,7 @@ Variables
         --global-backgroundColor: var(--global-color-neutral-900);
         --global-foregroundColor: var(--global-color-neutral-850);
         --global-foregroundColor2: var(--global-color-neutral-675);
-        --global-accent-color: var(--global-color-violet-500);
+        /* --global-accent-color: var(--global-color-violet-500); */
         --global-text-color: var(--global-color-neutral-050);
         --global-title-color: var(--global-color-neutral-025);
         --global-code-color: var(--global-color-neutral-100);
@@ -1158,6 +1150,8 @@ code[class*="language-"],
 pre[class*="language-"] {
     --fs: var(--ms-1);
     --pre-whitespace: var(--global-whitespace);
+    /* color: var(--global-code-color); */
+    color: var(--global-accent-color);
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
     line-height: calc(var(--global-baseline) * 5);
     direction: ltr;
@@ -1181,10 +1175,6 @@ pre[class*="language-"] {
 pre[class*="language-"] {
     border-radius: var(--global-borderRadius-lg);
     position: relative;
-}
-
-pre[class*="language-css"] code {
-    color: var(--language-css-color, var(--global-color-violet-500));
 }
 
 pre[class*="language-"] code {
@@ -1215,16 +1205,20 @@ pre[class*="language-"] {
     color: var(--global-meta-color);
 }
 
+/*
 .token.value {
     color: var(--token-value-color, var(--global-color-violet-500));
-}
+} */
 
-.token.punctuation {
-    color: var(--token-punctation-color, var(--global-color-neutral-700));
-}
-
+.token.punctuation,
 .token.property {
-    color: var(--token-property-color, var(--global-color-neutral-700));
+    color: var(--token-punctation-color, var(--global-muted-color));
+}
+
+.token.rule,
+.token.selector,
+.token.keyword {
+    color: var(--token-property-color, var(--global-code-color));
 }
 
 .namespace {
@@ -1232,10 +1226,8 @@ pre[class*="language-"] {
 }
 
 .token.operator,
-.token.rule,
-.token.keyword,
 .token.tag {
-    color: var(--token-operator-color, var(--global-color-cyan-500));
+    color: var(--token-operator-color, var(--global-muted-color));
 }
 
 .token.constant,
@@ -1245,25 +1237,26 @@ pre[class*="language-"] {
 .token.char,
 .token.builtin,
 .token.inserted {
-    color: var(--token-constant-color, var(--global-color-indigo-500));
+    color: var(--token-constant-color, var(--global-muted-color));
 }
 
 .token.entity {
     cursor: help;
 }
 
-.token.literal-property,
-.token.selector {
-    color: var(--token-selector-color, var(--global-color-purple-500));
+.token.literal-property {
+    color: var(--token-selector-color, var(--global-muted-color));
 }
 
 .token.boolean {
-    color: var(--token-boolean-color, var(--global-color-blue-500));
+    /* color: var(--token-boolean-color, var(--global-color-blue-500)); */
+    /* color: var(--token-boolean-color, var(--global-color-neutral-500)); */
 }
 
 .token.class-name,
 .token.function {
-    color: var(--token-function-color, var(--global-color-blue-500));
+    /* color: var(--token-function-color, var(--global-color-blue-500)); */
+    color: var(--token-function-color, var(--global-muted-color));
 }
 
 .token.italic {
@@ -1289,7 +1282,7 @@ pre[class*=language-][class*=language-css]:after {
     content: "CSS";
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
     body {
         --token-punctation-color: var(--global-color-neutral-100);
         --token-selector-color: var(--global-color-purple-400);
@@ -1301,7 +1294,7 @@ pre[class*=language-][class*=language-css]:after {
         --token-property-color: var(--global-color-neutral-100);
         --token-punctation-color: var(--global-color-neutral-100);
     }
-}
+} */
 
 /* @container container (min-width: calc(100vw - 3.3rem)) {
 
