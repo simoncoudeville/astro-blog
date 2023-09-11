@@ -15,21 +15,16 @@
   .note {
     --note-backgroundColor: var(--global-foregroundColor);
     --note-color: var(--global-muted-color);
+    /* --note-color: var(--global-muted-color2); */
     /* --note-title-color: var(--global-accent-color); */
     --note-title-color: var(--global-muted-color);
     --note-title-color: var(--global-text-color);
+    /* --note-title-color: var(--global-title-color); */
     --note-whitespace: var(--global-whitespace);
     background-color: var(--note-backgroundColor);
     border-radius: var(--global-borderRadius-lg);
     padding: var(--note-whitespace);
     color: var(--note-color);
-  }
-
-  .note__title,
-  .note {
-    /* --fs: var(--ms-1);
-    font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
-    line-height: calc(var(--global-baseline) * 4); */
   }
 
   .note__header {
