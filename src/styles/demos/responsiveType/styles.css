@@ -24,7 +24,7 @@
 .controls {
     display: grid;
     gap: var(--global-whitespace-xs) var(--global-whitespace);
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: 1fr auto;
     align-items: center;
 }
 
@@ -36,9 +36,11 @@
 
 .controls__button {
     border-radius: var(--global-borderRadius-sm);
-    /* border-radius: 100%; */
-    /* background-color: var(--global-foregroundColor2); */
-    /* border: 1px solid var(--global-borderColor2); */
+    border-radius: 100%;
+    /* background-color: var(--global-foregroundColor); */
+    background-color: var(--global-backgroundColor);
+
+    border: 1px solid var(--global-borderColor2);
     /* background-color: var(--global-backgroundColor); */
     /* background-color: var(--global-input-backgroundColor); */
     /* padding: var(--global-whitespace-5xs);
@@ -46,11 +48,23 @@
 }
 
 .controls__button:hover {
-    background-color: var(--global-foregroundColor2);
+    /* background-color: var(--global-foregroundColor2); */
 }
 
 .controls__button:disabled {
-    background-color: transparent;
+    /* background-color: transparent; */
+}
+
+.zoom {
+    /* display: flex;
+    align-items: center;
+    height: var(--global-whitespace-m); */
+    background-color: var(--global-foregroundColor2);
+    /* border: 1px solid var(--global-borderColor2); */
+    /* border-radius: var(--global-borderRadius); */
+    border-radius: var(--global-whitespace);
+    /* padding: 0 var(--global-whitespace-3xs); */
+    padding: var(--global-whitespace-4xs) var(--global-whitespace-3xs);
 }
 
 @media (max-width: 32em) {
@@ -88,8 +102,8 @@
 .viewport__part {
     /* background-color: var(--global-borderColor2); */
     background-color: var(--global-foregroundColor2);
-    border-radius: var(--global-borderRadius-sm);
-    padding: 1px calc(var(--global-whitespace-3xs) + var(--global-whitespace-4xs)) 2px;
+    border-radius: var(--global-borderRadius);
+    padding: 0 var(--global-whitespace-3xs);
     transition: background-color var(--global-transition-duration-short);
     --fs: var(--ms-1);
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);

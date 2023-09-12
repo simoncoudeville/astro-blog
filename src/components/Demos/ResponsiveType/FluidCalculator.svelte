@@ -61,7 +61,7 @@
     </div> -->
     <div class="demo__body flow">
       <div class="flex align-center gap">
-        <label class="pb-clear" for="presets">Presets: </label>
+        <label class="pb-clear text-s" for="presets">Presets: </label>
         <div class="custom-select grow-1">
           <select
             class="custom-select__select"
@@ -77,20 +77,13 @@
           </select>
           <IconDown className="custom-select__down" />
         </div>
-        <Reset
-          functionName={resetClampCalculator}
-          disabledParameters={$x1 == 320 &&
-            $x2 == 960 &&
-            $y1 == 24 &&
-            $y2 == 48}
-        />
       </div>
       <div class="calculator">
         <fieldset>
-          <legend>Minimum viewport </legend>
+          <legend class="text-s">Minimum viewport </legend>
           <div class="calculator__fieldset">
             <p>
-              <label class="calculator__label" for="x1">Width</label>
+              <label class="calculator__label text-s" for="x1">Width</label>
               <span class="input-field">
                 <input
                   type="number"
@@ -103,7 +96,9 @@
               </span>
             </p>
             <p>
-              <label class="calculator__label" for="y1">Font size </label>
+              <label class="calculator__label text-s" for="y1"
+                >Font size
+              </label>
               <span class="input-field">
                 <input
                   type="number"
@@ -118,10 +113,10 @@
           </div>
         </fieldset>
         <fieldset>
-          <legend>Maximum viewport</legend>
+          <legend class="text-s">Maximum viewport</legend>
           <div class="calculator__fieldset">
             <p>
-              <label class="calculator__label" for="x2">Width </label>
+              <label class="calculator__label text-s" for="x2">Width </label>
               <span class="input-field">
                 <input
                   type="number"
@@ -134,7 +129,9 @@
               </span>
             </p>
             <p>
-              <label class="calculator__label" for="y2">Font size </label>
+              <label class="calculator__label text-s" for="y2"
+                >Font size
+              </label>
               <span class="input-field">
                 <input
                   type="number"

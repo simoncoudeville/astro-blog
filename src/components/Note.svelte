@@ -13,6 +13,7 @@
 
 <style>
   .note {
+    --fs: var(--ms-1);
     --note-backgroundColor: var(--global-foregroundColor);
     --note-color: var(--global-muted-color);
     /* --note-color: var(--global-muted-color2); */
@@ -25,6 +26,9 @@
     border-radius: var(--global-borderRadius-lg);
     padding: var(--note-whitespace);
     color: var(--note-color);
+    font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
+    line-height: calc(var(--global-baseline) * 4.5);
+    font-family: var(--global-font-family-alpha);
   }
 
   .note__header {
@@ -36,11 +40,14 @@
   }
 
   .note__title {
+    --fs: var(--ms-1);
+    font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
+    line-height: calc(var(--global-baseline) * 4.5);
     font-family: var(--global-font-family-alpha);
     /* font-family: var(--global-font-family-beta); */
     /* font-style: italic; */
-    color: var(--note-title-color);
-    font-weight: normal;
+    /* color: var(--note-title-color); */
+    /* font-weight: normal; */
   }
 
   /* @media (prefers-color-scheme: dark) {

@@ -19,6 +19,13 @@
     align-items: center;
 }
 
+.demo__button,
+.demo__link {
+    --fs: var(--ms-1);
+    font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
+    line-height: calc(var(--global-baseline) * 5);
+}
+
 .demo__link:any-link {
     display: inline-block;
     color: var(--global-text-color);
@@ -27,14 +34,13 @@
 
 .demo__button {
     background-color: transparent;
-    font-family: inherit;
     display: inline-block;
     color: var(--global-text-color);
     text-decoration: none;
     text-decoration-color: inherit;
     transition: 0.2s ease;
     padding: calc(var(--global-whitespace-3xs) - 1px) var(--global-whitespace-xs) calc(var(--global-whitespace-3xs) + 1px);
-    border: 1px solid var(--global-borderColor);
+    border: 1px solid var(--global-borderColor2);
     border-radius: var(--global-borderRadius);
 }
 
