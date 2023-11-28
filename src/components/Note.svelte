@@ -28,7 +28,7 @@
     color: var(--note-color);
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
     line-height: calc(var(--global-baseline) * 4.5);
-    font-family: var(--global-font-family-alpha);
+    /* font-family: var(--global-font-family-alpha); */
   }
 
   .note__header {
@@ -47,7 +47,7 @@
     /* font-family: var(--global-font-family-beta); */
     /* font-style: italic; */
     /* color: var(--note-title-color); */
-    /* font-weight: normal; */
+    font-weight: normal;
   }
 
   /* @media (prefers-color-scheme: dark) {

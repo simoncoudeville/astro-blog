@@ -1,6 +1,7 @@
 ---
 # title: "Why responsive typography behaves weird on zoom"
-title: "Responsive type and zoom"
+title: "The trouble with responsive type and zoom"
+# title: "Responsive type and zoom"
 slug: the-trouble-with-responsive-type-and-zoom
 pubDate: 2023-01-22
 description: "This is the second post of my new Astro blog."
@@ -10,26 +11,30 @@ titleWidth: 20
 
 import Note from "../../components/Note.svelte";
 
-In many cases, text should adjust to the available space. Type should not be too large on small screens or too small on large screens, which is where responsive typography comes in. However, when using the zoom functionality on desktop browsers seemingly unpredictable jumps in font-size occur, zooming in appears to slow down or cease responding and in some cases text size even decreases as you zoom in. Adrian Roselli has documented these behaviours in extend in <a href="https://adrianroselli.com/2019/12/responsive-type-and-zoom.html">his article</a>. I wanted to understand the cause of these issues, so I wrote this article to share what I learned.
+{/* In many cases, text should adjust to the available space. Type should not be too large on small screens or too small on large screens, which is where responsive typography comes in. */}
+
+{/* Typography that responds to the viewport width is a popular technique for responsive design. Especially if you want to use large typography. Without responsive typography text will get clipped or spill out of some design elements on small screens. */}
+
+If you want to design with large typography on the web there's no way around it, you'll have to implement a responsive type solution. Otherwise large text will get clipped or spill out of some design elements on smaller screens. However, combined with the zoom functionality on desktop browsers seemingly unpredictable jumps in font-size occur: zooming in appears to slow down or cease responding and in some cases text size even decreases when zooming in. Adrian Roselli has documented these behaviors in extend in <a href="https://adrianroselli.com/2019/12/responsive-type-and-zoom.html">his article</a>. I wanted to understand the cause of these issues, so I wrote this article to share what I learned.
 
 <Note title="A note on pixels">
   In all the examples and demos in this article I'm using pixels. This is
-  because using relative units would make the calculations look even more
+  because using relative units would make the calculations even more
   complicated. Pixels make it more intuitive to understand what's going on. And
-  in the end, browsers compute everything into pixels anyway. But ofcourse you
-  should use relative units in your code.
+  in the end, browsers compute everything into pixels anyway. But of course you
+  should always use relative units in your code.
 </Note>
 {/*
 Responsive typography offers two techniques: static and fluid. Static responsive typography is based on a set of breakpoints, where each breakpoint triggers a new font size. This can be an effective way to ensure text looks good, but it is limited in that it only adjusts when the viewport crosses a breakpoint, while it ignores the changes between breakpoints. Fluid typography, however, allows for a more dynamic approach. It uses a mathematical formula to adjust font sizes as the viewport changes, allowing for a more natural display of typography across all viewport widths. I’ll look at both techniques and examine how they respond when zooming.
 
 ## What influences the eventual font-size
 
-When applying a responsive type technique there 3 variables that influence the final computed font size of an elemtent. Window width, viewport width and user preference font-size. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor pariatur minima et. Perferendis ducimus nulla autem animi omnis non, enim molestias distinctio atque architecto cupiditate quod laboriosam placeat aliquam! Accusamus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor pariatur minima et. Perferendis ducimus nulla autem animi omnis non, enim molestias distinctio atque architecto cupiditate quod laboriosam placeat aliquam! Accusamus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor pariatur minima et. Perferendis ducimus nulla autem animi omnis non, enim molestias distinctio atque architecto cupiditate quod laboriosam placeat aliquam! Accusamus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor pariatur minima et. Perferendis ducimus nulla autem animi omnis non, enim molestias distinctio atque architecto cupiditate quod laboriosam placeat aliquam! Accusamus!
+When applying a responsive type technique there 3 variables that influence the final computed font size of an element. Window width, viewport width and user preference font-size. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor pariatur minima et. Perferendis ducimus nulla autem animi omnis non, enim molestias distinctio atque architecto cupiditate quod laboriosam placeat aliquam! Accusamus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor pariatur minima et. Perferendis ducimus nulla autem animi omnis non, enim molestias distinctio atque architecto cupiditate quod laboriosam placeat aliquam! Accusamus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor pariatur minima et. Perferendis ducimus nulla autem animi omnis non, enim molestias distinctio atque architecto cupiditate quod laboriosam placeat aliquam! Accusamus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor pariatur minima et. Perferendis ducimus nulla autem animi omnis non, enim molestias distinctio atque architecto cupiditate quod laboriosam placeat aliquam! Accusamus!
 \*/}
 
 ## What happens when zooming
 
-Zooming on desktop based browsers changes the device pixel ratio. That's the ratio between CSS pixels and device pixels. For example: on a macbook's retina display the device pixel ratio is 2, meaning 1 CSS pixel is 2 device pixels. Zooming in increases the device pixel ratio, making CSS pixels larger. When you zoom in to 500% 1 CSS pixel is now 10 device pixels. The same CSS pixel value now represents an area 5 times larger on the screen. This is why zooming in makes everything larger, including text. Like I said earlier, browsers compute everything to pixels, so if the font-size is expressed in pixels and pixels get larger, the text gets larger. The only exception is the viewport, which actually gets smaller. Because pixels are now 5 times larger there are now 5 times less pixels to fill up the viewport, making it 5 times smaller. So zooming in on to 500% on a 1920px wide window makes the viewport 1920px / 5 = 384px wide.
+Zooming on desktop based browsers changes the device pixel ratio. That's the ratio between CSS pixels and device pixels. For example: on a macbook's retina display the device pixel ratio is 2, meaning 1 CSS pixel is 2 device pixels. Zooming in increases the device pixel ratio, making CSS pixels larger. When you zoom in to 500% 1 CSS pixel is now 10 device pixels. The same CSS pixel value now represents an area 5 times larger on the screen. This is why zooming in makes everything larger, including text. Like I said, browsers compute everything to pixels, so if the font-size is expressed in pixels and pixels get larger, the text gets larger. The only exception is the viewport, which actually gets smaller. Because pixels are now 5 times larger there are now 5 times less pixels to fill up the viewport, making it 5 times smaller. So zooming in on to 500% on a 1920px wide window makes the viewport 1920px / 5 = 384px wide.
 
 Here's a pixel to demonstrate this; try zooming in on it on a webkit or chromium based browser. On Chrome you can zoom in to 500%. At that point the pixel will be 5 times as wide. Take a screenshot and measure it if you don't believe me. I measured it myself and it's 5 times as wide.
 
@@ -47,23 +52,23 @@ Static responsive typography is based on a set of breakpoints, where each breakp
 
 ```css
 h1 {
-  font-size: 25px;
+  font-size: 24px;
 }
 
 @media (min-width: 600px) {
   h1 {
-    font-size: 40px;
+    font-size: 32px;
   }
 }
 
 @media (min-width: 1200px) {
   h1 {
-    font-size: 50px;
+    font-size: 48px;
   }
 }
 ```
 
-I created a demo to test how this behaves when zooming in. You can zoom in and change the window width to see how the font-size changes. The font-size is displayed in the bottom left corner. The visual font-size is the font-size multiplied with the zoom level percentage.
+I created a simulator to test how this behaves when zooming in. You can zoom in and change the window width to see how the font-size changes. The font-size is displayed in the bottom left corner. The visual font-size is the font-size multiplied with the zoom level percentage. Notice how the viewport width decreases when zooming in and how it affects the font-size.
 
 import Static from "../../components/Demos/ResponsiveType/Static.svelte";
 
@@ -79,27 +84,25 @@ the h1 is now only 20px, but with a zoom level of 300% the visual font-size is a
 60px. So as you zoom in the visual font-size keeps turning back to 60px which gives
 the impression that the text decreases in size as you zoom in.
 
-You could potentially
-write a media query for each zoom level and downscale the font-size value so that
-multiplied with the zoom level the visual font-size wouldn't appear to change at
+You could potentially write a media query for each zoom level and downscale the font-size value so that multiplied with the zoom level the visual font-size wouldn't appear to change at
 all. But only for a particular window width range. Because if you zoom in with a
 larger window the viewport width after zoom is also larger, so the media queries
 get triggered at different zoom levels. That's why it feels unpredictable and is
-rather complex to test. You can see for yourself how it behaves with a larger window width.
+rather complex to test. You can see for yourself how it behaves with a larger window width by changing the window width in the simulator.
 
-The values in this example are deliberately chosen to demonstrate the behaviour and to make the effect clear. In reality you would probably use different breakpoints. But the result would remain the same. At some point the font-size decreases while the zoom level increases. Causing a somewhat broken experience.
+The values in this example are deliberately chosen to demonstrate the behavior and to make the effect clear. In reality you would probably use different breakpoints. But the result would remain the same: at some point the font-size decreases while the zoom level increases. Causing a somewhat broken experience.
 
 ## Fluid typography
 
 Fluid typography uses the clamp function to grow the font-size as the viewport width increases. The clamp function takes a minimum, a desired value and a maximum. The value is clamped between the minimum and maximum. So if the value is smaller than the minimum the minimum is returned. If the value is larger than the maximum the maximum is returned. If the value is between the minimum and maximum the value itself is returned.
 
-The most recent fluid typography technique uses a rather <a href="https://www.aleksandrhovhannisyan.com/blog/fluid-type-scale-with-css-clamp/">clever formula</a> to calculate the value between 2 breakpoints in the middle part of the clamp function. It also adds a rem value to the vw unit to make sure the font-size still scales when the user sets a bigger font-size in their browser settings or when the user zooms in. I created a calculator to test different values and combinations. You can try it out below.
+The most recent fluid typography technique uses a rather <a href="https://www.aleksandrhovhannisyan.com/blog/fluid-type-scale-with-css-clamp/">clever formula</a> to calculate the value between 2 breakpoints in the middle part of the clamp function. It also adds a rem value to the vw unit to make sure the font-size still scales when the user adjusts the font-size in the browser settings or when the user zooms. I created a calculator to test different values and combinations. You can try it out below.
 
 import FluidCalculator from "../../components/Demos/ResponsiveType/FluidCalculator.svelte";
 
 <FluidCalculator client:idle />
 
-So here’s how I would explain it. Before a viewport width of 320px the font-size should be 32px. After 320px the font-size should grow to 48px and stop at 960px viewport width. That’s what this formula does:
+To test this formula I created another simulator to see how these variables influence the outcome after zoom. Try changing the window width first to see how the clamp function actually works. Then try zooming in to see how it affects the the middle part of the clamp function and the computed font-size after zoom. Next try changing the parameters in the calculator to see how it affects the rem value and the outcome.
 
 import Fluid from "../../components/Demos/ResponsiveType/Fluid.svelte";
 
@@ -109,7 +112,28 @@ Depending on the combination of parameters the result after zooming in is one of
 
 ### 1. Zoom keeps working but slows down
 
-Between the min and max font-size ranges the zoom level is still applied to the font-size. But it does so at a slower pace. The zoom level is applied to the font-size after it has already been decreased because the viewport gets smaller. Basicly the zoom level is still larger then the rate at which the font-size gets smaller. The larger the difference between the min and max font-size the more the zoom level slows down. This is because the font-size gets smaller faster than the zoom level can increase it.
+Between the min and max font-size ranges the zoom level is still applied to the font-size. But it does so at a slower pace. The zoom level is applied to the font-size after it has already been decreased because the viewport gets smaller. Basically the zoom rate is still larger then the rate at which the font-size gets smaller. The larger the difference between the min and max font-size or the smaller the difference between the min and max viewport width the more the zoom level slows down. This is because the rem value after the vw value gets smaller. The smaller the rem value the less the zoom level can increase the font-size. At some point the rem value reaches zero and zoom stops working.
+
+### 2. Zoom stops working
+
+If the combination of parameters is such that the extra rem value after the vw part is zero zoom stops working when the middle part of the clamp function is activated. This is because the only value that's left now is the vw part. As you zoom in the viewport width decreases at the same rate as the zoom level increases. Because the font-size is now only expressed in vw the font-size decreases at the same rate as the viewport width. Every time the zoom level increases by 1% the viewport width decreases by 1%. So the font-size decreases 1% every time the zoom level increases by 1%, effectively canceling out each other.
+
+Any combination of parameters that results in a rem value of zero after the vw part will cause this behavior.
+
+This is always the case when the quotient (the result of the division) of the max and min font-size is the same as the quotient of the max and min viewport width. So for example a min font-size of 24px and a max font-size of 72px combined with a min viewport width of 320px and a max viewport width of 960px. The quotient of the max and min font-size is 3 and the quotient of the max and min viewport width is also 3.
+
+I guess this is because of the nature of the formula.
+
+### 3. Negative zoom
+
+At that point
+
+If the difference between the min and max font-size is smaller or the difference between the min and max viewport width is larger the extra value after the vw part reaches zero before the zoom level can increase the font-size. This is because the font-size gets smaller faster than the zoom level can increase it. At that point the zoom level is no longer applied to the font-size and zoom stops working.
+
+When a com
+
+In some situations the formula returns an extra value of 0. If that's the case there is essentially just the vw part that's
+When the formula returns a point where the added
 
 This could as well be seen as a feature and not a bug. Is it really broken? What looks more broken to you?
 

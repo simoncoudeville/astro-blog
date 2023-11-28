@@ -76,7 +76,7 @@
   }
 </script>
 
-<div class="demo test flow">
+<div class="demo test">
   <div class="demo__header">
     <h3 class="demo__title">Fluid type simulator</h3>
     <Reset
@@ -84,7 +84,7 @@
       disabledParameters={viewportWidth == 1680}
     />
   </div>
-  <div class="demo__body flow-xs">
+  <div class="demo__body flow-s">
     <div class="controls">
       <div class="controls__window flex align-center gap-2xs">
         <label
@@ -108,7 +108,7 @@
         >
       </div>
       <div class="controls__zoom flex align-center gap-2xs">
-        <span class="color-muted text-s shrink-0">Zoom</span>
+        <span class="color-muted text-s text-sans shrink-0">Zoom</span>
         <div class="flex align-center gap-3xs zoom">
           <button
             class="button-reset controls__button shrink-0"
@@ -131,7 +131,7 @@
       </div>
     </div>
     <div
-      class="viewport"
+      class="viewport text-sans"
       style="--minww: {minWindowWidth}; --maxww: {maxWindowWidth}; --breakpoint1: {breakpoint1}; --breakpoint2: {breakpoint2}; --thumb-position: {viewportThumbPosition}"
     >
       <p class="viewport__label flex text-s justify-between">
@@ -210,21 +210,22 @@
         <span class="token function">clamp</span><span class="token punctuation"
           >(</span
         ><span class="token output output--3">{$y1}px</span><span
-          class="token punctuation">,</span
+          class="token punctuation"
+          >, <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span
         >
-        <!-- <span class="token value">{v}vw</span>
-        <span class="token punctuation">×</span>
-        <span class="token value">{round(viewportWidth, 2)}px</span>
-        <span class="token punctuation">=</span> -->
-        <span class="token value"
-          >{round((v * viewportWidth) / 100, 2, true)}px</span
-        >
+        <span class="token value">
+          {round(v / 100, 4)} × {round(viewportWidth, 2)}px
+          <span class="token punctuation">= </span>
+          {round((v * viewportWidth) / 100, 2, true)}px
+        </span>
         <span class="token punctuation">+</span>
         <span class="token value">{round(r, 2, true)}px</span>
         <span class="token punctuation">=</span>
         <span class="token value"
           >{round((v * viewportWidth) / 100 + r, 2, true)}px</span
-        ><span class="token punctuation">,</span>
+        ><span class="token punctuation">, </span><br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <span class="token value">{$y2}px</span><span class="token punctuation"
           >);</span
         >
@@ -268,7 +269,7 @@
       {/if}
     </p>
     <p class="text-code text-s">
-      <span class="token property">font-size</span><span
+      <span class="token property">computed font-size</span><span
         class="token punctuation">:</span
       >
       <span class="token value">{round(fs, 2, true)}px</span>

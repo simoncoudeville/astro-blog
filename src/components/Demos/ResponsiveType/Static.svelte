@@ -7,14 +7,12 @@
   import IconMin from "../../Icons/IconMin.svelte";
 
   let zoomLevel = 100;
-  let zoomlevels = [
-    25, 33, 67, 75, 80, 90, 100, 110, 125, 150, 175, 200, 250, 300, 400, 500,
-  ];
+  let zoomlevels = [100, 110, 125, 150, 175, 200, 250, 300, 400, 500];
   let windowWidth = 1680;
   let maxWindowWidth = 1920;
   let minWindowWidth = 240;
   let windowRange = maxWindowWidth - minWindowWidth;
-  let fs = 20;
+  let fs = 24;
   let breakpoint1 = 600;
   let breakpoint2 = 1200;
   let active = "right";
@@ -64,7 +62,7 @@
   }
 </script>
 
-<div class="demo flow">
+<div class="demo">
   <div class="demo__header">
     <h3 class="demo__title">Static responsive type simulator</h3>
     <Reset
@@ -72,10 +70,13 @@
       disabledParameters={viewportWidth == 1680}
     />
   </div>
-  <div class="demo__body flow-xs">
+  <div class="demo__body flow-s">
     <div class="controls">
       <div class="controls__window flex align-center gap-2xs">
-        <label class="color-muted shrink-0 pb-clear" for="staticWindowWidth">
+        <label
+          class="color-muted shrink-0 pb-clear text-sans"
+          for="staticWindowWidth"
+        >
           Window width
         </label>
         <input
@@ -88,22 +89,24 @@
           max={maxWindowWidth}
           step="1"
         />
-        <output class="text-num text-s" for="staticWindowWidth"
+        <output class="text-num text-s text-sans" for="staticWindowWidth"
           >{windowWidth}px</output
         >
       </div>
       <div class="controls__zoom flex align-center gap-2xs">
-        <span class="color-muted shrink-0 text-s">Zoom</span>
+        <span class="color-muted shrink-0 text-s text-sans">Zoom</span>
         <div class="zoom flex align-center gap-2xs">
           <button
             class="button-reset controls__button shrink-0"
             on:click={decrementZoomLevel}
-            disabled={zoomLevel <= 25}
+            disabled={zoomLevel <= 100}
           >
             <span class="sr-only">Zoom out</span>
             <IconMin />
           </button>
-          <output class="zoom__output text-num text-s">{zoomLevel}%</output>
+          <output class="zoom__output text-num text-s text-sans"
+            >{zoomLevel}%</output
+          >
           <button
             class="button-reset controls__button shrink-0"
             on:click={incrementZoomLevel}
@@ -120,7 +123,9 @@
       class="viewport"
       style="--minww: {minWindowWidth}; --maxww: {maxWindowWidth}; --breakpoint1: {breakpoint1}; --breakpoint2: {breakpoint2}; --thumb-position: {viewportThumbPosition}"
     >
-      <p class="viewport__label flex justify-between align-items-center">
+      <p
+        class="viewport__label flex justify-between align-items-center text-sans"
+      >
         <span class="color-muted shrink-0 text-s">Viewport width</span>
         <span class="text-num text-s">{round(viewportWidth, 2)}px</span>
       </p>
@@ -136,7 +141,7 @@
             ? 'active'
             : ''}"
         >
-          <span class="viewport__breakpoint-value text-num"
+          <span class="viewport__breakpoint-value text-num text-sans"
             >{breakpoint1}px</span
           >
         </div>
@@ -145,7 +150,7 @@
             ? 'active'
             : ''}"
         >
-          <span class="viewport__breakpoint-value text-num"
+          <span class="viewport__breakpoint-value text-num text-sans"
             >{breakpoint2}px</span
           >
         </div>

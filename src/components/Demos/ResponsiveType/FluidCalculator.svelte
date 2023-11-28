@@ -51,14 +51,42 @@
 
   $: v = (100 * ($y2 - $y1)) / ($x2 - $x1);
   $: r = ($x1 * $y2 - $x2 * $y1) / ($x1 - $x2) / 16;
+
+  // a function that allows to switch between px and rem
+  function toggleUnit() {
+    if (unit === "px") {
+      unit = "rem";
+    } else {
+      unit = "px";
+    }
+  }
 </script>
 
 <div class="flow">
   <div class="demo">
-    <!-- <div class="demo__header">
-      <h3 class="demo__title">fluid type clamp formula calculator</h3>
-
-    </div> -->
+    <div class="demo__header">
+      <h3 class="demo__title">fluid type formula calculator</h3>
+      <Reset
+        functionName={resetClampCalculator}
+        disabledParameters={$x1 == 320 && $x2 == 960 && $y1 == 24 && $y2 == 48}
+      />
+      <!-- 2 radio inputs for switching between px and rem -->
+      <div class="flex align-center gap">
+        <label class="pb-clear text-s" for="unit">Unit: </label>
+        <div class="custom-select grow-1">
+          <select
+            class="custom-select__select"
+            name="unit"
+            id="unit"
+            bind:value={unit}
+          >
+            <option value="px">px</option>
+            <option value="rem">rem</option>
+          </select>
+          <IconDown className="custom-select__down" />
+        </div>
+      </div>
+    </div>
     <div class="demo__body flow">
       <div class="flex align-center gap">
         <label class="pb-clear text-s" for="presets">Presets: </label>
@@ -137,7 +165,7 @@
                   type="number"
                   bind:value={$y2}
                   min={$y1 + 1}
-                  max="100"
+                  max="200"
                   step="1"
                   id="y2"
                 />
@@ -156,18 +184,18 @@
           ><span class="token value"
             >{unit === "px"
               ? round($y1, 4) + "px"
-              : round($y1 / 16, 4) + "rem"}</span
+              : round($y1 / 18, 4) + "rem"}</span
           ><span class="token punctuation">, </span><span class="token value"
             >{round((($y2 - $y1) / ($x2 - $x1)) * 100, 4)}vw</span
           ><span class="token punctuation"> + </span><span class="token value"
             >{unit === "px"
               ? round(($x1 * $y2 - $x2 * $y1) / ($x1 - $x2), 4) + "px"
-              : round(($x1 * $y2 - $x2 * $y1) / ($x1 - $x2) / 16, 4) +
+              : round(($x1 * $y2 - $x2 * $y1) / ($x1 - $x2) / 18, 4) +
                 "rem"}</span
           ><span class="token punctuation">, </span><span class="token value"
             >{unit === "px"
               ? round($y2, 4) + "px"
-              : round($y2 / 16, 4) + "rem"}</span
+              : round($y2 / 18, 4) + "rem"}</span
           ><span class="token punctuation">);</span>
 <span class="token punctuation">&rcub;</span></code
         ></pre>
