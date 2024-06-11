@@ -11,12 +11,12 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^1.0.0",
-    "@astrojs/preact": "^2.0.0",
-    "@astrojs/rss": "^3.0.0",
-    "@astrojs/svelte": "^4.0.0",
-    "astro": "^3.0.3",
-    "svelte": "^3.55.1"
+    "@astrojs/mdx": "^3.0.1",
+    "@astrojs/preact": "^3.3.0",
+    "@astrojs/rss": "^4.0.6",
+    "@astrojs/svelte": "^5.4.0",
+    "astro": "^4.9.2",
+    "svelte": "^4.2.17"
   },
   "devDependencies": {
     "@svgdotjs/svg.js": "^3.1.2",

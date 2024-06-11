@@ -26,8 +26,8 @@
     border-radius: var(--global-borderRadius-lg);
     padding: var(--note-whitespace);
     color: var(--note-color);
-    font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
-    line-height: calc(var(--global-baseline) * 4.5);
+    /* font-size: calc(var(--fs) / var(--root-font-size) * 1rem); */
+    /* line-height: calc(var(--global-baseline) * 4.5); */
     /* font-family: var(--global-font-family-alpha); */
   }
 
@@ -40,10 +40,10 @@
   }
 
   .note__title {
-    --fs: var(--ms-1);
-    font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
-    line-height: calc(var(--global-baseline) * 4.5);
-    font-family: var(--global-font-family-alpha);
+    /* --fs: var(--ms-1); */
+    /* font-size: calc(var(--fs) / var(--root-font-size) * 1rem); */
+    /* line-height: calc(var(--global-baseline) * 4.5); */
+    /* font-family: var(--global-font-family-alpha); */
     /* font-family: var(--global-font-family-beta); */
     /* font-style: italic; */
     /* color: var(--note-title-color); */

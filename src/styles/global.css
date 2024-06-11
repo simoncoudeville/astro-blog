@@ -623,7 +623,7 @@ strong {
 
 em,
 i {
-    font-style: italic;
+    /* font-style: italic; */
     font-family: var(--global-font-family-beta);
     /* color: var(--global-muted-color); */
     /* color: var(--global-meta-color); */
@@ -796,6 +796,7 @@ Objects
     border-radius: 100%;
     overflow: hidden;
     background-color: var(--global-color-neutral-125);
+    flex-shrink: 0;
     /* animation: colors 10s infinite; */
 
     & img {
