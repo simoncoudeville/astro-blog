@@ -103,7 +103,7 @@
           max={maxWindowWidth}
           step="1"
         />
-        <output class="text-num text-s" for="fluidWindowWidth"
+        <output class="text-num text-s output" for="fluidWindowWidth"
           >{windowWidth}px</output
         >
       </div>

@@ -1,8 +1,8 @@
 ---
-title: "Custom cursor interactions with :has"
-slug: custom-cursor-hover-effects-with-has
-description: "This post will show up on its own!"
-pubDate: 2023-01-31
+title: "Dynamic durations in UI transitions"
+slug: dynamic-durations-in-ui-transitions
+description: "When elements move across different distances—like in an accordion with short vs. long content—the duration of the animation should adapt accordingly."
+pubDate: 2025-04-31
 draft: false
 seed: 40
 titleWidth: 19
@@ -70,17 +70,3 @@ body:has(:is(a:active, button:active)) .cursor {
   opacity: 0.75;
 }
 ```
-
-import CursorBasic from "../../components/Demos/Cursor/CursorBasic.astro";
-
-<CursorBasic />
-
-The cursor is a simple div with a fixed width and height. The position is calculated using CSS custom properties. The `--x` and `--y` properties are set using JavaScript. The `:has` pseudo-class is used to check if the cursor is hovering over an `a` element. If it is, the cursor will grow and change color.
-
-import CursorAdvanced from "../../components/Demos/Cursor/CursorAdvanced.astro";
-
-<CursorAdvanced />
-
-import Cursor from "../../components/Demos/Cursor/Cursor.astro";
-
-<Cursor />

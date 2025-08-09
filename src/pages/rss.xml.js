@@ -1,9 +1,14 @@
-import rss from '@astrojs/rss';
+import rss, { pagesGlobToRssItems } from '@astrojs/rss';
+import { SITE_ATHOUR, SITE_DESCRIPTION } from '../config';
 
-export const get = () => rss({
-    title: 'Astro Learner | Blog',
-    description: 'My journey learning Astro',
-    site: 'https://my-blog-site.netlify.app',
-    items: import.meta.glob('./**/*.md'),
-    customData: `<language>en-us</language>`,
-});
+export async function GET(context) {
+    return rss({
+        title: `${SITE_ATHOUR} | Blog`,
+        description: SITE_DESCRIPTION,
+        site: context.site,
+        items: await pagesGlobToRssItems(
+            import.meta.glob('../content/blog/*.{md,mdx}')
+        ),
+        customData: `<language>en-us</language>`,
+    });
+}

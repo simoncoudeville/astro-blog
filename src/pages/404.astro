@@ -1,0 +1,31 @@
+---
+import { SITE_ATHOUR } from "../config";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+
+const title = "404: Page not found";
+const description = "The page you were looking for doesn't exist";
+---
+
+<BaseLayout title={title} description={description}>
+  <Header
+    headerTitle={SITE_ATHOUR}
+    headerMeta="404"
+    headerType="page"
+  />
+  <main class="row">
+    <div class="container flow">
+      <div class="content flow">
+        <h2>
+          Page not found
+        </h2>
+        <p>The page you were looking for doesn't exist or has been moved.
+
+          </p>
+          <p>
+        <a href="/">Return to homepage</a>
+        </p>
+      </div>
+    </div>
+  </main>
+</BaseLayout>

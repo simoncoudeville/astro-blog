@@ -2,29 +2,45 @@
 import { SITE_ATHOUR } from "../config";
 import { Image } from "astro:assets";
 // import avatarImg from "../img/test-avatar-3.png";
-import avatarImg from "../img/me-2.png";
-import avatarImg2 from "../img/me.png";
-const { headerTitle, headerMeta, headerClass } = Astro.props;
+// import avatarImg from "../img/me-3.png";
+// import avatarImg2 from "../img/me.png";
+import avatarImg2 from "../img/me-5.png";
+const { headerTitle, headerMeta, headerClass, headerType = "homepage" } = Astro.props;
+// headerType can be:
+// - "homepage" (h1: title, p: meta)
+// - "blog-detail" (h1: title, p: meta)
+// - "page" (p: title, h1: meta)
 ---
 
-<header class={`page-header page-header--${headerClass}`} id="top">
-  <!-- <a class="page-header__link" href="/">
-    <Image
-      class="page-header__avatar"
-      src={avatarImg}
-      alt={`Avatar of ${SITE_ATHOUR}`}
-      width="100"
-    />
-  </a> -->
-  <a class="page-header__face" href="/">
-    <Image src={avatarImg2} alt={`Avatar of ${SITE_ATHOUR}`} width="100" />
-  </a>
-  <div class="page-header__content">
-    <h1 class="page-header__title">
-      {headerTitle}
-    </h1>
-    <p class="page-header__meta color-meta">
-      <Fragment set:html={headerMeta} />
-    </p>
+<header class="row row--top" id="top">
+  <div class="container page-header">
+    <a href="/" class="page-header__me">
+      <Image
+        src={avatarImg2}
+        alt={`Avatar of ${SITE_ATHOUR}`}
+        width="200"
+      />
+    </a>
+    <div class="page-header__content">
+      {headerType === "page" ? (
+        <p class="page-header__title">
+          {headerTitle}
+        </p>
+      ) : (
+        <h1 class="page-header__title">
+          {headerTitle}
+        </h1>
+      )}
+
+      {headerType === "page" ? (
+        <h1 class="page-header__meta text-date">
+          <Fragment set:html={headerMeta} />
+        </h1>
+      ) : (
+        <p class="page-header__meta text-date">
+          <Fragment set:html={headerMeta} />
+        </p>
+      )}
+    </div>
   </div>
 </header>

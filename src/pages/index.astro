@@ -6,15 +6,15 @@ import About from "../components/About.astro";
 import Blogposts from "../components/Blogposts.astro";
 ---
 
-<BaseLayout>
-  <main class="row pt-clear mt-clear">
+<BaseLayout description={SITE_DESCRIPTION}>
+  <Header
+    headerMeta={SITE_DESCRIPTION}
+    headerTitle={SITE_ATHOUR}
+    headerType="homepage"
+  />
+  <main class="row">
     <div class="container flow">
-      <Header
-        headerClass="normal"
-        headerMeta={"Designer, coder <em>and</em> teacher"}
-        headerTitle={SITE_ATHOUR}
-      />
-      <About />
+      <About isHomepage={true} />
     </div>
   </main>
   <section class="row">

@@ -1,0 +1,22 @@
+---
+import { SITE_ATHOUR } from "../../config";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Blogposts from "../../components/Blogposts.astro";
+
+const title = "Blog";
+const description = "All articles by " + SITE_ATHOUR;
+---
+
+<BaseLayout title={title} description={description}>
+  <main class="row pt-clear mt-clear">
+    <div class="container flow">
+      <Header
+        headerTitle={SITE_ATHOUR}
+        headerMeta="articles"
+        headerType="page"
+      />
+      <Blogposts hideHeading={true} />
+    </div>
+  </main>
+</BaseLayout>

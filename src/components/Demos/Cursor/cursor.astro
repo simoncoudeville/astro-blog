@@ -136,17 +136,17 @@
     mouseX = 0,
     mouseY = 0;
 
-  const animate = () => {
+  const mouseDelay = () => {
     posX += (mouseX - posX) / delay;
     posY += (mouseY - posY) / delay;
 
     document.documentElement.style.setProperty("--mx", posX + "px");
     document.documentElement.style.setProperty("--my", posY + "px");
 
-    requestAnimationFrame(animate);
+    requestAnimationFrame(mouseDelay);
   };
 
-  animate();
+  mouseDelay();
 
   document.addEventListener("mousemove", (e) => {
     mouseX = e.clientX;

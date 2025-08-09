@@ -1,20 +1,21 @@
 ---
-import { formatDate } from "../../config";
+import { SITE_ATHOUR } from "../../config";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/Header.astro";
+
 const title = "Colophon";
-const upDate = new Date();
+const description = "Technical details about this site";
+
 ---
 
-<BaseLayout>
-  <main class="row pt-clear mt-clear">
+<BaseLayout title={title} description={description}>
+   <Header
+    headerTitle={SITE_ATHOUR}
+    headerMeta={title}
+    headerType="page"
+  />
+  <main class="row">
     <div class="container flow">
-      <Header
-        headerTitle={title}
-        headerMeta={`Last updated <time datetime=${upDate} class='text-date'>${formatDate(
-          upDate
-        )}</time>`}
-      />
       <div class="content flow">
         <!-- <p>Last updated Aug 11, 2023</p> -->
         <h2>Technical details</h2>

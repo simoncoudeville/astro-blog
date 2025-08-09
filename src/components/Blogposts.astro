@@ -10,14 +10,15 @@ const allPosts = (
   (a, b) =>
     new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
 );
-const { currentTitle } = Astro.props;
+const { currentTitle, hideHeading = false } = Astro.props;
 const numPosts = allPosts.length;
 ---
 
-<h2>
-  <!-- {numPosts} articles -->
-  Writing
-</h2>
+{!hideHeading && (
+  <h2>
+    Articles
+  </h2>
+)}
 <ol reversed class="list-reset postlist readable flow-xs">
   {
     allPosts.map((post) => (
@@ -30,13 +31,13 @@ const numPosts = allPosts.length;
               : "postlist__link"
           }
         >
+          {post.data.title}
           <time
-            class="postlist__date text-date color-meta"
+            class="postlist__date text-date"
             datetime={post.data.pubDate}
           >
             {formatDate(post.data.pubDate)}
           </time>
-          {post.data.title}
         </a>
       </li>
     ))
@@ -54,9 +55,10 @@ const numPosts = allPosts.length;
     position: relative;
     display: flex;
     gap: 0 var(--postlist-inline-whitespace);
+    font-family: var(--global-font-family-title);
     /* flex-direction: row; */
-    flex-direction: column-reverse;
-    /* flex-direction: column; */
+    /* flex-direction: column-reverse; */
+    flex-direction: column;
     /* padding: calc(var(--postlist-whitespace) / 2) calc(var(--postlist-inline-whitespace) / 2); */
     /* padding: calc(var(--postlist-whitespace) / 2) 0; */
     /* margin: calc(var(--postlist-whitespace) / -2) calc(var(--postlist-inline-whitespace) / -2); */
@@ -69,14 +71,16 @@ const numPosts = allPosts.length;
     flex-shrink: 0;
     justify-self: flex-end;
     text-decoration: none;
+    color: var(--global-meta-color);
+    font-family: var(--global-font-family-alpha);
   }
 
   @media (min-width: 30em) {
     .postlist__link {
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      font-family: var(--global-font-family-title);
+
+      /* flex-direction: row; */
+      /* align-items: center; */
+      /* justify-content: space-between; */
     }
 
     /* .postlist__link::after {
@@ -97,7 +101,7 @@ const numPosts = allPosts.length;
     /* padding-top: var(--global-whitespace-xs); */
     padding-top: var(--global-whitespace-xs);
     /* padding-top: var(--global-whitespace); */
-    border-top: 1px solid var(--global-borderColor);
+    /* border-top: 1px solid var(--global-borderColor); */
   }
 
   /* .postlist__link--active,

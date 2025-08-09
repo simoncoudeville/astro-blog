@@ -74,6 +74,15 @@
     /* padding: var(--global-whitespace-3xs); */
 }
 
+.output {
+    border: 1px solid var(--global-borderColor2);
+    /* background-color: var(--global-foregroundColor2); */
+    border-radius: var(--global-whitespace);
+    /* padding: 0 var(--global-whitespace-3xs); */
+    padding: var(--global-whitespace-4xs) var(--global-whitespace-2xs);
+    /* height: var(--global-whitespace); */
+}
+
 @media (max-width: 32em) {
     .controls__window {
         grid-row: 2;
