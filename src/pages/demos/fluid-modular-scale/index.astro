@@ -1,0 +1,72 @@
+---
+import DemoLayout from "../../../layouts/DemoLayout.astro";
+import "../../../styles/demos/fluidType/styles.css"; // Shared CSS for all fluid demos
+
+const title = "Fluid typographic modular scale with calc()";
+const description = "Fluid typography with modular scale demo using CSS clamp() function";
+
+---
+
+
+<DemoLayout title={title} description={description} backLink="/blog/fluid-typography-with-nothing-but-css/">
+  <div class="container">
+    <form style="display: flex; gap: 1rem; margin-bottom: 2rem; align-items: flex-end;">
+      <label>
+        Min Ratio:
+        <select id="min-ratio-select">
+          <option value="1.067">1.067 (minor second)</option>
+          <option value="1.125" selected>1.125 (major second)</option>
+          <option value="1.2">1.2 (minor third)</option>
+          <option value="1.25">1.25 (major third)</option>
+          <option value="1.333">1.333 (perfect fourth)</option>
+          <option value="1.414">1.414 (augmented fourth)</option>
+          <option value="1.5">1.5 (perfect fifth)</option>
+        </select>
+      </label>
+      <label>
+        Max Ratio:
+        <select id="max-ratio-select">
+          <option value="1.067">1.067 (minor second)</option>
+          <option value="1.125">1.125 (major second)</option>
+          <option value="1.2">1.2 (minor third)</option>
+          <option value="1.25">1.25 (major third)</option>
+          <option value="1.333" selected>1.333 (perfect fourth)</option>
+          <option value="1.414">1.414 (augmented fourth)</option>
+          <option value="1.5">1.5 (perfect fifth)</option>
+        </select>
+      </label>
+    </form>
+    <div class="fluid-text-demo">
+      <p class="fluid-text fluid-text--step-0 fluid-text--demo">
+        The quick brown fox
+      </p>
+    </div>
+    <div class="fluid-text-demo">
+      <p class="fluid-text fluid-text--step-10 fluid-text--demo">
+        The quick brown fox
+      </p>
+    </div>
+    <div class="fluid-text-demo">
+      <p class="fluid-text fluid-text--step-20 fluid-text--demo">
+        The quick brown fox
+      </p>
+    </div>
+    <div class="fluid-text-demo">
+      <p class="fluid-text fluid-text--step-30 fluid-text--demo">
+        The quick brown fox
+      </p>
+    </div>
+    <div class="fluid-text-demo">
+      <p class="fluid-text fluid-text--step-40 fluid-text--demo">
+        The quick brown fox
+      </p>
+    </div>
+    <div class="fluid-text-demo">
+      <p class="fluid-text fluid-text--step-50 fluid-text--demo">
+        The quick brown fox
+      </p>
+    </div>
+  </div>
+</DemoLayout>
+
+<script src="../../../scripts/demos/fluid-text-demo.js"></script>

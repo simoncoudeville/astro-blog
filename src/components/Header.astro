@@ -14,13 +14,6 @@ const { headerTitle, headerMeta, headerClass, headerType = "homepage" } = Astro.
 
 <header class="row row--top" id="top">
   <div class="container page-header">
-    <a href="/" class="page-header__me">
-      <Image
-        src={avatarImg2}
-        alt={`Avatar of ${SITE_ATHOUR}`}
-        width="200"
-      />
-    </a>
     <div class="page-header__content">
       {headerType === "page" ? (
         <p class="page-header__title">
@@ -42,5 +35,14 @@ const { headerTitle, headerMeta, headerClass, headerType = "homepage" } = Astro.
         </p>
       )}
     </div>
+    {/*
+    <a href="/" class="page-header__me">
+      <Image
+        src={avatarImg2}
+        alt={`Avatar of ${SITE_ATHOUR}`}
+        width="200"
+      />
+    </a>
+    */}
   </div>
 </header>

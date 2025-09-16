@@ -1,0 +1,286 @@
+---
+title: "Fluid typography with nothing but CSS"
+slug: fluid-typography-with-nothing-but-css
+description: "Learn how to create fluid type scales with CSS variables, calc() and clamp() to achieve responsive text sizing."
+pubDate: 2025-09-15
+draft: false
+---
+
+Fluid typography has been explored in detail by others before me. Smashing Magazine showed how to use Sass functions to handle the math behind clamp(), so you don’t have to hard-code awkward formulas by hand. Utopia's plugin generates ready to use fluid custom properties and even introduced a fluid type scale. These approaches work beautifully but they depend on build tools. That made me curious: could I take the math and express the whole thing directly in CSS? No Sass, no generators, just variables, calc(), and clamp().
+
+{/*
+Implementing fluid typography depends heavily on build tools like Utopia. But with the power of CSS variables and `calc()`, we can achieve the same effect directly in CSS. This means no extra build steps or dependencies, just pure CSS.
+*/}
+
+## The Math Behind Fluid Typography
+
+To understand how to implement fluid typography in CSS, it's important to understand the math behind it. At its core fluid typography is implemented with the `clamp()` function, allowing font sizes to scale with the viewport between a defined minimum and maximum. For example:
+
+```css
+element {
+    font-size: clamp(1.25rem, 1.25vw + 1rem, 2rem)
+}
+```
+{/*
+The `clamp()` function takes three parameters:
+
+1. The minimum value: the smallest size the text should be
+2. The preferred value: the fluid part that scales between the minimum and maximum value
+3. The maximum value: the largest size the text should be
+*/}
+
+The "preferred" middle value is the part that makes the font-size scale fluidly. It consists of the sum of two parts. The first part is a relative value like `vw` or `cqi` that makes sure the font-size scales according to the viewport or container width. If the viewport is for example 400px wide, the above code returns 5px. Because <math><mn>1.25</mn><mo>×</mo><mn>400</mn><mi>p</mi><mi>x</mi><mo>/</mo><mn>100</mn><mo>=</mo><mn>5</mn><mi>p</mi><mi>x</mi></math>. The second part is a rem value to ensure the whole value still honors the user's settings for text size. As soon as the sum of these two is larger than the minimum value, the clamp function will use this value. In this case if the viewport is wider then 320px:
+
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+  <mfrac>
+    <mrow>
+      <mn>1.25</mn>
+      <mo>×</mo>
+      <mn>320</mn><mi>p</mi><mi>x</mi>
+    </mrow>
+    <mn>100</mn>
+  </mfrac>
+  <mo>+</mo>
+  <mn>1</mn>
+  <mo>&#xd7;</mo>
+  <mn>16</mn>
+  <mi>p</mi>
+  <mi>x</mi>
+  <mo>=</mo>
+  <mn>4</mn>
+  <mi>p</mi>
+  <mi>x</mi>
+  <mo>+</mo>
+  <mn>16</mn>
+  <mi>p</mi>
+  <mi>x</mi>
+  <mo>=</mo>
+  <mn>20</mn>
+  <mi>p</mi>
+  <mi>x</mi>
+  <mo>=</mo>
+  <mn>1.25</mn>
+  <mi>r</mi>
+  <mi>e</mi>
+  <mi>m</mi>
+</math>
+
+And as soon as the preferred value is larger than the maximum value, the clamp function will use the maximum value. In this case if the viewport is wider then 1280px: 
+
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+  <mfrac>
+    <mrow>
+      <mn>1.25</mn>
+      <mo>×</mo>
+      <mn>1280</mn><mi>px</mi>
+    </mrow>
+    <mn>100</mn>
+  </mfrac>
+  <mo>+</mo>
+  <mn>1</mn>
+  <mo>&#xd7;</mo>
+  <mn>16</mn>
+  <mi>p</mi>
+  <mi>x</mi>
+  <mo>=</mo>
+  <mn>16</mn>
+  <mi>p</mi>
+  <mi>x</mi>
+  <mo>+</mo>
+  <mn>16</mn>
+  <mi>p</mi>
+  <mi>x</mi>
+  <mo>=</mo>
+  <mn>32</mn>
+  <mi>p</mi>
+  <mi>x</mi>
+  <mo>=</mo>
+  <mn>2</mn>
+  <mi>r</mi>
+  <mi>e</mi>
+  <mi>m</mi>
+</math>
+
+These values didn't happen by chance. It's perfectly possible to calculate the exact values for the two breakpoints. To get this result you obviously need these 4 parameters:
+
+1. The **min font size**: the smallest size the text should be e.g. 20px
+2. The **max font size**: the largest size the text should be e.g. 32px
+3. The **min breakpoint**: when should the text start scaling e.g. 320px
+4. The **max breakpoint**: when should the text stop scaling e.g. 1280px
+
+The exact calculation is rather complex. If you want to know how it works you should read Adrian Bece's article on [Modern Fluid Typography Using CSS Clamp](https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/). I somehow managed to work it out myself and found that with all the parameters mentioned above, this is the calculation that's needed to get the fluid formula:
+
+{/* 
+(32 - 20) / (1280 - 320) * 100vw + (20 - ((32 - 20) / (1280 - 320)) * 320) / 16 * 1rem = 1.25vw + .5rem
+*/}
+
+<math display="block">
+  <mfrac>
+    <mrow><mn>32</mn><mo>-</mo><mn>20</mn></mrow>
+    <mrow><mn>1280</mn><mo>-</mo><mn>320</mn></mrow>
+  </mfrac>
+  <mo>×</mo>
+  <mn>100</mn><mi>v</mi><mi>w</mi>
+  <mo>+</mo>
+  <mfrac>
+    <mrow>
+      <mn>20</mn>
+      <mo>-</mo>
+      <mfrac>
+        <mrow><mn>32</mn><mo>-</mo><mn>20</mn></mrow>
+        <mrow><mn>1280</mn><mo>-</mo><mn>320</mn></mrow>
+      </mfrac>
+      <mo>×</mo><mn>320</mn>
+    </mrow>
+    <mn>16</mn>
+  </mfrac>
+  <mi>r</mi><mi>e</mi><mi>m</mi>
+</math>
+
+## Using the formula in CSS
+
+That's quite complex and not really maintainable if you want to reuse it with different parameters. If you want to change one of the parameters you'd have to change it on multiple locations in the calculation. The advantage of using Sass is that we can define a function with the calculation and use that function with different parameters.
+
+```scss
+element {
+  font-size: #{fluid(20px, 32px, 320px, 1280px)}
+}
+```
+
+Utopia's plugin generates a set of custom properties with calculated clamp values that can be used like this:
+
+```css
+:root {
+  --step--1: clamp(1.25rem, 1.25vw + 1rem, 2rem);
+  --step-0: clamp(1.5rem, 1.5vw + 1.2rem, 2.4rem);
+  --step-1: clamp(1.8rem, 1.8vw + 1.44rem, 2.88rem);
+  /* ... */
+}
+
+element {
+  font-size: var(--step--1);
+}
+```
+
+So how can this be achieved with nothing but CSS? The calculation above can be expressed with `calc()`. CSS variables can be used to store and update the parameters. The only thing left is a way to store the calculation and then change the parameters only. That's were good old classes come in. The solution is to make a class to use on every element we want to apply the fluid formula to. That's where the parameters and calculation live and where the font-size is declared.
+
+```css
+.fluid-text {
+  /* The parameters */
+  --fluid-text-min-width: var(--this-min-width, 320);
+  --fluid-text-max-width: var(--this-max-width, 1280);
+  --fluid-text-min-font-size: var(--this-min-font-size);
+  --fluid-text-max-font-size: var(--this-max-font-size);
+  --fluid-text-relative-unit: var(--this-relative-unit, 100cqi);
+
+  /* slope and intercept calculations */
+  --fluid-text-slope: calc(calc(var(--fluid-text-max-font-size) - var(--fluid-text-min-font-size)) / calc(var(--fluid-text-max-width) - var(--fluid-text-min-width)));
+  --fluid-text-intercept: calc(var(--fluid-text-min-font-size) - var(--fluid-text-slope) * var(--fluid-text-min-width));
+
+  /* everything together */
+  --fluid-text-font-size:
+        clamp(calc(var(--fluid-text-min-font-size) / 16 * 1rem),
+            calc(var(--fluid-text-slope) * var(--fluid-text-relative-unit)) + calc(var(--fluid-text-intercept) / 16 * 1rem),
+            calc(var(--fluid-text-max-font-size) / 16 * 1rem));
+  
+  /* the actual font-size property */
+  font-size: var(--fluid-text-font-size);
+}
+```
+
+`--this-min-font-size` and `--this-max-font-size` are not defined at this point but that's one of the powers of CSS variables: they can be referenced before they're defined. Every element with the `.fluid-text` class now has the possibility to define these by adding an extra modifier class to the same element and update the values:
+
+```html
+<p class="fluid-text fluid-text-1">
+  This text will have a fluid font size that grows from 20px to 32px between 320px and 960px container width.
+</p>
+```
+
+```css
+.fluid-text-1 {
+  --this-min-font-size: 20;
+  --this-max-font-size: 32;
+  /* optional: override the breakpoints and relative unit */
+  --this-min-width: 240;
+  --this-max-width: 960;
+  --this-relative-unit: 100vw;
+}
+```
+
+The calculation as it is currently set up assumes that 1rem = 16px. If you want to adjust the global font-size to, for example, 18px, then the calculation for the font-sizes will no longer be correct. The solution is making the global font-size a custom property and use that in the calculation. By adding the following to `:root`:
+
+```css
+:root {
+  --root-font-size: 18;
+  font-size: calc(var(--root-font-size) / 16 * 100%);
+}
+```
+This makes the global font-size 18px. I always do this in percent but you could also use em or rem. In the fluid font-size calculation you can then use that variable instead of the hard-coded 16:
+
+```css
+.fluid-text {
+  /* ... */
+  --fluid-text-font-size:
+        clamp(calc(var(--fluid-text-min-font-size) / var(--root-font-size) * 1rem),
+            calc(var(--fluid-text-slope) * var(--fluid-text-relative-unit)) + calc(var(--fluid-text-intercept) / var(--root-font-size) * 1rem),
+            calc(var(--fluid-text-max-font-size) / var(--root-font-size) * 1rem));
+}
+```
+
+Have a look at the final working example on this [demo page](/demos/fluid-type). 
+
+## Fluid Type Scale
+
+Taking this a step further it's also possible to define a fluid type scale just like Utopia's by defining the min and max font sizes for each step in the scale. Each step can have its own unique min and max font sizes based on different ratios. For example:
+
+```css
+:root {
+    --root-font-size: 16;
+    --root-container-min-width: 320;
+    --root-container-max-width: 960;
+
+    --root-fluid-min-ratio: 1.125;
+    --root-fluid-max-ratio: 1.333;
+    --root-fluid-min-font-size: var(--root-font-size);
+    --root-fluid-max-font-size: 18;
+
+    --root-fluid-min-font-size-0: calc(var(--root-fluid-min-font-size));
+    --root-fluid-min-font-size-1: calc(var(--root-fluid-min-font-size-0) * var(--root-fluid-min-ratio));
+    /* ... */
+    --root-fluid-min-font-size-5: calc(var(--root-fluid-min-font-size-4) * var(--root-fluid-min-ratio));
+
+    --root-fluid-max-font-size-0: calc(var(--root-fluid-max-font-size));
+    --root-fluid-max-font-size-1: calc(var(--root-fluid-max-font-size-0) * var(--root-fluid-max-ratio));
+    /* ... */
+    --root-fluid-max-font-size-5: calc(var(--root-fluid-max-font-size-4) * var(--root-fluid-max-ratio));
+}
+```
+
+This makes a modular scale with 6 steps. If you want to add more you have to multiply the previous step in the scale with the ratio again. For both the min and max font sizes. These can then be applied using modifier classes:
+
+```css
+.fluid-text--step-0 {
+    --this-min-font-size: var(--root-fluid-min-font-size-0);
+    --this-max-font-size: var(--root-fluid-max-font-size-0);
+}
+
+.fluid-text--step-1 {
+    --this-min-font-size: var(--root-fluid-min-font-size-1);
+    --this-max-font-size: var(--root-fluid-max-font-size-1);
+}
+
+/* ... */
+
+.fluid-text--step-5 {
+    --this-min-font-size: var(--root-fluid-min-font-size-5);
+    --this-max-font-size: var(--root-fluid-max-font-size-5);
+}
+```
+
+Have a look at a working example on the [demo page](/demos/fluid-modular-scale).
+
+## Considerations
+
+One thing that can be considered a drawback of this technique is that you can't see the final output of the calculation. Since all the calculations happen in the browser instead of being generated, you can't see the actual values the calculation produces. This is potentially an issue if you want to test if our design passes the [WCAG Success Criterion 1.4.4](https://www.w3.org/WAI/WCAG21/Understanding/resize-text.html) about resizing text. In order to test this you need to look at the computed values and compare them. On the other hand, this has been examined in detail by Maxwell Barvian in his [Smashing Magazine article](https://www.smashingmagazine.com/2023/11/addressing-accessibility-concerns-fluid-type/). He concludes that as long as the maximum font size is less than or equal to 2.5 times the minimum font size, it will always pass. So this is something to keep in mind when choosing the min and max font size.
+
+I just wanted to see if it was possible to express the whole thing in pure CSS. Turns out, it is. The main advantage is that you don't need any extra tools or build steps to achieve this. Just CSS, which I personally find quite elegant.

@@ -12,11 +12,9 @@ const blogCollection = defineCollection({
 			.or(z.date())
 			.transform((val) => new Date(val)),
 		draft: z.boolean().optional(),
-		seed: z.number().optional(),
-		titleWidth: z.number().optional(),
 	}),
 });
 
 export const collections = {
-  'blog': blogCollection
+	'blog': blogCollection
 };

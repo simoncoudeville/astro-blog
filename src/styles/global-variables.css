@@ -1,0 +1,181 @@
+/*
+Fonts
+=====
+*/
+
+@font-face {
+    font-family: 'Graphik Web';
+    src: url('../fonts/Graphik-Regular-Web.woff') format('woff'),
+        url('../fonts/Graphik-Regular-Web.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Graphik Web';
+    src: url('../fonts/Graphik-Medium-Web.woff') format('woff'),
+        url('../fonts/Graphik-Medium-Web.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tiempos Text';
+    src: url('../fonts/TiemposTextWeb-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tiempos Text';
+    src: url('../fonts/TiemposTextWeb-RegularItalic.woff') format('woff');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+/*
+Variables
+=========
+*/
+
+:root {
+
+    --global-color-cyan-hue: 190deg;
+    --global-color-cyan-50: oklch(95% 0.015 var(--global-color-cyan-hue));
+    --global-color-cyan-100: oklch(89% 0.05 var(--global-color-cyan-hue));
+    --global-color-cyan-200: oklch(83% 0.075 var(--global-color-cyan-hue));
+    --global-color-cyan-300: oklch(76.5% 0.115 var(--global-color-cyan-hue));
+    --global-color-cyan-400: oklch(70.5% 0.15 var(--global-color-cyan-hue));
+    --global-color-cyan-500: oklch(64.5% 0.15 var(--global-color-cyan-hue));
+    --global-color-cyan-600: oklch(57% 0.13 var(--global-color-cyan-hue));
+    --global-color-cyan-700: oklch(48% 0.11 var(--global-color-cyan-hue));
+    --global-color-cyan-800: oklch(43% 0.1 var(--global-color-cyan-hue));
+    --global-color-cyan-900: oklch(38% 0.1 var(--global-color-cyan-hue));
+
+    --global-neutral-hue: var(--global-color-cyan-hue);
+    --global-color-neutral-1000: oklch(10% 0.01 var(--global-neutral-hue));
+    --global-color-neutral-900: oklch(19% 0.01 var(--global-neutral-hue));
+    --global-color-neutral-850: oklch(22% 0.01 var(--global-neutral-hue));
+    --global-color-neutral-800: oklch(30% 0.01 var(--global-neutral-hue));
+    --global-color-neutral-775: oklch(34% 0.01 var(--global-neutral-hue));
+    --global-color-neutral-725: oklch(38% 0.01 var(--global-neutral-hue));
+    --global-color-neutral-675: oklch(42% 0.01 var(--global-neutral-hue));
+    --global-color-neutral-625: oklch(46% 0.01 var(--global-neutral-hue));
+    --global-color-neutral-575: oklch(50% 0.01 var(--global-neutral-hue));
+    --global-color-neutral-525: oklch(54% 0.01 var(--global-neutral-hue));
+    --global-color-neutral-500: oklch(60% 0.01 var(--global-neutral-hue));
+    --global-color-neutral-450: oklch(62% 0.01 var(--global-neutral-hue));
+    --global-color-neutral-400: oklch(66% 0.01 var(--global-neutral-hue));
+    --global-color-neutral-350: oklch(70% 0.01 var(--global-neutral-hue));
+    --global-color-neutral-300: oklch(74% 0.01 var(--global-neutral-hue));
+    --global-color-neutral-250: oklch(78% 0.01 var(--global-neutral-hue));
+    --global-color-neutral-225: oklch(82% 0.007 var(--global-neutral-hue));
+    --global-color-neutral-175: oklch(86% 0.005 var(--global-neutral-hue));
+    --global-color-neutral-125: oklch(90% 0.003 var(--global-neutral-hue));
+    --global-color-neutral-75: oklch(92% 0.00 var(--global-neutral-hue));
+    --global-color-neutral-25: oklch(96.5% 0.00 var(--global-neutral-hue));
+
+    --global-accent-color: var(--global-color-cyan-500);
+    --global-backgroundColor: white;
+    --global-foregroundColor: var(--global-color-neutral-25);
+    --global-borderColor: var(--global-color-neutral-75);
+    --global-foregroundColor2: var(--global-color-neutral-75);
+    --global-borderColor2: var(--global-color-neutral-125);
+    --global-meta-color: var(--global-color-neutral-400);
+    --global-muted-color: var(--global-color-neutral-500);
+    --global-text-color: var(--global-color-neutral-575);
+    --global-title-color: var(--global-color-neutral-900);
+
+    --global-code-color: var(--global-muted-color);
+    --global-code-background: var(--global-foregroundColor);
+    --global-input-borderColor: var(--global-borderColor);
+    --global-fieldset-borderColor: var(--global-borderColor2);
+    --global-input-backgroundColor: var(--global-foregroundColor2);
+    --global-link-color: var(--global-title-color);
+    --global-link-underline-color: var(--global-text-color);
+    --global-link-hover-color: var(--global-muted-color);
+    --global-link-active-color: var(--global-link-color);
+    --global-selection-backgroundColor: var(--global-foregroundColor2);
+    --global-selection-color: var(--global-text-color);
+
+    --global-borderRadius: var(--global-baseline);
+    --global-borderRadius-lg: calc(var(--global-borderRadius) * 2);
+    --global-borderRadius-sm: calc(var(--global-borderRadius) / 2);
+
+    --global-borderWidth: 1px;
+
+    --global-font-family-alpha: "Graphik Web", sans-serif;
+    /* --global-font-family-alpha: "Suisse Int'l", sans-serif; */
+    /* --global-font-family-beta: "Graphik Web", sans-serif; */
+    /* --global-font-family-alpha: "Tiempos Text", serif; */
+    --global-font-family-beta: "Tiempos Text", serif;
+    /* --global-font-family-beta: "Suisse Works", serif; */
+    /* --global-font-family-title: var(--global-font-family-beta); */
+    --global-font-family-title: var(--global-font-family-alpha);
+    --global-font-family-code: "SFMono-Regular", ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+    /* --global-font-family-code: "Suisse Int'l Mono", "SFMono-Regular", ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace; */
+    ;
+    /* --global-font-weight-title: 500; */
+    --global-font-weight-title: 400;
+    --global-font-weight-strong: 400;
+
+    --root-font-size: 16;
+    --root-baseline: 5;
+    --root-line-height: calc(var(--root-baseline) * 5);
+
+    --global-line-height: calc(var(--root-line-height) / var(--root-font-size));
+    --global-baseline: calc(var(--root-baseline) / var(--root-font-size) * 1rem);
+
+    --ms-ratio: 1.125;
+    --ms-2: calc(var(--ms-1) / var(--ms-ratio));
+    --ms-1: calc(var(--ms-0) / var(--ms-ratio));
+    --ms-0: var(--root-font-size);
+    --ms1: calc(var(--ms-0) * var(--ms-ratio));
+    --ms2: calc(var(--ms1) * var(--ms-ratio));
+    --ms3: calc(var(--ms2) * var(--ms-ratio));
+    --ms4: calc(var(--ms3) * var(--ms-ratio));
+    --ms5: calc(var(--ms4) * var(--ms-ratio));
+    --ms6: calc(var(--ms5) * var(--ms-ratio));
+    --ms7: calc(var(--ms6) * var(--ms-ratio));
+    --ms8: calc(var(--ms7) * var(--ms-ratio));
+
+    --global-whitespace-4xs: calc(var(--global-baseline) * .5);
+    --global-whitespace-3xs: calc(var(--global-baseline) * 1);
+    --global-whitespace-2xs: calc(var(--global-baseline) * 2);
+    --global-whitespace-xs: calc(var(--global-baseline) * 3);
+    --global-whitespace-s: calc(var(--global-baseline) * 4);
+    --global-whitespace: calc(var(--global-baseline) * 5);
+    --global-whitespace-m: calc(var(--global-baseline) * 6);
+    --global-whitespace-l: calc(var(--global-baseline) * 7.5);
+    --global-whitespace-xl: calc(var(--global-baseline) * 10);
+    --global-whitespace-2xl: calc(var(--global-baseline) * 12.5);
+    --global-whitespace-3xl: calc(var(--global-baseline) * 15);
+    --global-whitespace-4xl: calc(var(--global-baseline) * 20);
+
+    --global-transition-duration-short: 0.15s;
+    --global-transition-duration: 0.3s;
+    --global-transition-duration-long: 0.45s;
+    --global-transition-duration-longer: 0.6s;
+
+    --global-icon-size: calc(20 / var(--root-font-size) * 1rem);
+    --global-icon-stroke: 1.25px;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --global-backgroundColor: var(--global-color-neutral-900);
+        --global-foregroundColor: var(--global-color-neutral-850);
+        --global-borderColor: var(--global-color-neutral-800);
+        --global-foregroundColor2: var(--global-color-neutral-775);
+        --global-borderColor2: var(--global-color-neutral-725);
+        --global-meta-color: var(--global-color-neutral-500);
+        --global-muted-color: var(--global-color-neutral-300);
+        --global-text-color: var(--global-color-neutral-225);
+        --global-title-color: var(--global-color-neutral-25);
+    }
+}

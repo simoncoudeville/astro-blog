@@ -56,13 +56,7 @@ const numPosts = allPosts.length;
     display: flex;
     gap: 0 var(--postlist-inline-whitespace);
     font-family: var(--global-font-family-title);
-    /* flex-direction: row; */
-    /* flex-direction: column-reverse; */
     flex-direction: column;
-    /* padding: calc(var(--postlist-whitespace) / 2) calc(var(--postlist-inline-whitespace) / 2); */
-    /* padding: calc(var(--postlist-whitespace) / 2) 0; */
-    /* margin: calc(var(--postlist-whitespace) / -2) calc(var(--postlist-inline-whitespace) / -2); */
-    /* margin: calc(var(--postlist-whitespace) / -2) 0; */
     text-decoration: none;
     border-radius: var(--global-borderRadius-lg);
   }
@@ -72,52 +66,28 @@ const numPosts = allPosts.length;
     justify-self: flex-end;
     text-decoration: none;
     color: var(--global-meta-color);
-    font-family: var(--global-font-family-alpha);
-  }
-
-  @media (min-width: 30em) {
-    .postlist__link {
-
-      /* flex-direction: row; */
-      /* align-items: center; */
-      /* justify-content: space-between; */
-    }
-
-    /* .postlist__link::after {
-      display: block;
-      content: "";
-      height: 1px;
-      background-color: var(--global-borderColor);
-      flex-grow: 1;
-      order: 2;
-    } */
-
-    .postlist__date {
-      order: 3;
-    }
   }
 
   .postlist__item + .postlist__item {
-    /* padding-top: var(--global-whitespace-xs); */
     padding-top: var(--global-whitespace-xs);
-    /* padding-top: var(--global-whitespace); */
-    /* border-top: 1px solid var(--global-borderColor); */
   }
 
-  /* .postlist__link--active,
-.postlist__link--active:hover {
-    padding: calc(var(--postlist-whitespace) / 2) calc(var(--postlist-inline-whitespace) / 2);
-    color: var(--global-text-color);
-    text-decoration: none;
-    background-color: var(--global-foregroundColor);
-} */
-
-  .postlist__link--active:any-link,
   .postlist__link:hover {
-    /* color: var(--global-text-color); */
-    /* text-decoration: none; */
-    /* color: var(--global-accent-color) */
-    /* background-color: var(--global-foregroundColor); */
+    color: var(--global-title-color);
+  }
+
+  .postlist__link--active:any-link {
     color: var(--global-meta-color);
+  }
+
+  .postlist__link--active::before {
+    content: "";
+    width: var(--global-whitespace-3xs);
+    aspect-ratio: 1 / 1;
+    background-color: var(--global-accent-color);
+    border-radius: 100%;
+    position: absolute;
+    left: calc(-1 * var(--global-whitespace-xs));
+    top: var(--global-whitespace-2xs)
   }
 </style>

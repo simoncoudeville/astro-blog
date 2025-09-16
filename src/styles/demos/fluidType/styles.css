@@ -1,0 +1,143 @@
+/**
+ * Shared styles for fluid typography demos
+ */
+
+:root {
+    --root-font-size: 16;
+    --root-container-min-width: 320;
+    --root-container-max-width: 960;
+
+    /* Fluid type scales from https://utopia.fyi/ */
+
+    --root-fluid-min-ratio: 1.125;
+    --root-fluid-max-ratio: 1.333;
+    --root-fluid-min-font-size: var(--root-font-size);
+    --root-fluid-max-font-size: 18;
+
+    --root-fluid-min-font-size-0: calc(var(--root-fluid-min-font-size));
+    --root-fluid-min-font-size-1: calc(var(--root-fluid-min-font-size-0) * var(--root-fluid-min-ratio));
+    --root-fluid-min-font-size-2: calc(var(--root-fluid-min-font-size-1) * var(--root-fluid-min-ratio));
+    --root-fluid-min-font-size-3: calc(var(--root-fluid-min-font-size-2) * var(--root-fluid-min-ratio));
+    --root-fluid-min-font-size-4: calc(var(--root-fluid-min-font-size-3) * var(--root-fluid-min-ratio));
+    --root-fluid-min-font-size-5: calc(var(--root-fluid-min-font-size-4) * var(--root-fluid-min-ratio));
+
+    --root-fluid-max-font-size-0: calc(var(--root-fluid-max-font-size));
+    --root-fluid-max-font-size-1: calc(var(--root-fluid-max-font-size-0) * var(--root-fluid-max-ratio));
+    --root-fluid-max-font-size-2: calc(var(--root-fluid-max-font-size-1) * var(--root-fluid-max-ratio));
+    --root-fluid-max-font-size-3: calc(var(--root-fluid-max-font-size-2) * var(--root-fluid-max-ratio));
+    --root-fluid-max-font-size-4: calc(var(--root-fluid-max-font-size-3) * var(--root-fluid-max-ratio));
+    --root-fluid-max-font-size-5: calc(var(--root-fluid-max-font-size-4) * var(--root-fluid-max-ratio));
+}
+
+.fluid-text-demo+.fluid-text-demo {
+    margin-top: var(--global-whitespace);
+}
+
+.fluid-text {
+    --fluid-text-min-width: var(--this-min-width, var(--root-container-min-width));
+    --fluid-text-max-width: var(--this-max-width, var(--root-container-max-width));
+    --fluid-text-min-font-size: var(--this-min-font-size);
+    --fluid-text-max-font-size: var(--this-max-font-size);
+    --fluid-text-relative-unit: var(--this-relative-unit, 100cqi);
+
+    --fluid-text-slope: calc(calc(var(--fluid-text-max-font-size) - var(--fluid-text-min-font-size)) / calc(var(--fluid-text-max-width) - var(--fluid-text-min-width)));
+    --fluid-text-intercept: calc(var(--fluid-text-min-font-size) - var(--fluid-text-slope) * var(--fluid-text-min-width));
+    --fluid-text-font-size:
+        clamp(calc(var(--fluid-text-min-font-size) / var(--root-font-size) * 1rem),
+            calc(var(--fluid-text-slope) * var(--fluid-text-relative-unit)) + calc(var(--fluid-text-intercept) / var(--root-font-size) * 1rem),
+            calc(var(--fluid-text-max-font-size) / var(--root-font-size) * 1rem));
+    font-size: var(--fluid-text-font-size);
+}
+
+.fluid-text--demo {
+    color: var(--global-title-color);
+    line-height: 1;
+}
+
+/* Modular scale step classes */
+.fluid-text--step-0 {
+    --this-min-font-size: var(--root-fluid-min-font-size-0);
+    --this-max-font-size: var(--root-fluid-max-font-size-0);
+}
+
+.fluid-text--step-10 {
+    --this-min-font-size: var(--root-fluid-min-font-size-1);
+    --this-max-font-size: var(--root-fluid-max-font-size-1);
+}
+
+.fluid-text--step-20 {
+    --this-min-font-size: var(--root-fluid-min-font-size-2);
+    --this-max-font-size: var(--root-fluid-max-font-size-2);
+}
+
+.fluid-text--step-30 {
+    --this-min-font-size: var(--root-fluid-min-font-size-3);
+    --this-max-font-size: var(--root-fluid-max-font-size-3);
+}
+
+.fluid-text--step-40 {
+    --this-min-font-size: var(--root-fluid-min-font-size-4);
+    --this-max-font-size: var(--root-fluid-max-font-size-4);
+}
+
+.fluid-text--step-50 {
+    --this-min-font-size: var(--root-fluid-min-font-size-5);
+    --this-max-font-size: var(--root-fluid-max-font-size-5);
+}
+
+/* Simple fluid text class for single demo */
+.fluid-text--0 {
+    line-height: 1.2;
+    --this-min-font-size: 20;
+    --this-max-font-size: 32;
+}
+
+.computed-font-size {
+    margin-bottom: var(--global-whitespace-3xs);
+}
+
+.computed-font-size,
+.container-width {
+    --fs: var(--ms-2);
+    font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
+    font-family: var(--global-font-family-code);
+    color: var(--global-muted-color);
+    font-feature-settings: "tnum";
+}
+
+.container {
+    --container-max-width: var(--root-container-max-width);
+    --container-border-color: var(--root-border-color-lighter);
+    max-width: calc(var(--container-max-width) / var(--root-font-size) * 1rem);
+    container-type: inline-size;
+    margin: 0 auto;
+}
+
+.container-width {
+    --this-border-color: var(--global-borderColor2);
+    position: relative;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--this-border-color);
+    text-align: center;
+}
+
+.container-width::after,
+.container-width::before {
+    content: "";
+    display: block;
+    width: 8px;
+    height: 8px;
+    border: 1px solid var(--this-border-color);
+    border-width: 1px 1px 0 0;
+    position: absolute;
+    bottom: -4.5px;
+    left: 1px;
+    transform: rotate(-135deg);
+}
+
+.container-width::after {
+    border-width: 0 0 1px 1px;
+    left: auto;
+    right: 1px;
+}

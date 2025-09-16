@@ -1,0 +1,90 @@
+/*
+Page
+====
+*/
+
+*,
+::before,
+::after {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+html {
+    font-size: calc(var(--root-font-size)/16*100%);
+    line-height: var(--global-line-height);
+    background-color: var(--global-backgroundColor);
+    font-family: var(--global-font-family-alpha);
+    color: var(--global-text-color);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+    background-color: var(--global-selection-backgroundColor);
+    color: var(--global-selection-color);
+}
+
+a:hover {
+    color: var(--global-link-hover-color);
+}
+
+a:focus-visible {
+    outline: 1px solid var(--global-accent-color);
+    outline-offset: .2em;
+}
+
+.back-link {
+    --back-link-color: var(--global-text-color);
+    color: var(--back-link-color);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--global-whitespace-2xs);
+    padding: var(--global-whitespace);
+    width: fit-content;
+    /* margin-right: var(--global-whitespace); */
+}
+
+.back-link:hover {
+    --back-link-color: var(--global-title-color);
+}
+
+.back-link .icon {
+    display: inline-block;
+    /* width: var(--global-whitespace-xs);
+    height: var(--global-whitespace-xs); */
+    width: 1rem;
+    height: 1rem;
+    vertical-align: text-bottom;
+    stroke: var(--back-link-color);
+    transform: rotate(-90deg);
+    stroke-linecap: round;
+    stroke-width: var(--global-icon-stroke);
+}
+
+.demo-header {
+    /* padding: var(--global-whitespace-s); */
+    /* border-bottom: 1px solid var(--global-borderColor); */
+    /* background-color: var(--global-foregroundColor); */
+    margin-bottom: var(--global-whitespace);
+    display: flex;
+    /* flex-wrap: wrap; */
+    align-items: center;
+    /* display: grid; */
+    /* grid-template-columns: minmax(max-content, 1fr) auto 1fr; */
+    /* grid-template-columns: repeat(auto-fill, minmax(min(10rem, 100%), 1fr)); */
+    /* align-items: start; */
+    /* gap: var(--global-whitespace); */
+    color: var(--global-text-color);
+
+    * {
+        --fs: var(--ms-1);
+        font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
+        font-weight: normal;
+    }
+}
+
+.demo {
+    padding: var(--global-whitespace);
+}

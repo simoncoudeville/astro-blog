@@ -1,0 +1,71 @@
+---
+import "../styles/global-variables.css";
+import "../styles/demos.css";
+import IconUpSmall from "../components/Icons/IconUpSmall.astro";
+import { SITE_ATHOUR } from "../config";
+
+const { title = "", description = "", backLink = "/" } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <title>
+      {title ? `${title} - ${SITE_ATHOUR}` : SITE_ATHOUR}
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <div class="demo-header">
+      <a href={backLink} class="back-link"><IconUpSmall title="Back to article" /></a>
+      <h1>Demo: {title}</h1>
+    </div>
+    <div class="demo">
+      <slot />
+    </div>
+
+    <script>
+      const backLink = document.querySelector('.back-link');
+      if (backLink) {
+        backLink.addEventListener('click', (event) => {
+          event.preventDefault();
+
+          // Cast backLink to HTMLAnchorElement for href access
+          const anchor = backLink instanceof HTMLAnchorElement ? backLink : null;
+
+          // Check if there's actually a previous page to go back to
+          if (history.length > 1 && document.referrer) {
+            if ('navigation' in window && typeof (window.navigation && (window.navigation as any).canGoBack) === 'boolean') {
+              const nav: any = window.navigation;
+              if (nav.canGoBack) {
+                try {
+                  nav.back();
+                } catch (error) {
+                  if (error && error.name === 'InvalidStateError' && anchor) {
+                    window.location.href = anchor.href;
+                  } else {
+                    throw error;
+                  }
+                }
+              } else if (anchor) {
+                window.location.href = anchor.href;
+              }
+            } else {
+              try {
+                history.back();
+              } catch (error) {
+                if (anchor) window.location.href = anchor.href;
+              }
+            }
+          } else if (anchor) {
+            // No history or direct navigation, use the fallback URL
+            window.location.href = anchor.href;
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
