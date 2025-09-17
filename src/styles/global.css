@@ -557,6 +557,10 @@ Objects
     }
 }
 
+.page-footer {
+    color: var(--global-meta-color);
+}
+
 .demo {
     --demo-whitespace: var(--global-whitespace);
     border-radius: var(--global-borderRadius-lg);
