@@ -56,6 +56,8 @@ a:focus-visible {
     height: var(--global-whitespace-xs); */
     width: 1rem;
     height: 1rem;
+    /* width: var(--global-icon-size);
+    height: var(--global-icon-size); */
     vertical-align: text-bottom;
     stroke: var(--back-link-color);
     transform: rotate(-90deg);
@@ -64,24 +66,23 @@ a:focus-visible {
 }
 
 .demo-header {
-    /* padding: var(--global-whitespace-s); */
-    /* border-bottom: 1px solid var(--global-borderColor); */
-    /* background-color: var(--global-foregroundColor); */
     margin-bottom: var(--global-whitespace);
     display: flex;
-    /* flex-wrap: wrap; */
     align-items: center;
-    /* display: grid; */
-    /* grid-template-columns: minmax(max-content, 1fr) auto 1fr; */
-    /* grid-template-columns: repeat(auto-fill, minmax(min(10rem, 100%), 1fr)); */
-    /* align-items: start; */
-    /* gap: var(--global-whitespace); */
     color: var(--global-text-color);
 
     * {
         --fs: var(--ms-1);
         font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
         font-weight: normal;
+        line-height: calc(var(--global-baseline) * 5);
+    }
+
+    h1 {
+        /* wrap text with three dots if too long */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }
 

@@ -141,6 +141,20 @@ math {
     }
 }
 
+.math {
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+
+    & path {
+        fill: currentColor;
+    }
+
+    & line {
+        stroke: currentColor;
+    }
+}
+
 code {
     font-family: var(--global-font-family-code);
     --fs: var(--ms-2);
@@ -429,7 +443,9 @@ h2:has(.heading-anchor):hover .heading-anchor {
 .flow>.demo+h2,
 .flow>.note+h2,
 .flow>*+.note,
-.flow>.note+* {
+.flow>.note+*,
+.flow>.math+*,
+.flow>*+.math {
     margin-top: calc(var(--global-whitespace) + var(--global-whitespace));
 }
 
