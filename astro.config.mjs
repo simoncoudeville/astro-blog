@@ -21,10 +21,8 @@ export default defineConfig({
     extendMarkdownConfig: false,
     smartypants: true,
     gfm: true,
-    // syntaxHighlight: 'prism',
     shikiConfig: {
       theme: 'css-variables',
-      // theme: monoCL,
     },
     // rehypePlugins: [
     //   rehypeSlug,
