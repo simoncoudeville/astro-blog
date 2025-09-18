@@ -23,9 +23,36 @@ import IconUpSmall from "./Icons/IconUpSmall.astro";
         </li>
         */}
       </ul>
-      <a class="link-icon link-meta" href="#top">
+      <a class="link-icon link-meta top" href="#top">
         <IconUpSmall title="Back to top" />
       </a>
+      <script is:inline>
+        (() => {
+          const el = document.querySelector('.page-footer .top');
+          if (!el) return;
+          const tallerThanViewport = () => {
+            const d = document.documentElement;
+            const b = document.body;
+            const scrollHeight = Math.max(d.scrollHeight, b ? b.scrollHeight : 0);
+            return scrollHeight > window.innerHeight + 1;
+          };
+          const update = () => {
+            if (tallerThanViewport()) {
+              el.classList.remove('top');
+            } else {
+              el.classList.add('top');
+            }
+          };
+          update();
+          window.addEventListener('load', update, { once: true });
+          window.addEventListener('resize', update);
+          if ('ResizeObserver' in window) {
+            const ro = new ResizeObserver(() => update());
+            ro.observe(document.documentElement);
+            if (document.body) ro.observe(document.body);
+          }
+        })();
+      </script>
     </div>
   </div>
 </footer>
@@ -50,5 +77,9 @@ import IconUpSmall from "./Icons/IconUpSmall.astro";
     flex-wrap: wrap;
     /* justify-content: space-between; */
     gap: 0 var(--global-whitespace);
+  }
+
+  .top {
+    display: none;
   }
 </style>
