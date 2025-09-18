@@ -5,6 +5,7 @@ import { Image } from "astro:assets";
 // import avatarImg from "../img/me-3.png";
 // import avatarImg2 from "../img/me.png";
 import avatarImg2 from "../img/me-5.png";
+import favicon from "../img/favicon.png"
 const { headerTitle, headerMeta, headerClass, headerType = "homepage" } = Astro.props;
 // headerType can be:
 // - "homepage" (h1: title, p: meta)
@@ -38,7 +39,7 @@ const { headerTitle, headerMeta, headerClass, headerType = "homepage" } = Astro.
     {/*
     <a href="/" class="page-header__me">
       <Image
-        src={avatarImg2}
+        src={favicon}
         alt={`Avatar of ${SITE_ATHOUR}`}
         width="200"
       />
