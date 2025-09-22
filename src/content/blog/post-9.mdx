@@ -290,13 +290,13 @@ This makes a modular scale with 6 steps. If you want to add more you have to mul
 }
 ```
 
-Have a look at a working example on the [demo page](/demos/fluid-modular-scale). Or checkout the [codepen](https://codepen.io/simoncoudeville/pen/QWxGvpR) if you want to see the full code.
+Have a look at a working example on the [demo page](/demos/fluid-modular-scale). Or checkout the [codepen](https://codepen.io/simoncoudeville/pen/QWxGvpR) if you want to see the full code. Be sure to change the parameters in the CSS.
 
 ## Considerations
 
-One thing that to keep in mind with this technique is that you can't see the final output of the calculation. Since all the calculations happen in the browser instead of being generated, you can't see the actual values the calculation produces. If you want to test if your design passes the [WCAG Success Criterion 1.4.4](https://www.w3.org/WAI/WCAG21/Understanding/resize-text.html) about resizing text you need to look at the computed values. This has been examined in detail by Maxwell Barvian in his [Smashing Magazine article](https://www.smashingmagazine.com/2023/11/addressing-accessibility-concerns-fluid-type/). He concludes that as long as the maximum font size is less than or equal to 2.5 times the minimum font size, it will always pass. So this is something to keep in mind when choosing the min and max font size.
+One thing that to keep in mind with this technique is that you can't see the final output of the calculation. Since all the calculations happen in the browser instead of being generated, you can't see the actual values the calculation produces. If you want to test if your design passes the [WCAG Success Criterion 1.4.4](https://www.w3.org/WAI/WCAG21/Understanding/resize-text.html) about resizing text you need to look at the computed values. According to Maxwell Barvian's article in [Smashing Magazine](https://www.smashingmagazine.com/2023/11/addressing-accessibility-concerns-fluid-type/) it will always pass as long as the maximum font size is less than or equal to 2.5 times the minimum font size. So this is something to keep in mind when choosing the min and max font size.
 
-If you're not into utility based CSS, this might not be the best approach. If you want to apply fluid typography to all headings for example, you have to add the different classes to each heading element. In the future [CSS functions](https://css-tricks.com/functions-in-css/) will make it possible  to define a function that can be used in the `font-size` property directly:
+If you're not into utility based CSS, this might not be the best approach. Applying fluid typography to all headings for example, requires you to add the different classes to each heading element. In the future [CSS functions](https://css-tricks.com/functions-in-css/) will make it possible to define a function that can be used in the `font-size` property directly:
 
 ```css
 @function --fluid-text(--font-size-min, --font-size-max) {
