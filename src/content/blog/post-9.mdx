@@ -1,6 +1,7 @@
 ---
-title: "Fluid typography system with just CSS"
-slug: fluid-typography-system-with-just-css
+# title: "Fluid typography system with just CSS"
+title: "A CSS-only fluid typography approach"
+slug: a-css-only-fluid-typography-approach
 description: "Learn how to create fluid type scales with CSS variables, calc() and clamp() to achieve responsive text sizing."
 pubDate: 2025-09-15
 draft: false
@@ -219,7 +220,7 @@ And then mix and match them on the elements:
 </p>
 ```
 
-The calculation as it is currently set up assumes that 1rem = 16px. If you want to adjust the global font-size to, for example, 18px, then the calculation for the font-sizes will no longer be correct. The solution is making the global font-size a custom property and use that in the calculation. By adding the following to `:root`:
+The calculation as it is currently set up assumes that 1rem = 16px. If you want to adjust the global font-size to, for example, 18px, then the calculation for the font-sizes will no longer be correct. The solution is making the global font-size a custom property and use that in the calculation. 
 
 ```css
 :root {
@@ -239,7 +240,7 @@ This makes the global font-size 18px. I always do this in percent but you could 
 }
 ```
 
-Have a look at the final working example on this [demo page](/demos/fluid-type). For this example I added a little bit of javascript that shows the current font size in pixels. Resize the viewport to see how it changes. 
+Have a look at the working example on this [demo page](/demos/fluid-type). For this demo I added a little bit of javascript that shows the current font size in pixels. Resize the viewport to see how it changes.
 
 ## Fluid Type Scale
 
@@ -293,7 +294,7 @@ Have a look at a working example on the [demo page](/demos/fluid-modular-scale).
 
 ## Considerations
 
-One thing that can be considered a drawback of this technique is that you can't see the final output of the calculation. Since all the calculations happen in the browser instead of being generated, you can't see the actual values the calculation produces. This is potentially an issue if you want to test if our design passes the [WCAG Success Criterion 1.4.4](https://www.w3.org/WAI/WCAG21/Understanding/resize-text.html) about resizing text. In order to test this you need to look at the computed values and compare them. On the other hand, this has been examined in detail by Maxwell Barvian in his [Smashing Magazine article](https://www.smashingmagazine.com/2023/11/addressing-accessibility-concerns-fluid-type/). He concludes that as long as the maximum font size is less than or equal to 2.5 times the minimum font size, it will always pass. So this is something to keep in mind when choosing the min and max font size.
+One thing that to keep in mind with this technique is that you can't see the final output of the calculation. Since all the calculations happen in the browser instead of being generated, you can't see the actual values the calculation produces. If you want to test if your design passes the [WCAG Success Criterion 1.4.4](https://www.w3.org/WAI/WCAG21/Understanding/resize-text.html) about resizing text you need to look at the computed values. This has been examined in detail by Maxwell Barvian in his [Smashing Magazine article](https://www.smashingmagazine.com/2023/11/addressing-accessibility-concerns-fluid-type/). He concludes that as long as the maximum font size is less than or equal to 2.5 times the minimum font size, it will always pass. So this is something to keep in mind when choosing the min and max font size.
 
 If you're not into utility based CSS, this might not be the best approach. If you want to apply fluid typography to all headings for example, you have to add the different classes to each heading element. In the future [CSS functions](https://css-tricks.com/functions-in-css/) will make it possible  to define a function that can be used in the `font-size` property directly:
 
@@ -308,6 +309,6 @@ element {
 
 ```
 
-One of the advantages of working with CSS variables is that they can be updated at any time. This means you can change the parameters based on different conditions. For example, you could change the min and max font sizes for print or other media queries. Or change the parameters on the fly with JavaScript. This makes it possible to adapt the typography to different contexts without changing the underlying CSS.
+One of the advantages of working with CSS variables is that they can be updated at any time. This means you can change the parameters based on different conditions. For example, you could change the min and max font sizes for print or other media queries. Or change the parameters on the fly with JavaScript. This makes it possible to adapt the typography to different contexts without recalculating the underlying CSS.
 
-The whole idea for this blog post was to avoid the need for build tools and dependencies. While it requires a bit more setup initially, the end result works equally well. With just a few parameters and a few classes, you can create a fully fluid typography system with just pure CSS.
+The whole idea for this blog post was to avoid the need for build tools and dependencies. While it requires a bit more setup initially, the end result works equally well. With just a few parameters and a few classes, it's possible to create a fully fluid typography system with just pure CSS.

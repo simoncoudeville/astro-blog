@@ -183,6 +183,7 @@ pre code {
 }
 
 .astro-code {
+
     padding: var(--global-whitespace-s);
     border-radius: var(--global-borderRadius);
     background-color: var(--global-code-background);
@@ -200,6 +201,10 @@ pre code {
     --astro-code-token-comment: var(--global-meta-color);
     --astro-code-token-punctuation: var(--global-meta-color);
     --astro-code-token-function: var(--global-title-color);
+
+    & code {
+        --fs: var(--ms-2);
+    }
 }
 
 [data-suffix] {
