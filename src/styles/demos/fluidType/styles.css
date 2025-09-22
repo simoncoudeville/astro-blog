@@ -49,9 +49,9 @@
     font-size: var(--fluid-text-font-size);
 }
 
-.fluid-text--demo {
+.fluid-text {
     color: var(--global-title-color);
-    line-height: 1;
+    line-height: 1.2em;
 }
 
 /* Modular scale step classes */
@@ -87,9 +87,26 @@
 
 /* Simple fluid text class for single demo */
 .fluid-text--0 {
-    line-height: 1.2;
     --this-min-font-size: 20;
     --this-max-font-size: 32;
+}
+
+/* fluid text utility classes to set min and max font sizes */
+
+.fluid-text-min-0 {
+    --this-min-font-size: 20;
+}
+
+.fluid-text-min-1 {
+    --this-min-font-size: 24;
+}
+
+.fluid-text-max-0 {
+    --this-max-font-size: 32;
+}
+
+.fluid-text-max-1 {
+    --this-max-font-size: 40;
 }
 
 .computed-font-size {
@@ -98,11 +115,12 @@
 
 .computed-font-size,
 .container-width {
-    --fs: var(--ms-2);
+    --fs: var(--ms-3);
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
     font-family: var(--global-font-family-code);
     color: var(--global-muted-color);
     font-feature-settings: "tnum";
+    text-transform: uppercase;
 }
 
 .container {

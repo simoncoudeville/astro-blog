@@ -142,6 +142,9 @@ math {
 }
 
 .math {
+    font-family: var(--global-font-family-beta);
+    font-size: 0.9375rem;
+    line-height: calc(var(--global-baseline) * 5);
     max-width: fit-content;
     margin-left: auto;
     margin-right: auto;
@@ -157,11 +160,12 @@ math {
 
 code {
     font-family: var(--global-font-family-code);
-    --fs: var(--ms-2);
+    --fs: var(--ms-1);
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
     padding: 2px 7px 3px;
     position: relative;
     bottom: 1px;
+    background-color: var(--global-code-background);
     border-radius: var(--global-borderRadius);
     border: 1px solid var(--global-borderColor);
     color: var(--global-title-color);
@@ -719,6 +723,10 @@ Utilities
 
 .max-width-md {
     max-width: 36em;
+}
+
+.text-italic {
+    font-style: italic;
 }
 
 .text-num {

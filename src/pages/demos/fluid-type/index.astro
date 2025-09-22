@@ -10,8 +10,18 @@ const description = "Fluid typography demo using CSS clamp() function";
 <DemoLayout title={title} description={description} backLink="/blog/fluid-typography-with-nothing-but-css/">
   <div class="container">
     <div class="fluid-text-demo">
-      <p class="fluid-text fluid-text--0 fluid-text--demo">
-        This text will have a fluid font size that grows from 20px to 32px between 320px and 960px container width.
+      <p class="fluid-text fluid-text--0">
+        This has a fluid font size that grows from 20px to 32px between 320px and 960px container width.
+      </p>
+    </div>
+    <div class="fluid-text-demo">
+      <p class="fluid-text fluid-text-min-0 fluid-text-max-1">
+        This has a fluid font size that grows from 20px to 40px between 320px and 960px container width.
+      </p>
+    </div>
+    <div class="fluid-text-demo">
+      <p class="fluid-text fluid-text-min-1 fluid-text-max-1">
+        This has a fluid font size that grows from 24px to 40px between 320px and 960px container width.
       </p>
     </div>
   </div>

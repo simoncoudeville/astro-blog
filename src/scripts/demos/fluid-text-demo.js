@@ -37,7 +37,7 @@ const updateComputedFontSize = () => {
     const $computedFontSize = document.querySelectorAll(".computed-font-size");
     $computedFontSize.forEach(($element, index) => {
         const fontSize = window.getComputedStyle($fluidText[index]).getPropertyValue("font-size");
-        $element.innerHTML = `Step ${index} - ${fontSize}`;
+        $element.innerHTML = `computed font-size: ${fontSize}`;
     });
 };
 

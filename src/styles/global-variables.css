@@ -131,6 +131,7 @@ Variables
     --global-baseline: calc(var(--root-baseline) / var(--root-font-size) * 1rem);
 
     --ms-ratio: 1.125;
+    --ms-3: calc(var(--ms-2) / var(--ms-ratio));
     --ms-2: calc(var(--ms-1) / var(--ms-ratio));
     --ms-1: calc(var(--ms-0) / var(--ms-ratio));
     --ms-0: var(--root-font-size);
