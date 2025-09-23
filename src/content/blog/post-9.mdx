@@ -10,7 +10,11 @@ import mathFluidFormula from "../../img/svg/math/post-9/math-fluid-formula.svg?r
 import mathMinFontSize from "../../img/svg/math/post-9/math-min-font-size.svg?raw";
 import mathMaxFontSize from "../../img/svg/math/post-9/math-max-font-size.svg?raw";
 
+{/* 
 Fluid typography has been explored in detail by others before me. Adrian Bece showed how to calculate the [fluid size function](https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/#fluid-sizing-function). Then Brecht De Ruyte introduced a [Sass function](https://www.smashingmagazine.com/2022/10/fluid-typography-clamp-sass-functions/) to make it more easy to use. Utopia's [SCSS](https://www.npmjs.com/package/utopia-core-scss) and [PostCSS](https://www.npmjs.com/package/postcss-utopia) plugins generate ready to use fluid custom properties. They even introduced a fluid modular scale. These approaches work beautifully but they depend on build tools. That made me curious: could I take the math and express the whole thing directly in CSS? No Sass, no generators, just variables, `calc()`, and `clamp()`.
+*/}
+
+Fluid typography isn’t new. Many great articles and tools already cover it. Today, you can find multiple generators that spit out the necessary CSS, or plugins like Utopia that integrate fluid scales into your build process. Under the hood, though, they all rely on the same [formula](https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/#fluid-sizing-function) first outlined by Adrian Bece. These solutions work well, but depend on external tooling or a build step. That made me curious: could I take the math and express the whole thing directly in CSS? No Sass, no generators, just variables, `calc()`, and `clamp()`.
 
 {/*
 Implementing fluid typography depends heavily on build tools like Utopia. But with the power of CSS variables and `calc()`, we can achieve the same effect directly in CSS. This means no extra build steps or dependencies, just pure CSS.
@@ -18,7 +22,7 @@ Implementing fluid typography depends heavily on build tools like Utopia. But wi
 
 ## The Math Behind Fluid Typography
 
-In order to implement fluid typography in CSS, I wanted to understand the math behind it. So this is my understanding of it. At its core fluid typography is implemented with the `clamp()` function, allowing font sizes to scale with the viewport (or another container width) between a defined minimum and maximum. For example:
+In order to rebuild the fluid formula, I needed to understand the math behind it. So what follows is my understanding of it. At its core fluid typography is implemented with the `clamp()` function, allowing font sizes to scale with the viewport (or another container width) between a defined minimum and maximum. For example:
 
 ```css
 element {
@@ -111,7 +115,7 @@ And as soon as the preferred value is larger than the maximum value, the clamp f
 </math>
 */}
 
-These values didn't happen by chance. It's perfectly possible to calculate the exact values for the two breakpoints. To get to the formula you need these 4 parameters:
+These values didn't happen by chance. It's perfectly possible to calculate the exact values for the two breakpoints. That's where Adrian's formula comes in. To get to the formula you only need these 4 parameters:
 
 1. The **min font size**: the smallest size the text should be e.g. 20px
 2. The **max font size**: the largest size the text should be e.g. 32px
@@ -124,30 +128,9 @@ The exact calculation is rather complex. If you want to know how it works you sh
 
 ## Using the formula in CSS
 
-That's quite complex and not really maintainable if you want to reuse it with different parameters. If you want to change one of the parameters you'd have to change it on multiple locations in the calculation. The advantage of using Sass is that we can define a function with the calculation and use that function with different parameters.
+That's quite complex and not really maintainable if you want to reuse it with different parameters. If you want to change one of the parameters you'd have to change it on multiple locations in the calculation. The advantage of using Sass is that you can define a function with the calculation and use that function with different parameters.
 
-```scss
-element {
-  font-size: #{fluid(20px, 32px, 320px, 1280px)}
-}
-```
-
-Utopia's plugin generates a set of custom properties with calculated clamp values based on a set of parameters that can be used like this:
-
-```css
-:root {
-  --step--1: clamp(1.25rem, 1.25vw + 1rem, 2rem);
-  --step-0: clamp(1.5rem, 1.5vw + 1.2rem, 2.4rem);
-  --step-1: clamp(1.8rem, 1.8vw + 1.44rem, 2.88rem);
-  /* ... */
-}
-
-element {
-  font-size: var(--step--1);
-}
-```
-
-So how can this be achieved with nothing but CSS? Since this is a calculation it can be expressed with `calc()`. CSS variables can be used to store and update the parameters. The only thing left is a way to store the calculation and then change the parameters only. It's not possible to make a global custom property with with the calculation and change the parameters per element because of scoping. The solution is to define a class to place on the elements that need fluid font sizes. That's where the parameters and calculation live and where the font-size is declared.
+So how can this be achieved with nothing but CSS? Since this is a calculation it can be expressed with `calc()`. CSS variables can be used to store and update the parameters. The only thing left is a way to store the calculation and then change the parameters only. That's where good old classes come in. The solution is to define a class to place on the elements that need fluid font sizes. That's where the parameters and calculation live and where the font-size is declared.
 
 ```css
 .fluid-text {
@@ -244,7 +227,7 @@ Have a look at the working example on this [demo page](/demos/fluid-type). For t
 
 ## Fluid Type Scale
 
-It's also possible to define a fluid type scale just like Utopia's by defining the min and max font sizes for each step in the scale. Each step can have its own unique min and max font sizes based on different ratios. These steps have to be added manually. For example:
+Taking it a step further, it's also possible to define a fluid type scale just like Utopia's by defining the min and max font sizes for each step in the scale. Each step can have its own unique min and max font sizes based on different ratios. These steps have to be added manually. For example:
 
 ```css
 :root {
@@ -269,7 +252,7 @@ It's also possible to define a fluid type scale just like Utopia's by defining t
 }
 ```
 
-This makes a modular scale with 6 steps. If you want to add more you have to multiply the previous step in the scale with the ratio again. For both the min and max font sizes. These can then be applied using modifier classes:
+This makes a modular scale with 6 steps. If you want to add more you have to multiply the previous step in the scale with the ratio again. For both the min and max font sizes. These can then be applied using modifier classes to update the `--this-min-font-size` and `--this-max-font-size` variables:
 
 ```css
 .fluid-text--step-0 {
@@ -311,4 +294,4 @@ element {
 
 One of the advantages of working with CSS variables is that they can be updated at any time. This means you can change the parameters based on different conditions. For example, you could change the min and max font sizes for print or other media queries. Or change the parameters on the fly with JavaScript. This makes it possible to adapt the typography to different contexts without recalculating the underlying CSS.
 
-The whole idea for this blog post was to avoid the need for build tools and dependencies. While it requires a bit more setup initially, the end result works equally well. With just a few parameters and a few classes, it's possible to create a fully fluid typography system with just pure CSS.
+Tools like Utopia are obviously more convenient to use, especially when it comes to generating a full type scale. That's something CSS most likely will never be able to do natively. But the whole idea for this blog post was to avoid the need for build tools and dependencies. While it requires a bit more setup initially, the end result works equally well. With just a few parameters and a few classes, it's possible to create a fully fluid typography system with just pure CSS.
