@@ -161,15 +161,15 @@ math {
 code {
     font-family: var(--global-font-family-code);
     --fs: var(--ms-1);
-    /* font-size: calc(var(--fs) / var(--root-font-size) * 1rem); */
-    font-size: 15.5px;
-    /* padding: 2px 7px 3px; */
+    font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
+    /* font-size: 15.5px; */
+    padding: 2px 7px 3px;
     position: relative;
-    /* bottom: 1px; */
+    bottom: 1px;
     /* background-color: var(--global-code-background); */
     border-radius: var(--global-borderRadius);
-    /* border: 1px solid var(--global-borderColor); */
-    /* color: var(--global-title-color); */
+    border: 1px solid var(--global-borderColor);
+    color: var(--global-title-color);
 }
 
 pre {
