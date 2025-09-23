@@ -14,7 +14,7 @@ import mathMaxFontSize from "../../img/svg/math/post-9/math-max-font-size.svg?ra
 Fluid typography has been explored in detail by others before me. Adrian Bece showed how to calculate the [fluid size function](https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/#fluid-sizing-function). Then Brecht De Ruyte introduced a [Sass function](https://www.smashingmagazine.com/2022/10/fluid-typography-clamp-sass-functions/) to make it more easy to use. Utopia's [SCSS](https://www.npmjs.com/package/utopia-core-scss) and [PostCSS](https://www.npmjs.com/package/postcss-utopia) plugins generate ready to use fluid custom properties. They even introduced a fluid modular scale. These approaches work beautifully but they depend on build tools. That made me curious: could I take the math and express the whole thing directly in CSS? No Sass, no generators, just variables, `calc()`, and `clamp()`.
 */}
 
-Fluid typography isn’t new. Many great articles and tools already cover it. These days, you can find online tools that generate the necessary CSS, or plugins like Utopia that integrate fluid scales into your build process. Under the hood, though, they all rely on the same [formula](https://www.aleksandrhovhannisyan.com/blog/fluid-type-scale-with-css-clamp/) by Aleksandr Hovhannisyan. These solutions work well, but depend on external tooling or a build step. That made me curious: could I take the math and express the whole thing directly in CSS? No Sass, no generators, just variables, `calc()`, and `clamp()`.
+Fluid typography isn’t new. Many great articles and tools already cover it. There are multiple online tools that generate the necessary CSS. Plugins like Utopia integrate fluid scales into your build process. These solutions work well, but depend on external tooling or a build step. And under the hood they all rely on the same [formula](https://www.aleksandrhovhannisyan.com/blog/fluid-type-scale-with-css-clamp/) by Aleksandr Hovhannisyan. That made me curious: could I take the math and express the whole thing directly in CSS? No Sass, no generators, just variables, `calc()`, and `clamp()`.
 
 {/*
 Implementing fluid typography depends heavily on build tools like Utopia. But with the power of CSS variables and `calc()`, we can achieve the same effect directly in CSS. This means no extra build steps or dependencies, just pure CSS.
@@ -22,7 +22,7 @@ Implementing fluid typography depends heavily on build tools like Utopia. But wi
 
 ## The Math Behind Fluid Typography
 
-In order to rebuild the fluid formula, I needed to understand the math behind it. So what follows is my understanding of it. At its core fluid typography is implemented with the `clamp()` function, allowing font sizes to scale with the viewport (or another container width) between a defined minimum and maximum. For example:
+In order to rebuild the fluid formula, I wanted to understand the math behind it. So what follows is my understanding of it. At its core fluid typography is implemented with the `clamp()` function, allowing font sizes to scale with the viewport (or another container width) between a defined minimum and maximum. For example:
 
 ```css
 element {
@@ -30,7 +30,7 @@ element {
 }
 ```
 
-The "preferred" middle value is the part that makes the font-size scale fluidly. It consists of the sum of two parts. The first part is a relative value like `vw` or `cqi` that makes sure the font-size scales according to the viewport or container width. If the viewport is for example 400px wide, the above code returns 5px. Because <span class="math">1.25 × 400<span class="text-italic">px</span> / 100  = 5<span class="text-italic">px</span>.</span> The second part is a rem value to ensure the whole value still honors the user's settings for text size. As soon as the sum of these two is larger than the minimum value, the clamp function will use this value. In this case if the viewport is wider then 320px:
+The "preferred" middle value is the part that makes the font size scale fluidly. It consists of the sum of two parts. The first part is a value witht a relative unit like `vw` or `cqi` that makes sure the font size scales according to the viewport or container width. If the viewport is for example 400px wide, the above code returns 5px. Because <span class="math">1.25 × 400<span class="text-italic">px</span> / 100  = 5<span class="text-italic">px</span>.</span> The second part is a rem value to ensure the whole value still honors the user's settings for text size. As soon as the sum of these two is larger than the minimum value, the clamp function will use this value. In this case if the viewport is wider then 320px:
 
 {/*  
 <math><mn>1.25</mn><mo>×</mo><mn>400</mn><mi>p</mi><mi>x</mi><mo>/</mo><mn>100</mn><mo>=</mo><mn>5</mn><mi>p</mi><mi>x</mi></math>. 
@@ -115,7 +115,7 @@ And as soon as the preferred value is larger than the maximum value, the clamp f
 </math>
 */}
 
-These values didn't happen by chance. It's perfectly possible to calculate the exact values for the two breakpoints. That's where Adrian's formula comes in. To get to the formula you only need these 4 parameters:
+These values didn't happen by chance. It's perfectly possible to calculate the exact values for the two breakpoints. That's where Aleksandr's formula comes in. To get to the formula you only need these 4 parameters:
 
 1. The **min font size**: the smallest size the text should be e.g. 20px
 2. The **max font size**: the largest size the text should be e.g. 32px
@@ -130,7 +130,7 @@ The exact calculation is rather complex. If you want to know how it works you sh
 
 That's quite complex and not really maintainable if you want to reuse it with different parameters. If you want to change one of the parameters you'd have to change it on multiple locations in the calculation. The advantage of using Sass is that you can define a function with the calculation and use that function with different parameters.
 
-So how can this be achieved with nothing but CSS? Since this is a calculation it can be expressed with `calc()`. CSS variables can be used to store and update the parameters. The only thing left is a way to store the calculation and then change the parameters only. That's where good old classes come in. The solution is to define a class to place on the elements that need fluid font sizes. That's where the parameters and calculation live and where the font-size is declared.
+So how can this be achieved with nothing but CSS? Since this is a calculation it can be expressed with `calc()`. CSS variables can be used for the parameters. The only thing left is a way to store the calculation and then change the parameters only. That's where good old classes come in. The solution is to define a class to place on the elements that need a fluid font size. That's where the parameters and calculation live and where the font size is declared.
 
 ```css
 .fluid-text {
@@ -203,7 +203,7 @@ And then mix and match them on the elements:
 </p>
 ```
 
-The calculation as it is currently set up assumes that 1rem = 16px. If you want to adjust the global font-size to, for example, 18px, then the calculation for the font-sizes will no longer be correct. The solution is making the global font-size a custom property and use that in the calculation. 
+The calculation as it is currently set up assumes that 1rem = 16px. If you want to adjust the global font size to, for example, 18px, then the calculation for the font sizes will no longer be correct. The solution is making the global font size a custom property and use that in the calculation. 
 
 ```css
 :root {
@@ -211,7 +211,7 @@ The calculation as it is currently set up assumes that 1rem = 16px. If you want 
   font-size: calc(var(--root-font-size) / 16 * 100%);
 }
 ```
-This makes the global font-size 18px. I always do this in percent but you could also use em or rem. In the fluid font-size calculation you can then use that variable instead of the hard-coded 16:
+This makes the global font size 18px. I always do this in percent but you could also use em or rem. In the fluid font-size calculation you can then use that variable instead of the hard-coded 16:
 
 ```css
 .fluid-text {
@@ -292,6 +292,6 @@ element {
 
 ```
 
-One of the advantages of working with CSS variables is that they can be updated at any time. This means you can change the parameters based on different conditions. For example, you could change the min and max font sizes for print or other media queries. Or change the parameters on the fly with JavaScript. This makes it possible to adapt the typography to different contexts without recalculating the underlying CSS.
+One of the advantages of working with CSS variables is that they can be updated at any time. This means you can change the parameters based on different conditions. For example, you could change the min and max font sizes for print or other media queries. Or change the parameters on the fly with JavaScript. This makes it possible to adapt the typography to different contexts without recalculating the everything.
 
 Tools like Utopia are obviously more convenient to use, especially when it comes to generating a full type scale. That's something CSS most likely will never be able to do natively. But the whole idea for this blog post was to avoid the need for build tools and dependencies. While it requires a bit more setup initially, the end result works equally well. With just a few parameters and a few classes, it's possible to create a fully fluid typography system with just pure CSS.
