@@ -12,31 +12,6 @@ Fonts
     font-display: swap;
 }
 
-@font-face {
-    font-family: 'Graphik Web';
-    src: url('../fonts/Graphik-Medium-Web.woff') format('woff'),
-        url('../fonts/Graphik-Medium-Web.woff2') format('woff2');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Tiempos Text';
-    src: url('../fonts/TiemposTextWeb-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Tiempos Text';
-    src: url('../fonts/TiemposTextWeb-RegularItalic.woff') format('woff');
-    font-weight: 400;
-    font-style: italic;
-    font-display: swap;
-}
-
 /*
 Variables
 =========
@@ -124,6 +99,7 @@ Variables
     /* --global-font-weight-title: 500; */
     --global-font-weight-title: 400;
     --global-font-weight-strong: 400;
+    --global-font-weight-regular: 400;
 
     --root-font-size: 16;
     --root-baseline: 5;
