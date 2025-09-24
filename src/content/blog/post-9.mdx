@@ -9,15 +9,7 @@ import mathFluidFormula from "../../img/svg/math/post-9/math-fluid-formula.svg?r
 import mathMinFontSize from "../../img/svg/math/post-9/math-min-font-size.svg?raw";
 import mathMaxFontSize from "../../img/svg/math/post-9/math-max-font-size.svg?raw";
 
-{/* 
-Fluid typography has been explored in detail by others before me. Adrian Bece showed how to calculate the [fluid size function](https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/#fluid-sizing-function). Then Brecht De Ruyte introduced a [Sass function](https://www.smashingmagazine.com/2022/10/fluid-typography-clamp-sass-functions/) to make it more easy to use. Utopia's [SCSS](https://www.npmjs.com/package/utopia-core-scss) and [PostCSS](https://www.npmjs.com/package/postcss-utopia) plugins generate ready to use fluid custom properties. They even introduced a fluid modular scale. These approaches work beautifully but they depend on build tools. That made me curious: could I take the math and express the whole thing directly in CSS? No Sass, no generators, just variables, `calc()`, and `clamp()`.
-*/}
-
 I’ve been intrigued by fluid typography ever since I first encountered it. It's one of those techniques where CSS really shines. Plenty of excellent articles have been written on the topic. And it has never been easier to implement it. You can choose from multiple online tools that generate the necessary CSS. And plugins like Utopia integrate fluid scales into the build process. These solutions work well, but depend on external tooling or a build step. Under the hood they all rely on the same [formula](https://www.aleksandrhovhannisyan.com/blog/fluid-type-scale-with-css-clamp/) by Aleksandr Hovhannisyan. That made me curious: could I take the math and express the whole thing directly in CSS? No Sass, no generators, just variables, `calc()`, and `clamp()`.
-
-{/*
-Implementing fluid typography depends heavily on build tools like Utopia. But with the power of CSS variables and `calc()`, we can achieve the same effect directly in CSS. This means no extra build steps or dependencies, just pure CSS.
-*/}
 
 ## The Math Behind Fluid Typography
 
@@ -31,88 +23,11 @@ element {
 
 The "preferred" middle value is the part that makes the font size scale fluidly. It consists of the sum of two parts. The first part is a value witht a relative unit like `vw` or `cqi` that makes sure the font size scales according to the viewport or container width. If the viewport is for example 400px wide, the above code returns 5px. The second part is a rem value to ensure the whole value still honors the user's settings for text size. As soon as the sum of these two is larger than the minimum value, the clamp function will use this value. In this case if the viewport is wider then 320px:
 
-{/*  
-<math><mn>1.25</mn><mo>×</mo><mn>400</mn><mi>p</mi><mi>x</mi><mo>/</mo><mn>100</mn><mo>=</mo><mn>5</mn><mi>p</mi><mi>x</mi></math>. 
-*/}
-
 <p class="math" set:html={mathMinFontSize} />
-
-{/*
-
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
-  <mfrac>
-    <mrow>
-      <mn>1.25</mn>
-      <mo>×</mo>
-      <mn>320</mn><mi>p</mi><mi>x</mi>
-    </mrow>
-    <mn>100</mn>
-  </mfrac>
-  <mo>+</mo>
-  <mn>1</mn>
-  <mo>&#xd7;</mo>
-  <mn>16</mn>
-  <mi>p</mi>
-  <mi>x</mi>
-  <mo>=</mo>
-  <mn>4</mn>
-  <mi>p</mi>
-  <mi>x</mi>
-  <mo>+</mo>
-  <mn>16</mn>
-  <mi>p</mi>
-  <mi>x</mi>
-  <mo>=</mo>
-  <mn>20</mn>
-  <mi>p</mi>
-  <mi>x</mi>
-  <mo>=</mo>
-  <mn>1.25</mn>
-  <mi>r</mi>
-  <mi>e</mi>
-  <mi>m</mi>
-</math>
-*/}
 
 And as soon as the preferred value is larger than the maximum value, the clamp function will use the maximum value. In this case if the viewport is wider then 1280px: 
 
 <p class="math" set:html={mathMaxFontSize} />
-
-{/* 
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
-  <mfrac>
-    <mrow>
-      <mn>1.25</mn>
-      <mo>×</mo>
-      <mn>1280</mn><mi>px</mi>
-    </mrow>
-    <mn>100</mn>
-  </mfrac>
-  <mo>+</mo>
-  <mn>1</mn>
-  <mo>&#xd7;</mo>
-  <mn>16</mn>
-  <mi>p</mi>
-  <mi>x</mi>
-  <mo>=</mo>
-  <mn>16</mn>
-  <mi>p</mi>
-  <mi>x</mi>
-  <mo>+</mo>
-  <mn>16</mn>
-  <mi>p</mi>
-  <mi>x</mi>
-  <mo>=</mo>
-  <mn>32</mn>
-  <mi>p</mi>
-  <mi>x</mi>
-  <mo>=</mo>
-  <mn>2</mn>
-  <mi>r</mi>
-  <mi>e</mi>
-  <mi>m</mi>
-</math>
-*/}
 
 {/* 
 To make this even more clear I made a small interactive demo that shows how the preferred value changes with the viewport width:
@@ -122,9 +37,7 @@ import Fluid from "../../components/Demos/FluidType/ClampExplained.svelte";
 <Fluid client:idle />
 */}
 
-These values didn't happen by chance. It's perfectly possible to calculate the preferred value so it scales between the breakpoints you want. That's where Aleksandr's formula comes in. It only needs these 4 parameters: the minimum and maximum font size and the minimum and maximum viewport width.
-
-The exact calculation is rather complex. If you want to know how it works you should read [Aleksandr's blog post](https://www.aleksandrhovhannisyan.com/blog/fluid-type-scale-with-css-clamp/). I somehow managed to work it out myself and found that with all the parameters mentioned above, this is the calculation that's needed to get the fluid formula:
+These values didn't happen by chance. It's perfectly possible to calculate the values for the preferred part so it scales between the breakpoints you want. That's where Aleksandr's formula comes in. It only needs these 4 parameters: the minimum and maximum font size and the minimum and maximum viewport width. It involves calculating the slope and intercept of the linear function that describes the scaling behavior. Here I'm going to stop short of explaining how to derive these values. If you're interested in the details, I recommend reading Aleksandr's [blog post](https://www.aleksandrhovhannisyan.com/blog/fluid-type-scale-with-css-clamp/) where he explains it in detail. I somehow managed to work it out myself and found that with all the parameters mentioned above, this is the calculation that's needed to get the fluid value:
 
 <p class="math" set:html={mathFluidFormula} />
 
@@ -233,7 +146,7 @@ Have a look at the working example on this [demo page](/demos/fluid-type). For t
 
 ## Fluid Type Scale
 
-Taking it a step further, it's also possible to define a fluid type scale just like Utopia's by defining the min and max font sizes for each step in the scale. Each step can have its own unique min and max font sizes based on different ratios. These steps have to be added manually. For example:
+Taking it a step further, it's also possible to use the values from a fluid type scale just like Utopia's by defining the min and max font sizes for each step in the scale. Each step can have its own unique min and max font sizes based on different ratios. These steps have to be added manually. For example:
 
 ```css
 :root {
@@ -258,7 +171,7 @@ Taking it a step further, it's also possible to define a fluid type scale just l
 }
 ```
 
-This makes a modular scale with 6 steps. If you want to add more you have to multiply the previous step in the scale with the ratio again. For both the min and max font sizes. These can then be applied using modifier classes to update the `--this-min-font-size` and `--this-max-font-size` variables:
+This makes a modular scale with 6 steps. If you want to add more you have to multiply the previous step in the scale with the ratio again. For both the min and max font sizes. These can then be used to declare the `--this-min-font-size` and `--this-max-font-size` variables:
 
 ```css
 .fluid-text--step-0 {
@@ -279,13 +192,13 @@ This makes a modular scale with 6 steps. If you want to add more you have to mul
 }
 ```
 
-Have a look at a working example on the [demo page](/demos/fluid-modular-scale). Or checkout the [codepen](https://codepen.io/simoncoudeville/pen/QWxGvpR) if you want to see the full code. Be sure to change the parameters in the CSS.
+Have a look at a working example on the [demo page](/demos/fluid-modular-scale). Or checkout the [codepen](https://codepen.io/simoncoudeville/pen/QWxGvpR) if you want to see the full code. Be sure to change some of the parameters in the CSS.
 
 ## Considerations
 
 One thing that to keep in mind with this technique is that you can't see the final output of the calculation. Since all the calculations happen in the browser instead of being generated, you can't see the actual values the calculation produces. If you want to test if your design passes the [WCAG Success Criterion 1.4.4](https://www.w3.org/WAI/WCAG21/Understanding/resize-text.html) about resizing text you need to look at the computed values. According to Maxwell Barvian's article in [Smashing Magazine](https://www.smashingmagazine.com/2023/11/addressing-accessibility-concerns-fluid-type/) it will always pass as long as the maximum font size is less than or equal to 2.5 times the minimum font size. So this is something to keep in mind when choosing the min and max font size.
 
-If you're not into utility based CSS, this might not be the best approach. Applying fluid typography to all headings for example, requires you to add the different classes to each heading element. In the future [CSS functions](https://css-tricks.com/functions-in-css/) will make it possible to define a function that can be used in the `font-size` property directly:
+If you're not into utility based CSS, this might not be the best approach. Applying fluid font sizes to all headings for example, requires you to add the different classes to each heading element. In the future [CSS functions](https://css-tricks.com/functions-in-css/) will make it possible to define a function that can be used in the `font-size` property directly:
 
 ```css
 @function --fluid-text(--font-size-min, --font-size-max) {
@@ -298,6 +211,6 @@ element {
 
 ```
 
-One of the advantages of working with CSS variables is that they can be updated at any time. This means you can change the parameters based on different conditions. For example, you could change the min and max font sizes for print or other media queries. Or change the parameters on the fly with JavaScript. This makes it possible to adapt the typography to different contexts without recalculating the everything.
+One of the advantages of working with CSS variables is that they can be updated at any time. This means you can change the parameters based on different conditions. For example, you could change the min and max font sizes for print or other media queries. Or change the parameters on the fly with JavaScript. This makes it possible to adapt the typography to different contexts without recalculating everything.
 
-Tools like Utopia are obviously more convenient to use, especially when it comes to generating a full type scale. That's something CSS most likely will never be able to do natively. But the whole idea for this blog post was to avoid the need for build tools and dependencies. While it requires a bit more setup initially, the end result works equally well. With just a few parameters and a few classes, it's possible to create a fully fluid typography system with just pure CSS.
+Tools like Utopia are obviously more convenient to use, especially when it comes to generating a full type scale. That's something CSS most likely will never be able to do natively. But the whole idea for this blog post was to avoid the need for build tools and dependencies. While it requires a bit more setup initially, the end result works equally well. With just a few parameters and a few classes, it's possible to create a fully parameter based fluid typography system with just pure CSS.
