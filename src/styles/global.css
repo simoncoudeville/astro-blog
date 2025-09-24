@@ -296,7 +296,7 @@ input[type=range]::-webkit-slider-thumb {
     cursor: var(--range-thumb-pointer);
     -webkit-appearance: none;
     margin-top: calc(var(--range-thumb-height) * -.5 - var(--range-track-height) * -.5 - var(--range-thumb-borderWidth) * -.5);
-
+    opacity: var(--range-thumb-opacity, 1);
     box-shadow: var(--range-thumb-boxShadow);
 }
 

@@ -79,7 +79,8 @@ Variables
     --global-color-neutral-75: oklch(92% 0.00 var(--global-neutral-hue));
     --global-color-neutral-25: oklch(96.5% 0.00 var(--global-neutral-hue));
 
-    --global-accent-color: var(--global-color-cyan-500);
+    --global-accent-color: var(--global-color-cyan-400);
+    /* --global-accent-color: var(--global-title-color); */
     --global-backgroundColor: white;
     --global-foregroundColor: var(--global-color-neutral-25);
     --global-borderColor: var(--global-color-neutral-75);
@@ -89,6 +90,7 @@ Variables
     --global-muted-color: var(--global-color-neutral-500);
     --global-text-color: var(--global-color-neutral-575);
     --global-title-color: var(--global-color-neutral-900);
+    --global-color-on-accent: white;
 
     --global-code-color: var(--global-muted-color);
     --global-code-background: var(--global-foregroundColor);
@@ -178,5 +180,6 @@ Variables
         --global-muted-color: var(--global-color-neutral-300);
         --global-text-color: var(--global-color-neutral-225);
         --global-title-color: var(--global-color-neutral-25);
+        --global-color-on-accent: var(--global-color-neutral-1000);
     }
 }
