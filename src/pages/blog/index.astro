@@ -9,14 +9,16 @@ const description = "All articles by " + SITE_ATHOUR;
 ---
 
 <BaseLayout title={title} description={description}>
-  <main class="row pt-clear mt-clear">
-    <div class="container flow">
+
       <Header
-        headerTitle={SITE_ATHOUR}
-        headerMeta="articles"
-        headerType="page"
+        headerTitle="Blog"
+        headerMeta="All articles"
+        headerType="home"
       />
-      <Blogposts hideHeading={true} />
-    </div>
-  </main>
+      <main class="row row--main">
+        <div class="container flow">
+          <Blogposts hideHeading={true} />
+        </div>
+      </main>
+
 </BaseLayout>

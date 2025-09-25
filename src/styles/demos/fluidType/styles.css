@@ -43,9 +43,9 @@
     --fluid-text-slope: calc(calc(var(--fluid-text-max-font-size) - var(--fluid-text-min-font-size)) / calc(var(--fluid-text-max-width) - var(--fluid-text-min-width)));
     --fluid-text-intercept: calc(var(--fluid-text-min-font-size) - var(--fluid-text-slope) * var(--fluid-text-min-width));
     --fluid-text-font-size:
-        clamp(calc(var(--fluid-text-min-font-size) / var(--root-font-size) * 1rem),
-            calc(var(--fluid-text-slope) * var(--fluid-text-relative-unit)) + calc(var(--fluid-text-intercept) / var(--root-font-size) * 1rem),
-            calc(var(--fluid-text-max-font-size) / var(--root-font-size) * 1rem));
+        clamp(var(--fluid-text-min-font-size) / var(--root-font-size) * 1rem,
+            var(--fluid-text-slope) * var(--fluid-text-relative-unit) + var(--fluid-text-intercept) / var(--root-font-size) * 1rem,
+            var(--fluid-text-max-font-size) / var(--root-font-size) * 1rem);
     font-size: var(--fluid-text-font-size);
 }
 

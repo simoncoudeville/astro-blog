@@ -1,9 +1,218 @@
 ---
-title: "How fluid typography works"
-slug: how-fluid-typography-works
-pubDate: 2022-12-1
-description: "A visualisation of how fluid typography works"
-draft: true
+title: "A CSS-only fluid typography approach"
+slug: a-css-only-fluid-typography-approach
+description: "A look at how to implement fluid typography with no external dependencies. Only CSS variables, calc() and clamp()."
+pubDate: 2025-09-15
+draft: false
 ---
+import mathFluidFormula from "../../img/svg/math/post-9/math-fluid-formula.svg?raw";
+import mathMinFontSize from "../../img/svg/math/post-9/math-min-font-size.svg?raw";
+import mathMaxFontSize from "../../img/svg/math/post-9/math-max-font-size.svg?raw";
 
-I'm a big fan of fluid typography. It's a great way to make your website look good on any screen size. But how does it work exactly? I've been wondering about this for a while, so I decided to make a visualisation of how it works. The fluid typography technique has undergone some changes. The first iteration didn't work well on mobile devices. The second iteration was better, but it still had some issues. The third iteration is the best one yet. It's the one I'm using on this website. I'll explain how it works in this post.
+I’ve been intrigued by fluid typography ever since I first encountered it. It's one of those techniques where CSS really shines. Plenty of excellent articles have been written on the topic. And it has never been easier to implement it. You can choose from multiple online tools that generate the necessary CSS. And plugins like Utopia integrate fluid scales into the build process. These solutions work well, but depend on external tooling or a build step. Under the hood they all rely on the same [formula](https://www.aleksandrhovhannisyan.com/blog/fluid-type-scale-with-css-clamp/) by Aleksandr Hovhannisyan. That made me curious: could I take the math and express the whole thing directly in CSS? No Sass, no generators, just variables, `calc()`, and `clamp()`.
+
+## The Math Behind Fluid Typography
+
+In order to rebuild the fluid formula, I wanted to understand the math behind it. So what follows is my understanding of it. At its core fluid typography is implemented with the `clamp()` function, allowing font sizes to scale with the viewport (or another container width) between a defined minimum and maximum. For example:
+
+```css
+element {
+  font-size: clamp(1.25rem, 1.25vw + 1rem, 2rem)
+}
+```
+
+The "preferred" middle value is the part that makes the font size scale fluidly. It consists of the sum of two parts. The first part is a value witht a relative unit like `vw` or `cqi` that makes sure the font size scales according to the viewport or container width. If the viewport is for example 400px wide, the above code returns 5px. The second part is a rem value to ensure the whole value still honors the user's settings for text size. As soon as the sum of these two is larger than the minimum value, the clamp function will use this value. In this case if the viewport is wider then 320px:
+
+<p class="math" set:html={mathMinFontSize} />
+
+And as soon as the preferred value is larger than the maximum value, the clamp function will use the maximum value. In this case if the viewport is wider then 1280px: 
+
+<p class="math" set:html={mathMaxFontSize} />
+
+{/* 
+To make this even more clear I made a small interactive demo that shows how the preferred value changes with the viewport width:
+
+import Fluid from "../../components/Demos/FluidType/ClampExplained.svelte";
+
+<Fluid client:idle />
+*/}
+
+These values didn't happen by chance. It's perfectly possible to calculate the values for the preferred part so it scales between the breakpoints you want. That's where Aleksandr's formula comes in. It only needs these 4 parameters: the minimum and maximum font size and the minimum and maximum viewport width. It involves calculating the slope and intercept of the linear function that describes the scaling behavior. Here I'm going to stop short of explaining how to derive these values. If you're interested in the details, I recommend reading Aleksandr's [blog post](https://www.aleksandrhovhannisyan.com/blog/fluid-type-scale-with-css-clamp/) where he explains it in detail. I somehow managed to work it out myself and found that with all the parameters mentioned above, this is the calculation that's needed to get the fluid value:
+
+<p class="math" set:html={mathFluidFormula} />
+
+## Using the formula in CSS
+
+That's quite complex and not really maintainable if you want to reuse it with different parameters. If you want to change one of the parameters you'd have to change it on multiple locations in the calculation. The advantage of using Sass is that you can define a function with the calculation and use that function with different parameters.
+
+So how can this be achieved with nothing but CSS? Since this is a calculation it can be expressed with `calc()`. CSS variables can be used for the parameters. The only thing left is a way to store the calculation and then change the parameters only. That's where good old classes come in. The solution is to define a class to place on the elements that need a fluid font size. That's where the parameters and calculation live and where the font size is declared.
+
+```css
+.fluid-text {
+  /* The parameters */
+  --fluid-text-min-width: var(--this-min-width, 320);
+  --fluid-text-max-width: var(--this-max-width, 1280);
+  --fluid-text-min-font-size: var(--this-min-font-size);
+  --fluid-text-max-font-size: var(--this-max-font-size);
+  --fluid-text-relative-unit: var(--this-relative-unit, 100cqi);
+
+  /* slope and intercept calculations */
+  --fluid-text-slope: calc(calc(var(--fluid-text-max-font-size) - var(--fluid-text-min-font-size)) / calc(var(--fluid-text-max-width) - var(--fluid-text-min-width)));
+  --fluid-text-intercept: calc(var(--fluid-text-min-font-size) - var(--fluid-text-slope) * var(--fluid-text-min-width));
+
+  /* everything together */
+  --fluid-text-font-size:
+    clamp(
+      var(--fluid-text-min-font-size) / 16 * 1rem,
+      var(--fluid-text-slope) * var(--fluid-text-relative-unit)) + calc(var(--fluid-text-intercept) / 16 * 1rem,
+      var(--fluid-text-max-font-size) / 16 * 1rem
+    );
+  
+  /* the actual font-size property */
+  font-size: var(--fluid-text-font-size);
+}
+```
+
+`--this-min-font-size` and `--this-max-font-size` are not defined at this point but that's one of the powers of CSS variables: they can be accessed before they're declared. Every element with the `.fluid-text` class now has the possibility to declare these by adding an extra class to the same element and update the values. Because they are locally scoped to the class this works:
+
+```html
+<p class="fluid-text fluid-text-1">
+  This text will have a fluid font size that grows from 20px to 32px between 320px and 960px container width.
+</p>
+```
+
+```css
+.fluid-text-1 {
+  --this-min-font-size: 20;
+  --this-max-font-size: 32;
+  /* optional: override the breakpoints and relative unit */
+  --this-min-width: 240;
+  --this-max-width: 960;
+  --this-relative-unit: 100vw;
+}
+```
+
+Or you could define multiple utility classes for the min and max font sizes:
+
+```css
+.fluid-text-min-0 {
+  --this-min-font-size: 20;
+} 
+.fluid-text-min-1 {
+  --this-min-font-size: 24;
+} 
+.fluid-text-max-0 {
+  --this-max-font-size: 32;
+}
+.fluid-text-max-1 {
+  --this-max-font-size: 40;
+}
+```
+
+And then mix and match them on the elements:
+
+```html
+<p class="fluid-text fluid-text-min-0 fluid-text-max-1">
+  This text will have a fluid font size that grows from 20px to 40px between 320px and 960px container width.
+</p>
+<p class="fluid-text fluid-text-min-1 fluid-text-max-1">
+  This text will have a fluid font size that grows from 24px to 40px between 320px and 960px container width.
+</p>
+```
+
+The calculation as it is currently set up assumes that 1rem = 16px. If you want to adjust the global font size to, for example, 18px, then the calculation for the font sizes will no longer be correct. The solution is making the global font size a custom property and use that in the calculation. 
+
+```css
+:root {
+  --root-font-size: 18;
+  font-size: calc(var(--root-font-size) / 16 * 100%);
+}
+```
+This makes the global font size 18px. I always do this in percent but you could also use em or rem. In the fluid font-size calculation you can then use that variable instead of the hard-coded 16:
+
+```css
+.fluid-text {
+  /* ... */
+  --fluid-text-font-size:
+    clamp(
+      var(--fluid-text-min-font-size) / var(--root-font-size) * 1rem,
+      var(--fluid-text-slope) * var(--fluid-text-relative-unit)) + calc(var(--fluid-text-intercept) / var(--root-font-size) * 1rem,
+      var(--fluid-text-max-font-size) / var(--root-font-size) * 1rem
+    );
+}
+```
+
+Have a look at the working example on this [demo page](/demos/fluid-type). For this demo I added a little bit of javascript that shows the current font size in pixels. Resize the viewport to see how it changes.
+
+## Fluid Type Scale
+
+Taking it a step further, it's also possible to use the values from a fluid type scale just like Utopia's by defining the min and max font sizes for each step in the scale. Each step can have its own unique min and max font sizes based on different ratios. These steps have to be added manually. For example:
+
+```css
+:root {
+    --root-font-size: 16;
+    --root-container-min-width: 320;
+    --root-container-max-width: 960;
+
+    --root-fluid-min-ratio: 1.125;
+    --root-fluid-max-ratio: 1.333;
+    --root-fluid-min-font-size: var(--root-font-size);
+    --root-fluid-max-font-size: 18;
+
+    --root-fluid-min-font-size-0: calc(var(--root-fluid-min-font-size));
+    --root-fluid-min-font-size-1: calc(var(--root-fluid-min-font-size-0) * var(--root-fluid-min-ratio));
+    /* ... */
+    --root-fluid-min-font-size-5: calc(var(--root-fluid-min-font-size-4) * var(--root-fluid-min-ratio));
+
+    --root-fluid-max-font-size-0: calc(var(--root-fluid-max-font-size));
+    --root-fluid-max-font-size-1: calc(var(--root-fluid-max-font-size-0) * var(--root-fluid-max-ratio));
+    /* ... */
+    --root-fluid-max-font-size-5: calc(var(--root-fluid-max-font-size-4) * var(--root-fluid-max-ratio));
+}
+```
+
+This makes a modular scale with 6 steps. If you want to add more you have to multiply the previous step in the scale with the ratio again. For both the min and max font sizes. These can then be used to declare the `--this-min-font-size` and `--this-max-font-size` variables:
+
+```css
+.fluid-text--step-0 {
+    --this-min-font-size: var(--root-fluid-min-font-size-0);
+    --this-max-font-size: var(--root-fluid-max-font-size-0);
+}
+
+.fluid-text--step-1 {
+    --this-min-font-size: var(--root-fluid-min-font-size-1);
+    --this-max-font-size: var(--root-fluid-max-font-size-1);
+}
+
+/* ... */
+
+.fluid-text--step-5 {
+    --this-min-font-size: var(--root-fluid-min-font-size-5);
+    --this-max-font-size: var(--root-fluid-max-font-size-5);
+}
+```
+
+Have a look at a working example on the [demo page](/demos/fluid-modular-scale). Or checkout the [codepen](https://codepen.io/simoncoudeville/pen/QWxGvpR) if you want to see the full code. Be sure to change some of the parameters in the CSS.
+
+## Considerations
+
+One thing that to keep in mind with this technique is that you can't see the final output of the calculation. Since all the calculations happen in the browser instead of being generated, you can't see the actual values the calculation produces. If you want to test if your design passes the [WCAG Success Criterion 1.4.4](https://www.w3.org/WAI/WCAG21/Understanding/resize-text.html) about resizing text you need to look at the computed values. According to Maxwell Barvian's article in [Smashing Magazine](https://www.smashingmagazine.com/2023/11/addressing-accessibility-concerns-fluid-type/) it will always pass as long as the maximum font size is less than or equal to 2.5 times the minimum font size. So this is something to keep in mind when choosing the min and max font size.
+
+If you're not into utility based CSS, this might not be the best approach. Applying fluid font sizes to all headings for example, requires you to add the different classes to each heading element. In the future [CSS functions](https://css-tricks.com/functions-in-css/) will make it possible to define a function that can be used in the `font-size` property directly:
+
+```css
+@function --fluid-text(--font-size-min, --font-size-max) {
+  result: the whole calculation here;
+}
+
+element {
+  font-size: var(--fluid-text(20, 32));
+}
+
+```
+
+One of the advantages of working with CSS variables is that they can be updated at any time. This means you can change the parameters based on different conditions. For example, you could change the min and max font sizes for print or other media queries. Or change the parameters on the fly with JavaScript. This makes it possible to adapt the typography to different contexts without recalculating everything.
+
+Tools like Utopia are obviously more convenient to use, especially when it comes to generating a full type scale. That's something CSS most likely will never be able to do natively. But the whole idea for this blog post was to avoid the need for build tools and dependencies. While it requires a bit more setup initially, the end result works equally well. With just a few parameters and a few classes, it's possible to create a fully parameter based fluid typography system with just pure CSS.
+
+**Edit 25 Sept 2025** - I initially wrapped every value in the final `clamp()` function with an extra `calc()` around them, but a Reddit user pointed out that they can be omitted. Turns out `clamp()` already supports mathematical expressions directly. TIL!
