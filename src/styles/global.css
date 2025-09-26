@@ -154,9 +154,9 @@ pre code {
 
 .astro-code {
     position: relative;
-    padding: var(--global-whitespace);
     border-radius: var(--global-borderRadius-lg);
     background-color: var(--global-code-background);
+    overflow: hidden;
 
     --astro-code-background: var(--global-code-background);
     --astro-code-foreground: var(--global-text-color);
@@ -174,6 +174,9 @@ pre code {
 
     & code {
         --fs: var(--ms-2);
+        display: block;
+        padding: var(--global-whitespace);
+        overflow: auto;
     }
 
     &::after {
