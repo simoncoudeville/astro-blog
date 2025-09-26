@@ -153,8 +153,9 @@ pre code {
 }
 
 .astro-code {
-    padding: var(--global-whitespace-s);
-    border-radius: var(--global-borderRadius);
+    position: relative;
+    padding: var(--global-whitespace);
+    border-radius: var(--global-borderRadius-lg);
     background-color: var(--global-code-background);
 
     --astro-code-background: var(--global-code-background);
@@ -173,6 +174,18 @@ pre code {
 
     & code {
         --fs: var(--ms-2);
+    }
+
+    &::after {
+        content: attr(data-language);
+        position: absolute;
+        top: 0;
+        right: 0;
+        text-transform: uppercase;
+        color: var(--global-meta-color);
+        padding: var(--global-whitespace-2xs) var(--global-whitespace-2xs);
+        line-height: 1;
+        font-size: calc(var(--ms-3) / var(--root-font-size) * 1rem);
     }
 }
 
