@@ -21,7 +21,7 @@ element {
 }
 ```
 
-The "preferred" middle value is the part that makes the font size scale fluidly. It consists of the sum of two parts. The first part is a value witht a relative unit like `vw` or `cqi` that makes sure the font size scales according to the viewport or container width. If the viewport is for example 400px wide, the above code returns 5px. The second part is a rem value to ensure the whole value still honors the user's settings for text size. As soon as the sum of these two is larger than the minimum value, the clamp function will use this value. In this case if the viewport is wider then 320px:
+The "preferred" middle value is the part that makes the font size scale fluidly. It consists of the sum of two parts. The first part is a value with a relative unit like `vw` or `cqi` that makes sure the font size scales according to the viewport or container width. If the viewport is for example 400px wide, the above code returns 5px. The second part is a rem value to ensure the whole value still honors the user's settings for text size. As soon as the sum of these two is larger than the minimum value, the clamp function will use this value. In this case if the viewport is wider then 320px:
 
 <p class="math" set:html={mathMinFontSize} />
 
