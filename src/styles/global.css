@@ -635,8 +635,12 @@ Utilities
     max-width: fit-content;
     margin: 0 auto;
 
-    & * {
+    & path {
         fill: currentColor;
+    }
+
+    & line {
+        stroke: currentColor;
     }
 }
 
