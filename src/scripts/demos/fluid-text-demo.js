@@ -22,21 +22,24 @@ if (minRatioSelect && maxRatioSelect) {
  * Shows computed font sizes and container width for fluid typography demos
  */
 
-// Get all elements with the class .fluid-text
-const $fluidText = document.querySelectorAll(".fluid-text");
+// Get all elements with the class .fluid-text-demo
+const $fluidTextDemo = document.querySelectorAll(".fluid-text-demo");
 
-// Add computed font-size elements before each fluid-text element
-$fluidText.forEach($element => {
+// Add computed font-size elements as first child of each .fluid-text-demo
+$fluidTextDemo.forEach($demo => {
     const $computedFontSize = document.createElement("p");
     $computedFontSize.classList.add("computed-font-size");
-    $element.parentNode?.insertBefore($computedFontSize, $element);
+    $demo.insertBefore($computedFontSize, $demo.firstChild);
 });
+
+// Get the main text elements (could be .fluid-text or .fluid-type-function-*)
+const $textElements = document.querySelectorAll(".fluid-text-demo > p:not(.computed-font-size)");
 
 // Function that updates the content of computed-font-size elements
 const updateComputedFontSize = () => {
     const $computedFontSize = document.querySelectorAll(".computed-font-size");
     $computedFontSize.forEach(($element, index) => {
-        const fontSize = window.getComputedStyle($fluidText[index]).getPropertyValue("font-size");
+        const fontSize = window.getComputedStyle($textElements[index]).getPropertyValue("font-size");
         $element.innerHTML = `computed font-size: ${fontSize}`;
     });
 };

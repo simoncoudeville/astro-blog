@@ -49,7 +49,25 @@
     font-size: var(--fluid-text-font-size);
 }
 
-.fluid-text {
+@function --fluid-text(--min-font-size, --max-font-size, --min-width: var(--root-container-min-width), --max-width: var(--root-container-max-width), --relative-unit: 100cqi) {
+    result: clamp(var(--min-font-size) / var(--root-font-size) * 1rem,
+            calc((var(--max-font-size) - var(--min-font-size)) / (var(--max-width) - var(--min-width))) * var(--relative-unit) + calc(var(--min-font-size) - calc((var(--max-font-size) - var(--min-font-size)) / (var(--max-width) - var(--min-width))) * var(--min-width)) / var(--root-font-size) * 1rem,
+            var(--max-font-size) / var(--root-font-size) * 1rem);
+}
+
+.fluid-type-function-0 {
+    font-size: --fluid-text(20, 32);
+}
+
+.fluid-type-function-1 {
+    font-size: --fluid-text(20, 40);
+}
+
+.fluid-type-function-2 {
+    font-size: --fluid-text(24, 40);
+}
+
+.fluid-text-demo p:nth-child(2) {
     color: var(--global-title-color);
     line-height: 1.2em;
 }

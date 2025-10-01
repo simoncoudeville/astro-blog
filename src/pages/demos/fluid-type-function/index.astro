@@ -1,0 +1,30 @@
+---
+import DemoLayout from "../../../layouts/DemoLayout.astro";
+import "../../../styles/demos/fluidType/styles.css"; // Shared CSS for all fluid demos
+
+const title = "Fluid Typography with calc()";
+const description = "Fluid typography demo using CSS clamp() function";
+// Test comment to trigger reload
+---
+
+<DemoLayout title={title} description={description} backLink="/blog/fluid-typography-with-nothing-but-css/">
+  <div class="container">
+    <div class="fluid-text-demo">
+      <p class="fluid-type-function-0">
+        This has a fluid font size that grows from 20px to 32px between 320px and 960px container width.
+      </p>
+    </div>
+    <div class="fluid-text-demo">
+      <p class="fluid-type-function-1">
+        This has a fluid font size that grows from 20px to 40px between 320px and 960px container width.
+      </p>
+    </div>
+    <div class="fluid-text-demo">
+      <p class="fluid-type-function-2">
+        This has a fluid font size that grows from 24px to 40px between 320px and 960px container width.
+      </p>
+    </div>
+  </div>
+</DemoLayout>
+
+<script src="../../../scripts/demos/fluid-text-demo.js"></script>
