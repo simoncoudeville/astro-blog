@@ -9,7 +9,7 @@ import mathFluidFormula from "../../img/svg/math/post-9/math-fluid-formula.svg?r
 import mathMinFontSize from "../../img/svg/math/post-9/math-min-font-size.svg?raw";
 import mathMaxFontSize from "../../img/svg/math/post-9/math-max-font-size.svg?raw";
 
-I’ve been intrigued by fluid typography ever since I first encountered it. It's one of those techniques where CSS really shines. Plenty of excellent articles have been written on the topic. And it has never been easier to implement it. You can choose from multiple online tools that generate the necessary CSS. And plugins like Utopia integrate fluid scales into the build process. These solutions work well, but depend on external tooling or a build step. Under the hood they all rely on the same [formula](https://www.aleksandrhovhannisyan.com/blog/fluid-type-scale-with-css-clamp/) by Aleksandr Hovhannisyan. That made me curious: could I take the math and express the whole thing directly in CSS? No Sass, no generators, just variables, `calc()`, and `clamp()`.
+I’ve been intrigued by fluid typography ever since I first encountered it. It's one of those techniques where CSS really shines. Plenty of excellent articles have been written on the topic. And it has never been easier to implement it. You can choose from multiple online tools that generate the necessary CSS. And plugins like Utopia integrate fluid scales into the build process. These solutions work well, but depend on external tooling or a build step. Under the hood they all rely on the same [formula](https://www.aleksandrhovhannisyan.com/blog/fluid-type-scale-with-css-clamp/) by Aleksandr Hovhannisyan. That made me curious: could I take the math and express the whole thing directly in CSS? No Sass, no generators, just variables, `calc()`, and `clamp()`. 
 
 ## The Math Behind Fluid Typography
 
@@ -196,13 +196,17 @@ This makes a modular scale with 6 steps. If you want to add more you have to mul
 
 Have a look at a working example on the [demo page](/demos/fluid-modular-scale). Or checkout the [codepen](https://codepen.io/simoncoudeville/pen/QWxGvpR) if you want to see the full code. Be sure to change some of the parameters in the CSS.
 
-## CSS functions
+## CSS custom functions
 
-**Edit 1 Oct 2025** - Apparently we live in the future now and with the latest versions of Chrome and Edge, you can now use CSS functions. This means you can define a function that encapsulates the fluid typography calculation and use it directly in your CSS.
+**Edit 1 Oct 2025** - When I first published this article I already mentioned CSS custom functions as something we could look forward to. Apparently we live in the future now and with the latest versions of Chrome and Edge, you can already use them. This means it's possible to define a function that encapsulates the calculation and use it directly on any element. 
 
 ```css
-@function --fluid-text(--font-size-min, --font-size-max) {
-  result: the whole calculation here;
+@function --fluid-text(--min-font-size, --max-font-size, --min-width: var(--root-container-min-width), --max-width: var(--root-container-max-width), --relative-unit: 100cqi) {
+    result: 
+      clamp(
+        var(--min-font-size) / var(--root-font-size) * 1rem,
+        (var(--max-font-size) - var(--min-font-size)) / (var(--max-width) - var(--min-width)) * var(--relative-unit) + (var(--min-font-size) - ((var(--max-font-size) - var(--min-font-size)) / (var(--max-width) - var(--min-width))) * var(--min-width)) / var(--root-font-size) * 1rem,
+        var(--max-font-size) / var(--root-font-size) * 1rem);
 }
 
 element {
