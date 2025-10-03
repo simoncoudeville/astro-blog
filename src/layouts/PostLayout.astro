@@ -10,17 +10,19 @@ const { title, description, pubDate } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
-  <Header
-    headerTitle={title}
-    headerMeta={`<time datetime=${pubDate} class='text-date'>${formatDate(
-      pubDate
-    )}</time>`}
-    headerType="blog-detail"
-  />
-  <main class="row row--main">
+
     <article class="row">
-      <div class="container readable flow">
-        <slot />
+      <Header
+        headerTitle={title}
+        headerMeta={`<time datetime=${pubDate} class='text-date'>${formatDate(
+          pubDate
+        )}</time>`}
+        headerType="blog-detail"
+      />
+      <div class="row">
+        <div class="container readable flow">
+          <slot />
+        </div>
       </div>
     </article>
     <section class="row">
@@ -34,5 +36,5 @@ const { title, description, pubDate } = Astro.props;
         <Blogposts currentTitle={title} />
       </div>
     </section>
-  </main>
+
 </BaseLayout>

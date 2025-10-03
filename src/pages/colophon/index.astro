@@ -12,88 +12,93 @@ const lastUpdated = "Last updated September 24, 2025";
 ---
 
 <BaseLayout title={title} description={description}>
-   <Header
-    headerTitle={title}
-    headerMeta={lastUpdated}
-    headerType="blog-detail"
-  />
-  <main class="row">
-    <div class="container flow">
-      <div class="content flow">
-        <!-- <p>Last updated Aug 11, 2023</p> -->
-        <h2>Technical details</h2>
-        <p>
-          Designed and coded with VS Code. Staticly Built with <a
-            href="https://astro.build/">Astro</a
-          >. Deployed and hosted on <a href="https://www.netlify.com/"
-            >Netlify</a
-          >. Privacy-first, carbon conscious web analytics with <a
-            href="https://withcabin.com/privacy/simoncoudeville.be">Cabin</a
-          >. The source code is available open-source on <a href="">Github</a>
-        </p>
-        <h2>Typography</h2>
-        <p>
-          All of the text on this site is set in <a
-            href="https://commercialtype.com/catalog/graphik">Graphik</a
-          > regular. Designed by Christian Schwartz and released through Commercial Type.
-        </p>
-        <p>
-          To avoid the additional download of another webfont, code blocks are
-          set in the default monospaced font of the user's operating system.
-        </p>
-        {/*
-        <div class="demo">
-          <div class="demo__body">
-            <p class="switch">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi
-              officiis, animi impedit temporibus ullam dolores dolore? Voluptas
-              esse nam ea vero accusamus. Mollitia id doloribus aperiam ea esse
-              a quasi!
-            </p>
+  <article class="row">
+    <Header
+      headerTitle={title}
+      headerMeta={lastUpdated}
+      headerType="blog-detail"
+    />
+    <div class="row">
+      <div class="container flow">
+        <div class="content flow">
+          <!-- <p>Last updated Aug 11, 2023</p> -->
+          <h2>Technical details</h2>
+          <p>
+            Designed and coded with VS Code. Staticly Built with <a
+              href="https://astro.build/">Astro</a
+            >. Deployed and hosted on <a href="https://www.netlify.com/"
+              >Netlify</a
+            >. Privacy-first, carbon conscious web analytics with <a
+              href="https://withcabin.com/privacy/simoncoudeville.be">Cabin</a
+            >. The source code is available open-source on <a href="">Github</a>
+          </p>
+          <h2>Typography</h2>
+          <p>
+            All of the text on this site is set in <a
+              href="https://commercialtype.com/catalog/graphik">Graphik</a
+            > regular. Designed by Christian Schwartz and released through Commercial Type.
+          </p>
+          <p>
+            To avoid the additional download of another webfont, code blocks are
+            set in the default monospaced font of the user's operating system.
+          </p>
+          {/*
+          <div class="demo">
+            <div class="demo__body">
+              <p class="switch">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi
+                officiis, animi impedit temporibus ullam dolores dolore? Voluptas
+                esse nam ea vero accusamus. Mollitia id doloribus aperiam ea esse
+                a quasi!
+              </p>
+            </div>
           </div>
+          */}
+          <h2>Impact</h2>
+          <p>
+            This web page achieves a carbon rating of A+ by <a href="https://www.websitecarbon.com/website/simoncoudeville-be/">Website Carbon</a>. This is cleaner than 99% of all web pages globally.
+            This means Less than 0.01g of CO2 is produced every time someone visits this web page. Although it seems I should look for a new hosting provider which uses more renewable energy.
+          </p>
+          <h2>Inspiration</h2>
+          <p>
+            If you recognize the style of this site, it's not a coincidence. I drew inspiration from several awesome sites that I admire for their minimalist and clean design. Here are some of them in no particular order:
+          </p>
+          <ul>
+            <li>
+              <a href="https://jakub.kr">jakub.kr</a>
+            </li>
+            <li>
+              <a href="https://emilkowal.ski/">emilkowal.ski</a>
+            </li>
+            <li>
+              <a href="https://keliris.dev/">keliris.dev</a>
+            </li>
+            <li>
+              <a href="https://www.maxhenningsson.com/">maxhenningsson.com</a>
+            </li>
+            <li>
+              <a href="https://maximsiebert.com/">maximsiebert.com</a>
+            </li>
+            <li>
+              <a href="https://slrncl.com/">slrncl.com</a>
+            </li>
+            <li>
+              <a href="https://alexandersandberg.com/">alexandersandberg.com</a>
+            </li>
+            <li>
+              <a href="https://antonstallboerger.com/">antonstallboerger.com</a>
+            </li>
+            <li>
+              <a href="https://benji.org/">benji.org</a>
+            </li>
+            <li>
+              <a href="https://matthewstrom.com/">matthewstrom.com</a>
+            </li>
+          </ul>
         </div>
-        */}
-        <h2>Impact</h2>
-        <p>
-          This web page achieves a carbon rating of A+ by <a href="https://www.websitecarbon.com/website/simoncoudeville-be/">Website Carbon</a>. This is cleaner than 99% of all web pages globally.
-          This means Less than 0.01g of CO2 is produced every time someone visits this web page. Although it seems I should look for a new hosting provider which uses more renewable energy.
-        </p>
-        <h2>Inspiration</h2>
-        <p>
-          If you recognize the style of this site, it's not a coincidence. I drew inspiration from several awesome sites that I admire for their minimalist and clean design. Here are some of them in no particular order:
-        </p>
-        <ul>
-          <li>
-            <a href="https://jakub.kr">jakub.kr</a>
-          </li>
-          <li>
-            <a href="https://emilkowal.ski/">emilkowal.ski</a>
-          </li>
-          <li>
-            <a href="https://keliris.dev/">keliris.dev</a>
-          </li>
-          <li>
-            <a href="https://www.maxhenningsson.com/">maxhenningsson.com</a>
-          </li>
-          <li>
-            <a href="https://maximsiebert.com/">maximsiebert.com</a>
-          </li>
-          <li>
-            <a href="https://slrncl.com/">slrncl.com</a>
-          </li>
-          <li>
-            <a href="https://alexandersandberg.com/">alexandersandberg.com</a>
-          </li>
-          <li>
-            <a href="https://antonstallboerger.com/">antonstallboerger.com</a>
-          </li>
-          <li>
-            <a href="https://benji.org/">benji.org</a>
-          </li>
-        </ul>
       </div>
     </div>
-  </main>
+  </article>
 </BaseLayout>
 {/*
 <style>
