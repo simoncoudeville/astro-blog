@@ -31,19 +31,15 @@
 </div>
 
 <style>
-  /* * {
-    cursor: none;
-  } */
-
   .cursor {
-    --cursor-diameter: calc(var(--global-whitespace) * 3);
+    --cursor-size: calc(var(--global-whitespace) * 3);
     margin-top: 0;
     position: fixed;
     top: 0;
     left: 0;
-    translate: calc(var(--mx) - var(--cursor-diameter) / 2)
-      calc(var(--my) - var(--cursor-diameter) / 2);
-    width: var(--cursor-diameter);
+    translate: calc(var(--mx) - var(--cursor-size) / 2)
+      calc(var(--my) - var(--cursor-size) / 2);
+    width: var(--cursor-size);
     aspect-ratio: 1/1;
     pointer-events: none;
     display: grid;
@@ -53,7 +49,7 @@
     transition: opacity 0.25s ease;
   }
 
-  body:hover .cursor {
+  :root:hover .cursor {
     opacity: 1;
     scale: 1;
   }
@@ -62,8 +58,8 @@
     grid-row: 1;
     grid-column: 1;
     position: relative;
-    width: var(--cursor-diameter);
-    height: var(--cursor-diameter);
+    width: var(--cursor-size);
+    height: var(--cursor-size);
     transform-origin: 50% 50%;
     border-radius: 50%;
     background: var(--global-accent-color);

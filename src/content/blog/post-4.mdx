@@ -2,28 +2,19 @@
 title: "Custom cursor interactions with :has"
 slug: custom-cursor-hover-effects-with-has
 description: "This post will show up on its own!"
-pubDate: 2023-01-31
-draft: true
+pubDate: 2025-12-09
+draft: false
 ---
 
-Every once and a while you see a website that has a custom cursor. Something like a little dot that follows your cursor around the screen and changes color or grows when you hover interactive elements. Especially on sites like awwwards there ar plenty of examples with a variety of this effects. While the implications on accessibility and usability are surely debatable, it's still a neat trick to play with.
+{/* There’s something oddly satisfying about a cursor that does more than just point and click. A subtle dot that follows your movement, changes color, or grows when you hover over elements can add a playful, tactile feel to a website. There's plenty of creative versions of this effect on sites like Awwwards. When inspecting these websites I always found there's a lot of javaScript that is used to create the effect. */}
+Custom cursors are everywhere on inspirational sites like Awwwards. Dots that trail your movement, change color, or scale when you hover over elements. When inspecting these implementations, I often notice how much JavaScript is involved.
+Like always I was curious if it was possible to create this effect with as little javaScript as possible. Of course there's some javaScript needed to get the mouse position and apply it to the custom cursor. But with CSS custom properties it's possible to pass the mouse coordinates as variables and let CSS do the rest. So what about mouse interactions such as hover or active? Well, with the `:has` pseudo-class it's possible to check if the cursor is hovering over any element in the document and apply different styles to the custom cursor.
 
-When inspecting these websites I always found there's a fair amount of javaScript that is used to create the effect. I started wondering if it was possible to create this effect with as little javaScript as possible. Of course there's some javaScript needed to get the mouse position and apply it to the cursor. And these days with CSS custom properties we can pass the mouse coordinates as variables and let CSS do the rest. But what about mouse interactions such as hover or active? Well, we can use the `:has` pseudo-class to check if the cursor is hovering over an element and apply different styles to the custom cursor. This way we can create a custom cursor that changes size and color when hovering over links or buttons, without the need for any JavaScript.
+The `:has` pseudo-class is mostly referred to as the "parent selector" because it allows you to select a parent element based on its children. In most cases it's used to select a parent based on its direct children or descendants. But the implications of this selector are much greater. By chaining selectors together it's possible to select elements based on other elements that are nowhere near each other. The trick is to go completely up the document tree and down again. That's why it is sometimes referred to as the "god selector".
 
-The :has pseudo-class is a powerful tool that allows us to select elements based on their children or descendants. This means we can apply styles to the custom cursor based on the state of the element it is hovering over. For example, we can use `:has(:is(a:hover, button:hover))` to check if the cursor is hovering over an anchor or button element and apply different styles to the cursor.
+The basic setup is to add an empty `<div class="cursor"></div>` element at the end of the body. This makes sure the cursor is always on top of other elements by default. You could do this step with javascript but why not just add it to the HTML directly?
 
-The `:has` pseudo-class is called the "parent selector" because it allows us to select a parent element based on its children. In most cases it's used to select a parent based on its direct children. But the implications of this selector are much greater. By chaining selectors together we can select elements based on other elements that are nowhere near each other by going up the document tree and down again. That's why it is sometimes called the "god selector". 
-
-It's a neat effect. I'm not here to tell you if you should do it or not. I'm just here to show you how to do it.
-When inspecting these websites, you'll notice that they use a custom element that follows the cursor.
-
-This is a post with a custom cursor hover effect. It uses the `:has` pseudo-class to apply a custom cursor to the `a` element when it is hovered over.
-
-The basic setup is to add an empty `<div class="cursor"></div>` element at the end of the body. This makes sure the cursor is always on top of other elements by default.
-
-You could add a `z-index` to the cursor, but this is only necessary if you already have elements with a higher `z-index` on the page.
-
-The javascript is pretty simple. We just need to get the mouse position and apply it to the document root as CSS custom properties. I'm adding px to the end of the values to make sure they can be used as CSS values. You could to that in CSS as well.
+The javascript is pretty simple. All that's needed is the mouse position while moving and pass the coordinates as CSS custom properties. If you want a smoother effect you need to add a delay and use `requestAnimationFrame`. I'm adding px to the end of the values to make sure they can be used as CSS values. But you could even do that in CSS. This is the basic version:
 
 ```javascript
 document.addEventListener("mousemove", (e) => {
@@ -32,30 +23,31 @@ document.addEventListener("mousemove", (e) => {
 });
 ```
 
-That’s all the JavaScript we need to let the custom cursor follow the mouse. We can now use the `--mx` and `--my` properties to position the cursor with CSS. Since the custom properties update when the mouse moves, the cursor will follow the mouse when we use them in the `top` and `left` properties. Or we can use the `translate` property to position the cursor.
+So now the 2 custom properties `--mx` and `--my` are added to the document root. Since the custom properties update when the mouse moves, the cursor will follow the mouse when we apply them as variables for the value of the `translate` property of the cursor.
 
 ```css
 .cursor {
-  --cursor-diameter: 20px;
-  width: var(--cursor-diameter);
+  --cursor-size: 20px;
+  width: var(--cursor-size);
   aspect-ratio: 1;
   border-radius: 50%;
   background-color: indigo;
   position: fixed;
   top: 0;
   left: 0;
-  /* use translate to substract the diameter directly */
-  translate: calc(var(--mx) - var(--cursor-diameter) / 2) calc(
-      var(--my) - var(--cursor-diameter) / 2
+  /* use translate to substract the size directly */
+  translate: calc(var(--mx) - var(--cursor-size) / 2) calc(
+      var(--my) - var(--cursor-size) / 2
     );
-  will-change: scale, opacity;
   transition: 0.25s ease;
   transition-property: scale, opacity;
   pointer-events: none;
 }
 ```
 
-I'm using custom properties to set the width and height of the cursor. This makes it easy to change the size of the cursor in one place. To position the cursor in the middle of the mouse, I'm using the `calc` function to subtract half the width and height from the mouse position.
+I'm also using custom properties to set the width and height of the cursor. This makes it easy to change the size of the cursor in one place. And I can use the same property to position the cursor in the middle of the cursor by using `calc` to subtract half the width and height from the mouse position.
+
+And now it's time to use the `:has` pseudo-class to check if the document has any hovered or active links or buttons. If it does, we can change the size and opacity of the cursor to create a hover effect.
 
 ```css
 body:has(:is(a:hover, button:hover)) .cursor {
@@ -73,11 +65,21 @@ import CursorBasic from "../../components/Demos/Cursor/CursorBasic.astro";
 
 <CursorBasic />
 
-The cursor is a simple div with a fixed width and height. The position is calculated using CSS custom properties. The `--x` and `--y` properties are set using JavaScript. The `:has` pseudo-class is used to check if the cursor is hovering over an `a` element. If it is, the cursor will grow and change color.
+That's all there is to it. You can of course add more interactions and styles to the cursor. For example changing the color based on the hovered element or adding different effects for different types of elements. The possibilities are endless.
 
 import CursorAdvanced from "../../components/Demos/Cursor/CursorAdvanced.astro";
 
 <CursorAdvanced />
+
+In this case I updated the cursor's internal HTML with multiple possible states. Based on the hovered element different parts of the cursor are shown or hidden. This way I can show text inside the cursor or show an icon based on the hovered element.
+
+```css
+body:has(.cursor-read:hover) .cursor__pointer--read {
+  opacity: 1;
+}
+```
+
+Have a look at [this codepen](https://codepen.io/simoncoudeville/pen/yyeMwbb) to see the full code and play around with it.
 
 import Cursor from "../../components/Demos/Cursor/cursor.astro";
 

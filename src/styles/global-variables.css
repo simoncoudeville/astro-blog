@@ -12,6 +12,14 @@ Fonts
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'Tiempos Text';
+    src: url('../fonts/TiemposTextWeb-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
 /*
 Variables
 =========
@@ -86,11 +94,9 @@ Variables
     --global-borderWidth: 1px;
 
     --global-font-family-alpha: "Graphik Web", sans-serif;
-    /* --global-font-family-alpha: "Suisse Int'l", sans-serif; */
-    /* --global-font-family-beta: "Graphik Web", sans-serif; */
-    /* --global-font-family-alpha: "Tiempos Text", serif; */
     --global-font-family-beta: "Tiempos Text", serif;
-    /* --global-font-family-beta: "Suisse Works", serif; */
+    /* --global-font-family-beta: "Graphik Web", sans-serif;
+    --global-font-family-alpha: "Tiempos Text", serif; */
     /* --global-font-family-title: var(--global-font-family-beta); */
     --global-font-family-title: var(--global-font-family-alpha);
     --global-font-family-code: "SFMono-Regular", ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
