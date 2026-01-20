@@ -8,17 +8,13 @@ const allPosts = (
   })
 ).sort(
   (a, b) =>
-    new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+    new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
 );
 const { currentTitle, hideHeading = false } = Astro.props;
 const numPosts = allPosts.length;
 ---
 
-{!hideHeading && (
-  <h2>
-    Articles
-  </h2>
-)}
+{!hideHeading && <h2>Articles</h2>}
 <ol reversed class="list-reset postlist readable flow-xs">
   {
     allPosts.map((post) => (
@@ -32,10 +28,7 @@ const numPosts = allPosts.length;
           }
         >
           {post.data.title}
-          <time
-            class="postlist__date text-date"
-            datetime={post.data.pubDate}
-          >
+          <time class="postlist__date text-date" datetime={post.data.pubDate}>
             {formatDate(post.data.pubDate)}
           </time>
         </a>
@@ -43,9 +36,7 @@ const numPosts = allPosts.length;
     ))
   }
 </ol>
-<p>
-  More coming soon&hellip;
-</p>
+<p>More coming soon&hellip;</p>
 
 <style>
   .postlist {
@@ -54,7 +45,6 @@ const numPosts = allPosts.length;
   }
 
   .postlist__link {
-    --link-color: var(--global-text-color);
     position: relative;
     display: flex;
     gap: 0 var(--postlist-inline-whitespace);
@@ -75,10 +65,6 @@ const numPosts = allPosts.length;
     padding-top: var(--global-whitespace-xs);
   }
 
-  .postlist__link:hover {
-    color: var(--global-title-color);
-  }
-
   .postlist__link--active:any-link {
     color: var(--global-meta-color);
   }
@@ -95,6 +81,6 @@ const numPosts = allPosts.length;
     border-radius: 100%;
     position: absolute;
     left: calc(-1 * var(--global-whitespace-xs));
-    top: var(--global-whitespace-2xs)
+    top: var(--global-whitespace-2xs);
   }
 </style>
