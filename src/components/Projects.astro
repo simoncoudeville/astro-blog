@@ -1,0 +1,36 @@
+---
+import projects from "../data/projects.json";
+import { Image } from "astro:assets";
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/img/projects/*.{jpeg,jpg,png,gif,svg}",
+);
+---
+
+<ul class="list-reset postlist readable flow-xs">
+  {
+    projects.map((project) => {
+      const imagePath = `/src/img/projects/${project.image}`;
+      const imageLoader = images[imagePath];
+      if (!imageLoader) {
+        throw new Error(
+          `"${imagePath}" does not exist in glob: "src/img/projects/*.{jpeg,jpg,png,gif,svg}"`,
+        );
+      }
+
+      return (
+        <li class="postlist__item postlist__item--project">
+          <a class="postlist__link" href={project.url}>
+            <Image
+              class="postlist__image"
+              src={imageLoader()}
+              alt={project.title}
+            />
+            <h3 class="postlist__title">{project.title}</h3>
+            <p class="postlist__meta color-meta">{project.description}</p>
+          </a>
+        </li>
+      );
+    })
+  }
+</ul>

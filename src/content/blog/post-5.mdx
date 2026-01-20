@@ -1,0 +1,27 @@
+---
+title: "Moving elements around with view transtions"
+slug: moving-elements-with-view-transitions
+description: "How to use the new View Transitions API to smoothly move elements around the DOM with minimal code."
+pubDate: 2026-01-04
+draft: true
+---
+
+The View Transitions API is an exciting new addition to the web platform that allows developers to create smooth transitions between different states of a web page with minimal code. One of the most impressive features of this API is the ability to move elements around the DOM while maintaining their visual continuity. This means that you can rearrange elements on the page, and the user will see a smooth animation as the elements transition to their new positions.
+
+Consider this simple example of a dot that moves between two containers when clicked. The dot starts in the first container, and when you click on it, it's being removed from the first container and added to the second container. To do this without the View Transition API, you'd need to write your own FLIP animation or use a library to handle the animation for you. So you would need to calculate the position of the dot before and after the move, move the dot in the DOM, position it on it's old position and then animate the dot from its old position to its new position.
+
+In this case it's not that hard to do it yourself, but what if the dot had multiple properties that changed? What if it changed size, color, or shape as well? The code would quickly become complex and hard to maintain.
+
+With the View Transition API, it's as simple as wrapping the DOM manipulation code in a `document.startViewTransition` call. Here is the same example using the View Transition API:
+
+import DotOlkdsool from "../../components/Demos/ViewTransition/DotOlkdsool.astro";
+
+<DotOlkdsool />
+
+import Dot from "../../components/Demos/ViewTransition/Dot.astro";
+
+<Dot />
+
+The moment you click on the dot and the function to move the dot in the DOM is executed, you're not seeing the dot element itself but a snapshot of the dot in its original position. That snapshot lies on top of the page as a pseudo element. And so is the new snapshot in its new position. The View Transition API animates the difference between these snapshots. The dot has in fact already moved. The beauty of this API is that you don't have to worry about the properties of the dot. The browser takes care of it for you. It essentialy creates a FLIP animation for you behind the scenes.
+
+All properties you change with CSS will be animated automatically. It doesn't matter if you change the position, size, color, or any other property. The browser will animate the difference between the two states smoothly with the same code because it's wrapped in the `document.startViewTransition` call.

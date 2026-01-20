@@ -1,0 +1,57 @@
+---
+import "../../../styles/demos/viewTransition/styles.css";
+---
+
+<div class="demo demo-empty dots">
+  <div class="one one-flip">
+    <div class="dot dot-flip"></div>
+  </div>
+  <div class="two two-flip"></div>
+</div>
+
+<script>
+  /* FLIP technique - Move element between parents when clicking the dot */
+
+  const dotFlip = document.querySelector<HTMLElement>(".dot-flip");
+  const oneFlip = document.querySelector<HTMLElement>(".one-flip");
+  const twoFlip = document.querySelector<HTMLElement>(".two-flip");
+
+  // Guard clause: ensure all elements exist before proceeding
+  if (!dotFlip || !oneFlip || !twoFlip) {
+    throw new Error("Required DOM elements not found");
+  }
+
+  // FLIP technique: First, Last, Invert, Play
+  const moveDot = () => {
+    // FIRST: Get the initial position
+    const first = dotFlip.getBoundingClientRect();
+
+    // LAST: Move the element to new parent and get final position
+    if (oneFlip.contains(dotFlip)) {
+      twoFlip.appendChild(dotFlip);
+    } else {
+      oneFlip.appendChild(dotFlip);
+    }
+    const last = dotFlip.getBoundingClientRect();
+
+    // INVERT: Calculate the difference between positions
+    const deltaX = first.left - last.left;
+    const deltaY = first.top - last.top;
+
+    // PLAY: Animate from inverted position to final position
+    dotFlip.animate(
+      [
+        { transform: `translate(${deltaX}px, ${deltaY}px)` },
+        { transform: "translate(0, 0)" },
+      ],
+      {
+        duration: 250,
+        easing: "ease",
+      },
+    );
+  };
+
+  dotFlip.addEventListener("click", (event) => {
+    moveDot();
+  });
+</script>

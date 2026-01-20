@@ -12,7 +12,7 @@ When inspecting these websites I always found there's a fair amount of javaScrip
 
 The :has pseudo-class is a powerful tool that allows us to select elements based on their children or descendants. This means we can apply styles to the custom cursor based on the state of the element it is hovering over. For example, we can use `:has(:is(a:hover, button:hover))` to check if the cursor is hovering over an anchor or button element and apply different styles to the cursor.
 
-The `:has` pseudo-class is called the "parent selector" because it allows us to select a parent element based on its children. In most cases it's used to select a parent based on its direct children. But the implications of this selector are much greater. By chaining selectors together we can select elements based on other elements that are nowhere near each other by going up the document tree and down again. That's why it is sometimes called the "god selector". 
+The `:has` pseudo-class is called the "parent selector" because it allows us to select a parent element based on its children. In most cases it's used to select a parent based on its direct children. But the implications of this selector are much greater. By chaining selectors together we can select elements based on other elements that are nowhere near each other by going up the document tree and down again. That's why it is sometimes called the "god selector".
 
 It's a neat effect. I'm not here to tell you if you should do it or not. I'm just here to show you how to do it.
 When inspecting these websites, you'll notice that they use a custom element that follows the cursor.

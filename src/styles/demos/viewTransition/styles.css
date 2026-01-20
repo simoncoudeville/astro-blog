@@ -1,0 +1,51 @@
+.dots {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--global-whitespace);
+}
+
+.one,
+.two {
+  background-color: var(--global-foregroundColor);
+  padding: var(--global-whitespace);
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-items: center;
+  border-radius: var(--global-borderRadius);
+}
+
+.two-vt {
+  align-items: start;
+  justify-items: end;
+
+  .dot {
+    width: 100px;
+    background-color: var(--global-accent-color);
+    border-radius: var(--global-borderRadius);
+  }
+}
+
+.dot {
+  width: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: var(--global-text-color);
+  transition: all 2s ease;
+}
+
+.dot-vt {
+  view-transition-name: dot;
+}
+
+::view-transition-group(dot) {
+  animation-duration: 2s;
+  animation-timing-function: ease;
+}
+::view-transition-old(dot) {
+  /* display: none; */
+}
+::view-transition-new(dot) {
+  /* animation: none; */
+  width: 100%;
+  height: 100%;
+}

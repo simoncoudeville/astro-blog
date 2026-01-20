@@ -1,0 +1,40 @@
+---
+import "../../../styles/demos/viewTransition/styles.css";
+---
+
+<div class="demo demo-empty dots">
+  <div class="one one-vt">
+    <div class="dot dot-vt"></div>
+  </div>
+  <div class="two two-vt"></div>
+</div>
+
+<script>
+  /* View Transition API - Move element between parents when clicking the dot */
+
+  const dot = document.querySelector<HTMLElement>(".dot-vt");
+  const one = document.querySelector<HTMLElement>(".one-vt");
+  const two = document.querySelector<HTMLElement>(".two-vt");
+
+  // Guard clause: ensure all elements exist before proceeding
+  if (!dot || !one || !two) {
+    throw new Error("Required DOM elements not found");
+  }
+
+  // a function that moves the dot from one to two and vice versa
+  const moveDot = () => {
+    if (one.contains(dot)) {
+      two.appendChild(dot);
+    } else {
+      one.appendChild(dot);
+    }
+  };
+
+  dot.addEventListener("click", (event) => {
+    if (document.startViewTransition) {
+      document.startViewTransition(() => moveDot());
+    } else {
+      moveDot();
+    }
+  });
+</script>

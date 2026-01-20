@@ -1,0 +1,14 @@
+[
+  {
+    "title": "The Ottomator",
+    "url": "https://ottomator.simoncoudeville.be/",
+    "image": "ottomator.png",
+    "description": "Interactive birth card for my nephew Otto"
+  },
+  {
+    "title": "Chordboard",
+    "url": "https://simoncoudeville.github.io/chordboard/",
+    "image": "chordboard.svg",
+    "description": "Web-based chord pad app to send MIDI over USB"
+  }
+]
