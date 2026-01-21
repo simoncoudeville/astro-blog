@@ -677,6 +677,7 @@ Objects
 
 .postlist__title {
   text-decoration: none;
+  transition: inherit;
 }
 
 .postlist__meta {
@@ -707,7 +708,6 @@ Objects
   border-radius: 100%;
   width: calc(var(--global-whitespace-xl) * 1);
   aspect-ratio: 1;
-  /* corner-shape: superellipse(1.75); */
 }
 
 .postlist__item--project .postlist__link {
