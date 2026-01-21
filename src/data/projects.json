@@ -9,6 +9,6 @@
     "title": "Chordboard",
     "url": "https://simoncoudeville.github.io/chordboard/",
     "image": "chordboard.svg",
-    "description": "Web-based chord pad app to send MIDI over USB"
+    "description": "Web-based chord pad MIDI app"
   }
 ]
