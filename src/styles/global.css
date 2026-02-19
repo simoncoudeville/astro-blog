@@ -728,6 +728,49 @@ Objects
   grid-area: description;
 }
 
+.spotify-latest {
+  border: var(--global-borderWidth) solid var(--global-borderColor);
+  border-radius: var(--global-borderRadius-lg);
+  background-color: var(--global-foregroundColor);
+  padding: var(--global-whitespace-s);
+}
+
+.spotify-latest__status {
+  --fs: var(--ms-1);
+  font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
+}
+
+.spotify-latest__content {
+  margin-top: var(--global-whitespace-xs);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--global-whitespace-xs);
+  align-items: center;
+  text-decoration: none;
+}
+
+.spotify-latest__artwork {
+  width: calc(var(--global-whitespace-xl) * 1.4);
+  aspect-ratio: 1;
+  border-radius: var(--global-borderRadius);
+}
+
+.spotify-latest__title {
+  text-decoration: none;
+  transition: inherit;
+  font-family: var(--global-font-family-title);
+  font-weight: var(--global-font-weight-title);
+  color: var(--global-title-color);
+}
+
+.spotify-latest__meta {
+  text-decoration: none;
+}
+
+.spotify-latest__content:hover .spotify-latest__title {
+  color: var(--global-meta-color);
+}
+
 /*
 Utilities
 =========
