@@ -1,3 +1,5 @@
+import { Buffer } from "node:buffer";
+
 const TOKEN_ENDPOINT = "https://accounts.spotify.com/api/token";
 const CURRENTLY_PLAYING_ENDPOINT =
   "https://api.spotify.com/v1/me/player/currently-playing";
@@ -159,13 +161,14 @@ export async function handler() {
     const recentTrack = await fetchRecentlyPlayed(accessToken);
     return json(200, { ok: true, track: recentTrack });
   } catch (error) {
-    console.error(error);
+    console.error("[spotify-latest]", error);
 
     return json(
       500,
       {
         ok: false,
         error: "spotify_fetch_failed",
+        message: error?.message ?? String(error),
       },
       "no-store",
     );
