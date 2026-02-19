@@ -20,6 +20,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
+  text-wrap: pretty;
 }
 
 body {
@@ -705,9 +706,12 @@ Objects
 }
 
 .postlist__image {
-  border-radius: 100%;
-  width: calc(var(--global-whitespace-xl) * 1);
-  aspect-ratio: 1;
+  & img {
+    object-fit: cover;
+    border-radius: 100%;
+    width: calc(var(--global-whitespace-xl) * 1);
+    aspect-ratio: 1;
+  }
 }
 
 .postlist__item--project .postlist__link {
@@ -726,6 +730,43 @@ Objects
 
 .postlist__item--project .postlist__meta {
   grid-area: description;
+}
+
+.postlist__image--playing {
+  /* animation: turntable 1s ease 0 infinite; */
+  animation-name: turntable;
+  animation-duration: 1.8s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.postlist__image--record {
+  display: grid;
+  place-items: center;
+
+  &::before,
+  & img {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  &::before {
+    content: "";
+    width: 0.1875rem;
+    aspect-ratio: 1;
+    background-color: var(--global-backgroundColor);
+    border-radius: 100%;
+    z-index: 1;
+  }
+}
+
+@keyframes turntable {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /*

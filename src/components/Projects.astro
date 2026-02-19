@@ -21,11 +21,14 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
       return (
         <li class="postlist__item postlist__item--project">
           <a class="postlist__link" href={project.url}>
-            <Image
-              class="postlist__image"
-              src={imageLoader()}
-              alt={project.title}
-            />
+            <div class="postlist__image">
+              <Image
+                src={imageLoader()}
+                alt={project.title}
+                width="50"
+                height="50"
+              />
+            </div>
             <h3 class="postlist__title">{project.title}</h3>
             <p class="postlist__meta color-meta">{project.description}</p>
           </a>

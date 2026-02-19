@@ -5,6 +5,7 @@ import Header from "../components/Header.astro";
 import About from "../components/About.astro";
 import Blogposts from "../components/Blogposts.astro";
 import Projects from "../components/Projects.astro";
+import SpotifyLatest from "../components/SpotifyLatest.astro";
 ---
 
 <BaseLayout description={SITE_DESCRIPTION}>
@@ -26,8 +27,13 @@ import Projects from "../components/Projects.astro";
   </section>
   <section class="row">
     <div class="container flow">
-      <h2>Projects</h2>
+      <h2>Side projects</h2>
       <Projects />
+    </div>
+  </section>
+  <section class="row">
+    <div class="container flow">
+      <SpotifyLatest />
     </div>
   </section>
 </BaseLayout>

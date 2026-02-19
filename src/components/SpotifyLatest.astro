@@ -1,0 +1,105 @@
+---
+const endpoint = "/.netlify/functions/spotify-latest";
+---
+
+<div class="flow" data-endpoint={endpoint}>
+  <h2 data-status>Loading latest Spotify track&hellip;</h2>
+
+  <ul class="list-reset postlist readable flow-xs">
+    <li class="postlist__item postlist__item--project" hidden data-track>
+      <a
+        class="postlist__link"
+        href="#"
+        rel="noopener noreferrer"
+        target="_blank"
+        data-track-link
+      >
+        <div class="postlist__image postlist__image--record">
+          <img
+            alt=""
+            hidden
+            width="50"
+            height="50"
+            loading="lazy"
+            decoding="async"
+            data-artwork
+          />
+        </div>
+        <h3 class="postlist__title" data-title></h3>
+        <p class="postlist__meta color-meta" data-meta></p>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<script>
+  const components = document.querySelectorAll("[data-endpoint]");
+
+  async function hydrateSpotify(component) {
+    const endpoint = component.getAttribute("data-endpoint");
+    const statusNode = component.querySelector("[data-status]");
+    const trackNode = component.querySelector("[data-track]");
+    const trackLink = component.querySelector("[data-track-link]");
+    const artworkNode = component.querySelector("[data-artwork]");
+    const titleNode = component.querySelector("[data-title]");
+    const metaNode = component.querySelector("[data-meta]");
+
+    if (
+      !endpoint ||
+      !statusNode ||
+      !trackNode ||
+      !trackLink ||
+      !titleNode ||
+      !metaNode
+    ) {
+      return;
+    }
+
+    try {
+      const response = await fetch(endpoint, {
+        headers: {
+          accept: "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Spotify request failed (${response.status})`);
+      }
+
+      const payload = await response.json();
+      const track = payload?.track;
+
+      if (!payload?.ok || !track) {
+        statusNode.textContent = "Spotify is currently unavailable\u2026";
+        return;
+      }
+
+      statusNode.textContent = track.isPlaying
+        ? "Currently playing"
+        : "Recently played";
+
+      titleNode.textContent = track.title ?? "Unknown track";
+      metaNode.textContent = track.artists ?? "";
+      trackLink.href = track.url || "https://open.spotify.com";
+      trackNode.hidden = false;
+
+      if (artworkNode && track.artworkUrl) {
+        artworkNode.alt = `${track.album || track.title} artwork`;
+        if (track.isPlaying) {
+          artworkNode.classList.add("postlist__image--playing");
+        }
+        artworkNode.onload = () => {
+          artworkNode.hidden = false;
+        };
+        artworkNode.src = track.artworkUrl;
+      }
+    } catch (error) {
+      console.error(error);
+      statusNode.textContent = "Spotify is currently unavailable\u2026";
+    }
+  }
+
+  components.forEach((component) => {
+    hydrateSpotify(component);
+  });
+</script>
