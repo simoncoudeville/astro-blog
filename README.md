@@ -20,8 +20,10 @@ This is a personal blog built using [Astro](https://astro.build/)
 3. **Start the development server:**
 
    ```sh
-   npm run dev
+   netlify dev
    ```
+
+   This starts both the Astro dev server and the Netlify Functions server. Your site will be available at `http://localhost:8888`.
 
 4. **Build for production:**
 
