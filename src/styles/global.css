@@ -684,6 +684,10 @@ Objects
 .postlist__meta {
   text-decoration: none;
   color: var(--global-meta-color);
+  /* text wrap no wrap and an ellipsis if overflow */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .postlist__item + .postlist__item {
@@ -752,7 +756,8 @@ Objects
 
   &::before {
     content: "";
-    width: 0.1875rem;
+    /* width: 0.1875rem; */
+    width: 0.25rem;
     aspect-ratio: 1;
     background-color: var(--global-backgroundColor);
     border-radius: 100%;
