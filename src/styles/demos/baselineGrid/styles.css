@@ -1,0 +1,197 @@
+/* Baseline-grid image demo.
+
+   The article's technique is built on the `rlh` unit (the root line height).
+   This page can't drive the *root* line height from a sidebar without
+   disturbing the demo chrome, so everything is scoped to .baseline-page and
+   `rlh` is replaced by a local line-height length, --lh. The math is identical:
+   one line is --lh, the baseline step is --lh / divisions, and image heights
+   round up to the next --lh. */
+
+.baseline-layout {
+  display: grid;
+  grid-template-columns: minmax(14rem, 16rem) 1fr;
+  gap: var(--global-whitespace, 1.5rem);
+  align-items: start;
+}
+
+@media (width < 45rem) {
+  .baseline-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Sidebar (uses the page chrome's tokens, not the demo font system) --- */
+
+.baseline-sidebar {
+  position: sticky;
+  top: var(--global-whitespace);
+  display: flex;
+  flex-direction: column;
+  gap: var(--global-whitespace);
+  padding: var(--global-whitespace);
+  /* border: var(--global-borderWidth) solid var(--global-borderColor); */
+  border-radius: var(--global-borderRadius);
+  background: var(--global-foregroundColor);
+  color: var(--global-text-color);
+}
+
+.baseline-sidebar h2 {
+  --fs: var(--ms-1);
+  font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
+  font-weight: normal;
+  line-height: calc(var(--global-baseline) * 5);
+  color: var(--global-meta-color);
+}
+
+.baseline-sidebar label {
+  --fs: var(--ms-1);
+  font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
+  font-weight: normal;
+  line-height: calc(var(--global-baseline) * 5);
+  display: grid;
+  gap: var(--global-whitespace-2xs);
+}
+
+.baseline-sidebar label span {
+  display: flex;
+  justify-content: space-between;
+  font-variant-numeric: tabular-nums;
+}
+
+.baseline-sidebar output {
+  color: var(--global-muted-color);
+}
+
+.baseline-sidebar input[type="range"] {
+  width: 100%;
+}
+
+/* Toggle row: label on the left, switch pushed to the right. */
+.baseline-sidebar .toggle-switch {
+  width: 100%;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+/* --- The demo surface ---------------------------------------------------- */
+
+.baseline-page {
+  /* sidebar-controlled */
+  --demo-font-size: 16px;
+  --demo-line-height: 1.5;
+  --demo-divisions: 3;
+
+  /* derived: one line and one baseline step, both as real lengths */
+  --lh: calc(var(--demo-font-size) * var(--demo-line-height));
+  --baseline: calc(var(--lh) / var(--demo-divisions));
+
+  font-size: var(--demo-font-size);
+  line-height: var(--demo-line-height);
+  padding: var(--lh);
+  min-width: 0; /* let the grid track shrink so columns/images can reflow */
+  container-type: inline-size;
+}
+
+/* The painted baseline grid: a bolder line every full line, a fainter one on
+   every baseline step. */
+.baseline-page.baseline-grid {
+  /* Grid lines derived from the theme's text color with alpha, so they adapt
+     to light and dark instead of being fixed grays. */
+  --line-color: color-mix(in oklab, var(--global-text-color) 10%, transparent);
+  --accent-line-color: color-mix(
+    in oklab,
+    var(--global-text-color) 15%,
+    transparent
+  );
+  background-image: repeating-linear-gradient(
+      to bottom,
+      var(--accent-line-color) 0,
+      var(--accent-line-color) 1px,
+      transparent 1px,
+      transparent var(--lh)
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      var(--line-color) 0,
+      var(--line-color) 1px,
+      transparent 1px,
+      transparent var(--baseline)
+    );
+}
+
+.baseline-page-title {
+  --h1-font-size: 2.75rem;
+  font-size: var(--h1-font-size);
+  font-weight: 600;
+  color: var(--global-title-color);
+  /* round the heading's line box up to the next full line */
+  line-height: round(up, calc(var(--h1-font-size) * 1), var(--lh));
+  margin-bottom: var(--lh);
+}
+/* 
+.baseline-page p {
+  max-width: 34rem;
+} */
+
+.baseline-page img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Opt-in baseline-snapped media: the wrapper is both the query container and
+   the scope for the snapping rules. */
+.baseline-media {
+  container-type: inline-size;
+}
+
+.baseline-media img {
+  /* intrinsic size, read straight from the width/height attributes */
+  --w: attr(width px, 400px);
+  --ar: attr(width type(<number>), 4) / attr(height type(<number>), 3);
+
+  /* rendered width: intrinsic width, but never wider than the container */
+  --rendered-w: min(100cqw, var(--w));
+  width: var(--rendered-w);
+
+  /* height from the ratio, snapped up to the next full line */
+  height: round(up, calc(var(--rendered-w) / (var(--ar))), var(--lh));
+
+  /* cover absorbs the few px gained by snapping */
+  object-fit: cover;
+}
+
+.cols {
+  > * + * {
+    margin-top: var(--lh);
+  }
+
+  @container (width > 45rem) {
+    column-count: 2;
+    column-gap: var(--lh);
+  }
+
+  /* @media (width > 75rem) {
+    column-count: 3;
+    column-gap: var(--lh);
+  } */
+}
+
+/* Support banner: hidden by default, revealed only where the typed attr()
+   form is missing. The @supports test parses as valid only in browsers that
+   understand the typed form. */
+.no-typed-attr {
+  display: none;
+}
+
+@supports not (width: attr(width type(<length>))) {
+  .no-typed-attr {
+    display: block;
+    margin-bottom: var(--lh);
+    padding: var(--baseline);
+    border-radius: var(--global-borderRadius);
+    /* Warning red, mixed against the theme so it reads in light and dark. */
+    background-color: color-mix(in oklab, red 15%, transparent);
+    color: color-mix(in oklab, red 70%, var(--global-text-color));
+  }
+}

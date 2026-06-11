@@ -1,0 +1,72 @@
+/* Self-contained baseline-grid demos.
+   Each demo paints the grid behind its content with two layered
+   repeating gradients: a bolder line every full line (1rlh), a fainter
+   one on every baseline step (--root-baseline = a third of a line). */
+
+.baseline-demo {
+  padding: var(--global-whitespace);
+}
+
+.baseline-demo-inner {
+  --root-line-height: 1.5625;
+  --root-baseline: calc(1rlh / 3);
+
+  --line-color: hsl(0 0% 90%);
+  --accent-line-color: hsl(0 0% 78%);
+
+  line-height: var(--root-line-height);
+  padding-bottom: 1px;
+
+  background-image: repeating-linear-gradient(
+      to bottom,
+      var(--accent-line-color) 0,
+      var(--accent-line-color) 1px,
+      transparent 1px,
+      transparent 1.5625rem
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      var(--line-color) 0,
+      var(--line-color) 1px,
+      transparent 1px,
+      transparent var(--root-baseline)
+    );
+}
+
+/* Copy sits on the grid: every flow element is spaced by whole lines. */
+.baseline-demo-inner > * + * {
+  margin-top: 1.5625rem;
+}
+
+.baseline-demo p {
+  max-width: 34rem;
+}
+
+/* --- Text snapping demo --------------------------------------------- */
+
+.baseline-demo__pair {
+  display: grid;
+  gap: 1.5625rem;
+}
+
+.baseline-demo__label {
+  font-size: 0.875rem;
+  color: hsl(0 0% 45%);
+  line-height: 1.5625rem;
+}
+
+.baseline-demo__heading {
+  font-size: 2.25rem;
+  margin: 0;
+}
+
+/* Drifts off the grid: natural line height is not a multiple of a line. */
+.baseline-demo__heading--natural {
+  /* line-height: 1.1; */
+  line-height: round(up, calc(2.25rem * 1.1), 1.5625rem);
+}
+
+/* Lands on the grid: line height rounded up to the next full line. */
+.baseline-demo__heading--snapped {
+  line-height: round(up, calc(2.25rem * 1.1), 1.5625rem);
+}

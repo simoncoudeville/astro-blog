@@ -1,0 +1,120 @@
+---
+import DemoLayout from "../../../layouts/DemoLayout.astro";
+import ToggleSwitch from "../../../components/ToggleSwitch.astro";
+import "../../../styles/demos/baselineGrid/styles.css";
+
+const title = "Aligning images to a baseline grid";
+const description =
+  "Images that snap their height to the baseline grid with pure CSS, plus a sidebar to override the font size, line height and baseline divisions.";
+---
+
+<DemoLayout
+  title={title}
+  description={description}
+  backLink="/blog/aligning-images-to-a-baseline-grid-with-modern-css/"
+>
+  <div class="baseline-layout">
+    <aside class="baseline-sidebar">
+      <h2>Variables</h2>
+
+      <label>
+        <span>Font size <output></output></span>
+        <input
+          type="range"
+          min="12"
+          max="24"
+          step="1"
+          value="16"
+          data-var="--demo-font-size"
+          data-unit="px"
+        />
+      </label>
+
+      <label>
+        <span>Line height <output></output></span>
+        <input
+          type="range"
+          min="1.1"
+          max="2"
+          step="0.05"
+          value="1.5"
+          data-var="--demo-line-height"
+        />
+      </label>
+
+      <ToggleSwitch checked data-toggle-grid>Show grid</ToggleSwitch>
+    </aside>
+
+    <div class="baseline-page baseline-grid" id="baselinePage">
+      <p class="no-typed-attr" role="alert">
+        Heads up: this browser does not support the typed <code>attr()</code> form,
+        so the images below fall back to their natural size instead of snapping to
+        the baseline grid. Open this page in a current Chromium-based browser to
+        see the effect.
+      </p>
+
+      <h2 class="baseline-page-title">Aligning images to a baseline grid</h2>
+
+      <div class="cols">
+        <div class="baseline-media">
+          <img
+            src="https://placeimg.dev/800x600/f3f3f3?textColor=8c9493"
+            width="800"
+            height="600"
+            alt="placeholder"
+            loading="lazy"
+          />
+        </div>
+        <p>
+          Each image reads the width of its container, then derives its height
+          from its own aspect ratio, pulled straight from the image's size
+          attributes by the advanced <code>attr()</code> function that can hand
+          back real numbers and lengths rather than plain text. That height is
+          rounded up to the nearest multiple of the line height, so the bottom
+          edge always lands on a grid line, and it all happens directly in CSS
+          with no JavaScript.
+        </p>        
+        <p>
+          Because the container width is measured with a container query rather
+          than fixed in advance, the math re-runs as the layout changes, so the
+          height keeps snapping to the grid at every screen size, with the
+          slight overshoot absorbed by cropping the image.
+        </p>
+        <p>
+          That crop is worth keeping in mind. Since the extra height is hidden by
+          filling the frame and trimming the edges, this only suits images that
+          can afford to lose a sliver of their content, like photographs or
+          decorative art. It is a poor fit for diagrams, logos, or anything where
+          every pixel needs to stay visible.
+        </p>       
+        <p>
+          Drag the sliders to change the font size, line height and number of
+          baseline divisions. Every measure on this surface is derived from those
+          three values, so the whole rhythm, and the images with it, rescales and
+          re-snaps to the grid as you go.
+        </p>
+        <p>
+          The "Show grid" toggle paints a grid of lines in the background to make
+          it easier to see how everything snaps into place. The bolder lines mark
+          a full line of text; the fainter ones mark the baseline step, a third
+          of a line.
+        </p>
+        <p>
+          Resizing the window also demonstrates how the images stay locked to the grid at every screen size, thanks to the container query that triggers the math to re-run whenever the container width changes. 
+        </p>
+        <p>
+          lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <p>
+          lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
+          lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+        <p>
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat.
+        </p>
+      </div>
+    </div>
+  </div>
+</DemoLayout>
+
+<script src="../../../scripts/demos/baseline-grid-demo.js"></script>
