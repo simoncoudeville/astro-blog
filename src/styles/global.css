@@ -155,6 +155,7 @@ pre code {
   background-color: transparent;
   padding: 0;
   border: none;
+  box-shadow: none;
 }
 
 .astro-code {

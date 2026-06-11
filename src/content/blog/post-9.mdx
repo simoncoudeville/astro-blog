@@ -43,9 +43,9 @@ A full line is often too big a step. Using multiples of the line height for spac
   --root-line-height: 1.5;
   --root-baseline: calc(1rlh / 3);
 
-  --baseline-1: var(--root-baseline);
-  --baseline-2: calc(2 * var(--root-baseline));
-  --baseline-3: calc(3 * var(--root-baseline)); /* == 1rlh */
+  --whitespace-1: var(--root-baseline);
+  --whitespace-2: calc(2 * var(--root-baseline));
+  --whitespace-3: calc(3 * var(--root-baseline)); /* == 1rlh */
   /* ...and so on */
 
   html {
@@ -54,7 +54,7 @@ A full line is often too big a step. Using multiples of the line height for spac
 }
 ```
 
-In this system, the line height is 1.5. No font size is set so this equals to 1.5 times the default font size (16px in most browsers), and the baseline unit is a third of that, 8px. One root line height is 24px tall (1.5 \* 16px). `2rlh` is 48px, `var(--baseline-2)` is 16px, and so on. Because it is built from `rlh`, it is live. When you change the root `font-size` or `line-height`, the baseline, and every space derived from it, rescales automatically.
+In this system, the line height is 1.5. No font size is set so this equals to 1.5 times the default font size (16px in most browsers). One root line height is 24px tall (1.5 \* 16px). and the baseline unit is a third of that, 8px. `2rlh` is 48px, `var(--whitespace-2)` is 16px, and so on. Because it is built from `rlh`, it is live. When you change the root `font-size` or `line-height`, the baseline, and every space derived from it, rescales automatically. These units can be used for any vertical (or horizontal for that matter) measure: line heights, margins, padding, and so on. When everything is a multiple of the baseline, it all snaps together into a consistent rhythm.
 
 {/* ## Seeing the grid */}
 
@@ -64,7 +64,7 @@ In this system, the line height is 1.5. No font size is set so this equals to 1.
 
 ## Snapping text line-height to the grid
 
-You could set the line height to a multiple of the baseline by hand with `calc()`, picking a multiple tall enough to clear the text.
+Applying this to text is straightforward: set the line height to a multiple of the baseline. This can be done by hand with `calc()`, picking a multiple tall enough to clear the text.
 
 ```css
 h1 {
@@ -74,7 +74,7 @@ h1 {
 }
 ```
 
-But that means working out the right multiple for every size, and reworking it whenever the font size changes. The new `round(up, value, step)` does it automatically: it snaps a value up to the nearest multiple of a step. Set the font size and your ideal line height, and round takes care of landing it on the grid.
+But that means working out the right multiple for every size, and reworking it whenever the font size changes. The new `round(up, value, step)` can do this automatically: it snaps a value up to the nearest multiple of a step. Set the font size and the ideal line height, and round takes care of landing it on the baseline grid.
 
 ```css
 h1 {
@@ -117,7 +117,7 @@ import BaselineText from "../../components/Demos/Baseline/BaselineText.astro";
 
 ## The image technique
 
-Images are harder to align to the grid. Its height is whatever the aspect ratio makes it at the current width, so it can never land on the grid, and it pushes everything after it off rhythm. Until recently the only fix was JavaScript: measure the rendered width, work out the height that would snap to the grid, set it inline, and redo all of that on every resize. Now the whole thing can be done in CSS. Just like the text line-height rounding, it is possible to round the image height up to the next line. The only thing we need is the image's width and aspect ratio, which is where advanced `attr()` and container queries come in.
+The height of an image is whatever the aspect ratio makes it at the current width, so it can never land on the grid, and it pushes everything after it off rhythm. Until recently the only fix was JavaScript: measure the rendered width, work out the height that would snap to the grid, set it inline, and redo all of that on every resize. Now the whole thing can be done in CSS. Just like the text line-height rounding, it is possible to round the image height up to the next line. The only thing we need is the image's width and aspect ratio, which is where advanced `attr()` and container queries come in.
 
 To make this work in any layout, the image needs something to read its width from. In a multi-column or grid layout, the image is laid out at the width of the column it sits in, not the width of the outer container, so this is the wrong thing to measure. That is why an extra wrapper around the image is needed. It doesn't matter whether the image sits inside a column or not: the wrapper takes on whatever width is available where it lands, and gives the image a reliable width to read.
 
@@ -135,7 +135,7 @@ The wrapper becomes a query container through an opt-in class, so it only ever t
 }
 ```
 
-Then you can read the image's intrinsic width and height straight from its `width` and `height` attributes, using the redesigned `attr()` and `type()` functions. Classic `attr()` returns a string, and can only be uesed inside the `content` property, so its value is useless for layout math. The redesigned `attr()` (part of CSS Values and Units Level 5) works on any property and can parse an attribute into a real CSS type. You ask for that type in one of two ways: a dimension unit like `px`, or the new `type()` function, for example `type(<number>)`. Either one hands back a value you can compute with in `calc()`.
+After that it's possible to read the image's intrinsic width and height straight from its `width` and `height` attributes, using the redesigned `attr()` and `type()` functions. Classic `attr()` returns a string, and can only be uesed inside the `content` property, so its value is useless for layout math. The redesigned `attr()` (part of CSS Values and Units Level 5) works on any property and can parse an attribute into a real CSS type. You ask for that type in one of two ways: a dimension unit like `px`, or the new `type()` function, for example `type(<number>)`. Either one hands back a value you can compute with in `calc()`.
 
 ```css
 .baseline-media img {
