@@ -29,39 +29,39 @@ Utilities
 }
 
 .mb-xs {
-  margin-bottom: var(--global-whitespace-xs);
+  margin-bottom: var(--global-whitespace-3);
 }
 
 .mb-2xs {
-  margin-bottom: var(--global-whitespace-2xs);
+  margin-bottom: var(--global-whitespace-2);
 }
 
 .mb-3xs {
-  margin-bottom: var(--global-whitespace-3xs);
+  margin-bottom: var(--global-whitespace-1);
 }
 
 .mb-4xs {
-  margin-bottom: var(--global-whitespace-4xs);
+  margin-bottom: var(--global-whitespace-0-5);
 }
 
 .mb-s {
-  margin-bottom: var(--global-whitespace-s);
+  margin-bottom: var(--global-whitespace-4);
 }
 
 .mb-base {
-  margin-bottom: var(--global-whitespace);
+  margin-bottom: var(--global-whitespace-5);
 }
 
 .mb-m {
-  margin-bottom: var(--global-whitespace-m);
+  margin-bottom: var(--global-whitespace-6);
 }
 
 .mb-l {
-  margin-bottom: var(--global-whitespace-l);
+  margin-bottom: var(--global-whitespace-7-5);
 }
 
 .mb-xl {
-  margin-bottom: var(--global-whitespace-xl);
+  margin-bottom: var(--global-whitespace-10);
 }
 
 .pt-clear {
@@ -141,39 +141,39 @@ Utilities
 }
 
 .gap-4xs {
-  gap: var(--global-whitespace-4xs);
+  gap: var(--global-whitespace-0-5);
 }
 
 .gap-3xs {
-  gap: var(--global-whitespace-3xs);
+  gap: var(--global-whitespace-1);
 }
 
 .gap-2xs {
-  gap: var(--global-whitespace-2xs);
+  gap: var(--global-whitespace-2);
 }
 
 .gap-xs {
-  gap: var(--global-whitespace-xs);
+  gap: var(--global-whitespace-3);
 }
 
 .gap-s {
-  gap: var(--global-whitespace-s);
+  gap: var(--global-whitespace-4);
 }
 
 .gap {
-  gap: var(--global-whitespace);
+  gap: var(--global-whitespace-5);
 }
 
 .gap-m {
-  gap: var(--global-whitespace-m);
+  gap: var(--global-whitespace-6);
 }
 
 .gap-l {
-  gap: var(--global-whitespace-l);
+  gap: var(--global-whitespace-7-5);
 }
 
 .gap-xl {
-  gap: var(--global-whitespace-xl);
+  gap: var(--global-whitespace-10);
 }
 
 .shrink-0 {

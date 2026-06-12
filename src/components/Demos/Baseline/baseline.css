@@ -4,7 +4,7 @@
    one on every baseline step (--root-baseline = a third of a line). */
 
 .baseline-demo {
-  padding: var(--global-whitespace);
+  padding: var(--global-whitespace-5);
 }
 
 .baseline-demo-inner {

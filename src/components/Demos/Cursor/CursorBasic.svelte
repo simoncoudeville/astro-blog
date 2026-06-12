@@ -48,7 +48,7 @@
 
   .demo__elements {
     display: flex;
-    gap: var(--global-whitespace);
+    gap: var(--global-whitespace-5);
     align-items: center;
   }
 
@@ -93,8 +93,8 @@
     text-decoration: none;
     text-decoration-color: inherit;
     transition: 0.2s ease;
-    padding: calc(var(--global-whitespace-3xs) - 1px)
-      var(--global-whitespace-xs) calc(var(--global-whitespace-3xs) + 1px);
+    padding: calc(var(--global-whitespace-1) - 1px)
+      var(--global-whitespace-3) calc(var(--global-whitespace-1) + 1px);
     /* background-color: var(--global-backgroundColor); */
     border: 1px solid var(--global-borderColor);
     border-radius: var(--global-borderRadius);

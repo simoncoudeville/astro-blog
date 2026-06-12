@@ -26,7 +26,7 @@
 }
 
 .custom-select {
-  --custom-select-extra-whitespace: var(--global-whitespace-xs);
+  --custom-select-extra-whitespace: var(--global-whitespace-3);
   display: grid;
 }
 
@@ -52,7 +52,7 @@
   --link-color: var(--global-muted-color);
   display: inline-block;
   border-radius: var(--global-borderRadius);
-  padding: var(--global-whitespace-3xs) var(--global-whitespace-2xs);
+  padding: var(--global-whitespace-1) var(--global-whitespace-2);
   font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
   line-height: calc(var(--global-baseline) * 4);
   font-family: var(--global-font-family-alpha);

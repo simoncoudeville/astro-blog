@@ -23,7 +23,7 @@
 
 .controls {
     display: grid;
-    gap: var(--global-whitespace-xs) var(--global-whitespace);
+    gap: var(--global-whitespace-3) var(--global-whitespace-5);
     grid-template-columns: 1fr auto;
     align-items: center;
 }
@@ -35,8 +35,8 @@
 } */
 
 .controls__button {
-    width: var(--global-whitespace-s);
-    height: var(--global-whitespace-s);
+    width: var(--global-whitespace-4);
+    height: var(--global-whitespace-4);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -64,23 +64,23 @@
 .zoom {
     /* display: flex;
     align-items: center;
-    height: var(--global-whitespace-m); */
+    height: var(--global-whitespace-6); */
     background-color: var(--global-foregroundColor2);
     /* border: 1px solid var(--global-borderColor2); */
     /* border-radius: var(--global-borderRadius); */
-    border-radius: var(--global-whitespace);
-    /* padding: 0 var(--global-whitespace-3xs); */
-    padding: var(--global-whitespace-4xs) var(--global-whitespace-3xs);
-    /* padding: var(--global-whitespace-3xs); */
+    border-radius: var(--global-whitespace-5);
+    /* padding: 0 var(--global-whitespace-1); */
+    padding: var(--global-whitespace-0-5) var(--global-whitespace-1);
+    /* padding: var(--global-whitespace-1); */
 }
 
 .output {
     border: 1px solid var(--global-borderColor2);
     /* background-color: var(--global-foregroundColor2); */
-    border-radius: var(--global-whitespace);
-    /* padding: 0 var(--global-whitespace-3xs); */
-    padding: var(--global-whitespace-4xs) var(--global-whitespace-2xs);
-    /* height: var(--global-whitespace); */
+    border-radius: var(--global-whitespace-5);
+    /* padding: 0 var(--global-whitespace-1); */
+    padding: var(--global-whitespace-0-5) var(--global-whitespace-2);
+    /* height: var(--global-whitespace-5); */
 }
 
 @media (max-width: 32em) {
@@ -106,7 +106,7 @@
 }
 
 .viewport__label {
-    margin-bottom: var(--global-whitespace-3xs);
+    margin-bottom: var(--global-whitespace-1);
 }
 
 .viewport__bar {
@@ -119,7 +119,7 @@
     /* background-color: var(--global-borderColor2); */
     background-color: var(--global-foregroundColor2);
     border-radius: var(--global-borderRadius);
-    padding: 0 var(--global-whitespace-3xs);
+    padding: 0 var(--global-whitespace-1);
     transition: background-color var(--global-transition-duration-short);
     --fs: var(--ms-1);
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);

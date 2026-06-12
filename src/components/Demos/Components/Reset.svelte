@@ -18,10 +18,10 @@
   .button-reset {
     border-radius: var(--global-borderRadius-sm);
     /* border-radius: 100%; */
-    /* border-radius: var(--global-whitespace); */
+    /* border-radius: var(--global-whitespace-5); */
     /* background-color: var(--global-foregroundColor2); */
     /* background-color: var(--global-backgroundColor); */
     /* border: 1px solid var(--global-borderColor2); */
-    /* padding: 0 var(--global-whitespace-xs); */
+    /* padding: 0 var(--global-whitespace-3); */
   }
 </style>

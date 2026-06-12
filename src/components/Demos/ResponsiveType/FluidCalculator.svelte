@@ -206,13 +206,13 @@
 <style>
   .calculator {
     display: grid;
-    gap: var(--global-whitespace-s);
+    gap: var(--global-whitespace-4);
     grid-template-columns: 1fr 1fr;
   }
 
   .calculator__fieldset {
     display: grid;
-    gap: var(--global-whitespace-s);
+    gap: var(--global-whitespace-4);
     grid-template-columns: 1fr 1fr;
   }
 

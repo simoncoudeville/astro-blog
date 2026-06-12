@@ -7,8 +7,8 @@ Objects
   width: 100%;
   position: relative;
   display: flow-root;
-  padding: 0 var(--global-whitespace);
-  padding-top: calc(var(--global-whitespace-4xl));
+  padding: 0 var(--global-whitespace-5);
+  padding-top: calc(var(--global-whitespace-20));
 }
 
 .row .row {
@@ -19,17 +19,17 @@ Objects
 
 /*
 .row--main {
-    padding-top: calc(var(--global-whitespace) + var(--global-whitespace));
+    padding-top: calc(var(--global-whitespace-5) + var(--global-whitespace-5));
 } */
 
 .row .row + .row {
-  margin-top: calc(var(--global-whitespace-4xl));
+  margin-top: calc(var(--global-whitespace-20));
 }
 
 .row--page-footer {
   margin-top: auto;
-  padding-bottom: var(--global-whitespace);
-  /* padding-bottom: var(--global-whitespace-4xl); */
+  padding-bottom: var(--global-whitespace-5);
+  /* padding-bottom: var(--global-whitespace-20); */
 }
 
 .container {
@@ -49,19 +49,19 @@ Objects
 */
 
 .flow > * + * {
-  margin-top: var(--global-whitespace);
+  margin-top: var(--global-whitespace-5);
 }
 
 .flow-s > * + * {
-  margin-top: var(--global-whitespace-s);
+  margin-top: var(--global-whitespace-4);
 }
 
 .flow-xs > * + * {
-  margin-top: var(--global-whitespace-xs);
+  margin-top: var(--global-whitespace-3);
 }
 
 .flow-2xs > * + * {
-  margin-top: var(--global-whitespace-2xs);
+  margin-top: var(--global-whitespace-2);
 }
 
 .flow > * + .demo,
@@ -69,8 +69,8 @@ Objects
 .flow > astro-island + *,
 .flow > .astro-code + *,
 .flow > * + .astro-code {
-  margin-top: calc(var(--global-whitespace) + var(--global-whitespace-2xs));
-  /* margin-top: var(--global-whitespace); */
+  margin-top: calc(var(--global-whitespace-5) + var(--global-whitespace-2));
+  /* margin-top: var(--global-whitespace-5); */
 }
 
 .flow > * + h2,
@@ -81,12 +81,12 @@ Objects
 .flow > .note + *,
 .flow > .math + *,
 .flow > * + .math {
-  margin-top: calc(var(--global-whitespace) + var(--global-whitespace));
+  margin-top: calc(var(--global-whitespace-5) + var(--global-whitespace-5));
 }
 
 .flow > *:has(+ style),
 .flow > *:has(+ astro-island) {
-  margin-bottom: calc(var(--global-whitespace) + var(--global-whitespace-2xs));
+  margin-bottom: calc(var(--global-whitespace-5) + var(--global-whitespace-2));
 }
 
 .flow > h3 + * {

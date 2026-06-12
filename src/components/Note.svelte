@@ -21,7 +21,7 @@
     --note-title-color: var(--global-muted-color);
     --note-title-color: var(--global-text-color);
     /* --note-title-color: var(--global-title-color); */
-    --note-whitespace: var(--global-whitespace);
+    --note-whitespace: var(--global-whitespace-5);
     background-color: var(--note-backgroundColor);
     border-radius: var(--global-borderRadius-lg);
     padding: var(--note-whitespace);
@@ -35,7 +35,7 @@
     color: var(--note-title-color);
     display: flex;
     align-items: center;
-    gap: var(--global-whitespace-3xs);
+    gap: var(--global-whitespace-1);
     justify-content: space-between;
   }
 

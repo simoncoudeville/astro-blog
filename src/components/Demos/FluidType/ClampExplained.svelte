@@ -157,7 +157,7 @@
   .range {
     position: relative;
     width: 100%;
-    margin-top: var(--global-whitespace-xs);
+    margin-top: var(--global-whitespace-3);
   }
 
   .range__thumb {
@@ -183,7 +183,7 @@
     position: relative;
     width: 100%;
     height: 1.5rem;
-    margin-top: var(--global-whitespace-xs);
+    margin-top: var(--global-whitespace-3);
   }
 
   .tick {

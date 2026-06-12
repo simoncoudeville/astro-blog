@@ -139,7 +139,7 @@
     justify-content: space-evenly;
     list-style: none;
     padding: 0;
-    /* gap: var(--global-whitespace); */
+    /* gap: var(--global-whitespace-5); */
   }
 
   .demo-nav__link:any-link {
@@ -149,10 +149,10 @@
     text-decoration: none;
     text-decoration-color: inherit;
     transition: 0.2s ease;
-    /* padding: var(--global-whitespace-4xs) var(--global-whitespace-2xs)
-      calc(var(--global-whitespace-4xs) + 2px); */
-    padding: calc(var(--global-whitespace-3xs) - 1px)
-      var(--global-whitespace-xs) calc(var(--global-whitespace-3xs) + 1px);
+    /* padding: var(--global-whitespace-0-5) var(--global-whitespace-2)
+      calc(var(--global-whitespace-0-5) + 2px); */
+    padding: calc(var(--global-whitespace-1) - 1px)
+      var(--global-whitespace-3) calc(var(--global-whitespace-1) + 1px);
     /* background-color: var(--global-foregroundColor2); */
     border: 1px solid var(--global-borderColor);
     border-radius: var(--global-borderRadius);

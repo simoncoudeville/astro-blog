@@ -138,18 +138,19 @@ Variables
   --ms7: calc(var(--ms6) * var(--ms-ratio));
   --ms8: calc(var(--ms7) * var(--ms-ratio));
 
-  --global-whitespace-4xs: calc(var(--global-baseline) * 0.5);
-  --global-whitespace-3xs: calc(var(--global-baseline) * 1);
-  --global-whitespace-2xs: calc(var(--global-baseline) * 2);
-  --global-whitespace-xs: calc(var(--global-baseline) * 3);
-  --global-whitespace-s: calc(var(--global-baseline) * 4);
-  --global-whitespace: calc(var(--global-baseline) * 5);
-  --global-whitespace-m: calc(var(--global-baseline) * 6);
-  --global-whitespace-l: calc(var(--global-baseline) * 7.5);
-  --global-whitespace-xl: calc(var(--global-baseline) * 10);
-  --global-whitespace-2xl: calc(var(--global-baseline) * 12.5);
-  --global-whitespace-3xl: calc(var(--global-baseline) * 15);
-  --global-whitespace-4xl: calc(var(--global-baseline) * 20);
+  --global-whitespace-0-5: calc(var(--global-baseline) * 0.5);
+  --global-whitespace-1: calc(var(--global-baseline) * 1);
+  --global-whitespace-2: calc(var(--global-baseline) * 2);
+  --global-whitespace-3: calc(var(--global-baseline) * 3);
+  --global-whitespace-4: calc(var(--global-baseline) * 4);
+  --global-whitespace-5: calc(var(--global-baseline) * 5);
+  --global-whitespace-6: calc(var(--global-baseline) * 6);
+  --global-whitespace-7-5: calc(var(--global-baseline) * 7.5);
+  --global-whitespace-8: calc(var(--global-baseline) * 8);
+  --global-whitespace-10: calc(var(--global-baseline) * 10);
+  --global-whitespace-12-5: calc(var(--global-baseline) * 12.5);
+  --global-whitespace-15: calc(var(--global-baseline) * 15);
+  --global-whitespace-20: calc(var(--global-baseline) * 20);
 
   --global-transition-duration-short: 0.15s;
   --global-transition-duration: 0.3s;

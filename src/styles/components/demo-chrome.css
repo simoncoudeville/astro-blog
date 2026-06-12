@@ -10,9 +10,9 @@ Only loaded by DemoLayout (the standalone demo pages).
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  padding: var(--global-whitespace-2xs);
+  padding: var(--global-whitespace-2);
   width: fit-content;
-  /* margin-right: var(--global-whitespace); */
+  /* margin-right: var(--global-whitespace-5); */
   background-color: var(--global-foregroundColor);
   border-radius: 100%;
 }
@@ -23,8 +23,8 @@ Only loaded by DemoLayout (the standalone demo pages).
 
 .back-link .icon {
   display: inline-block;
-  /* width: var(--global-whitespace-xs);
-    height: var(--global-whitespace-xs); */
+  /* width: var(--global-whitespace-3);
+    height: var(--global-whitespace-3); */
   width: 1rem;
   height: 1rem;
   /* width: var(--global-icon-size);
@@ -37,11 +37,11 @@ Only loaded by DemoLayout (the standalone demo pages).
 }
 
 .demo-header {
-  padding: var(--global-whitespace-s);
-  margin-bottom: var(--global-whitespace);
+  padding: var(--global-whitespace-4);
+  margin-bottom: var(--global-whitespace-5);
   display: flex;
   align-items: center;
-  gap: var(--global-whitespace-s);
+  gap: var(--global-whitespace-4);
   color: var(--global-text-color);
 
   * {
@@ -61,5 +61,5 @@ Only loaded by DemoLayout (the standalone demo pages).
 
 /* Standalone demo page wrapper (distinct from the .demo card in the blog). */
 .demo {
-  padding: var(--global-whitespace);
+  padding: var(--global-whitespace-5);
 }

@@ -10,7 +10,7 @@
 .baseline-layout {
   display: grid;
   grid-template-columns: minmax(14rem, 16rem) 1fr;
-  gap: var(--global-whitespace, 1.5rem);
+  gap: var(--global-whitespace-5, 1.5rem);
   align-items: start;
 }
 
@@ -24,11 +24,11 @@
 
 .baseline-sidebar {
   position: sticky;
-  top: var(--global-whitespace);
+  top: var(--global-whitespace-5);
   display: flex;
   flex-direction: column;
-  gap: var(--global-whitespace);
-  padding: var(--global-whitespace);
+  gap: var(--global-whitespace-5);
+  padding: var(--global-whitespace-5);
   /* border: var(--global-borderWidth) solid var(--global-borderColor); */
   border-radius: var(--global-borderRadius);
   background: var(--global-foregroundColor);
@@ -49,7 +49,7 @@
   font-weight: normal;
   line-height: calc(var(--global-baseline) * 5);
   display: grid;
-  gap: var(--global-whitespace-2xs);
+  gap: var(--global-whitespace-2);
   color: var(--global-text-color);
 }
 

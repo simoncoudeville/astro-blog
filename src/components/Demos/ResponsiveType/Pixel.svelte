@@ -17,8 +17,8 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: var(--global-whitespace);
-    padding: var(--global-whitespace);
+    gap: var(--global-whitespace-5);
+    padding: var(--global-whitespace-5);
   }
 
   .pixel-text {
@@ -43,8 +43,8 @@
     content: "";
     position: absolute;
     width: 1px;
-    height: var(--global-whitespace);
+    height: var(--global-whitespace-5);
     background-color: var(--global-accent-color);
-    top: calc(var(--global-whitespace) * -1);
+    top: calc(var(--global-whitespace-5) * -1);
   }
 </style>

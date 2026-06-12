@@ -1,6 +1,6 @@
 .postlist {
-  --postlist-whitespace: var(--global-whitespace-xs);
-  --postlist-inline-whitespace: var(--global-whitespace-xs);
+  --postlist-whitespace: var(--global-whitespace-3);
+  --postlist-inline-whitespace: var(--global-whitespace-3);
 }
 
 .postlist__link {
@@ -32,7 +32,7 @@
 }
 
 .postlist__item + .postlist__item {
-  padding-top: var(--global-whitespace-xs);
+  padding-top: var(--global-whitespace-3);
 }
 
 .postlist__link--active:any-link {
@@ -41,20 +41,20 @@
 
 .postlist__link--active::before {
   content: "";
-  width: var(--global-whitespace-3xs);
+  width: var(--global-whitespace-1);
   aspect-ratio: 1 / 1;
   background-color: var(--global-accent-color);
   border-radius: 100%;
   position: absolute;
-  left: calc(-1 * var(--global-whitespace-xs));
-  top: var(--global-whitespace-2xs);
+  left: calc(-1 * var(--global-whitespace-3));
+  top: var(--global-whitespace-2);
 }
 
 .postlist__image {
   & img {
     object-fit: cover;
     border-radius: 100%;
-    width: calc(var(--global-whitespace-xl) * 1);
+    width: calc(var(--global-whitespace-10) * 1);
     aspect-ratio: 1;
   }
 }

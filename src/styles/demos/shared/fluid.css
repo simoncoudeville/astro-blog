@@ -30,7 +30,7 @@
 }
 
 .fluid-text-demo+.fluid-text-demo {
-    margin-top: var(--global-whitespace);
+    margin-top: var(--global-whitespace-5);
 }
 
 .fluid-text {
@@ -128,7 +128,7 @@
 }
 
 .computed-font-size {
-    margin-bottom: var(--global-whitespace-3xs);
+    margin-bottom: var(--global-whitespace-1);
 }
 
 .computed-font-size,

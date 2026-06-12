@@ -3,8 +3,8 @@
   justify-content: space-between;
   align-items: start;
   /* flex-direction: row-reverse; */
-  gap: 0 var(--global-whitespace);
-  scroll-margin: var(--global-whitespace-4xl);
+  gap: 0 var(--global-whitespace-5);
+  scroll-margin: var(--global-whitespace-20);
 }
 
 .page-header__title {
@@ -24,8 +24,8 @@
 
 .page-header__me,
 .page-header__visual {
-  width: var(--global-whitespace-xl);
-  height: var(--global-whitespace-xl);
+  width: var(--global-whitespace-10);
+  height: var(--global-whitespace-10);
   border-radius: 100%;
   overflow: hidden;
   /* corner-shape: superellipse(1.25); */

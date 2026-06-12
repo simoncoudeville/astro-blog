@@ -6,7 +6,7 @@ Forms
 label {
   color: var(--global-muted-color);
   display: block;
-  padding-bottom: var(--global-whitespace-4xs);
+  padding-bottom: var(--global-whitespace-0-5);
   --fs: var(--ms-1);
   font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
   line-height: calc(var(--global-baseline) * 5);
@@ -20,7 +20,7 @@ textarea {
   --input-backgroundColor: var(--global-input-backgroundColor);
   --input-fontSize: var(--ms-1);
   --input-borderRadius: var(--global-borderRadius);
-  --input-whitespace: var(--global-whitespace-3xs) var(--global-whitespace-2xs);
+  --input-whitespace: var(--global-whitespace-1) var(--global-whitespace-2);
   display: block;
   width: 100%;
   font-family: inherit;
@@ -83,7 +83,7 @@ button {
 }
 
 [data-suffix] input {
-  padding-right: var(--global-whitespace-l);
+  padding-right: var(--global-whitespace-7-5);
 }
 
 [data-suffix]::after {
@@ -92,7 +92,7 @@ button {
   justify-self: end;
   align-self: center;
   color: var(--suffix-color);
-  padding-right: var(--global-whitespace-2xs);
+  padding-right: var(--global-whitespace-2);
   font-family: var(--global-font-family-code);
   font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
 }
@@ -100,7 +100,7 @@ button {
 fieldset {
   border: var(--global-borderWidth) solid var(--global-fieldset-borderColor);
   border-radius: var(--global-borderRadius);
-  padding: var(--global-whitespace-s);
+  padding: var(--global-whitespace-4);
 }
 
 legend {
@@ -110,8 +110,8 @@ legend {
   font-family: var(--global-font-family-title);
   padding: 0;
   color: var(--global-muted-color);
-  padding: 0 var(--global-whitespace-3xs);
-  margin-left: calc(var(--global-whitespace-3xs) * -1);
+  padding: 0 var(--global-whitespace-1);
+  margin-left: calc(var(--global-whitespace-1) * -1);
 }
 
 input[type="number"] {
@@ -132,8 +132,8 @@ input[type="range"] {
   --range-track-borderRadius: var(--global-borderRadius-sm);
   --range-track-borderRadius: var(--range-track-height);
   --range-track-backgroundColor: var(--global-borderColor2);
-  --range-thumb-height: var(--global-whitespace-s);
-  --range-thumb-width: var(--global-whitespace-2xs);
+  --range-thumb-height: var(--global-whitespace-4);
+  --range-thumb-width: var(--global-whitespace-2);
   --range-thumb-borderRadius: var(--global-borderRadius-lg);
   --range-thumb-width: var(--range-thumb-height);
   --range-thumb-borderRadius: 50%;

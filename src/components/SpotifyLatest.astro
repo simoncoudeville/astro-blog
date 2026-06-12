@@ -2,19 +2,19 @@
 const endpoint = "/.netlify/functions/spotify-latest";
 ---
 
-<div class="flow" data-endpoint={endpoint}>
-  <h2 data-status>Loading latest Spotify track&hellip;</h2>
+<div class="spotify" data-endpoint={endpoint}>
+  <h2 class="spotify__title" data-status>Loading latest Spotify track&hellip;</h2>
 
-  <ul class="list-reset postlist readable flow-xs">
-    <li class="postlist__item postlist__item--project" hidden data-track>
+  <article class="spotify__track" hidden data-track>
+    
       <a
-        class="postlist__link"
+        class="spotify__track-link"
         href="#"
         rel="noopener noreferrer"
         target="_blank"
         data-track-link
       >
-        <div class="postlist__image postlist__image--record">
+        <div class="spotify__track-image">
           <img
             alt=""
             hidden
@@ -25,11 +25,10 @@ const endpoint = "/.netlify/functions/spotify-latest";
             data-artwork
           />
         </div>
-        <h3 class="postlist__title" data-title></h3>
-        <p class="postlist__meta color-meta" data-meta></p>
+        <h3 class="spotify__track-title" data-title></h3>
+        <p class="spotify__track-meta color-meta" data-meta></p>
       </a>
-    </li>
-  </ul>
+  </article>
 </div>
 
 <script>
@@ -86,7 +85,7 @@ const endpoint = "/.netlify/functions/spotify-latest";
       if (artworkNode && track.artworkUrl) {
         artworkNode.alt = `${track.album || track.title} artwork`;
         if (track.isPlaying) {
-          artworkNode.classList.add("postlist__image--playing");
+          artworkNode.classList.add("spotify__image--playing");
         }
         artworkNode.onload = () => {
           artworkNode.hidden = false;
@@ -103,3 +102,73 @@ const endpoint = "/.netlify/functions/spotify-latest";
     hydrateSpotify(component);
   });
 </script>
+
+<style>
+  .spotify {
+    display: grid;
+    gap: var(--global-whitespace-4);
+    background: var(--global-foregroundColor);
+    border-radius: var(--global-borderRadius-lg);
+    padding: var(--global-whitespace-5);
+    margin-inline: calc(var(--global-whitespace-5) * -1);
+  }
+
+  .spotify__title {
+    color: var(--global-meta-color);
+    --fs: var(--ms-1);
+    font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
+    line-height: calc(var(--global-baseline) * 4);
+    color: var(--global-meta-color);
+    /* margin-bottom: var(--global-whitespace-4); */
+  }
+
+  .spotify__track-link {
+       display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: "image title" "image description";
+    gap: 0 var(--global-whitespace-2);
+    text-decoration: none;
+    /* --fs: var(--ms-1);
+    font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
+    line-height: calc(var(--global-baseline) * 4); */
+  }
+
+  .spotify__track-image {
+    grid-area: image;
+
+    img {
+      width: var(--global-whitespace-10);
+      border-radius: 100%;
+    }
+  }
+
+
+
+  .spotify__image--playing {
+    /* animation: turntable 1s ease 0 infinite; */
+  animation-name: turntable;
+  animation-duration: 1.8s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  }
+
+  .spotify__track-title {
+    grid-area: title;
+    color: var(--global-text-color);
+  }
+
+  .spotify__track-meta {
+    grid-area: description;
+    color: var(--global-meta-color);
+  }
+
+
+@keyframes turntable {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+</style>

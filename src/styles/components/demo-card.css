@@ -1,5 +1,5 @@
 .demo {
-  --demo-whitespace: var(--global-whitespace);
+  --demo-whitespace: var(--global-whitespace-5);
   border-radius: var(--global-borderRadius-lg);
   background-color: var(--global-foregroundColor);
   color: var(--global-text-color);
@@ -18,7 +18,7 @@
 }
 
 .demo__header {
-  padding: var(--global-whitespace-s) var(--demo-whitespace) 0;
+  padding: var(--global-whitespace-4) var(--demo-whitespace) 0;
   display: flex;
   align-items: center;
   justify-content: space-between;

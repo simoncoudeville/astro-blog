@@ -1,13 +1,13 @@
 .dots {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--global-whitespace);
+  gap: var(--global-whitespace-5);
 }
 
 .one,
 .two {
   background-color: var(--global-foregroundColor);
-  padding: var(--global-whitespace);
+  padding: var(--global-whitespace-5);
   aspect-ratio: 1 / 1;
   display: grid;
   place-items: center;
