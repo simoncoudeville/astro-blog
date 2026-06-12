@@ -1,0 +1,15 @@
+/*
+Demo entry — foundation + demo chrome for DemoLayout (standalone demo pages).
+Declares the same layer order as app.css so co-loaded demo CSS resolves
+consistently. Co-located demo CSS stays unlayered and wins over these layers.
+*/
+
+@layer variables, base, objects, components, utilities;
+
+@import "./variables.css" layer(variables);
+
+@import "./base/reset.css" layer(base);
+@import "./base/elements.css" layer(base);
+@import "./base/forms.css" layer(base);
+
+@import "./components/demo-chrome.css" layer(components);

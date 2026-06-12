@@ -1,0 +1,65 @@
+/*
+Demo chrome
+===========
+Only loaded by DemoLayout (the standalone demo pages).
+*/
+
+.back-link {
+  --back-link-color: var(--global-text-color);
+  color: var(--back-link-color);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  padding: var(--global-whitespace-2xs);
+  width: fit-content;
+  /* margin-right: var(--global-whitespace); */
+  background-color: var(--global-foregroundColor);
+  border-radius: 100%;
+}
+
+.back-link:hover {
+  --back-link-color: var(--global-title-color);
+}
+
+.back-link .icon {
+  display: inline-block;
+  /* width: var(--global-whitespace-xs);
+    height: var(--global-whitespace-xs); */
+  width: 1rem;
+  height: 1rem;
+  /* width: var(--global-icon-size);
+    height: var(--global-icon-size); */
+  vertical-align: text-bottom;
+  stroke: var(--back-link-color);
+  transform: rotate(-90deg);
+  stroke-linecap: round;
+  stroke-width: var(--global-icon-stroke);
+}
+
+.demo-header {
+  padding: var(--global-whitespace-s);
+  margin-bottom: var(--global-whitespace);
+  display: flex;
+  align-items: center;
+  gap: var(--global-whitespace-s);
+  color: var(--global-text-color);
+
+  * {
+    --fs: var(--ms-1);
+    font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
+    font-weight: normal;
+    line-height: calc(var(--global-baseline) * 5);
+  }
+
+  h1 {
+    /* wrap text with three dots if too long */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* Standalone demo page wrapper (distinct from the .demo card in the blog). */
+.demo {
+  padding: var(--global-whitespace);
+}

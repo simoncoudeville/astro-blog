@@ -1,0 +1,232 @@
+/*
+Forms
+=====
+*/
+
+label {
+  color: var(--global-muted-color);
+  display: block;
+  padding-bottom: var(--global-whitespace-4xs);
+  --fs: var(--ms-1);
+  font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
+  line-height: calc(var(--global-baseline) * 5);
+}
+
+input,
+select,
+textarea {
+  --input-color: var(--global-text-color);
+  --input-borderColor: var(--global-input-borderColor);
+  --input-backgroundColor: var(--global-input-backgroundColor);
+  --input-fontSize: var(--ms-1);
+  --input-borderRadius: var(--global-borderRadius);
+  --input-whitespace: var(--global-whitespace-3xs) var(--global-whitespace-2xs);
+  display: block;
+  width: 100%;
+  font-family: inherit;
+  font-size: calc(var(--input-fontSize) / var(--root-font-size) * 1rem);
+  line-height: calc(var(--global-baseline) * 5);
+  padding: var(--input-whitespace);
+  border: 1px solid var(--input-borderColor);
+  background-color: var(--input-backgroundColor);
+  color: var(--input-color);
+  border-radius: var(--input-borderRadius);
+}
+
+input:focus-visible,
+select:focus-visible,
+button:focus-visible {
+  outline: 1px solid var(--global-accent-color);
+  outline-offset: 3px;
+}
+
+input:focus:not(:focus-visible),
+select:focus:not(:focus-visible) {
+  outline: none;
+}
+
+input:disabled,
+select:disabled,
+button:disabled {
+  opacity: 0.5;
+}
+
+select {
+  appearance: none;
+}
+
+button {
+  display: block;
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: inherit;
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  -webkit-appearance: none;
+}
+
+[data-suffix] {
+  display: grid;
+  --suffix-color: var(--global-muted-color);
+}
+
+[data-suffix] input,
+[data-suffix]::after {
+  grid-column: 1 / -1;
+  grid-row: 1;
+}
+
+[data-suffix] input {
+  padding-right: var(--global-whitespace-l);
+}
+
+[data-suffix]::after {
+  --fs: var(--ms-1);
+  content: attr(data-suffix);
+  justify-self: end;
+  align-self: center;
+  color: var(--suffix-color);
+  padding-right: var(--global-whitespace-2xs);
+  font-family: var(--global-font-family-code);
+  font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
+}
+
+fieldset {
+  border: var(--global-borderWidth) solid var(--global-fieldset-borderColor);
+  border-radius: var(--global-borderRadius);
+  padding: var(--global-whitespace-s);
+}
+
+legend {
+  --fs: var(--ms-1);
+  font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
+  line-height: calc(var(--global-baseline) * 5);
+  font-family: var(--global-font-family-title);
+  padding: 0;
+  color: var(--global-muted-color);
+  padding: 0 var(--global-whitespace-3xs);
+  margin-left: calc(var(--global-whitespace-3xs) * -1);
+}
+
+input[type="number"] {
+  font-feature-settings: "tnum";
+}
+
+/*
+Range input
+-----------
+*/
+
+input[type="range"] {
+  padding: 0;
+  width: 100%;
+  border: 0;
+  --range-borderWidth: var(--global-borderWidth);
+  --range-track-height: 1px;
+  --range-track-borderRadius: var(--global-borderRadius-sm);
+  --range-track-borderRadius: var(--range-track-height);
+  --range-track-backgroundColor: var(--global-borderColor2);
+  --range-thumb-height: var(--global-whitespace-s);
+  --range-thumb-width: var(--global-whitespace-2xs);
+  --range-thumb-borderRadius: var(--global-borderRadius-lg);
+  --range-thumb-width: var(--range-thumb-height);
+  --range-thumb-borderRadius: 50%;
+  --range-thumb-borderColor: var(--global-borderColor2);
+  --range-thumb-borderWidth: var(--range-borderWidth);
+  --range-thumb-backgroundColor: var(--global-backgroundColor);
+  --range-thumb-pointer: ew-resize;
+  --range-focus-color: var(--global-accent-color);
+  appearance: none;
+  background-color: transparent;
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: var(--range-track-height);
+  cursor: pointer;
+  background: var(--range-track-backgroundColor);
+  border-radius: var(--range-track-borderRadius);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  border: var(--range-thumb-borderWidth) solid var(--range-thumb-borderColor);
+  height: var(--range-thumb-height);
+  width: var(--range-thumb-width);
+  border-radius: var(--range-thumb-borderRadius);
+  background: var(--range-thumb-backgroundColor);
+  cursor: var(--range-thumb-pointer);
+  -webkit-appearance: none;
+  margin-top: calc(
+    var(--range-thumb-height) * -0.5 - var(--range-track-height) * -0.5 -
+      var(--range-thumb-borderWidth) * -0.5
+  );
+  opacity: var(--range-thumb-opacity, 1);
+  box-shadow: var(--range-thumb-boxShadow);
+}
+
+input[type="range"]::-moz-range-track {
+  width: 100%;
+  height: var(--range-track-height);
+  cursor: var(--range-thumb-pointer);
+  background: var(--range-track-backgroundColor);
+  border-radius: var(--range-track-borderRadius);
+}
+
+input[type="range"]::-moz-range-thumb {
+  border: var(--range-thumb-borderWidth) solid var(--range-thumb-borderColor);
+  height: var(--range-thumb-height);
+  width: var(--range-thumb-width);
+  border-radius: var(--range-thumb-borderRadius);
+  background: var(--range-thumb-backgroundColor);
+  cursor: var(--range-thumb-pointer);
+  box-shadow: var(--range-thumb-boxShadow);
+}
+
+input[type="range"]::-ms-track {
+  width: 100%;
+  height: var(--range-track-height);
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+  border-radius: var(--range-track-borderRadius);
+}
+
+input[type="range"]::-ms-fill-lower {
+  background: var(--range-track-backgroundColor);
+}
+
+input[type="range"]::-ms-fill-upper {
+  background: var(--range-track-backgroundColor);
+}
+
+input[type="range"]::-ms-thumb {
+  margin-top: calc(
+    var(--range-thumb-height) * -0.5 + var(--range-thumb-borderWidth) / 2
+  );
+  border: var(--range-thumb-borderWidth) solid var(--range-thumb-borderColor);
+  height: var(--range-thumb-height);
+  width: var(--range-thumb-width);
+  border-radius: var(--range-thumb-borderRadius);
+  background: var(--range-thumb-backgroundColor);
+  cursor: pointer;
+  box-shadow: var(--range-thumb-boxShadow);
+}
+
+input[type="range"]:focus-visible {
+  --range-track-backgroundColor: var(--global-accent-color);
+  --range-thumb-borderColor: var(--global-accent-color);
+}
+
+@media (prefers-color-scheme: dark) {
+  input[type="range"]:focus-visible {
+    --range-thumb-borderColor: white;
+  }
+}

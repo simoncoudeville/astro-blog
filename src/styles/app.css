@@ -1,0 +1,22 @@
+/*
+App entry — full design system for BaseLayout.
+Layer order (low → high priority): variables, base, objects, components, utilities.
+Co-located demo/page CSS stays unlayered, so it always wins over these layers.
+*/
+
+@layer variables, base, objects, components, utilities;
+
+@import "./variables.css" layer(variables);
+
+@import "./base/reset.css" layer(base);
+@import "./base/elements.css" layer(base);
+@import "./base/forms.css" layer(base);
+
+@import "./objects/layout.css" layer(objects);
+
+@import "./components/page-header.css" layer(components);
+@import "./components/postlist.css" layer(components);
+@import "./components/demo-card.css" layer(components);
+@import "./components/misc.css" layer(components);
+
+@import "./utilities.css" layer(utilities);

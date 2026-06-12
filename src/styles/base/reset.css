@@ -1,0 +1,23 @@
+/*
+Reset
+=====
+*/
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+/*
+Images
+======
+*/
+
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}

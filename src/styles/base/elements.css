@@ -1,0 +1,175 @@
+/*
+Page
+====
+*/
+
+html {
+  font-size: calc(var(--root-font-size) / 16 * 100%);
+  line-height: var(--global-line-height);
+  background-color: var(--global-backgroundColor);
+  font-family: var(--global-font-family-alpha);
+  color: var(--global-text-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  text-wrap: pretty;
+}
+
+::selection {
+  background-color: var(--global-selection-backgroundColor);
+  color: var(--global-selection-color);
+}
+
+a:any-link {
+  color: var(--link-color, var(--global-link-color));
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.05em;
+  text-decoration-color: var(
+    --link-underline-color,
+    var(--global-link-underline-color)
+  );
+  transition: all 0.1s ease;
+}
+
+a:hover {
+  color: var(--global-link-hover-color);
+  text-decoration-color: var(--global-link-hover-color);
+}
+
+a:focus-visible {
+  outline: 1px solid var(--global-accent-color);
+  outline-offset: 0.2em;
+}
+
+hr {
+  height: 1px;
+  color: inherit;
+  border: 0;
+  background-color: var(--global-borderColor);
+}
+
+code {
+  font-family: var(--global-font-family-code);
+  --fs: var(--ms-2);
+  font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
+  /* font-size: 15.5px; */
+  padding: 2px 7px 3px;
+  position: relative;
+  bottom: 1px;
+  /* background-color: var(--global-code-background); */
+  border-radius: var(--global-borderRadius);
+  border: 1px solid var(--global-borderColor);
+  color: var(--global-title-color);
+  box-shadow: 0 1px 0 0 var(--global-borderColor);
+}
+
+pre {
+  display: block;
+  line-height: calc(var(--global-baseline) * 4);
+}
+
+pre code {
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+}
+
+.astro-code {
+  position: relative;
+  border-radius: var(--global-borderRadius-lg);
+  background-color: var(--global-code-background);
+  overflow: hidden;
+  --fs: var(--ms-1);
+  font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
+
+  --astro-code-background: var(--global-code-background);
+  --astro-code-foreground: var(--global-text-color);
+  --astro-code-token-link: var(--astro-code-foreground);
+
+  --astro-code-token-string: var(--astro-code-foreground);
+  --astro-code-token-parameter: var(--astro-code-foreground);
+
+  --astro-code-token-constant: var(--global-text-color);
+  --astro-code-token-keyword: var(--global-text-color);
+  --astro-code-token-string-expression: var(--global-text-color);
+  --astro-code-token-comment: var(--global-meta-color);
+  --astro-code-token-punctuation: var(--global-meta-color);
+  --astro-code-token-function: var(--global-title-color);
+
+  & code {
+    --fs: var(--ms-2);
+    display: block;
+    padding: var(--global-whitespace);
+    overflow: auto;
+  }
+
+  &::after {
+    content: attr(data-language);
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-transform: uppercase;
+    color: var(--global-meta-color);
+    padding: var(--global-whitespace-2xs) var(--global-whitespace-2xs);
+    line-height: 1;
+    font-size: calc(var(--ms-3) / var(--root-font-size) * 1rem);
+  }
+}
+
+/*
+Typography
+==========
+*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  --fs: var(--ms0);
+  font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
+  font-weight: var(--global-font-weight-title);
+  font-family: var(--global-font-family-title);
+  color: var(--global-title-color);
+}
+
+ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+ul li::marker {
+  color: var(--global-meta-color);
+}
+
+strong {
+  color: var(--global-title-color);
+  font-weight: var(--global-font-weight-strong);
+}
+
+p {
+  /* pretty */
+  text-wrap: pretty;
+  /* or balance */
+  /* text-wrap: balance; */
+}
+
+em,
+i {
+  font-style: italic;
+  font-family: var(--global-font-family-beta);
+  color: var(--global-text-color);
+}
+
+.heading-anchor {
+  margin-left: calc(var(--global-whitespace) * -1);
+  padding-right: calc(var(--global-whitespace) / 2);
+  opacity: 0;
+}
+
+h2:has(.heading-anchor):hover .heading-anchor {
+  opacity: 1;
+}

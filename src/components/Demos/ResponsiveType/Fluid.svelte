@@ -283,5 +283,5 @@
 </div>
 
 <style>
-  @import "../../../styles/demos/responsiveType/styles.css";
+  @import "./responsive-type.css";
 </style>

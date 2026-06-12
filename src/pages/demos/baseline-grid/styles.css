@@ -50,6 +50,7 @@
   line-height: calc(var(--global-baseline) * 5);
   display: grid;
   gap: var(--global-whitespace-2xs);
+  color: var(--global-text-color);
 }
 
 .baseline-sidebar label span {
@@ -122,7 +123,7 @@
 .baseline-page-title {
   --h1-font-size: 2.75rem;
   font-size: var(--h1-font-size);
-  font-weight: 600;
+  font-weight: 500;
   color: var(--global-title-color);
   /* round the heading's line box up to the next full line */
   line-height: round(up, calc(var(--h1-font-size) * 1), var(--lh));

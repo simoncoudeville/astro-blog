@@ -1,0 +1,29 @@
+.demo {
+  --demo-whitespace: var(--global-whitespace);
+  border-radius: var(--global-borderRadius-lg);
+  background-color: var(--global-foregroundColor);
+  color: var(--global-text-color);
+  overflow: hidden;
+}
+
+.demo-empty {
+  background-color: transparent;
+}
+
+.demo__title {
+  --fs: var(--ms-1);
+  font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
+  line-height: calc(var(--global-baseline) * 5);
+  font-family: var(--global-font-family-alpha);
+}
+
+.demo__header {
+  padding: var(--global-whitespace-s) var(--demo-whitespace) 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.demo__body {
+  padding: var(--demo-whitespace);
+}
