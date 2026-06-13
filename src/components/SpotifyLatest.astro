@@ -1,6 +1,6 @@
 ---
 import SpotifyTrack from "./SpotifyTrack.astro";
-import { ListMusic, X } from "@lucide/astro";
+import { ListMusic, X, ChevronDown, Minus } from "@lucide/astro";
 
 const endpoint = "/.netlify/functions/spotify-latest";
 ---
@@ -11,13 +11,13 @@ const endpoint = "/.netlify/functions/spotify-latest";
       <h2 class="spotify__title" data-status></h2>
       <button
         type="button"
-        class="spotify__history-toggle"
+        class="icon-button spotify__history-toggle"
         aria-expanded="false"
         hidden
         data-history-toggle
       >
         <ListMusic class="icon spotify__icon-open" />
-        <X class="icon spotify__icon-close" />
+        <ChevronDown class="icon spotify__icon-close" />
         <span class="sr-only">Recently played</span>
       </button>
     </div>
@@ -290,15 +290,7 @@ const endpoint = "/.netlify/functions/spotify-latest";
 
   .spotify__history-toggle {
     flex-shrink: 0;
-    display: inline-flex;
-    align-items: center;
-    border: 0;
-    padding: 0;
-    background: none;
-    cursor: pointer;
     color: var(--global-meta-color);
-    font: inherit;
-    line-height: 1;
   }
 
   .spotify__history-toggle:hover {

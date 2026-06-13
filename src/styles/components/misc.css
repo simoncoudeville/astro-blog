@@ -11,6 +11,30 @@
   }
 }
 
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--global-whitespace-2);
+  border-radius: var(--global-borderRadius);
+  background-color: transparent;
+  border: none;
+  color: var(--global-text-color);
+  cursor: pointer;
+  margin: calc(-1 * var(--global-whitespace-2));
+  transition: all var(--global-transition-duration-short) ease;
+
+  &:hover {
+    background-color: var(--global-hover-backgroundColor);
+    color: var(--global-title-color);
+  }
+
+  &:focus-visible {
+    outline: 1px solid var(--global-accent-color);
+    outline-offset: 0.2em;
+  }
+}
+
 .link-meta {
   --link-color: var(--global-meta-color);
   text-decoration: none;
