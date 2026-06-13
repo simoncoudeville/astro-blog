@@ -8,6 +8,7 @@ consistently. Co-located demo CSS stays unlayered and wins over these layers.
 
 @import "./variables.css" layer(variables);
 
+@import "./base/fonts.css" layer(base);
 @import "./base/reset.css" layer(base);
 @import "./base/elements.css" layer(base);
 @import "./base/forms.css" layer(base);

@@ -1,0 +1,182 @@
+---
+// Reusable Spotify track row. Rendered both for the single "latest" track and
+// for each row in the recently-played popover. Markup is populated client-side
+// via the data-track-* hooks (see fillTrackRow in SpotifyLatest.astro).
+---
+
+<a
+  class="spotify__track-link"
+  href="#"
+  rel="noopener noreferrer"
+  target="_blank"
+  data-track-link
+>
+  <div class="spotify__track-image">
+    <img
+      alt=""
+      hidden
+      width="50"
+      height="50"
+      loading="lazy"
+      decoding="async"
+      data-track-artwork
+    />
+  </div>
+  <h3 class="spotify__track-title" data-track-title></h3>
+  <p class="spotify__track-meta color-meta" data-track-meta></p>
+  <span class="spotify__track-when color-meta" hidden data-track-when></span>
+
+  {/* Animated equalizer (lucide "audio-lines" style, 5 bars). Shown only
+      while a track is playing — see fillTrackRow in SpotifyLatest.astro. */}
+  <svg
+    class="icon spotify__track-eq"
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
+    <path d="M4 9v6"></path>
+    <path d="M8 9v6"></path>
+    <path d="M12 9v6"></path>
+    <path d="M16 9v6"></path>
+    <path d="M20 9v6"></path>
+  </svg>
+
+  
+  
+</a>
+
+<style>
+  .spotify__track-link {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas:
+      "image title when"
+      "image description when";
+    align-items: center;
+    gap: 0 var(--global-whitespace-3);
+    text-decoration: none;
+    --fs: var(--ms-1);
+    font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
+    line-height: calc(var(--global-baseline) * 4);
+  }
+
+  .spotify__track-image {
+    grid-area: image;
+  }
+
+  .spotify__track-image img {
+    width: var(--global-whitespace-8);
+    /* border-radius: 1rem; */
+    corner-shape: squircle;
+    border-radius: 100%;
+    /* border-radius: var(--global-borderRadius); */
+      /* corner-shape: superellipse(1.75); */
+
+  }
+
+  .spotify__image--playing {
+    /* animation-name: turntable; */
+    animation-duration: 1.8s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  .spotify__track-title {
+    grid-area: title;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: color var(--global-transition-duration-short) ease;
+    color: var(--global-text-color);
+  }
+
+  .spotify__track-link:hover .spotify__track-title {
+    color: var(--global-meta-color);
+  }
+
+  .spotify__track-meta {
+    grid-area: description;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--global-meta-color);
+  }
+
+  .spotify__track-when {
+    grid-area: when;
+    align-self: center;
+    white-space: nowrap;
+    --fs: var(--ms-2, var(--ms-1));
+    font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
+  }
+
+  .spotify__track-link--playing .spotify__track-when {
+    color: var(--global-title-color);
+  }
+
+  /* Now-playing equalizer (shown only while live) ---------------------- */
+  .spotify__track-eq {
+    display: none;
+    grid-area: when;
+    align-self: center;
+    justify-self: end;
+    color: var(--global-text-color);
+  }
+
+  .spotify__track-link--playing .spotify__track-eq {
+    display: block;
+  }
+
+  .spotify__track-eq path {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: spotify-eq 0.8s ease-in-out infinite;
+  }
+
+  .spotify__track-eq path:nth-child(1) {
+    animation-delay: -0.4s;
+  }
+  .spotify__track-eq path:nth-child(2) {
+    animation-delay: -0.15s;
+  }
+  .spotify__track-eq path:nth-child(3) {
+    animation-delay: -0.6s;
+  }
+  .spotify__track-eq path:nth-child(4) {
+    animation-delay: -0.25s;
+  }
+  .spotify__track-eq path:nth-child(5) {
+    animation-delay: -0.5s;
+  }
+
+  @keyframes spotify-eq {
+    0%,
+    100% {
+      transform: scaleY(0.5);
+    }
+    50% {
+      transform: scaleY(2);
+    }
+  }
+
+  @keyframes turntable {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .spotify__image--playing,
+    .spotify__track-eq path {
+      animation: none;
+    }
+
+    .spotify__track-eq path {
+      transform: scaleY(1);
+    }
+  }
+</style>

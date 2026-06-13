@@ -1,7 +1,7 @@
 ---
 import { SITE_ATHOUR } from "../config";
 const year = new Date().getFullYear();
-import IconUpSmall from "./Icons/IconUpSmall.astro";
+import { ArrowUp } from "@lucide/astro";
 ---
 
 <footer class="row row--page-footer" transition:animate="fade">
@@ -23,8 +23,8 @@ import IconUpSmall from "./Icons/IconUpSmall.astro";
         </li>
         */}
       </ul>
-      <a class="link-icon link-meta top" href="#top">
-        <IconUpSmall title="Back to top" />
+      <a class="link-icon link-meta top" href="#top" aria-label="Back to top">
+        <ArrowUp class="icon" />
       </a>
       <script is:inline>
         (() => {

@@ -30,8 +30,8 @@ Only loaded by DemoLayout (the standalone demo pages).
   /* width: var(--global-icon-size);
     height: var(--global-icon-size); */
   vertical-align: text-bottom;
+  fill: none;
   stroke: var(--back-link-color);
-  transform: rotate(-90deg);
   stroke-linecap: round;
   stroke-width: var(--global-icon-stroke);
 }

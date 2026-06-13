@@ -1,6 +1,6 @@
 ---
 import "../styles/demo.css";
-import IconUpSmall from "../components/Icons/IconUpSmall.astro";
+import { ArrowLeft } from "@lucide/astro";
 import { SITE_ATHOUR } from "../config";
 
 const { title = "", description = "", backLink = "/" } = Astro.props;
@@ -19,7 +19,7 @@ const { title = "", description = "", backLink = "/" } = Astro.props;
   </head>
   <body>
     <div class="demo-header">
-      <a href={backLink} class="back-link"><IconUpSmall title="Back to article" /></a>
+      <a href={backLink} class="back-link" aria-label="Back to article"><ArrowLeft class="icon" /></a>
       <h1>Demo: {title}</h1>
     </div>
     <div class="demo">

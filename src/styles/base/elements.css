@@ -133,6 +133,7 @@ h6 {
   font-weight: var(--global-font-weight-title);
   font-family: var(--global-font-family-title);
   color: var(--global-title-color);
+  text-wrap: pretty;
 }
 
 ul {

@@ -4,7 +4,7 @@ const TOKEN_ENDPOINT = "https://accounts.spotify.com/api/token";
 const CURRENTLY_PLAYING_ENDPOINT =
   "https://api.spotify.com/v1/me/player/currently-playing";
 const RECENTLY_PLAYED_ENDPOINT =
-  "https://api.spotify.com/v1/me/player/recently-played?limit=1";
+  "https://api.spotify.com/v1/me/player/recently-played";
 
 function json(
   statusCode,
@@ -103,12 +103,16 @@ async function fetchCurrentlyPlaying(accessToken) {
   });
 }
 
-async function fetchRecentlyPlayed(accessToken) {
-  const response = await fetch(RECENTLY_PLAYED_ENDPOINT, {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
+async function fetchRecentlyPlayed(accessToken, limit = 1) {
+  const safeLimit = Math.min(Math.max(limit, 1), 50);
+  const response = await fetch(
+    `${RECENTLY_PLAYED_ENDPOINT}?limit=${safeLimit}`,
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
     },
-  });
+  );
 
   if (!response.ok) {
     const details = await response.text();
@@ -118,19 +122,19 @@ async function fetchRecentlyPlayed(accessToken) {
   }
 
   const payload = await response.json();
-  const latestItem = payload?.items?.[0];
+  const items = Array.isArray(payload?.items) ? payload.items : [];
 
-  if (!latestItem?.track) {
-    return null;
-  }
-
-  return normalizeTrack(latestItem.track, {
-    isPlaying: false,
-    playedAt: latestItem.played_at ?? null,
-  });
+  return items
+    .filter((item) => item?.track)
+    .map((item) =>
+      normalizeTrack(item.track, {
+        isPlaying: false,
+        playedAt: item.played_at ?? null,
+      }),
+    );
 }
 
-export async function handler() {
+export async function handler(event) {
   const clientId = process.env.SPOTIFY_CLIENT_ID;
   const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
   const refreshToken = process.env.SPOTIFY_REFRESH_TOKEN;
@@ -146,6 +150,12 @@ export async function handler() {
     );
   }
 
+  const requested = Number.parseInt(
+    event?.queryStringParameters?.limit ?? "1",
+    10,
+  );
+  const limit = Math.min(Math.max(Number.isNaN(requested) ? 1 : requested, 1), 50);
+
   try {
     const accessToken = await getAccessToken(
       clientId,
@@ -154,12 +164,37 @@ export async function handler() {
     );
     const currentTrack = await fetchCurrentlyPlaying(accessToken);
 
-    if (currentTrack) {
-      return json(200, { ok: true, track: currentTrack });
+    // Single-track mode keeps the original response shape.
+    if (limit <= 1) {
+      if (currentTrack) {
+        return json(200, { ok: true, track: currentTrack });
+      }
+
+      const [recentTrack = null] = await fetchRecentlyPlayed(accessToken, 1);
+      return json(200, { ok: true, track: recentTrack });
     }
 
-    const recentTrack = await fetchRecentlyPlayed(accessToken);
-    return json(200, { ok: true, track: recentTrack });
+    // List mode: now-playing pinned on top, then de-duped recent history.
+    const recent = await fetchRecentlyPlayed(accessToken, limit);
+    const seen = new Set();
+    const tracks = [];
+
+    const keyFor = (track) => track.url || `${track.title}::${track.artists}`;
+
+    if (currentTrack) {
+      tracks.push(currentTrack);
+      seen.add(keyFor(currentTrack));
+    }
+
+    for (const track of recent) {
+      const key = keyFor(track);
+      if (seen.has(key)) continue;
+      seen.add(key);
+      tracks.push(track);
+      if (tracks.length >= limit + (currentTrack ? 1 : 0)) break;
+    }
+
+    return json(200, { ok: true, tracks });
   } catch (error) {
     console.error("[spotify-latest]", error);
 

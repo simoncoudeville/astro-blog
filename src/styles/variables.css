@@ -1,35 +1,4 @@
 /*
-Fonts
-=====
-*/
-
-@font-face {
-  font-family: "Graphik Web";
-  src: url("../fonts/Graphik-Regular-Web.woff") format("woff"),
-    url("../fonts/Graphik-Regular-Web.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Graphik Web";
-  src: url("../fonts/Graphik-Medium-Web.woff") format("woff"),
-    url("../fonts/Graphik-Medium-Web.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Tiempos Text";
-  src: url("../fonts/TiemposTextWeb-Regular.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-/*
 Variables
 =========
 */
@@ -158,7 +127,7 @@ Variables
   --global-transition-duration-longer: 0.6s;
 
   --global-icon-size: calc(20 / var(--root-font-size) * 1rem);
-  --global-icon-stroke: 1.25px;
+  --global-icon-stroke: 1.25;
 }
 
 @media (prefers-color-scheme: dark) {

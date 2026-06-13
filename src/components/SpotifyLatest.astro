@@ -1,56 +1,93 @@
 ---
+import SpotifyTrack from "./SpotifyTrack.astro";
+import { ListMusic, X } from "@lucide/astro";
+
 const endpoint = "/.netlify/functions/spotify-latest";
 ---
 
-<div class="spotify" data-endpoint={endpoint}>
-  <h2 class="spotify__title" data-status>Loading latest Spotify track&hellip;</h2>
-
-  <article class="spotify__track" hidden data-track>
-    
-      <a
-        class="spotify__track-link"
-        href="#"
-        rel="noopener noreferrer"
-        target="_blank"
-        data-track-link
+<div class="spotify" data-endpoint={`${endpoint}?limit=5`}>
+  <div class="spotify__inner">
+    <div class="spotify__head">
+      <h2 class="spotify__title" data-status></h2>
+      <button
+        type="button"
+        class="spotify__history-toggle"
+        aria-expanded="false"
+        hidden
+        data-history-toggle
       >
-        <div class="spotify__track-image">
-          <img
-            alt=""
-            hidden
-            width="50"
-            height="50"
-            loading="lazy"
-            decoding="async"
-            data-artwork
-          />
-        </div>
-        <h3 class="spotify__track-title" data-title></h3>
-        <p class="spotify__track-meta color-meta" data-meta></p>
-      </a>
-  </article>
+        <ListMusic class="icon spotify__icon-open" />
+        <X class="icon spotify__icon-close" />
+        <span class="sr-only">Recently played</span>
+      </button>
+    </div>
+
+    <article class="spotify__track" hidden data-track>
+      <SpotifyTrack />
+    </article>
+
+    <div class="spotify__history" data-history>
+      <p class="spotify__history-status" data-history-status hidden></p>
+      <ul class="spotify__history-list" hidden data-history-list></ul>
+    </div>
+
+    <template data-history-template>
+      <li class="spotify__track">
+        <SpotifyTrack />
+      </li>
+    </template>
+  </div>
 </div>
 
 <script>
   const components = document.querySelectorAll("[data-endpoint]");
 
+  // Populate a single track row (the shared SpotifyTrack markup). Used for
+  // both the latest track and each recently-played list row.
+  function fillTrackRow(root, track, { showWhen = false } = {}) {
+    const link = root.querySelector("[data-track-link]");
+    const art = root.querySelector("[data-track-artwork]");
+    const title = root.querySelector("[data-track-title]");
+    const meta = root.querySelector("[data-track-meta]");
+    const when = root.querySelector("[data-track-when]");
+
+    if (title) title.textContent = track.title ?? "Unknown track";
+    if (meta) meta.textContent = track.artists ?? "";
+    if (link) link.href = track.url || "https://open.spotify.com";
+
+    // While live the equalizer is shown (via the --playing class below);
+    // otherwise show the relative time on history rows.
+    if (!track.isPlaying && when && showWhen) {
+      when.textContent = timeAgo(track.playedAt);
+      when.hidden = false;
+    }
+
+    if (track.isPlaying && link) link.classList.add("spotify__track-link--playing");
+
+    if (art && track.artworkUrl) {
+      art.alt = `${track.album || track.title} artwork`;
+      if (track.isPlaying) art.classList.add("spotify__image--playing");
+      art.onload = () => {
+        art.hidden = false;
+      };
+      art.src = track.artworkUrl;
+    }
+  }
+
+  // Keep the page from hiding content behind the fixed bar: reserve the
+  // collapsed bar height as body padding. We only sync while closed so the
+  // expanded list overlays content rather than pushing it.
+  function reserveBarSpace(component) {
+    if (component.classList.contains("is-open")) return;
+    document.body.style.paddingBottom = `${component.offsetHeight}px`;
+  }
+
   async function hydrateSpotify(component) {
     const endpoint = component.getAttribute("data-endpoint");
     const statusNode = component.querySelector("[data-status]");
     const trackNode = component.querySelector("[data-track]");
-    const trackLink = component.querySelector("[data-track-link]");
-    const artworkNode = component.querySelector("[data-artwork]");
-    const titleNode = component.querySelector("[data-title]");
-    const metaNode = component.querySelector("[data-meta]");
 
-    if (
-      !endpoint ||
-      !statusNode ||
-      !trackNode ||
-      !trackLink ||
-      !titleNode ||
-      !metaNode
-    ) {
+    if (!endpoint || !statusNode || !trackNode) {
       return;
     }
 
@@ -66,51 +103,172 @@ const endpoint = "/.netlify/functions/spotify-latest";
       }
 
       const payload = await response.json();
-      const track = payload?.track;
+      const tracks = Array.isArray(payload?.tracks) ? payload.tracks : [];
+      // The API pins the current/latest track at the top of the list.
+      const current = tracks[0];
 
-      if (!payload?.ok || !track) {
-        statusNode.textContent = "Spotify is currently unavailable\u2026";
-        return;
+      if (!payload?.ok || !current) {
+        return; // stay hidden when unavailable
       }
 
-      statusNode.textContent = track.isPlaying
+      statusNode.textContent = current.isPlaying
         ? "Currently playing"
         : "Recently played";
 
-      titleNode.textContent = track.title ?? "Unknown track";
-      metaNode.textContent = track.artists ?? "";
-      trackLink.href = track.url || "https://open.spotify.com";
+      const historyToggle = component.querySelector("[data-history-toggle]");
+      if (historyToggle) {
+        historyToggle.hidden = false;
+      }
+
+      // Remember which track the bar is showing so it's dropped from the list.
+      component.dataset.currentKey = trackKey(current);
+
+      fillTrackRow(trackNode, current, { showWhen: true });
       trackNode.hidden = false;
 
-      if (artworkNode && track.artworkUrl) {
-        artworkNode.alt = `${track.album || track.title} artwork`;
-        if (track.isPlaying) {
-          artworkNode.classList.add("spotify__image--playing");
-        }
-        artworkNode.onload = () => {
-          artworkNode.hidden = false;
-        };
-        artworkNode.src = track.artworkUrl;
+      // Pre-render the recently-played list now (hidden until the panel
+      // opens) so the same single fetch covers both the bar and the list.
+      renderHistory(component, tracks);
+
+      setupHistory(component);
+
+      // Reserve space first so the layout is stable, then slide the bar in.
+      reserveBarSpace(component);
+      component.classList.add("is-ready");
+
+      if ("ResizeObserver" in window) {
+        const ro = new ResizeObserver(() => reserveBarSpace(component));
+        ro.observe(component);
       }
     } catch (error) {
       console.error(error);
-      statusNode.textContent = "Spotify is currently unavailable\u2026";
+      // leave the bar hidden on failure
     }
   }
 
   components.forEach((component) => {
     hydrateSpotify(component);
   });
+
+  // Stable identity for a track, matching the Netlify function's keyFor.
+  function trackKey(track) {
+    return track.url || `${track.title}::${track.artists}`;
+  }
+
+  // Relative time, e.g. "6h", "2min" (no "ago" suffix) ------------------
+  const RELATIVE = [
+    [60, "s"],
+    [60, "min"],
+    [24, "h"],
+    [7, "d"],
+    [4.345, "w"],
+  ];
+
+  function timeAgo(isoString) {
+    if (!isoString) return "";
+    const then = new Date(isoString).getTime();
+    if (Number.isNaN(then)) return "";
+    let diff = (Date.now() - then) / 1000;
+    if (diff < 5) return "now";
+    let unit = "s";
+    for (const [step, label] of RELATIVE) {
+      if (diff < step) {
+        unit = label;
+        break;
+      }
+      diff /= step;
+      unit = label;
+    }
+    return `${Math.round(diff)}${unit}`;
+  }
+
+  function renderHistory(component, tracks) {
+    const list = component.querySelector("[data-history-list]");
+    const status = component.querySelector("[data-history-status]");
+    const template = component.querySelector("[data-history-template]");
+    if (!list || !template) return;
+
+    list.replaceChildren();
+
+    // The bar already shows the current/latest track, so drop it here.
+    const currentKey = component.dataset.currentKey;
+    const rows = tracks.filter((track) => trackKey(track) !== currentKey);
+
+    for (const track of rows) {
+      const row = template.content.firstElementChild.cloneNode(true);
+      fillTrackRow(row, track, { showWhen: true });
+      list.append(row);
+    }
+
+    if (status) {
+      status.textContent = "Nothing else to show yet…";
+      status.hidden = rows.length > 0;
+    }
+    list.hidden = rows.length === 0;
+  }
+
+  // Slide-up recently-played panel (list is pre-rendered upfront) -------
+  function setupHistory(component) {
+    const toggle = component.querySelector("[data-history-toggle]");
+    if (!toggle) return;
+
+    toggle.addEventListener("click", () => {
+      const open = component.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", String(open));
+    });
+  }
 </script>
 
 <style>
+  /* Fixed translucent player pinned to the bottom of the viewport ------- */
   .spotify {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* Only as wide as its content column, and centered. */
+    max-width: calc(38rem + var(--global-whitespace-5) * 2);
+    /* max-width: 38rem; */
+    margin-inline: auto;
+    z-index: 50;
+    /* Same surface colour as cards, but semi-transparent so the blurred
+       page shows through. Using --global-foregroundColor keeps it correct
+       in both light and dark mode. */
+    background: color-mix(
+      in srgb,
+      var(--global-foregroundColor) 75%,
+      transparent
+    );
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    border-start-start-radius: var(--global-borderRadius-lg);
+    border-start-end-radius: var(--global-borderRadius-lg);
+    /* Opt in to animating intrinsic sizes (e.g. height: auto) on descendants. */
+    interpolate-size: allow-keywords;
+    /* Parked below the viewport until the data is ready, then slides up. */
+    transform: translateY(100%);
+    opacity: 0;
+    transition:
+      transform var(--global-transition-duration-long) ease,
+      opacity var(--global-transition-duration) ease;
+  }
+
+  .spotify.is-ready {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .spotify__inner {
     display: grid;
-    gap: var(--global-whitespace-4);
-    background: var(--global-foregroundColor);
-    border-radius: var(--global-borderRadius-lg);
+    gap: var(--global-whitespace-5);
+    height: calc(135 / var(--root-font-size) * 1rem);
+    overflow: hidden;
+    transition: height var(--global-transition-duration) ease;
     padding: var(--global-whitespace-5);
-    margin-inline: calc(var(--global-whitespace-5) * -1);
+  }
+
+  .spotify.is-open .spotify__inner {
+    height: auto;
   }
 
   .spotify__title {
@@ -118,57 +276,81 @@ const endpoint = "/.netlify/functions/spotify-latest";
     --fs: var(--ms-1);
     font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
     line-height: calc(var(--global-baseline) * 4);
-    color: var(--global-meta-color);
+    
+  }
+
+  /* Header row: title + recently-played toggle ------------------------- */
+  .spotify__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--global-whitespace-4);
     /* margin-bottom: var(--global-whitespace-4); */
   }
 
-  .spotify__track-link {
-       display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-areas: "image title" "image description";
-    gap: 0 var(--global-whitespace-2);
-    text-decoration: none;
-    /* --fs: var(--ms-1);
-    font-size: calc(var(--fs) / var(--root-font-size) * 1rem);
-    line-height: calc(var(--global-baseline) * 4); */
+  .spotify__history-toggle {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    border: 0;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+    color: var(--global-meta-color);
+    font: inherit;
+    line-height: 1;
   }
 
-  .spotify__track-image {
-    grid-area: image;
-
-    img {
-      width: var(--global-whitespace-10);
-      border-radius: 100%;
-    }
-  }
-
-
-
-  .spotify__image--playing {
-    /* animation: turntable 1s ease 0 infinite; */
-  animation-name: turntable;
-  animation-duration: 1.8s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  }
-
-  .spotify__track-title {
-    grid-area: title;
+  .spotify__history-toggle:hover {
     color: var(--global-text-color);
   }
 
-  .spotify__track-meta {
-    grid-area: description;
+  .spotify__history-toggle :global(.icon) {
+    flex-shrink: 0;
+  }
+
+  /* Icon swaps to a close (X) when the list is open. */
+  .spotify__history-toggle :global(.spotify__icon-close) {
+    display: none;
+  }
+
+  .spotify.is-open .spotify__history-toggle :global(.spotify__icon-open) {
+    display: none;
+  }
+
+  .spotify.is-open .spotify__history-toggle :global(.spotify__icon-close) {
+    display: inline-block;
+  }
+
+  /* Recently-played list slides open by transitioning height 0 -> auto. */
+  .spotify__history {
+    /* height: 0;
+    overflow: hidden; */
+    transition: height var(--global-transition-duration) ease;
+  }
+
+  .spotify.is-open .spotify__history {
+    /* height: auto; */
+  }
+
+  .spotify__history-status {
     color: var(--global-meta-color);
   }
 
+  .spotify__history-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--global-whitespace-5);
+    max-height: 40vh;
+    overflow-y: auto;
+  }
 
-@keyframes turntable {
-  from {
-    transform: rotate(0deg);
+  @media (prefers-reduced-motion: reduce) {
+    .spotify,
+    .spotify__history {
+      transition: none;
+    }
   }
-  to {
-    transform: rotate(360deg);
-  }
-}
 </style>

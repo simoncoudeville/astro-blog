@@ -5,6 +5,10 @@
   stroke: currentColor;
   stroke-linecap: round;
   stroke-width: var(--global-icon-stroke);
+
+  & * {
+    vector-effect: non-scaling-stroke;
+  }
 }
 
 .link-meta {

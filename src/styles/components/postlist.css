@@ -54,6 +54,11 @@
   & img {
     object-fit: cover;
     border-radius: 100%;
+    /* border-radius: var(--global-borderRadius); */
+    /* border-radius: var(--global-borderRadius-lg); */
+    /* corner-shape: superellipse(2); */
+    /* border-radius: 2rem; */
+    corner-shape: squircle;
     width: calc(var(--global-whitespace-10) * 1);
     aspect-ratio: 1;
   }
