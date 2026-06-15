@@ -13,4 +13,5 @@ consistently. Co-located demo CSS stays unlayered and wins over these layers.
 @import "./base/elements.css" layer(base);
 @import "./base/forms.css" layer(base);
 
+@import "./components/misc.css" layer(components);
 @import "./components/demo-chrome.css" layer(components);

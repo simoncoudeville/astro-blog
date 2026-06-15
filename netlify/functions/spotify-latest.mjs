@@ -175,7 +175,9 @@ export async function handler(event) {
     }
 
     // List mode: now-playing pinned on top, then de-duped recent history.
-    const recent = await fetchRecentlyPlayed(accessToken, limit);
+    // Over-fetch so de-duplication still leaves us with `limit` distinct
+    // tracks (Spotify's recently-played list frequently repeats a track).
+    const recent = await fetchRecentlyPlayed(accessToken, Math.min(limit * 2, 50));
     const seen = new Set();
     const tracks = [];
 
@@ -186,12 +188,14 @@ export async function handler(event) {
       seen.add(keyFor(currentTrack));
     }
 
+    // Fill up to `limit` total (current track included) so the count is
+    // stable whether or not something is currently playing.
     for (const track of recent) {
+      if (tracks.length >= limit) break;
       const key = keyFor(track);
       if (seen.has(key)) continue;
       seen.add(key);
       tracks.push(track);
-      if (tracks.length >= limit + (currentTrack ? 1 : 0)) break;
     }
 
     return json(200, { ok: true, tracks });

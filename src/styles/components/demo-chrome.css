@@ -21,27 +21,11 @@ Only loaded by DemoLayout (the standalone demo pages).
   --back-link-color: var(--global-title-color);
 }
 
-.back-link .icon {
-  display: inline-block;
-  /* width: var(--global-whitespace-3);
-    height: var(--global-whitespace-3); */
-  width: 1rem;
-  height: 1rem;
-  /* width: var(--global-icon-size);
-    height: var(--global-icon-size); */
-  vertical-align: text-bottom;
-  fill: none;
-  stroke: var(--back-link-color);
-  stroke-linecap: round;
-  stroke-width: var(--global-icon-stroke);
-}
-
 .demo-header {
-  padding: var(--global-whitespace-4);
-  margin-bottom: var(--global-whitespace-5);
+  padding: var(--global-whitespace-5);
   display: flex;
   align-items: center;
-  gap: var(--global-whitespace-4);
+  gap: var(--global-whitespace-5);
   color: var(--global-text-color);
 
   * {
