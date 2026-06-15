@@ -13,6 +13,8 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
+  /* Opt in to animating intrinsic sizes (e.g. height: auto) everywhere. */
+  interpolate-size: allow-keywords;
 }
 
 ::selection {
