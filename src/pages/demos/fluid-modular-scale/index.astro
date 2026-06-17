@@ -1,14 +1,13 @@
 ---
 import DemoLayout from "../../../layouts/DemoLayout.astro";
 import "../../../styles/demos/shared/fluid.css"; // Shared CSS for all fluid demos
+import { getDemo } from "../../../data/demos";
 
-const title = "Fluid typographic modular scale with calc()";
-const description = "Fluid typography with modular scale demo using CSS clamp() function";
-
+const { slug, title, description, backLink } = getDemo("fluid-modular-scale");
 ---
 
 
-<DemoLayout title={title} description={description} backLink="/blog/a-css-only-fluid-typography-approach/">
+<DemoLayout title={title} description={description} backLink={backLink} slug={slug}>
   <div class="container">
     {/* Fluid typography demo form
     <form style="display: flex; gap: 1rem; margin-bottom: 2rem; align-items: flex-end;">

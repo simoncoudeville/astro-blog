@@ -1,13 +1,12 @@
 ---
 import DemoLayout from "../../../layouts/DemoLayout.astro";
 import "../../../styles/demos/shared/fluid.css"; // Shared CSS for all fluid demos
+import { getDemo } from "../../../data/demos";
 
-const title = "Fluid text with @function";
-const description = "Fluid typography demo using CSS @function";
-// Test comment to trigger reload
+const { slug, title, description, backLink } = getDemo("fluid-type-function");
 ---
 
-<DemoLayout title={title} description={description} backLink="/blog/a-css-only-fluid-typography-approach/">
+<DemoLayout title={title} description={description} backLink={backLink} slug={slug}>
   <div class="container">
     <div class="fluid-text-demo">
       <p class="fluid-type-function-0">

@@ -1,17 +1,17 @@
 ---
 import DemoLayout from "../../../layouts/DemoLayout.astro";
 import ToggleSwitch from "../../../components/ToggleSwitch.astro";
-import "./styles.css";
+import "./_styles.css";
+import { getDemo } from "../../../data/demos";
 
-const title = "Aligning images to a baseline grid";
-const description =
-  "Images that snap their height to the baseline grid with pure CSS, plus a sidebar to override the font size, line height and baseline divisions.";
+const { slug, title, description, backLink } = getDemo("baseline-grid");
 ---
 
 <DemoLayout
   title={title}
   description={description}
-  backLink="/blog/aligning-images-to-a-baseline-grid-with-modern-css/"
+  backLink={backLink}
+  slug={slug}
 >
   <div class="baseline-layout">
     <aside class="baseline-sidebar">
