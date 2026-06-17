@@ -66,10 +66,13 @@
   .spotify__track-image img {
     width: var(--global-whitespace-8);
     /* border-radius: 1rem; */
-    corner-shape: squircle;
+    /* corner-shape: squircle; */
     border-radius: 100%;
-    /* border-radius: var(--global-borderRadius); */
+    /* border-radius: var(--global-borderRadius-lg); */
       /* corner-shape: superellipse(1.75); */
+
+    /* outline: 1px solid rgb(from var(--global-title-color) r g b / 0.1);
+    outline-offset: -1px; */
 
   }
 
@@ -104,6 +107,8 @@
   }
 
   .spotify__track-when {
+    min-width: var(--global-whitespace-4);
+    text-align: center;
     grid-area: when;
     align-self: center;
     white-space: nowrap;

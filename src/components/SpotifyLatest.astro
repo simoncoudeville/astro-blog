@@ -241,8 +241,9 @@ const endpoint = "/.netlify/functions/spotify-latest";
     );
     -webkit-backdrop-filter: blur(16px);
     backdrop-filter: blur(16px);
-    border-start-start-radius: var(--global-borderRadius-lg);
-    border-start-end-radius: var(--global-borderRadius-lg);
+    --spotify-border-radius: var(--global-borderRadius-lg);
+    border-start-start-radius: var(--spotify-border-radius);
+    border-start-end-radius: var(--spotify-border-radius);
     /* Parked below the viewport until the data is ready, then slides up. */
     transform: translateY(100%);
     opacity: 0;
