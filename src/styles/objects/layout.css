@@ -34,8 +34,9 @@ Objects
 
 .container {
   max-width: 38rem;
-  margin-left: auto;
-  margin-right: auto;
+  /* margin-left: auto;
+  margin-right: auto; */
+  margin-inline: auto;
 }
 
 .list-reset {
@@ -70,7 +71,6 @@ Objects
 .flow > .astro-code + *,
 .flow > * + .astro-code {
   margin-top: calc(var(--global-whitespace-5) + var(--global-whitespace-2));
-  /* margin-top: var(--global-whitespace-5); */
 }
 
 .flow > * + h2,
@@ -92,3 +92,22 @@ Objects
 .flow > h3 + * {
   margin-top: 0;
 }
+
+/* future stuff */
+/* 
+.flow {
+  margin-trim: block;
+
+  @supports not (margin-trim: block) {
+    margin-block-start: calc(var(--global-whitespace-5) * -1);
+    margin-block-end: calc(var(--global-whitespace-5) * -1);
+  }
+
+  > * {
+    margin-block: var(--global-whitespace-5);
+  }
+
+  > h2 {
+    margin-block-start: var(--global-whitespace-10);
+  }
+} */

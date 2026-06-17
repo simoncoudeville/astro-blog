@@ -91,7 +91,7 @@
 
 .math {
   max-width: fit-content;
-  margin: 0 auto;
+  margin-inline: auto;
 
   & path {
     fill: currentColor;

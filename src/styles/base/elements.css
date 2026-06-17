@@ -140,11 +140,18 @@ h6 {
 
 ul {
   padding-left: 0;
-  list-style: none;
+  /* list-style: none; */
 }
 
-ul li::marker {
-  color: var(--global-meta-color);
+ul li {
+  /* margin-left: 2ch; */
+  list-style-position: inside;
+}
+
+ul:not([class]) li::marker {
+  font-family: "Roboto Mono", monospace;
+  content: "- ";
+  text-indent: 2ch !important;
 }
 
 strong {
