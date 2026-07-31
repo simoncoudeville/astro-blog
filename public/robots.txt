@@ -1,0 +1,61 @@
+# simoncoudeville.be
+#
+# You're welcome to read this site, quote it, and cite it in answers.
+# Please don't use it as training data.
+#
+# The Content-Signal below expresses that preference in machine-readable
+# form. See https://contentsignals.org
+#
+#   search   = yes  -> index it, link to it
+#   ai-input = yes  -> read it live to answer someone's question
+#   ai-train = no   -> don't fold it into a model
+
+User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Allow: /
+
+# --- Training crawlers: no ---
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+# --- Search and user-initiated retrieval: yes ---
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+# Legacy token, kept for older crawlers still sending it.
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://simoncoudeville.be/sitemap-index.xml

@@ -14,6 +14,9 @@ import mdx from "@astrojs/mdx";
 import svelte from "@astrojs/svelte";
 
 // https://astro.build/config
+import sitemap from "@astrojs/sitemap";
+
+// https://astro.build/config
 export default defineConfig({
   site: 'https://simoncoudeville.be',
   integrations: [mdx({
@@ -41,5 +44,7 @@ export default defineConfig({
     //     dark: semaSoftTheme,
     //   },
     // },
-  }), svelte()],
+  }), svelte(), sitemap({
+    filter: (page) => !page.includes('/404'),
+  })],
 });
