@@ -12,11 +12,6 @@
 # here at /td3-remote/ without changing the address, so its files are not copied
 # into this repo and it keeps deploying from its own repo.
 [[redirects]]
-  from = "/td3-remote"
-  to = "/td3-remote/"
-  status = 301
-
-[[redirects]]
   from = "/td3-remote/*"
   to = "https://td3-remote.netlify.app/:splat"
   status = 200
